@@ -1,0 +1,149 @@
+---
+title: "251 Rescues"
+output:
+  html_document: 
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=F, message=F)
+knitr::opts_chunk$set(dev = "png", dev.args = list(type = "cairo-png"))
+options(knitr.table.format = "html")
+knitr::opts_chunk$set(echo = F)
+library(tidyverse)
+library(viridis)
+library(Replicate)
+library(metafor)
+library(esc)
+library(here)
+library(brms)
+library(rstan)
+library(googledrive)
+library(glmnet)
+library(tidybayes)
+library(ggstance)
+library("lattice")
+library(reshape2)
+library(ggrepel)
+library(ggthemes)
+library(knitr)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
+theme_set(theme_bw())
+
+model_location="code/models"
+```
+
+
+# Pull data
+
+Download
+
+```{r, eval=F}
+f <- googledrive::as_dribble("https://docs.google.com/spreadsheets/d/12A4DblSbX_0tHP1mTVJhjNboI1YDngidkNWiSy0sN0g/edit#gid=0")
+googledrive::drive_download(f, path=here("data","raw_data.xlsx"), overwrite=T)
+
+raw_expts <- readxl::read_xlsx(here("data","raw_data.xlsx"), sheet="expt-level", skip=0) 
+
+raw_orig <- readxl::read_xlsx(here("data", "raw_data.xlsx"), sheet="original")
+
+ready <- raw_expts |> left_join(raw_orig) |> write_csv(here("data", "combined_data.csv"))
+
+
+```
+
+Read in cache.
+
+```{r}
+d <- read_csv(here("data", "combined_data.csv")) |> 
+  select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
+         same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
+         open_data, open_materials, within_between, single_vignette)
+
+```
+
+# Parsing
+
+We parse out values from the raw stats. 
+
+```{r}
+source(here("code","helper","parse_stats.R"))
+```
+
+
+```{r}
+parsed_d <- d |> 
+  mutate(raw_stat=gsub(" ","",raw_stat),
+         calc=pmap(list(raw_stat, within_between,N), do_parsing)) |> 
+  unnest(cols=c(calc), names_sep="_") |> 
+    mutate(
+    calc_d_calc=case_when(
+      type=="original" ~ abs(calc_d_calc),
+      same_direction=="yes" ~ abs(calc_d_calc),
+      same_direction=="no" ~ -abs(calc_d_calc),
+      T ~ as.numeric(NA)
+      ),
+    calc_ES=case_when(
+      type=="original" ~ abs(calc_ES),
+      same_direction=="yes" ~ abs(calc_ES),
+      same_direction=="no" ~ -abs(calc_ES),
+      T ~ as.numeric(NA)
+      ),
+    type=factor(type, levels=c("rescue", "additional", "rep1", "original"))
+    ) |> 
+  rowwise()
+```
+
+
+## what didn't parse
+
+Check that nothing that has a stat input and doesn't get an ES out. 
+
+```{r}
+
+parsed_d |> filter(is.na(calc_ES)&(is.na(calc_d_calc))) |>  select(target_lastauthor_year, type, raw_stat)
+
+parsed_d |> filter(is.na(calc_SE)&(is.na(calc_d_calc_se))) |>  select(target_lastauthor_year, type, raw_stat)
+
+```
+
+# Draft plot
+
+```{r}
+#test on just one
+
+for_plotting <- parsed_d |> filter(is.na(calc_d_calc)&!is.na(calc_ES)) |> 
+  mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE)
+
+for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |> 
+  mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se)
+ggplot(for_plotting,aes(x=type,y=point,ymin=low,ymax=high))+
+  geom_errorbar(colour='darkgray',size=.5,width=.25)+
+  geom_point()+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position = "none")+
+  labs(y="Effect size original scale", x="")+
+  facet_wrap(~target_lastauthor_year)
+
+ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, group=type))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
+  geom_point(position=position_dodge(width=.4))+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position = "bottom")+
+  labs(y="Effect size SMD", x="")
+```
+# PredInt and P_orig
+
+```{r}
+source(here("code","helper","stats.R"))
+```
+
+Compute prediction intervals and p_orig, write processed data to file. 
+
+
+

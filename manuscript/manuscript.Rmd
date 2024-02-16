@@ -1,0 +1,283 @@
+---
+title: "TODO"
+author:
+  - name: Veronica Boyce
+    affiliation: Stanford
+    footnote:
+      - corresp
+  - name: TODO
+    affiliation: Stanford
+  - name: Michael C. Frank
+    affiliation: Stanford
+address:
+  - code: Stanford
+    address: Stanford University
+footnote:
+  - code: corresp
+    text: "Corresponding author. Email: vboyce@stanford.edu"
+bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
+csl: vancouver.csl # Use any CSL style. See https://www.zotero.org/styles for a good list. Ignored if citation_package: natbib
+link-citations: TRUE
+output:
+  bookdown::pdf_document2:
+    toc: FALSE
+    keep_tex: TRUE
+    template: generic_article_template.tex
+    #md_extensions: "-autolink_bare_uris"
+    number_sections: TRUE
+    citation_package: default # Can also be "natbib"
+lang: en # Main document language in BCP47 format
+geometry: "margin=25mm"
+papersize: a4
+#linestretch: 2 # for double spacing
+endfloat: FALSE # Set to TRUE to turn on latex endfloat package to place figures and tables at end of document
+# endfloatoption: # See endfloat documentation for more possibilities
+#   - tablesfirst # Default
+#   - nomarkers # Default
+numberlines: FALSE
+authblk: TRUE # FALSE = author affiliations in footnotes; TRUE = author affiliations in a block below author names
+footnotehyper: FALSE # TRUE will give you enhanced table footnote capabilities. Set to FALSE to be able to use French blocks. Needed due to what appears to be a latex bug.
+urlcolor: blue
+linkcolor: blue
+citecolor: blue
+graphics: TRUE # Needed to be able to include images
+tables: TRUE # Needed to be able to include tables
+# fancyhdr:
+#   first:
+#     #headleft: "REPORT-NO-XXXX"
+#     headright: "Kaplan et al. (2021)"
+#     headrulewidth: 0pt
+#     #footleft: A left foot
+#     footrulewidth: 0pt
+#   subsequent:
+#     #headleft: "NEXT-PAGE-HEADER-LEFT"
+#     headright: "Kaplan et al. (2021)"
+#     headrulewidth: 1pt
+#     footrulewidth: 0pt
+
+header-includes:
+ - \usepackage{tikz}
+ - \usetikzlibrary{positioning,chains}
+ - \usepackage{setspace}\singlespacing
+ - \renewcommand{\textfraction}{0.00}
+ - \renewcommand{\topfraction}{1}
+ - \renewcommand{\bottomfraction}{1}
+ - \renewcommand{\floatpagefraction}{1}
+ - \setcounter{topnumber}{3}
+ - \setcounter{bottomnumber}{3}
+ - \setcounter{totalnumber}{4}
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE) # By default, hide code; set to TRUE to see code
+#knitr::opts_chunk$set(fig.pos = 'th') # Places figures at top or here
+knitr::opts_chunk$set(out.width = '100%', dpi=300,
+                      fig.width=8, fig.width=8) # Figure resolution and size
+knitr::opts_chunk$set(fig.env="figure") # Latex figure environment
+
+options(knitr.table.format="latex") # For kable tables to work without setting format option
+
+knitr::opts_chunk$set(echo=F, warning=F, message=F)#dev = "png", dev.args = list(type = "cairo-png")
+ library("papaja")
+library("bookdown")
+library("rticles")
+ library(here)
+ library(tidyverse)
+ library(brms)
+library(tidybayes)
+library(kableExtra)
+library(viridis)
+library(cowplot)
+library(ggthemes)
+library(reshape2)
+#r_refs("r-references.bib", append=F)
+theme_set(theme_bw())
+options(knitr.table.format = "pdf")
+
+model_location="code/models"
+
+```
+
+<!---------------------- Abstract --------------------->
+
+::: {.abstract data-latex="" lang=en}
+
+
+
+TODO abstract
+:::
+
+# Introduction
+
+How definitive are failed replications?
+
+TODO cite the MB whatever that tried this. 
+
+Well, it depends on what you're trying to measure. From the perspective of learning from the field as a whole things are complicated and may depend also on a priori information from other related studies, the beleivability of the results, the relative rigor and sample sizes of the original and replication (TODO perhaps cite the time invariant). 
+
+Researchers do care about that from theory-building perspectives, but there's also a more local reason. Given that a student or lab has attempted a direct replication and that replication has not gotten the desired results of the original, what should they do? Should they try to replicate it again (potentially learning something about how to improve their experiment from the unsuccessful replication)? Or should they concluded that for them, given the resources they have, it isn't worth pursuing that particular experimental design? 
+
+## Why replication failure? 
+A replication can have different results from the original study for a number of different potential reasons. The original result may have been a fluke, through chance or p-hacking. The original result might be of much less generalizability than is assumed, and very sensitive to the exact conditions and time it was run in ("hidden moderators"). The original could have an inflated effect size, due to some combination of heterogeneity, p-hacking, luck, and publication bias. The replication could have been underpowered due to any of inflated original effect size, attrition in sample, or the original also being underpowered. A manipulation might have failed in the replication (this is a proximate cause that also raises the question of why the manipulation check failed). There might have been a difference in materials or instructions between the two, that turns out to matter (more likely if materials are not available). The experiment might not port well to online due to some details. A change in sample (ie. to online) may decrease data quality without sufficient attention checks. The replication might have made changes (for convenience or a new sample) that turn out to matter. 
+
+[list reasons] While one can theorize after the fact about potential causes, in most circumstances it is hard to diagnose for certain what made for the difference in the results. An exception might be if a specific error in one study or the other is found, such that the results were not what was thought (analytic error) or the data was not what was thought (experimental error). 
+
+What would these potential causes of replication failure suggest would happen in another replication? For our purposes, we're considering another replication with roughly the same environment, knowledge, and resources of the first replication, but with the benefit of hindsight on the first replication. 
+
+Heterogeneity and lack-of-generalizability reasons mostly suggest another failed replication, as the second replication is likely to be closer to the first replication than to the original in these random factors. CITE THAT PAPER about types of heterogeneity and which was they would fall
+
+P-hacking and luck reasons are likely to suggest another failed replication. 
+
+Manipulation check failure may not be fixable, but it might at least be diagnosable. 
+
+Underpoweredness and inflated effect size may be recoverable depending on the extent -- if the effect size was inflated and the first replication powered for the effect, a better powered (but not huge) replication may be able to recover a smaller, but still convincing effect. 
+
+Changes between original and replication may or may not be fixable -- if the original materials are still unavailable, a second replication is no better off. If a second replication can get closer to the original, it might get more similar results. 
+
+Sensitivity to environment or not working well online are unlikely to be fixable if the replications remain constrained to using online methods. 
+
+These are pragmatic judgments related to how a lab might treat a failed replication as a sign that they cannot do cumulative science on a particular paradigm. In some cases, especially related to changes-in-population or changes-to-online, replications, and thus cumulative work on the paradigm, might be possible for other groups who have different resources. 
+
+The question is, having a failed replication, and not knowing which reasons might have caused the different results -- should a scientist try again? 
+
+## Current study
+
+Here we report the results of TODO N re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in TODO CITE BOYCE. This is a non-random sample, and given the small number of projects, we discuss qualitatively TODO 
+
+
+
+# Methods
+PSYCH 251 is a graduate-level experimental methods class taught by MCF. In previous years, students have conducted replication projects, which were analyzed for replication rate and properties in TODO CITE BOYCE. In Fall 2023, students in PSYCH 251 were offered the option to do a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year (students could also opt to do a normal replication instead). We report on the result of $N rescue projects that opted to be part of the paper and completed data collection. 
+
+LOts of stuff is available at LINK. 
+
+## Sample
+
+```{r}
+
+
+library(tidyverse)
+library(testthat)
+all_projects <- read_csv("https://raw.githubusercontent.com/vboyce/251-254-MA/main/data/raw_data.csv")
+
+filtered <- all_projects |>
+  mutate(sub_rep=ifelse(replicated_instructor_code==replicated_report_code, 
+                 replicated_report_code, 
+                 adjudicated_replication_code)) |> 
+  filter(sub_rep %in% c(0,.25, .5)) |> 
+  filter(include!="no") |> 
+  filter(target_N <=200) |> 
+  filter(academic_year %in% c("2015-2016", "2016-2017", "2017-2018", "2018-2019", 
+                              "2019-2020", "2020-2021","2021-2022", "2022-2023")) 
+# what we really want is whether there was a github, but that column is private and so not in the public raw data
+# but 2015 is the first year where we have github links
+
+#test_that("number of rows in filtered", {expect_equal(nrow(filtered),49)})
+
+#given this sample, we then sought original replicator permission, 
+#since it would involve sharing their repo and write-up with a new student
+#which wouldn't have been anticipated at original classtime
+
+#we heard back from 29 students of the 49 we attempted to contact 
+#(1 we couldn't contact due to email bouncing) 
+#2 responses were negative, rest were positive, for 27 options
+
+approved <- c("krauss2003","yeshurun2003", "daffner2000", "ngo2019",
+              "child2018", "schechtman2010", "payne2008", "paxton2012",
+              "hart2018", "lewis2015", "tarampi2016", "jara-ettinger2022",
+              "porter_2016_1", "hopkins2016", "birch2007_2", "gong2019",
+              "correll2007", "pilditch2019", "daw2011", "dehaene2009",
+              "sofer2015", "todd2016_1", "chou2016", "mani2013", 
+              "haimovitz2016_2", "haimovitz2016_1", "craig2014")
+options <- filtered |> filter(target_lastauthor_year %in% approved)
+
+#test_that("number of rows in options", {expect_equal(nrow(options),27)})
+
+# students were then given this list and the opportunity to choose what to do
+
+# projects that we believe are being rescued (as of Oct 23)
+
+chosen <- c("sofer2015", "birch2007_2", "jara-ettinger2022", "porter_2016_1",
+            "hopkins2016", "yeshurun2003", "craig2014", "tarampi2016", 
+            "mani2013", "krauss2003", "schechtman2010", "child2018",
+            "haimovitz2016_1", "todd2016_1", "haimovitz2016_2", "payne2008", 
+            "paxton2012", "dehaene2009", "chou2016", "ngo2019", "gong2019")
+
+rescue_started <- options |> filter(target_lastauthor_year %in% chosen)
+
+#test_that("number of rows in final sample", {expect_equal(nrow(final_sample),21)})
+
+```
+
+We created an initial list of `r nrow(filtered)` rescue-eligible studies that were were in the sample reported in TODO CITE BOYCE, had received a subjective replication success score of 0, .25 or .5 (on a 0-1 scale), had a github repository available (github repos were used in the class starting in academic year 2015-2016), and where the original experiment had 200 or fewer participants (for feasibility reasons if we needed to increase power) . We then contacted the project authors for permission to share their report and github with a new student and include it as a supplement on a resulting paper. This left `r nrow(approved)` options that were offered to the students. `r nrow(chosen)` students chose to do rescue projects; $N students took an incomplete or did not indicate interest in being part of the rescue paper, leaving a final sample of N rescue projects. 
+
+## Procedure 
+Students conducted their rescue projects over the course of the 10-week class. Once they had chosen a project we gave them access to the original replicators write-up and repo, which often included the data, experiment code, and analytic code. Students were required to think of reasons the original replication might not have worked, and address them if they could. A list of possible reasons and solutions LINK was given to students. Once students experimental designs and analytic plans were approved by TAs (VB and BP), students pre-registered and ran their samples. 
+
+With one exception, samples were collected on Prolific (the rescue of TODO ran in-person on the student subject pool) . We tried to power studies adequately (with a target of 2.5x original if possible), but due to cost constraints, not all studies were powered at this level. Across the N-1 studies, we spent $money, for an average of blah blah. 
+
+Constraints on budget, timeline, and primarily online studies obviously constrain how closely and well some studies could be replicated. However, these are representative of the sort of limitations on early-career researchers. 
+
+## Pre-registration
+Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects (CHECK IF TRUE). Each project was also individually pre-registered by the student conducting it. The overall analysis is at LINK, individual pre-registrations are linked from LINK. 
+
+## Analysis of rescue success
+We roughly followed TODO CITE BOYCE
+
+Similar to TODO CITE, each project was rated on the basis of subjective replication success both by MCF and by one of VB and BP. Disagreements were resolved through discussion.
+
+We used the same key measures of interest as in TODO CITE BOYCE. We also recorded the measures of foobar for original, replication, and rescue (these were already rated for original and replication). 
+
+# Results
+
+## Overall replication rate 
+* We will report the distribution of subjective replication success in our rescue sample
+
+* If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role.
+
+Across the N replication, we rated blah blah blah, for an overall replication score of blah. 
+
+(Krauss) One of the rescues that went from a replication with score of Y to a rescue with score of Z was FOOBAR. This study looked at the influence of a guided thinking on whether or not people gave correct justifications for their answer on the Monty Hall problem. The original had X/Y and Z/Y. The replication struggled to recruit participants who were naive to the problem, allowed only written (versus written or drawn) responses, and had 0/N, 0/M. While we can't know for sure what caused the non-replication, there were clear issues that could be addressed. The rescue added a pre-screen for naivete, switched the name, and had participants upload drawings (bringing the rescue closer). This resulted in a sample size much more comparable to the original, with Z/Q and Y/H. The rescue effect is smaller, but the overall result is rescued, and the adaptation feels like it could be built on. 
+
+(other success)
+
+Not all small replications were rescued. To do mention how sleep one wasn't because of continued recruitment issues getting a sample again. May not be feasible to do given the constraints.
+
+
+
+TODO some table of correlations between measures of rescue success rate!! The predictors used in https://osf.io/preprints/psyarxiv/dpyn6/ for exploratory analyses (the ones that need to be calculated) 
+
+## Effect size of key measure 
+
+* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)
+
+## Key measures 
+Cite that statistical consistency and replicating the claimed result are not the same thing
+
+* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. 
+
+
+## Secondary 
+
+a) p-original between just the original and rescue, 
+
+b) p-original between the original and all replications except the rescue (in the case where no replications are found in the literature, this is the same as done in https://osf.io/preprints/psyarxiv/dpyn6/)
+
+c) p-original between the rescue and all other replications. 
+
+We will visualize the consistency between original, 1st replication, rescue, and any other replications by plotting effect size and prediction interval for each. TODO how to actually do this!
+
+
+
+# Acknowledgements {-}
+
+
+
+# Author Contributions {-}
+
+# References {-}
+
+<!-- Use this magic to place references here. -->
+<div id="refs"></div>
+

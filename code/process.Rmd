@@ -157,14 +157,19 @@ plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 ```{r}
 subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
 
-subj |> group_by(replication_score) |> tally()
+tallied <- subj|> group_by(replication_score) |> tally()
 
+tallied 
 success <- filter(subj, binary_success==1)
 
+d <- read_csv(here("data", "combined_data.csv")) |> filter(type=="rescue") 
+
+irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
+irr
 ```
 * We will report the distribution of subjective replication success in our rescue sample
 
-Of a total of `r nrow(subj)` replication, `r nrow(success)` succeeding at mostly or fully replicating the original results. 
+Of a total of `r nrow(subj)` replication, `r nrow(success)` succeeding at mostly or fully replicating the original results (`r pluck(tallied,2,1)` with a score of 0, `r pluck(tallied, 2,2)` with a score of .75, and `r pluck(tallied, 2,3)` with a score of 1). The interrater reliability was `r irr |> round(2)`. 
 
 ## We correlate all the things with subjective replication success
 
@@ -203,7 +208,6 @@ sub_cor <- function(var, stat = "estimate") {
 }
 
 
-
 preds <- c("open_data",  "open_mat", "stanford", "change_platform", 
            "log_ratio_ss", "is_within", "single_vignette", "log_sample", 
            "log_trials", "social", "other_psych", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1")
@@ -238,8 +242,9 @@ parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score
 source(here("code","helper","stats.R"))
 ```
 
-Compute prediction intervals and p_orig, write processed data to file. 
+NOTE: can't do p-orig not on SMD scale here b/c tau imputation is in SMD units!!!
 
+## orig v all on p-orig
 ```{r}
 do_rma <- function(df) {
   if(!any(is.na(df$es))){
@@ -258,7 +263,6 @@ do_d_rma <- function(df) {
 
 }
 
-orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
 
 do_p_orig <- function(es, es_se, rep_es, rep_se){
   if(!is.na(es)&!is.na(es_se)&!is.na(rep_es)&!is.na(rep_se)){
@@ -266,7 +270,14 @@ do_p_orig <- function(es, es_se, rep_es, rep_se){
   }
   return(NA)
 }
-foo <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+
+```
+
+```{r}
+
+orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+orig_v_others <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
   filter(type!="original") |> 
   group_by(target_lastauthor_year) |> 
   nest() |> 
@@ -276,8 +287,9 @@ foo <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc
   unnest_wider(d_rma_result) |> 
   left_join(orig) |> 
   rowwise() |> 
-  mutate(p_orig=do_p_orig(es, es_se, rma_est, rma_se),
-         d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+orig_v_others |> select(target_lastauthor_year, d_p_orig)
 
 ```
 
@@ -285,11 +297,203 @@ foo <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc
 
 ## Secondary TODO you are here!
 
+## secondary, original and rescue
 a) p-original between just the original and rescue, 
 
+```{r}
+orig_v_rescue <- parsed_d |>   filter(type=="rescue") |> 
+  select(target_lastauthor_year, type, res_d=calc_d_calc, res_d_se=calc_d_calc_se, res_es=calc_ES, res_es_se=calc_SE) |> 
+
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, res_d, res_d_se))
+
+orig_v_rescue  |> select(target_lastauthor_year, d_p_orig)
+
+```
+
+## original v !rescue
 b) p-original between the original and all replications except the rescue (in the case where no replications are found in the literature, this is the same as done in https://osf.io/preprints/psyarxiv/dpyn6/)
 
+```{r}
+orig_v_not_rescue <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+  filter(type!="original", type!="rescue") |> 
+  filter(target_lastauthor_year!="krauss2003") |> # have to avoid the divide by 0 error
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(rma_result=map(data, do_rma),
+         d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(rma_result) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+orig_v_not_rescue  |> select(target_lastauthor_year, d_p_orig)
+
+
+```
+
+## rescue v reps
 c) p-original between the rescue and all other replications. 
 
+```{r}
+rescue_only <- parsed_d |> filter(type=="rescue") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+rescue_v_reps <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+  filter(type!="original", type!="rescue") |> 
+  filter(target_lastauthor_year!="krauss2003") |> # have to avoid the divide by 0 error
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(rma_result=map(data, do_rma),
+         d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(rma_result) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(rescue_only) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+rescue_v_reps |> select(target_lastauthor_year, d_p_orig)
+
+
+```
+
+## some predint viz! (this is currently with *no* hetereogeneity, idk what we actually want)
 We will visualize the consistency between original, 1st replication, rescue, and any other replications by plotting effect size and prediction interval for each. 
 
+```{r}
+do_predInt <- function(df){
+  if(!is.na(df$es)&!is.na(df$es_se)&!is.na(df$rep_es)&!is.na(df$rep_es_se)){
+    a <- Replicate::pred_int(df$es, df$es_se**2,df$rep_es, df$rep_es_se**2)
+    return(tibble(low=a$int.lo, high=a$int.hi, inside=a$rep.inside))
+  }
+  return(tibble(low=NA,high=NA, inside=NA))
+}
+
+do_d_predInt <- function(df){
+  if(!is.na(df$d)&!is.na(df$d_se)&!is.na(df$rep_d)&!is.na(df$rep_d_se)){
+    a <- Replicate::pred_int(df$d, df$d_se**2,df$rep_d, df$rep_d_se**2)
+    return(tibble(d_low=a$int.lo, d_high=a$int.hi, d_inside=a$rep.inside))
+  }
+  return(tibble(d_low=NA,d_high=NA, d_inside=NA))
+}
+
+```
+
+```{r}
+orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+predInts <- parsed_d |> 
+  filter(type!="original") |> 
+  group_by(target_lastauthor_year) |> 
+  select(target_lastauthor_year, type, rep_d=calc_d_calc, rep_d_se=calc_d_calc_se, rep_es=calc_ES, rep_es_se=calc_SE) |> 
+  left_join(orig) |> 
+  group_by(target_lastauthor_year,type) |> 
+  nest() |> 
+  mutate(pred_int=map(data, do_predInt),
+         d_pred_int=map(data,do_d_predInt)) |> 
+  unnest_wider(pred_int) |> 
+  unnest_wider(d_pred_int) |> 
+  unnest_wider(data)
+
+
+
+```
+
+### viz attempts
+```{r, fig.height=8, fig.width=6}
+colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+
+
+
+orig_scale <- ggplot(predInts |> filter(is.na(d_inside)&!is.na(inside)), aes(x=target_lastauthor_year, y=rep_es, ymin=low, ymax=high, color=type, group=desc(type), shape=type))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black")+
+  geom_point(position=position_dodge(width=.4))+
+  geom_point(aes(y=es), color="black", position=position_dodge(width=.4), shape=1)+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_color_manual(values=colors)+
+  labs(y="predInts on original scale", x="")
+
+smd_scale <- ggplot(predInts |> filter(!is.na(d_inside)), aes(x=target_lastauthor_year, y=rep_d, ymin=d_low, ymax=d_high, color=type, group=desc(type), shape=type))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black")+
+  geom_point(position=position_dodge(width=.4))+
+  geom_point(aes(y=d), color="black", position=position_dodge(width=.4), shape=1)+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_color_manual(values=colors)+
+  labs(y="predInts on SMD scale", x="")
+
+plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
+
+```
+## predInt with heterogeneity
+
+```{r}
+do_d_predInt_het <- function(df){
+  if(!is.na(df$d)&!is.na(df$d_se)&!is.na(df$rep_d)&!is.na(df$rep_d_se)){
+    yio=df$d
+    vio=df$d_se**2
+    yir=df$rep_d
+    vir=df$rep_d_se**2
+    t2=.21**2
+    pooled.SE = sqrt(vio + vir + t2)
+    PILo.sens = yio - qnorm(0.975) * pooled.SE
+    PIHi.sens = yio + qnorm(0.975) * pooled.SE
+    PIinside.sens = (yir > PILo.sens) & (yir < PIHi.sens)
+    return(tibble(d_low=PILo.sens, d_high=PIHi.sens, d_inside=PIinside.sens))
+  }
+  return(tibble(d_low=NA,d_high=NA, d_inside=NA))
+}
+
+```
+
+```{r}
+orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+predInts_het <- parsed_d |> 
+  filter(type!="original") |> 
+  group_by(target_lastauthor_year) |> 
+  select(target_lastauthor_year, type, rep_d=calc_d_calc, rep_d_se=calc_d_calc_se, rep_es=calc_ES, rep_es_se=calc_SE) |> 
+  left_join(orig) |> 
+  group_by(target_lastauthor_year,type) |> 
+  nest() |> 
+  mutate(d_pred_int=map(data,do_d_predInt_het)) |> 
+  unnest_wider(d_pred_int) |> 
+  unnest_wider(data)
+
+
+
+```
+
+### viz attempts
+```{r, fig.height=8, fig.width=6}
+colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+
+
+ ggplot(predInts_het |> filter(!is.na(d_inside)), aes(x=target_lastauthor_year, y=rep_d, ymin=d_low, ymax=d_high, color=type, group=desc(type), shape=type))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black")+
+  geom_point(position=position_dodge(width=.4))+
+  geom_point(aes(y=d), color="black", position=position_dodge(width=.4), shape=1)+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_color_manual(values=colors)+
+  labs(y="predInts on SMD scale", x="")
+
+
+```

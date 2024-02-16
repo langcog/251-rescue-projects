@@ -91,6 +91,8 @@ library(viridis)
 library(cowplot)
 library(ggthemes)
 library(reshape2)
+library(knitr)
+library(kableExtra)
 #r_refs("r-references.bib", append=F)
 theme_set(theme_bw())
 options(knitr.table.format = "pdf")
@@ -231,22 +233,135 @@ We used the same key measures of interest as in TODO CITE BOYCE. We also recorde
 
 # Results
 
+```{r}
+d <- read_csv(here("data", "combined_data.csv")) |> 
+  select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
+         same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
+         open_data, open_materials, within_between, single_vignette)
+
+source(here("code","helper","parse_stats.R"))
+
+parsed_d <- d |> 
+  mutate(raw_stat=gsub(" ","",raw_stat),
+         calc=pmap(list(raw_stat, within_between,N), do_parsing)) |> 
+  unnest(cols=c(calc), names_sep="_") |> 
+    mutate(
+    calc_d_calc=case_when(
+      type=="original" ~ abs(calc_d_calc),
+      same_direction=="yes" ~ abs(calc_d_calc),
+      same_direction=="no" ~ -abs(calc_d_calc),
+      T ~ as.numeric(NA)
+      ),
+    calc_ES=case_when(
+      type=="original" ~ abs(calc_ES),
+      same_direction=="yes" ~ abs(calc_ES),
+      same_direction=="no" ~ -abs(calc_ES),
+      T ~ as.numeric(NA)
+      ),
+    type=factor(type, levels=c("original", "rep1", "rescue", "additional"))
+    ) |> 
+  rowwise()
+
+```
+
+```{r}
+subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
+
+tallied <- subj|> group_by(replication_score) |> tally()
+
+success <- filter(subj, binary_success==1)
+
+d <- read_csv(here("data", "combined_data.csv")) |> filter(type=="rescue") 
+
+irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
+```
+
 ## Overall replication rate 
-* We will report the distribution of subjective replication success in our rescue sample
+<!--* We will report the distribution of subjective replication success in our rescue sample-->
 
 * If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role.
 
-Across the N replication, we rated blah blah blah, for an overall replication score of blah. 
+Across the `r nrow(subj)` replications,  `r nrow(success)` succeeding at mostly or fully replicating the original results. `r pluck(tallied,2,1)` had a rating of 0, `r pluck(tallied, 2,2)` got a rating of  .75, and `r pluck(tallied, 2,3)` got a rating of 1. All projects were rated both by the instructor (MCF) and by one of the TAs (VB or BP); the interrater reliability was `r irr |> round(3)`. 
 
-(Krauss) One of the rescues that went from a replication with score of Y to a rescue with score of Z was FOOBAR. This study looked at the influence of a guided thinking on whether or not people gave correct justifications for their answer on the Monty Hall problem. The original had X/Y and Z/Y. The replication struggled to recruit participants who were naive to the problem, allowed only written (versus written or drawn) responses, and had 0/N, 0/M. While we can't know for sure what caused the non-replication, there were clear issues that could be addressed. The rescue added a pre-screen for naivete, switched the name, and had participants upload drawings (bringing the rescue closer). This resulted in a sample size much more comparable to the original, with Z/Q and Y/H. The rescue effect is smaller, but the overall result is rescued, and the adaptation feels like it could be built on. 
+Since we have a mix of successful and unsuccessful rescues, we discuss some differences that may have played a role. This is observational and speculative. 
 
-(other success)
+One of the rescues that went from a replication with score of 0 to a rescue with score of 1 was the rescue of CITE KRAUSS. This study looked at the influence of a guided thinking on whether or not people gave correct justifications (drawn or written) for their answer on the Monty Hall problem. The original paper reported correct justification from 2/67 (`r round(2/67*100)`%) in the control condition and 13/34 (`r round(13/34*100)`%) in the guided thinking condition.  The replication allowed only written responses. It struggled to recruit participants who were naive to the problem (an exclusion criter) and had many participants give very short text responses. The replication found 0/8 correct justifications in the control and 0/11 in the guided thinking condition. While we can't know for sure what caused the non-replication, there were clear issues that occurred. The rescue added a pre-screen for naivete, switched the name of the problem, and had participants upload drawings for their justifications, which brought the rescue closer to the original design. The rescue had  1/40 (`r round(1/40*100)`%) correct justifications in the control group and 6/35 (`r round(6/35*100)`%) in the guided group. The rescue effect is smaller, but the overall result is rescued, and the adaptation feels like it could be built on. 
 
-Not all small replications were rescued. To do mention how sleep one wasn't because of continued recruitment issues getting a sample again. May not be feasible to do given the constraints.
+Another successful replication was that of CITE NGO2019. Here, the original study had a large effect, and so the replication, powering for 80% power on the reported effect, recruited a small sample of 12 people, and failed to find the effect. The rescue, powered using 2.5x the original sample (as recommended by TODO SMALL TELESCOPES CITE), recovered a clear effect (albeit a much smaller one). There are reasons to think that some effect sizes in the literature may be inflated CITATIONS, and separately potential reasons that slight changes to experiments, or swtiches to online, could result in noisier samples (and thus smaller effect sizes). Thus, replications with smaller samples than the original (even if powered to the original effect size), may not be that diagnostic, and could potentially benefit from a re-replication. 
+
+Not all rescues of small replication succeeded, however. TODO CITE PAYNE was a study of the effects of sleep versus wake on memory consolidation that showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images. The first replication struggled to recruit participants and only got 23 (the original had 48). The rescue attempted to recruit a larger sample (target 88), but due to difficulties getting participants to complete the second part 12 hours after the first, the rescue only managed to recruit 23 people. The lesson here may be that sleep research is difficult to conduct online. 
+
+(other successes)
+
+## Correlates of rescue success
+
+<!-- TODO some table of correlations between measures of rescue success rate!! The predictors used in https://osf.io/preprints/psyarxiv/dpyn6/ for exploratory analyses (the ones that need to be calculated) -->
+```{r}
+
+original <- parsed_d |> filter(type=="original") |> 
+  rename_with(~str_c("original_",.), .cols=-target_lastauthor_year)
+
+rep1 <- parsed_d |> filter(type=="rep1") |> select(target_lastauthor_year, rep_N=N)
+
+for_cor <- subj |> left_join(original) |> left_join(rep1) |> 
+  mutate(
+  social=ifelse(subfield=="social", 1,0),
+  other_psych=ifelse(subfield=="other-psych",1,0), 
+  is_within=ifelse(within_between=="within", 1,0), 
+  change_platform=ifelse(on_turk==original_on_turk, 0,1),
+  log_trials=log(repeated_measure),
+  log_sample=log(N),
+  log_ratio_ss=log(N/original_N),
+  rep_1_log_sample=log(rep_N),
+  log_ratio_rep1_orig=log(rep_N/original_N),
+  log_ratio_rescue_rep1=log(N/rep_N),
+  open_data=ifelse(open_data=="yes",1,0),
+  open_mat=ifelse(open_materials=="yes", 1,0),
+  stanford=ifelse(stanford_internal=="yes",1,0)) |> 
+  filter(!is.na(replication_score))
 
 
+sub_cor <- function(var, stat = "estimate") {
+  if (stat == "estimate") {
+    cor.test(for_cor$replication_score, pull(for_cor, {{var}}))$estimate
+  } else {
+    cor.test(for_cor$replication_score, pull(for_cor, {{var}}))$p.value
+  }
+}
 
-TODO some table of correlations between measures of rescue success rate!! The predictors used in https://osf.io/preprints/psyarxiv/dpyn6/ for exploratory analyses (the ones that need to be calculated) 
+
+preds <- c("open_data",  "open_mat", "stanford", "change_platform", 
+           "log_ratio_ss", "is_within", "single_vignette", "log_sample", 
+           "log_trials", "social", "other_psych", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1")
+
+cors <- tibble(preds = preds) |>
+  mutate(r = sapply(preds, function(x) sub_cor(x, stat = "estimate")),
+         p = sapply(preds, function(x) sub_cor(x, stat = "p"))) |> 
+
+  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rep/orig sample", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"))) |> arrange(Predictors) |> select(Predictors, r, p)
+
+library(kableExtra)
+knitr::kable(cors, digits = 3, align='rcc', format="latex") #|> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
+#cors
+```
+
+We ran correlations between a the set of predictor variables used in (TODO CITE BOYCE) and the subjective rescue success (TABLE WHATEVER). As the number of rescues is small, and many of these predictors are correlated, this should be taken suggestive only. 
+
+We also added predictors related to the first replication sample size and the relative sizes of the samples (post-hoc, not pre-registered) because this seemed like a potentially important factor in a couple of the successful replications. Likely driven by these two, metrics related to original replication size were strong (TODO MATH). 
+
+This is correlational, and we know that small replication samples relative to original and rescue could be due both to a) aiming for a small replication sample due to aiming for power for a reported large effect size or b) difficulties with recruitment or high exclusion rates leading to a smaller than intended sample. 
+
+Two factors that seem like they would matter are relative sample size and replication closeness (CITE LEBEL). So here they are in a table. 
+
+```{r}
+parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score) |> 
+  filter(type!="additional") |> 
+  pivot_wider(names_from="type", values_from=c(N, closeness, replication_score)) |> 
+  select(paper=target_lastauthor_year, rescue_score=replication_score_rescue, N_original, N_rep1, N_rescue,
+         closeness_rep1, closeness_rescue) |> arrange(rescue_score |> desc())
+
+```
+
 
 ## Effect size of key measure 
 

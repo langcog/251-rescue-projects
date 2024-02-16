@@ -27,6 +27,7 @@ library(reshape2)
 library(ggrepel)
 library(ggthemes)
 library(knitr)
+library(cowplot)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
@@ -90,7 +91,7 @@ parsed_d <- d |>
       same_direction=="no" ~ -abs(calc_ES),
       T ~ as.numeric(NA)
       ),
-    type=factor(type, levels=c("rescue", "additional", "rep1", "original"))
+    type=factor(type, levels=c("original", "rep1", "rescue", "additional"))
     ) |> 
   rowwise()
 ```
@@ -108,34 +109,128 @@ parsed_d |> filter(is.na(calc_SE)&(is.na(calc_d_calc_se))) |>  select(target_las
 
 ```
 
-# Draft plot
+# Draft plot of effect sizes
 
-```{r}
+* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)
+
+```{r, fig.height=6, fig.width=8}
 #test on just one
-
+colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
 for_plotting <- parsed_d |> filter(is.na(calc_d_calc)&!is.na(calc_ES)) |> 
   mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE)
 
 for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |> 
   mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se)
-ggplot(for_plotting,aes(x=type,y=point,ymin=low,ymax=high))+
-  geom_errorbar(colour='darkgray',size=.5,width=.25)+
-  geom_point()+
-  coord_flip()+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "none")+
-  labs(y="Effect size original scale", x="")+
-  facet_wrap(~target_lastauthor_year)
 
-ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, group=type))+
+orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
   geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
   geom_point(position=position_dodge(width=.4))+
-  coord_flip()+
+  coord_flip(ylim=c(-1.1,2))+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "bottom")+
-  labs(y="Effect size SMD", x="")
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_color_manual(values=colors)+
+  labs(y="effect size on original scale", x="")
+
+smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
+  geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
+  geom_point(position=position_dodge(width=.5))+
+  coord_flip(ylim=c(-1.1,2))+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+    scale_color_manual(values=colors)+
+  theme(legend.position = "bottom", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  labs(y="Standarized mean difference", x="")
+
+plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
+
+```
+# Subjective
+* We will report the distribution of subjective replication success in our rescue sample
+
+```{r}
+subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
+
+subj |> group_by(replication_score) |> tally()
+
+success <- filter(subj, binary_success==1)
+
+```
+* We will report the distribution of subjective replication success in our rescue sample
+
+Of a total of `r nrow(subj)` replication, `r nrow(success)` succeeding at mostly or fully replicating the original results. 
+
+## We correlate all the things with subjective replication success
+
+* The predictors used in https://osf.io/preprints/psyarxiv/dpyn6/ for exploratory analyses (the ones that need to be calculated) 
+
+```{r}
+original <- parsed_d |> filter(type=="original") |> 
+  rename_with(~str_c("original_",.), .cols=-target_lastauthor_year)
+
+rep1 <- parsed_d |> filter(type=="rep1") |> select(target_lastauthor_year, rep_N=N)
+
+for_cor <- subj |> left_join(original) |> left_join(rep1) |> 
+  mutate(
+  social=ifelse(subfield=="social", 1,0),
+  other_psych=ifelse(subfield=="other-psych",1,0), 
+  is_within=ifelse(within_between=="within", 1,0), 
+  change_platform=ifelse(on_turk==original_on_turk, 0,1),
+  log_trials=log(repeated_measure),
+  log_sample=log(N),
+  log_ratio_ss=log(N/original_N),
+  rep_1_log_sample=log(rep_N),
+  log_ratio_rep1_orig=log(rep_N/original_N),
+  log_ratio_rescue_rep1=log(N/rep_N),
+  open_data=ifelse(open_data=="yes",1,0),
+  open_mat=ifelse(open_materials=="yes", 1,0),
+  stanford=ifelse(stanford_internal=="yes",1,0)) |> 
+  filter(!is.na(replication_score))
+
+
+sub_cor <- function(var, stat = "estimate") {
+  if (stat == "estimate") {
+    cor.test(for_cor$replication_score, pull(for_cor, {{var}}))$estimate
+  } else {
+    cor.test(for_cor$replication_score, pull(for_cor, {{var}}))$p.value
+  }
+}
+
+
+
+preds <- c("open_data",  "open_mat", "stanford", "change_platform", 
+           "log_ratio_ss", "is_within", "single_vignette", "log_sample", 
+           "log_trials", "social", "other_psych", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1")
+
+cors <- tibble(preds = preds) |>
+  mutate(r = sapply(preds, function(x) sub_cor(x, stat = "estimate")),
+         p = sapply(preds, function(x) sub_cor(x, stat = "p"))) |> 
+
+  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rep/orig sample", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"))) |> arrange(Predictors) |> select(Predictors, r, p)
+
+library(kableExtra)
+knitr::kable(cors, digits = 3, align='rcc') |> kable_styling(full_width=F, htmltable_class = "lightable-classic-2", font_size=40) 
+#cors
+```
+* If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role.
+
+It looks like the ones with poor replication sample (due to inflated effect size, or exclusion/attrition/etc issues) where the rescue recruited more is the only sorta strong predictor
+
+# table of expts by sample sizes & closenesses
+
+```{r}
+parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score) |> 
+  filter(type!="additional") |> 
+  pivot_wider(names_from="type", values_from=c(N, closeness, replication_score)) |> 
+  select(paper=target_lastauthor_year, replication_score=replication_score_rescue, N_original, N_rep1, N_rescue,
+         closeness_rep1, closeness_rescue) |> arrange(replication_score |> desc())
+
 ```
 # PredInt and P_orig
 
@@ -145,5 +240,56 @@ source(here("code","helper","stats.R"))
 
 Compute prediction intervals and p_orig, write processed data to file. 
 
+```{r}
+do_rma <- function(df) {
+  if(!any(is.na(df$es))){
+  r<- rma(yi=df$es, sei=df$es_se, slab=df$type)
+  return(tibble(rma_est=r$beta[,1],rma_se=r$se))
+  }
+  return(tibble(rma_est=NA, rma_se=NA))
+}
 
+do_d_rma <- function(df) {
+  if(!any(is.na(df$d))){
+  r<- rma(yi=df$d, sei=df$d_se, slab=df$type)
+  return(tibble(rma_d_est=r$beta[,1], rma_d_se=r$se))
+  }
+  return(tibble(rma_d_est=NA, rma_d_se=NA))
+
+}
+
+orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+do_p_orig <- function(es, es_se, rep_es, rep_se){
+  if(!is.na(es)&!is.na(es_se)&!is.na(rep_es)&!is.na(rep_se)){
+    return(Replicate::p_orig(es, es_se**2,rep_es, t2=0.21**2, rep_se**2))
+  }
+  return(NA)
+}
+foo <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+  filter(type!="original") |> 
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(rma_result=map(data, do_rma),
+         d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(rma_result) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(p_orig=do_p_orig(es, es_se, rma_est, rma_se),
+         d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+```
+
+* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. 
+
+## Secondary TODO you are here!
+
+a) p-original between just the original and rescue, 
+
+b) p-original between the original and all replications except the rescue (in the case where no replications are found in the literature, this is the same as done in https://osf.io/preprints/psyarxiv/dpyn6/)
+
+c) p-original between the rescue and all other replications. 
+
+We will visualize the consistency between original, 1st replication, rescue, and any other replications by plotting effect size and prediction interval for each. 
 

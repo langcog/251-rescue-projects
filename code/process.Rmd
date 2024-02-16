@@ -151,7 +151,9 @@ smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low
 plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 
 ```
+
 # Subjective
+
 * We will report the distribution of subjective replication success in our rescue sample
 
 ```{r}
@@ -167,9 +169,8 @@ d <- read_csv(here("data", "combined_data.csv")) |> filter(type=="rescue")
 irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
 irr
 ```
-* We will report the distribution of subjective replication success in our rescue sample
 
-Of a total of `r nrow(subj)` replication, `r nrow(success)` succeeding at mostly or fully replicating the original results (`r pluck(tallied,2,1)` with a score of 0, `r pluck(tallied, 2,2)` with a score of .75, and `r pluck(tallied, 2,3)` with a score of 1). The interrater reliability was `r irr |> round(2)`. 
+Of a total of `r nrow(subj)` replication, `r nrow(success)` succeeding at mostly or fully replicating the original results (`r pluck(tallied,2,1)` with a score of 0, `r pluck(tallied, 2,2)` with a score of .75, and `r pluck(tallied, 2,3)` with a score of 1). The interrater reliability was `r irr |> round(3)`. 
 
 ## We correlate all the things with subjective replication success
 
@@ -219,12 +220,12 @@ cors <- tibble(preds = preds) |>
   mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rep/orig sample", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"))) |> arrange(Predictors) |> select(Predictors, r, p)
 
 library(kableExtra)
-knitr::kable(cors, digits = 3, align='rcc') |> kable_styling(full_width=F, htmltable_class = "lightable-classic-2", font_size=40) 
+knitr::kable(cors, digits = 3, align='rcc') |> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
 #cors
 ```
 * If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role.
 
-It looks like the ones with poor replication sample (due to inflated effect size, or exclusion/attrition/etc issues) where the rescue recruited more is the only sorta strong predictor
+It looks like the ones with poor replication sample (due to inflated effect size, or exclusion/attrition/etc issues) where the rescue recruited more is the only sorta strong predictor. (I added a couple non-pre-reg'd relative sample size of rep1 measures)
 
 # table of expts by sample sizes & closenesses
 
@@ -232,8 +233,8 @@ It looks like the ones with poor replication sample (due to inflated effect size
 parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score) |> 
   filter(type!="additional") |> 
   pivot_wider(names_from="type", values_from=c(N, closeness, replication_score)) |> 
-  select(paper=target_lastauthor_year, replication_score=replication_score_rescue, N_original, N_rep1, N_rescue,
-         closeness_rep1, closeness_rescue) |> arrange(replication_score |> desc())
+  select(paper=target_lastauthor_year, rescue_score=replication_score_rescue, N_original, N_rep1, N_rescue,
+         closeness_rep1, closeness_rescue) |> arrange(rescue_score |> desc())
 
 ```
 # PredInt and P_orig
@@ -289,13 +290,9 @@ orig_v_others <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc,
   rowwise() |> 
   mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
 
-orig_v_others |> select(target_lastauthor_year, d_p_orig)
-
 ```
 
 * We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. 
-
-## Secondary TODO you are here!
 
 ## secondary, original and rescue
 a) p-original between just the original and rescue, 
@@ -307,8 +304,6 @@ orig_v_rescue <- parsed_d |>   filter(type=="rescue") |>
   left_join(orig) |> 
   rowwise() |> 
   mutate(d_p_orig=do_p_orig(d, d_se, res_d, res_d_se))
-
-orig_v_rescue  |> select(target_lastauthor_year, d_p_orig)
 
 ```
 
@@ -328,8 +323,6 @@ orig_v_not_rescue <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_c
   left_join(orig) |> 
   rowwise() |> 
   mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
-
-orig_v_not_rescue  |> select(target_lastauthor_year, d_p_orig)
 
 
 ```
@@ -353,8 +346,19 @@ rescue_v_reps <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc,
   rowwise() |> 
   mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
 
-rescue_v_reps |> select(target_lastauthor_year, d_p_orig)
 
+```
+
+## show p_origs
+
+```{r}
+ all <- orig_v_others |> select(target_lastauthor_year, orig_v_other=d_p_orig) |> 
+  left_join(orig_v_rescue |> select(target_lastauthor_year, orig_v_rescue=d_p_orig)) |> 
+  left_join(orig_v_not_rescue |> select(target_lastauthor_year, orig_v_not_rescue=d_p_orig)) |> 
+  left_join(rescue_v_reps |> select(target_lastauthor_year, rescue_v_reps=d_p_orig)) |> 
+  rename(paper=target_lastauthor_year)
+
+all
 
 ```
 
@@ -437,6 +441,7 @@ smd_scale <- ggplot(predInts |> filter(!is.na(d_inside)), aes(x=target_lastautho
 plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 
 ```
+
 ## predInt with heterogeneity
 
 ```{r}

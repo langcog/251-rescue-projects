@@ -1,5 +1,5 @@
 ---
-title: "TODO"
+title: "TODO (re-replication) (student) (cumulative science) (failure to replicate) "
 author:
   - name: Veronica Boyce
     affiliation: Stanford
@@ -105,8 +105,6 @@ model_location="code/models"
 
 ::: {.abstract data-latex="" lang=en}
 
-
-
 TODO abstract
 :::
 
@@ -114,17 +112,21 @@ TODO abstract
 
 How definitive are failed replications?
 
+While individual studies are not definitive when it comes to scientific evidence, they often influence what scientists pursue -- it worked -- keep going that direction, it didn't, possibly try again, or switch to a different question or method. 
+
 TODO cite the MB whatever that tried this. 
 
 Well, it depends on what you're trying to measure. From the perspective of learning from the field as a whole things are complicated and may depend also on a priori information from other related studies, the beleivability of the results, the relative rigor and sample sizes of the original and replication (TODO perhaps cite the time invariant). 
 
 Researchers do care about that from theory-building perspectives, but there's also a more local reason. Given that a student or lab has attempted a direct replication and that replication has not gotten the desired results of the original, what should they do? Should they try to replicate it again (potentially learning something about how to improve their experiment from the unsuccessful replication)? Or should they concluded that for them, given the resources they have, it isn't worth pursuing that particular experimental design? 
 
+Somewhere in here we should acknowledge that there's current discussion around replication rates and interpretation and so forth. 
 ## Why replication failure? 
 A replication can have different results from the original study for a number of different potential reasons. The original result may have been a fluke, through chance or p-hacking. The original result might be of much less generalizability than is assumed, and very sensitive to the exact conditions and time it was run in ("hidden moderators"). The original could have an inflated effect size, due to some combination of heterogeneity, p-hacking, luck, and publication bias. The replication could have been underpowered due to any of inflated original effect size, attrition in sample, or the original also being underpowered. A manipulation might have failed in the replication (this is a proximate cause that also raises the question of why the manipulation check failed). There might have been a difference in materials or instructions between the two, that turns out to matter (more likely if materials are not available). The experiment might not port well to online due to some details. A change in sample (ie. to online) may decrease data quality without sufficient attention checks. The replication might have made changes (for convenience or a new sample) that turn out to matter. 
 
 [list reasons] While one can theorize after the fact about potential causes, in most circumstances it is hard to diagnose for certain what made for the difference in the results. An exception might be if a specific error in one study or the other is found, such that the results were not what was thought (analytic error) or the data was not what was thought (experimental error). 
 
+## Re-replication
 What would these potential causes of replication failure suggest would happen in another replication? For our purposes, we're considering another replication with roughly the same environment, knowledge, and resources of the first replication, but with the benefit of hindsight on the first replication. 
 
 Heterogeneity and lack-of-generalizability reasons mostly suggest another failed replication, as the second replication is likely to be closer to the first replication than to the original in these random factors. CITE THAT PAPER about types of heterogeneity and which was they would fall
@@ -144,18 +146,6 @@ These are pragmatic judgments related to how a lab might treat a failed replicat
 The question is, having a failed replication, and not knowing which reasons might have caused the different results -- should a scientist try again? 
 
 ## Current study
-
-Here we report the results of TODO N re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in TODO CITE BOYCE. This is a non-random sample, and given the small number of projects, we discuss qualitatively TODO 
-
-
-
-# Methods
-PSYCH 251 is a graduate-level experimental methods class taught by MCF. In previous years, students have conducted replication projects, which were analyzed for replication rate and properties in TODO CITE BOYCE. In Fall 2023, students in PSYCH 251 were offered the option to do a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year (students could also opt to do a normal replication instead). We report on the result of $N rescue projects that opted to be part of the paper and completed data collection. 
-
-LOts of stuff is available at LINK. 
-
-## Sample
-
 ```{r}
 
 
@@ -212,32 +202,11 @@ rescue_started <- options |> filter(target_lastauthor_year %in% chosen)
 
 ```
 
-We created an initial list of `r nrow(filtered)` rescue-eligible studies that were were in the sample reported in TODO CITE BOYCE, had received a subjective replication success score of 0, .25 or .5 (on a 0-1 scale), had a github repository available (github repos were used in the class starting in academic year 2015-2016), and where the original experiment had 200 or fewer participants (for feasibility reasons if we needed to increase power) . We then contacted the project authors for permission to share their report and github with a new student and include it as a supplement on a resulting paper. This left `r nrow(approved)` options that were offered to the students. `r nrow(chosen)` students chose to do rescue projects; $N students took an incomplete or did not indicate interest in being part of the rescue paper, leaving a final sample of N rescue projects. 
-
-## Procedure 
-Students conducted their rescue projects over the course of the 10-week class. Once they had chosen a project we gave them access to the original replicators write-up and repo, which often included the data, experiment code, and analytic code. Students were required to think of reasons the original replication might not have worked, and address them if they could. A list of possible reasons and solutions LINK was given to students. Once students experimental designs and analytic plans were approved by TAs (VB and BP), students pre-registered and ran their samples. 
-
-With one exception, samples were collected on Prolific (the rescue of TODO ran in-person on the student subject pool) . We tried to power studies adequately (with a target of 2.5x original if possible), but due to cost constraints, not all studies were powered at this level. Across the N-1 studies, we spent $money, for an average of blah blah. 
-
-Constraints on budget, timeline, and primarily online studies obviously constrain how closely and well some studies could be replicated. However, these are representative of the sort of limitations on early-career researchers. 
-
-## Pre-registration
-Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects (CHECK IF TRUE). Each project was also individually pre-registered by the student conducting it. The overall analysis is at LINK, individual pre-registrations are linked from LINK. 
-
-## Analysis of rescue success
-We roughly followed TODO CITE BOYCE
-
-Similar to TODO CITE, each project was rated on the basis of subjective replication success both by MCF and by one of VB and BP. Disagreements were resolved through discussion.
-
-We used the same key measures of interest as in TODO CITE BOYCE. We also recorded the measures of foobar for original, replication, and rescue (these were already rated for original and replication). 
-
-# Results
-
 ```{r}
 d <- read_csv(here("data", "combined_data.csv")) |> 
   select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
          same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
-         open_data, open_materials, within_between, single_vignette)
+         open_data, open_materials, within_between, single_vignette, cost)
 
 source(here("code","helper","parse_stats.R"))
 
@@ -262,7 +231,47 @@ parsed_d <- d |>
     ) |> 
   rowwise()
 
+num_proj <- parsed_d |> filter(type=="rescue") |> nrow()
+
+cost <- parsed_d |> filter(type=="rescue") |> ungroup() |>  summarize(total=sum(cost, na.rm=T))
 ```
+
+Here we report the results of `r num_proj` re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in @boyce2023. This is a non-random sample, and given the small number of projects, we provide descriptive statistics and discuss qualitatively some potential sources of differential re-replication outcomes. 
+
+
+
+# Methods
+PSYCH 251 is a graduate-level experimental methods class taught by MCF. In previous years, students have conducted replication projects, which were analyzed for replication rate and properties in @boyce2023. In Fall 2023, students in PSYCH 251 were offered the option to do a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year (students could also opt to do a normal replication instead). We report on the result of `r num_proj` rescue projects that opted to be part of the paper and completed data collection. 
+
+A spreadsheet of projects, individual project write-ups (both replications and rescues), links to individual project data and analyses for rescue projects, and the analytic code for this paper are all available at OSF LINK GOES HERE. 
+
+## Sample
+The experiments that were re-replicated were a non-random sample of studies from @boyce2023. 
+We created an initial list of `r nrow(filtered)` rescue-eligible studies that had received a subjective replication success score of 0, .25 or .5 (on a 0-1 scale) in @boyce2023, where the replication had a github repository available (github repositories were used starting in academic year 2015-2016), and where the original experiment had 200 or fewer participants (for feasibility reasons if we needed to increase power). We then contacted the replication project authors for permission to share their report and github repository with a new student and include it as a supplement on a resulting paper. This left `r nrow(approved)` options that were offered to the students. `r nrow(chosen)` students chose to do rescue projects; `r nrow(chosen)-num_proj` students took an incomplete or did not indicate interest in being part of the rescue paper, leaving a final sample of `r num_proj` rescue projects. 
+
+## Procedure 
+Students conducted their rescue projects over the course of the 10-week class. Once they had chosen a project we gave them access to the original replicators write-up and repository, which often included the data, experiment code, and analytic code. In many cases, students were also given the contact information of the original replicator (a few original replicators opted not to be contacted by students). 
+
+Students were required to think of reasons the original replication might not have worked, and address them if they could. A list of possible reasons and solutions LINK was given to students. Once students experimental designs and analytic plans were approved by TAs (VB and BP), students pre-registered and ran their samples. 
+
+With one exception, samples were collected on Prolific (the rescue of TODO ran in-person on the Stanford student subject pool). We tried to power studies adequately (with a target of 2.5x original if possible), but due to cost constraints, not all studies were powered at this level (See table TODO for post-exclusion sample sizes of original, replication, and rescues). Across the `r num_proj-1` studies, we spent $`r pluck(cost,1,1) |> round()`, for an average of $`r (pluck(cost,1,1)/(num_proj-1)) |> round()` per project. 
+
+Constraints on budget, timeline, and primarily online studies obviously constrain how closely and well some studies could be replicated. However, these are representative of the sort of limitations on early-career researchers. 
+
+## Pre-registration
+Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects (CHECK IF TRUE). Each project was also individually pre-registered by the student conducting it. The overall analysis is at LINK, individual pre-registrations are linked from LINK. 
+
+## Analysis of rescue success
+We followed @boyce2023 in what study properties we measured and what measures of replication success we used. 
+
+Each project was rated on the basis of subjective replication success both by MCF and by one of VB and BP. Disagreements were resolved through discussion.
+
+We used the same key measures of interest as in @boyce2023. We also recorded the same set of potential correlates that were used in @boyce2023 for original, replication, and rescue (these were already rated for original and replication). 
+
+As the number of project is much smaller, we do not model success in terms of the potential correlates, but merely report the correlation of each property with the subjective outcome variable. 
+
+# Results
+
 
 ```{r}
 subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))

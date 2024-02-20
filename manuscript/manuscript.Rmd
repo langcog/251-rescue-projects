@@ -286,21 +286,21 @@ irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
 ```
 
 ## Overall replication rate 
-<!--* We will report the distribution of subjective replication success in our rescue sample-->
+<!--* We will report the distribution of subjective replication success in our rescue sample
 
-* If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role.
+* If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role. -->
+All rescue projects were rated holistically for how well they replicated the original results. We thought about this in terms of how confident one would be to build on this line of work given the replication results, rather than focusing on any singular numeric result or significance cut-off.  All projects were rated both by the instructor (MCF) and by one of the TAs (VB or BP); the interrater reliability was `r irr |> round(3)`.  
+Across the `r nrow(subj)` replications,  `r nrow(success)` mostly or fully replicated the original results according to the subjective replication ratings. `r pluck(tallied,2,1)` had a rating of 0, `r pluck(tallied, 2,2)` got a rating of  .75, and `r pluck(tallied, 2,3)` got a rating of 1.
 
-Across the `r nrow(subj)` replications,  `r nrow(success)` succeeding at mostly or fully replicating the original results. `r pluck(tallied,2,1)` had a rating of 0, `r pluck(tallied, 2,2)` got a rating of  .75, and `r pluck(tallied, 2,3)` got a rating of 1. All projects were rated both by the instructor (MCF) and by one of the TAs (VB or BP); the interrater reliability was `r irr |> round(3)`. 
+Given the mix of successful and unsuccessful rescues, we discuss a few projects where we have speculations about why they turned out the way they did. 
 
-Since we have a mix of successful and unsuccessful rescues, we discuss some differences that may have played a role. This is observational and speculative. 
+One of the rescues that went from a replication with score of 0 to a rescue with score of 1 was the rescue of @krauss2003. This study looked at the influence of a guided thinking on whether or not people gave correct justifications (drawn or written) for their answer on the Monty Hall problem. The original paper reported correct justification from 2/67 (`r round(2/67*100)`%) in the control condition and 13/34 (`r round(13/34*100)`%) in the guided thinking condition.  The  first replication struggled to recruit participants who were naive to the problem (an exclusion criterion), and many participants give very short text responses in the provided text box (only textual responses were allowed). The replication found 0/8 correct justifications in the control and 0/11 in the guided thinking condition. While we can't know for sure what caused the non-replication, there were clear problems observable from the small final sample and low-quality responses. The rescue targeted these issues by adding a pre-screen for naivete to the Monty Hall problem, switched the name of the problem (to reduce googling for answers), and had participants upload drawings for their justifications. Collectively, these changes brought the rescue closer to the intent of the original.  The rescue had  1/40 (`r round(1/40*100)`%) correct justifications in the control group and 6/35 (`r round(6/35*100)`%) in the guided thinking group. The rescue effect is smaller, but the overall pattern of results replicated, and the online adaptation in the rescue feels like it could be built on. 
 
-One of the rescues that went from a replication with score of 0 to a rescue with score of 1 was the rescue of CITE KRAUSS. This study looked at the influence of a guided thinking on whether or not people gave correct justifications (drawn or written) for their answer on the Monty Hall problem. The original paper reported correct justification from 2/67 (`r round(2/67*100)`%) in the control condition and 13/34 (`r round(13/34*100)`%) in the guided thinking condition.  The replication allowed only written responses. It struggled to recruit participants who were naive to the problem (an exclusion criter) and had many participants give very short text responses. The replication found 0/8 correct justifications in the control and 0/11 in the guided thinking condition. While we can't know for sure what caused the non-replication, there were clear issues that occurred. The rescue added a pre-screen for naivete, switched the name of the problem, and had participants upload drawings for their justifications, which brought the rescue closer to the original design. The rescue had  1/40 (`r round(1/40*100)`%) correct justifications in the control group and 6/35 (`r round(6/35*100)`%) in the guided group. The rescue effect is smaller, but the overall result is rescued, and the adaptation feels like it could be built on. 
+Another successful replication was that of @ngo2019. Here, the original study found a large effect, and so the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people, and then failed to find the effect. The rescue, powered using 2.5x the original sample (as recommended by @simonsohn2015a), recovered a clear effect (albeit a much smaller one). There are reasons to think that some effect sizes in the literature may be inflated CITATIONS, and separately potential reasons that slight changes to experiments, or switches to online, could result in noisier samples (and thus smaller effect sizes). Thus, replications with smaller samples than the original (even if powered to the original effect size), may not be that diagnostic, and could potentially benefit from a re-replication. 
 
-Another successful replication was that of CITE NGO2019. Here, the original study had a large effect, and so the replication, powering for 80% power on the reported effect, recruited a small sample of 12 people, and failed to find the effect. The rescue, powered using 2.5x the original sample (as recommended by TODO SMALL TELESCOPES CITE), recovered a clear effect (albeit a much smaller one). There are reasons to think that some effect sizes in the literature may be inflated CITATIONS, and separately potential reasons that slight changes to experiments, or swtiches to online, could result in noisier samples (and thus smaller effect sizes). Thus, replications with smaller samples than the original (even if powered to the original effect size), may not be that diagnostic, and could potentially benefit from a re-replication. 
+Not all rescues of small replications succeeded, however. @payne2008 was a study of the effects of sleep versus wake on memory consolidation that showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images. The first replication struggled to recruit participants and only got 23 (the original had 48). The rescue attempted to recruit a larger sample (target 88), but due to difficulties getting participants to complete the second part of the experiment 12 hours after the first, the rescue only managed to recruit 23 people. The lesson here may be that sleep research is difficult to conduct online. 
 
-Not all rescues of small replication succeeded, however. TODO CITE PAYNE was a study of the effects of sleep versus wake on memory consolidation that showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images. The first replication struggled to recruit participants and only got 23 (the original had 48). The rescue attempted to recruit a larger sample (target 88), but due to difficulties getting participants to complete the second part 12 hours after the first, the rescue only managed to recruit 23 people. The lesson here may be that sleep research is difficult to conduct online. 
-
-(other successes)
+(TODO other successes? )
 
 ## Correlates of rescue success
 
@@ -352,15 +352,17 @@ cors <- tibble(preds = preds) |>
 library(kableExtra)
 knitr::kable(cors, digits = 3, align='rcc', format="latex") #|> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
 #cors
+
+
 ```
 
-We ran correlations between a the set of predictor variables used in (TODO CITE BOYCE) and the subjective rescue success (TABLE WHATEVER). As the number of rescues is small, and many of these predictors are correlated, this should be taken suggestive only. 
+We ran correlations between the set of predictor variables used in @boyce2023 and the subjective replication scores of the rescues (TABLE WHATEVER). As the number of rescues is small, and many of these predictors are correlated, these correlations should not be overinterpreted.
 
-We also added predictors related to the first replication sample size and the relative sizes of the samples (post-hoc, not pre-registered) because this seemed like a potentially important factor in a couple of the successful replications. Likely driven by these two, metrics related to original replication size were strong (TODO MATH). 
+Given that a couple of the successful rescues seemed to succeed in part because of larger sample sizes, we also added predictors related to the first replication sample size and the relative sizes of the samples (post-hoc, not pre-registered). Likely driven by the two rescues discussed above, metrics related to original replication size were some of the strongest correlates of rescue replication success. 
 
 This is correlational, and we know that small replication samples relative to original and rescue could be due both to a) aiming for a small replication sample due to aiming for power for a reported large effect size or b) difficulties with recruitment or high exclusion rates leading to a smaller than intended sample. 
 
-Two factors that seem like they would matter are relative sample size and replication closeness (CITE LEBEL). So here they are in a table. 
+Two factors that seem like they would matter are relative sample size and replication closeness (using the classification scheme in @lebel), which are shown in TABLE TODO.
 
 ```{r}
 parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score) |> 
@@ -374,12 +376,60 @@ parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score
 
 ## Effect size of key measure 
 
-* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)
+In addition to looking at replication success overall, we also statistically compared the rescue, original replication, and original study on a "key effect" (we follow @boyce2023 in the determination of a key effect). When we were aware of additional direct replications (either from other class projects, or external replications), we also include these. 
+
+TODO some of the error bars here don't look entirely consistent? 
+<!--* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)-->
+
+```{r, fig.cap="TODO"}
+
+
+#test on just one
+colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+for_plotting <- parsed_d |> filter(is.na(calc_d_calc)&!is.na(calc_ES)) |> 
+  mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE)
+
+for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |> 
+  mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se)
+
+orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
+  geom_point(position=position_dodge(width=.4))+
+  coord_flip(ylim=c(-1.1,2))+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_color_manual(values=colors)+
+  labs(y="effect size on original scale", x="")
+
+smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
+  geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
+  geom_point(position=position_dodge(width=.5))+
+  coord_flip(ylim=c(-1.1,2))+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+    scale_color_manual(values=colors)+
+  theme(legend.position = "bottom", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  labs(y="Standarized mean difference", x="")
+
+plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
+```
 
 ## Key measures 
-Cite that statistical consistency and replicating the claimed result are not the same thing
+TODO Cite that statistical consistency and replicating the claimed result are not the same thing. It is possible for results to be statistically consistent, especially given a certain level of heterogeneity, and to have them differ in whether they provide evidence for the effect in question. 
 
-* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. 
+On the key measure, we use some statistics to compare how consistent the effects are. 
+
+First, we will use p-original to evaluate how consistent the original effect size is with the totality of replications (first replication, rescue, and additional if found). Because of the small number of replications, we impute the heterogeneity value of TODO as in CITE. P-original measure the p-value on the null hypothesis that the original effect and the replications come from the same distribution. 
+
+TODO should say what the # of <.05 / IQR / median are
+<!--* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. --> 
 
 
 ## Secondary 

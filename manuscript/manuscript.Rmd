@@ -206,7 +206,7 @@ rescue_started <- options |> filter(target_lastauthor_year %in% chosen)
 d <- read_csv(here("data", "combined_data.csv")) |> 
   select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
          same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
-         open_data, open_materials, within_between, single_vignette, cost)
+         open_data, open_materials, within_between, single_vignette, cost, name_pretty)
 
 source(here("code","helper","parse_stats.R"))
 
@@ -347,10 +347,10 @@ cors <- tibble(preds = preds) |>
   mutate(r = sapply(preds, function(x) sub_cor(x, stat = "estimate")),
          p = sapply(preds, function(x) sub_cor(x, stat = "p"))) |> 
 
-  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rep/orig sample", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"))) |> arrange(Predictors) |> select(Predictors, r, p)
+  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rescue/original sample size", "Log replication sample size", "Log replication/original sample size", "Log rescue/replication sample size"))) |> arrange(Predictors) |> select(Predictors, r, p)
 
 library(kableExtra)
-knitr::kable(cors, digits = 3, align='rcc', format="latex") #|> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
+knitr::kable(cors, digits = 3, align='rcc', format="latex") |> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
 #cors
 
 
@@ -365,11 +365,11 @@ This is correlational, and we know that small replication samples relative to or
 Two factors that seem like they would matter are relative sample size and replication closeness (using the classification scheme in @lebel), which are shown in TABLE TODO.
 
 ```{r}
-parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score) |> 
+parsed_d |> select(name_pretty, type, N, closeness, replication_score) |> 
   filter(type!="additional") |> 
   pivot_wider(names_from="type", values_from=c(N, closeness, replication_score)) |> 
-  select(paper=target_lastauthor_year, rescue_score=replication_score_rescue, N_original, N_rep1, N_rescue,
-         closeness_rep1, closeness_rescue) |> arrange(rescue_score |> desc())
+  select(paper=name_pretty, replication_score_rescue, N_original, N_rep1, N_rescue,
+         "Replication \\\\  closeness"=closeness_rep1, closeness_rescue) |> arrange(replication_score_rescue|> desc()) |> knitr::kable(align="lllll", format="latex", col.names=c("", "", "Original", "Replication", "Rescue", "Replication", "Rescue")) |> add_header_above(c("Paper"=1, "Score"=1, "N"=3, "closeness"=2))  |>kable_classic() 
 
 ```
 
@@ -379,6 +379,8 @@ parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score
 In addition to looking at replication success overall, we also statistically compared the rescue, original replication, and original study on a "key effect" (we follow @boyce2023 in the determination of a key effect). When we were aware of additional direct replications (either from other class projects, or external replications), we also include these. 
 
 TODO some of the error bars here don't look entirely consistent? 
+
+One issue with comparing on SMD scale is that noisier measures make the effect smaller even if the units are the same on the original scale. 
 <!--* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)-->
 
 ```{r, fig.cap="TODO"}
@@ -386,16 +388,18 @@ TODO some of the error bars here don't look entirely consistent?
 
 #test on just one
 colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+
+
+
 for_plotting <- parsed_d |> filter(is.na(calc_d_calc)&!is.na(calc_ES)) |> 
-  mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE)
-
+  mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE) 
 for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |> 
-  mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se)
+  mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se) 
 
-orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
+orig_scale <- ggplot(for_plotting,aes(x=reorder(name_pretty, point, FUN=max), y,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
   geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
   geom_point(position=position_dodge(width=.4))+
-  coord_flip(ylim=c(-1.1,2))+
+  coord_flip()+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
   theme(legend.position = "none",
@@ -405,10 +409,10 @@ orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,
   scale_color_manual(values=colors)+
   labs(y="effect size on original scale", x="")
 
-smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
+smd_scale <- ggplot(for_plotting_d,aes(x=reorder(name_pretty, point, FUN=max),y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
   geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
   geom_point(position=position_dodge(width=.5))+
-  coord_flip(ylim=c(-1.1,2))+
+  coord_flip(ylim=c(-1.1,1.5))+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
     scale_color_manual(values=colors)+
@@ -420,6 +424,7 @@ smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low
 
 plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 ```
+
 
 ## Key measures 
 TODO Cite that statistical consistency and replicating the claimed result are not the same thing. It is possible for results to be statistically consistent, especially given a certain level of heterogeneity, and to have them differ in whether they provide evidence for the effect in question. 
@@ -442,6 +447,65 @@ c) p-original between the rescue and all other replications.
 
 We will visualize the consistency between original, 1st replication, rescue, and any other replications by plotting effect size and prediction interval for each. TODO how to actually do this!
 
+
+```{r}
+do_d_predInt_het <- function(df){
+  if(!is.na(df$d)&!is.na(df$d_se)&!is.na(df$rep_d)&!is.na(df$rep_d_se)){
+    yio=df$d
+    vio=df$d_se**2
+    yir=df$rep_d
+    vir=df$rep_d_se**2
+    t2=.21**2
+    pooled.SE = sqrt(vio + vir + t2)
+    PILo.sens = yio - qnorm(0.975) * pooled.SE
+    PIHi.sens = yio + qnorm(0.975) * pooled.SE
+    PIinside.sens = (yir > PILo.sens) & (yir < PIHi.sens)
+    return(tibble(d_low=PILo.sens, d_high=PIHi.sens, d_inside=PIinside.sens))
+  }
+  return(tibble(d_low=NA,d_high=NA, d_inside=NA))
+}
+
+```
+
+```{r}
+orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+predInts_het <- parsed_d |> 
+  filter(type!="original") |> 
+  group_by(target_lastauthor_year, name_pretty) |> 
+  select(target_lastauthor_year, type, rep_d=calc_d_calc, rep_d_se=calc_d_calc_se, rep_es=calc_ES, rep_es_se=calc_SE) |> 
+  left_join(orig) |> 
+  group_by(target_lastauthor_year,type) |> 
+  nest() |> 
+  mutate(d_pred_int=map(data,do_d_predInt_het)) |> 
+  unnest_wider(d_pred_int) |> 
+  unnest_wider(data)
+
+
+
+```
+
+```{r, fig.height=6, fig.width=6}
+colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+
+
+ ggplot(predInts_het |> filter(!is.na(d_inside)), aes(x=reorder(name_pretty, d, FUN=max), y=rep_d, ymin=d_low, ymax=d_high, color=type, group=desc(type), shape=type))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black", alpha=.5)+
+  geom_point(aes(y=d), color="black", position=position_dodge(width=.3), shape=1, alpha=.5)+
+     geom_point(size=2.5, position=position_dodge(width=.4))+
+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position="bottom", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_color_manual(values=colors)+
+  labs(y="predInts on SMD scale", x="")
+
+
+```
 
 
 # Acknowledgements {-}

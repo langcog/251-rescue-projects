@@ -60,7 +60,7 @@ Read in cache.
 d <- read_csv(here("data", "combined_data.csv")) |> 
   select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
          same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
-         open_data, open_materials, within_between, single_vignette)
+         open_data, open_materials, within_between, single_vignette, name_pretty)
 
 ```
 
@@ -125,7 +125,7 @@ for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |>
 orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
   geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
   geom_point(position=position_dodge(width=.4))+
-  coord_flip(ylim=c(-1.1,2))+
+  coord_flip()+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
   theme(legend.position = "none",
@@ -138,7 +138,7 @@ orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,
 smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
   geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
   geom_point(position=position_dodge(width=.5))+
-  coord_flip(ylim=c(-1.1,2))+
+  coord_flip(ylim=c(-1.1,1.5))+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
     scale_color_manual(values=colors)+
@@ -151,6 +151,9 @@ smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low
 plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 
 ```
+
+
+
 
 # Subjective
 

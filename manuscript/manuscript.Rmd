@@ -16,7 +16,7 @@ footnote:
   - code: corresp
     text: "Corresponding author. Email: vboyce@stanford.edu"
 bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
-csl: vancouver.csl # Use any CSL style. See https://www.zotero.org/styles for a good list. Ignored if citation_package: natbib
+csl: apa6.csl # Use any CSL style. See https://www.zotero.org/styles for a good list. Ignored if citation_package: natbib
 link-citations: TRUE
 output:
   bookdown::pdf_document2:
@@ -259,7 +259,7 @@ With one exception, samples were collected on Prolific (the rescue of TODO ran i
 Constraints on budget, timeline, and primarily online studies obviously constrain how closely and well some studies could be replicated. However, these are representative of the sort of limitations on early-career researchers. 
 
 ## Pre-registration
-Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects (CHECK IF TRUE). Each project was also individually pre-registered by the student conducting it. The overall analysis is at LINK, individual pre-registrations are linked from LINK. 
+Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects. Each project was also individually pre-registered by the student conducting it. The overall analysis is at LINK, individual pre-registrations are linked from LINK. 
 
 ## Analysis of rescue success
 We followed @boyce2023 in what study properties we measured and what measures of replication success we used. 
@@ -350,26 +350,26 @@ cors <- tibble(preds = preds) |>
   mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rescue/original sample size", "Log replication sample size", "Log replication/original sample size", "Log rescue/replication sample size"))) |> arrange(Predictors) |> select(Predictors, r, p)
 
 library(kableExtra)
-knitr::kable(cors, digits = 3, align='rcc', format="latex") |> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
-#cors
+knitr::kable(cors, digits = 3, align='rcc', format="latex", booktabs=T, linesep="", caption="TODO CAPTION")
 
 
 ```
 
 We ran correlations between the set of predictor variables used in @boyce2023 and the subjective replication scores of the rescues (TABLE WHATEVER). As the number of rescues is small, and many of these predictors are correlated, these correlations should not be overinterpreted.
 
-Given that a couple of the successful rescues seemed to succeed in part because of larger sample sizes, we also added predictors related to the first replication sample size and the relative sizes of the samples (post-hoc, not pre-registered). Likely driven by the two rescues discussed above, metrics related to original replication size were some of the strongest correlates of rescue replication success. 
+Given that a couple of the successful rescues seemed to succeed in part because of larger sample sizes, we also added predictors related to the first replication sample size and the relative sizes of the samples (post-hoc, not pre-registered). 
+While not signficant, the strongest correlates of rescue success were open materials, a small sample size on the first replication, a small sample size on the first replication relative to the original sample size, and a large rescue sample size relative to the first replication.
 
-This is correlational, and we know that small replication samples relative to original and rescue could be due both to a) aiming for a small replication sample due to aiming for power for a reported large effect size or b) difficulties with recruitment or high exclusion rates leading to a smaller than intended sample. 
+Small replication samples relative to original and rescue could be due both to a) aiming for a small replication sample due to aiming for power for a reported large effect size or b) difficulties with recruitment or high exclusion rates leading to a smaller than intended sample. 
 
-Two factors that seem like they would matter are relative sample size and replication closeness (using the classification scheme in @lebel), which are shown in TABLE TODO.
+Two measures associated with how satisfying a replication attempt was are its sample size (relative to the original) and how close the replication was to the original. We show these measures (using the classification scheme of @lebel for closeness) in TABLE TODO. 
 
 ```{r}
 parsed_d |> select(name_pretty, type, N, closeness, replication_score) |> 
   filter(type!="additional") |> 
   pivot_wider(names_from="type", values_from=c(N, closeness, replication_score)) |> 
   select(paper=name_pretty, replication_score_rescue, N_original, N_rep1, N_rescue,
-         "Replication \\\\  closeness"=closeness_rep1, closeness_rescue) |> arrange(replication_score_rescue|> desc()) |> knitr::kable(align="lllll", format="latex", col.names=c("", "", "Original", "Replication", "Rescue", "Replication", "Rescue")) |> add_header_above(c("Paper"=1, "Score"=1, "N"=3, "closeness"=2))  |>kable_classic() 
+         "Replication \\\\  closeness"=closeness_rep1, closeness_rescue) |> arrange(replication_score_rescue|> desc()) |> knitr::kable(align="lllll", format="latex", booktabs=T, linesep="", caption="TODOCAPTION", col.names=c("", "", "Original", "Replication", "Rescue", "Replication", "Rescue")) |> add_header_above(c("Paper"=1, "Score"=1, "N"=3, "closeness"=2)) 
 
 ```
 
@@ -377,8 +377,6 @@ parsed_d |> select(name_pretty, type, N, closeness, replication_score) |>
 ## Effect size of key measure 
 
 In addition to looking at replication success overall, we also statistically compared the rescue, original replication, and original study on a "key effect" (we follow @boyce2023 in the determination of a key effect). When we were aware of additional direct replications (either from other class projects, or external replications), we also include these. 
-
-TODO some of the error bars here don't look entirely consistent? 
 
 One issue with comparing on SMD scale is that noisier measures make the effect smaller even if the units are the same on the original scale. 
 <!--* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)-->

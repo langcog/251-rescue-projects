@@ -93,6 +93,7 @@ library(ggthemes)
 library(reshape2)
 library(knitr)
 library(kableExtra)
+library(metafor)
 #r_refs("r-references.bib", append=F)
 theme_set(theme_bw())
 options(knitr.table.format = "pdf")
@@ -121,6 +122,7 @@ Well, it depends on what you're trying to measure. From the perspective of learn
 Researchers do care about that from theory-building perspectives, but there's also a more local reason. Given that a student or lab has attempted a direct replication and that replication has not gotten the desired results of the original, what should they do? Should they try to replicate it again (potentially learning something about how to improve their experiment from the unsuccessful replication)? Or should they concluded that for them, given the resources they have, it isn't worth pursuing that particular experimental design? 
 
 Somewhere in here we should acknowledge that there's current discussion around replication rates and interpretation and so forth. 
+
 ## Why replication failure? 
 A replication can have different results from the original study for a number of different potential reasons. The original result may have been a fluke, through chance or p-hacking. The original result might be of much less generalizability than is assumed, and very sensitive to the exact conditions and time it was run in ("hidden moderators"). The original could have an inflated effect size, due to some combination of heterogeneity, p-hacking, luck, and publication bias. The replication could have been underpowered due to any of inflated original effect size, attrition in sample, or the original also being underpowered. A manipulation might have failed in the replication (this is a proximate cause that also raises the question of why the manipulation check failed). There might have been a difference in materials or instructions between the two, that turns out to matter (more likely if materials are not available). The experiment might not port well to online due to some details. A change in sample (ie. to online) may decrease data quality without sufficient attention checks. The replication might have made changes (for convenience or a new sample) that turn out to matter. 
 
@@ -190,7 +192,7 @@ options <- filtered |> filter(target_lastauthor_year %in% approved)
 
 # projects that we believe are being rescued (as of Oct 23)
 
-chosen <- c("sofer2015", "birch2007_2", "jara-ettinger2022", "porter_2016_1",
+chosen <- c("birch2007_2", "jara-ettinger2022", "porter_2016_1",
             "hopkins2016", "yeshurun2003", "craig2014", "tarampi2016", 
             "mani2013", "krauss2003", "schechtman2010", "child2018",
             "haimovitz2016_1", "todd2016_1", "haimovitz2016_2", "payne2008", 
@@ -241,37 +243,39 @@ Here we report the results of `r num_proj` re-replication "rescue" projects whic
 
 
 # Methods
-PSYCH 251 is a graduate-level experimental methods class taught by MCF. In previous years, students have conducted replication projects, which were analyzed for replication rate and properties in @boyce2023. In Fall 2023, students in PSYCH 251 were offered the option to do a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year (students could also opt to do a normal replication instead). We report on the result of `r num_proj` rescue projects that opted to be part of the paper and completed data collection. 
+PSYCH 251 is a graduate-level experimental methods class taught by MCF. In previous years, students have conducted replication projects, as reported in @boyce2023. In Fall 2023, students in PSYCH 251 were offered the option to do a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year (students could also opt to do a normal replication instead). We report on the result of `r num_proj` rescue projects that opted to be part of the paper and completed data collection. 
 
 A spreadsheet of projects, individual project write-ups (both replications and rescues), links to individual project data and analyses for rescue projects, and the analytic code for this paper are all available at OSF LINK GOES HERE. 
 
 ## Sample
 The experiments that were re-replicated were a non-random sample of studies from @boyce2023. 
-We created an initial list of `r nrow(filtered)` rescue-eligible studies that had received a subjective replication success score of 0, .25 or .5 (on a 0-1 scale) in @boyce2023, where the replication had a github repository available (github repositories were used starting in academic year 2015-2016), and where the original experiment had 200 or fewer participants (for feasibility reasons if we needed to increase power). We then contacted the replication project authors for permission to share their report and github repository with a new student and include it as a supplement on a resulting paper. This left `r nrow(approved)` options that were offered to the students. `r nrow(chosen)` students chose to do rescue projects; `r nrow(chosen)-num_proj` students took an incomplete or did not indicate interest in being part of the rescue paper, leaving a final sample of `r num_proj` rescue projects. 
+We created an initial list of `r nrow(filtered)` rescue-eligible studies that had received a subjective replication success score of 0, .25 or .5 (on a 0-1 scale) in @boyce2023, where the replication had a github repository available (github repositories were used starting in academic year 2015-2016), and where the original experiment had 200 or fewer participants (for feasibility reasons if we needed to increase power). We then contacted the replication project authors for permission to share their report and github repository with a new student and include it as a supplement on a resulting paper. This left `r length(approved)` options that were offered to the students. `r length(chosen)` students chose to do rescue projects; `r length(chosen)-num_proj` students took an incomplete or did not indicate interest in being part of the rescue paper, leaving a final sample of `r num_proj` rescue projects. 
 
 ## Procedure 
-Students conducted their rescue projects over the course of the 10-week class. Once they had chosen a project we gave them access to the original replicators write-up and repository, which often included the data, experiment code, and analytic code. In many cases, students were also given the contact information of the original replicator (a few original replicators opted not to be contacted by students). 
+Students conducted their rescue projects over the course of the 10-week class. Once they had chosen a project we gave them access to the original replicators' write-up and repository, which often included the data, experiment code, and analytic code. In many cases, students were also given the contact information of the original replicator (a few original replicators opted not to be contacted by students). 
 
 Students were required to think of reasons the original replication might not have worked, and address them if they could. A list of possible reasons and solutions LINK was given to students. Once students experimental designs and analytic plans were approved by TAs (VB and BP), students pre-registered and ran their samples. 
 
-With one exception, samples were collected on Prolific (the rescue of TODO ran in-person on the Stanford student subject pool). We tried to power studies adequately (with a target of 2.5x original if possible), but due to cost constraints, not all studies were powered at this level (See table TODO for post-exclusion sample sizes of original, replication, and rescues). Across the `r num_proj-1` studies, we spent $`r pluck(cost,1,1) |> round()`, for an average of $`r (pluck(cost,1,1)/(num_proj-1)) |> round()` per project. 
+With one exception, samples were collected on Prolific (the rescue of @yeshurun2003 ran in-person on the Stanford student subject pool). We tried to power studies adequately (with a target of 2.5x original following @simonsohn2015), but due to cost constraints, not all studies were powered at this level. (See table TODO for post-exclusion sample sizes of original, replication, and rescues). Across the `r num_proj-1` studies, we spent $`r pluck(cost,1,1) |> round()`, for an average of $`r (pluck(cost,1,1)/(num_proj-1)) |> round()` per project. 
 
-Constraints on budget, timeline, and primarily online studies obviously constrain how closely and well some studies could be replicated. However, these are representative of the sort of limitations on early-career researchers. 
+
 
 ## Pre-registration
 Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects. Each project was also individually pre-registered by the student conducting it. The overall analysis is at LINK, individual pre-registrations are linked from LINK. 
 
-## Analysis of rescue success
+## Coding of results
 We followed @boyce2023 in what study properties we measured and what measures of replication success we used. 
 
-Each project was rated on the basis of subjective replication success both by MCF and by one of VB and BP. Disagreements were resolved through discussion.
+Each project was rated on the basis of subjective replication success both by MCF and by one of VB and BP. Disagreements were resolved through discussion. As a compliment to the overall subjective rating of success, we followed @boyce2023 in also doing a statistical comparison on one key measure of interest for each study. 
 
-We used the same key measures of interest as in @boyce2023. We also recorded the same set of potential correlates that were used in @boyce2023 for original, replication, and rescue (these were already rated for original and replication). 
+ We also recorded the same set of potential correlates that were used in @boyce2023 for original, replication, and rescue (these were already rated for original and replication). These potential correlates included features of the original study including the subfield of the study (cognitive v social v other psychology), it's publication year,  experimental design features including whether it was a within- or between- subject design, whether each condition was instantiated with one vignette or multiple, and how many items each participant saw, and whether there were open materials and open data. 
+ 
+For the original study and each replication, we recorded the number of participants post-exclusions. For studies where some extra conditions were dropped, we count only the participants in the key conditions all replications had for comparability. For instance, if an original study compared between two critical conditions but also had a baseline control, we would not count the participants in the baseline condition if a replication did not include this condition. We also recorded whether each study was conducted online with a crowdsourced platform or not. 
 
-As the number of project is much smaller, we do not model success in terms of the potential correlates, but merely report the correlation of each property with the subjective outcome variable. 
 
 # Results
 
+Our primary question of interest is how many of these `r num_proj` rescue projects succeeded at replicating the results in the original study. When a replication fails to obtain the same results, one may have intuitions about what may have gone wrong -- these rescue projects test whether addressing these potential issues in fact works. 
 
 ```{r}
 subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
@@ -290,7 +294,7 @@ irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
 
 * If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role. -->
 All rescue projects were rated holistically for how well they replicated the original results. We thought about this in terms of how confident one would be to build on this line of work given the replication results, rather than focusing on any singular numeric result or significance cut-off.  All projects were rated both by the instructor (MCF) and by one of the TAs (VB or BP); the interrater reliability was `r irr |> round(3)`.  
-Across the `r nrow(subj)` replications,  `r nrow(success)` mostly or fully replicated the original results according to the subjective replication ratings. `r pluck(tallied,2,1)` had a rating of 0, `r pluck(tallied, 2,2)` got a rating of  .75, and `r pluck(tallied, 2,3)` got a rating of 1.
+Across the `r nrow(subj)` replications,  `r nrow(success)` mostly or fully replicated the original results according to the subjective replication ratings. `r pluck(tallied,2,1)` had a rating of 0, `r pluck(tallied, 2,2)` got a rating of  .75, and `r pluck(tallied, 2,3)` got a rating of 1. Thus, a first pass answer to the question "how often can a failed replication be salvaged?" is `r round(nrow(success)/nrow(subj)*100)`% of the time. TODO DO WE WANT TO BOOTSTRAP A CI ON THIS?
 
 Given the mix of successful and unsuccessful rescues, we discuss a few projects where we have speculations about why they turned out the way they did. 
 
@@ -300,7 +304,7 @@ Another successful replication was that of @ngo2019. Here, the original study fo
 
 Not all rescues of small replications succeeded, however. @payne2008 was a study of the effects of sleep versus wake on memory consolidation that showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images. The first replication struggled to recruit participants and only got 23 (the original had 48). The rescue attempted to recruit a larger sample (target 88), but due to difficulties getting participants to complete the second part of the experiment 12 hours after the first, the rescue only managed to recruit 23 people. The lesson here may be that sleep research is difficult to conduct online. 
 
-(TODO other successes? )
+(TODO other successes or failures we want to discuss? )
 
 ## Correlates of rescue success
 
@@ -373,13 +377,8 @@ parsed_d |> select(name_pretty, type, N, closeness, replication_score) |>
 
 ```
 
+Aside from the suggestion that fixing sample size issues may have helped, it's unclear why some projects replicated this time and most did not.  
 
-## Effect size of key measure 
-
-In addition to looking at replication success overall, we also statistically compared the rescue, original replication, and original study on a "key effect" (we follow @boyce2023 in the determination of a key effect). When we were aware of additional direct replications (either from other class projects, or external replications), we also include these. 
-
-One issue with comparing on SMD scale is that noisier measures make the effect smaller even if the units are the same on the original scale. 
-<!--* We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)-->
 
 ```{r, fig.cap="TODO"}
 
@@ -423,25 +422,134 @@ smd_scale <- ggplot(for_plotting_d,aes(x=reorder(name_pretty, point, FUN=max),y=
 plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 ```
 
+## Effect sizes 
 
-## Key measures 
-TODO Cite that statistical consistency and replicating the claimed result are not the same thing. It is possible for results to be statistically consistent, especially given a certain level of heterogeneity, and to have them differ in whether they provide evidence for the effect in question. 
+In addition to looking at replication success overall, we also statistically compared the rescue, original replication, and original study on a key effect (we follow @boyce2023 in the determination of a key effect). When we were aware of additional direct replications (either from other class projects, or external replications in the literature), we also include these. 
 
-On the key measure, we use some statistics to compare how consistent the effects are. 
+We first compare the original and replications effect sizes on the key effect of interest. Where possible, we report this comparison in standardized mean difference (SMD) units, although the reporting of a few studies makes comparison only possible in the original units. One potential issue with comparisons using SMD is that noisier measures will have smaller standardized effect sizes even if the effect on the original scale is the same. The effect sizes are shown in FIGURE TODO. In general, the replication and rescue effect sizes were smaller than the original effect sizes, and in a couple cases the effects were in the opposite direction. 
 
-First, we will use p-original to evaluate how consistent the original effect size is with the totality of replications (first replication, rescue, and additional if found). Because of the small number of replications, we impute the heterogeneity value of TODO as in CITE. P-original measure the p-value on the null hypothesis that the original effect and the replications come from the same distribution. 
+```{r}
+do_rma <- function(df) {
+  if(!any(is.na(df$es))){
+  r<- rma(yi=df$es, sei=df$es_se, slab=df$type)
+  return(tibble(rma_est=r$beta[,1],rma_se=r$se))
+  }
+  return(tibble(rma_est=NA, rma_se=NA))
+}
 
-TODO should say what the # of <.05 / IQR / median are
+do_d_rma <- function(df) {
+  if(!any(is.na(df$d))){
+  r<- rma(yi=df$d, sei=df$d_se, slab=df$type)
+  return(tibble(rma_d_est=r$beta[,1], rma_d_se=r$se))
+  }
+  return(tibble(rma_d_est=NA, rma_d_se=NA))
+
+}
+
+
+do_p_orig <- function(es, es_se, rep_es, rep_se){
+  if(!is.na(es)&!is.na(es_se)&!is.na(rep_es)&!is.na(rep_se)){
+    return(Replicate::p_orig(es, es_se**2,rep_es, t2=0.21**2, rep_se**2))
+  }
+  return(NA)
+}
+
+orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+orig_v_others <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+  filter(type!="original") |> 
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(rma_result=map(data, do_rma),
+         d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(rma_result) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+orig_v_rescue <- parsed_d |>   filter(type=="rescue") |> 
+  select(target_lastauthor_year, type, res_d=calc_d_calc, res_d_se=calc_d_calc_se, res_es=calc_ES, res_es_se=calc_SE) |> 
+
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, res_d, res_d_se))
+
+
+orig_v_not_rescue <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+  filter(type!="original", type!="rescue") |> 
+  filter(target_lastauthor_year!="krauss2003") |> # have to avoid the divide by 0 error
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(rma_result=map(data, do_rma),
+         d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(rma_result) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+rescue_only <- parsed_d |> filter(type=="rescue") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+
+rescue_v_reps <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
+  filter(type!="original", type!="rescue") |> 
+  filter(target_lastauthor_year!="krauss2003") |> # have to avoid the divide by 0 error
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(rma_result=map(data, do_rma),
+         d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(rma_result) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(rescue_only) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
+ all <- orig_v_others |> select(target_lastauthor_year, orig_v_other=d_p_orig) |> 
+  left_join(orig_v_rescue |> select(target_lastauthor_year, orig_v_rescue=d_p_orig)) |> 
+  left_join(orig_v_not_rescue |> select(target_lastauthor_year, orig_v_not_rescue=d_p_orig)) |> 
+  left_join(rescue_v_reps |> select(target_lastauthor_year, rescue_v_reps=d_p_orig)) |> 
+  rename(paper=target_lastauthor_year)
+
+main_summ <- all |> ungroup() |> select(orig_v_other) |>
+  summarize(median=median(orig_v_other, na.rm=T),
+            low=quantile(orig_v_other, .25, na.rm=T),
+            high=quantile(orig_v_other, .75, na.rm=T),
+            less_than=sum(orig_v_other<.05, na.rm=T)/sum(!is.na(orig_v_other)))
+
+rescue_summ <- all |> ungroup() |> select(orig_v_rescue) |>
+  summarize(median=median(orig_v_rescue, na.rm=T),
+            low=quantile(orig_v_rescue, .25, na.rm=T),
+            high=quantile(orig_v_rescue, .75, na.rm=T),
+            less_than=sum(orig_v_rescue<.05, na.rm=T)/sum(!is.na(orig_v_rescue)))
+
+rep_summ <- all |> ungroup() |> select(orig_v_not_rescue) |>
+  summarize(median=median(orig_v_not_rescue, na.rm=T),
+            low=quantile(orig_v_not_rescue, .25, na.rm=T),
+            high=quantile(orig_v_not_rescue, .75, na.rm=T),
+            less_than=sum(orig_v_not_rescue<.05, na.rm=T)/sum(!is.na(orig_v_not_rescue)))
+
+rescue_rep_summ <- all |> ungroup() |> select(rescue_v_reps) |>
+  summarize(median=median(rescue_v_reps, na.rm=T),
+            low=quantile(rescue_v_reps, .25, na.rm=T),
+            high=quantile(rescue_v_reps, .75, na.rm=T),
+            less_than=sum(rescue_v_reps<.05, na.rm=T)/sum(!is.na(rescue_v_reps)))
+```
+## Consistency of effects 
+We statistically compared the original effects with the replication effect sizes to determine their level of statistical consistency, that is whether these effects were likely to be drawn from the same distribution, given a certain level of heterogeneity. 
+
+We note that CITE! statistical consistency does not always align with our intuitions of replication or with whether an effect provides support for the hypothesis. A replication may be statistically consistent with the original effect but not provide any evidence for the claimed result. 
+
+We use p-original to evaluate how consistent the original effect size is with the totality of replications (first replication, rescue, and additional if found). Because of the small number of replications, we impute the heterogeneity value of $\tau=.21$ SMD, which is the average level of heterogeneity found by @olsson2020 in prior multi-site replications in psychology. P-original measures the p-value on the null hypothesis that the original effect and the replications come from the same distribution. 
+
+The median value of p_original was `r main_summ$median |> round(2)` [IQR: `r main_summ$low |> round(2)` - `r main_summ$high |> round(2)`]. `r round(main_summ$less_than*100)`% of the p_original values were less than .05, indicating by conventional thresholds a rejection of the null hypothesis that the original and the replications came from the same distribution for the given imputed level of heterogeneity. 
+
+As secondary measures, we also calculated the p-original values for a) the original and the rescue, b) the original and non-rescue replications, and c) between the rescue and other replications. 
+For a) the rescue versus the original, median value of p_original was `r rescue_summ$median |> round(2)` [IQR: `r rescue_summ$low |> round(2)` - `r rescue_summ$high|> round(2)`], and  `r round(rescue_summ$less_than*100)`% of the p_original values were less than .05.
+For b) the non-rescue replications versus the original, median value of p_original was `r rep_summ$median |> round(2)` [IQR: `r rep_summ$low |> round(2)` - `r rep_summ$high |> round(2)`], and  `r round(rep_summ$less_than*100)`% of the p_original values were less than .05. For c) the rescue versus the other replications, median value of p_original was `r rescue_rep_summ$median |> round(2)` [IQR: `r rescue_rep_summ$low |> round(2)` - `r rescue_rep_summ$high |> round(2)`], and  `r round(rescue_rep_summ$less_than*100)`% of the p_original values were less than .05.
+
+NOTE THERE ARE A LOT OF MISSING DATA HERE!!!
+
 <!--* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. --> 
-
-
-## Secondary 
-
-a) p-original between just the original and rescue, 
-
-b) p-original between the original and all replications except the rescue (in the case where no replications are found in the literature, this is the same as done in https://osf.io/preprints/psyarxiv/dpyn6/)
-
-c) p-original between the rescue and all other replications. 
 
 We will visualize the consistency between original, 1st replication, rescue, and any other replications by plotting effect size and prediction interval for each. TODO how to actually do this!
 
@@ -505,7 +613,15 @@ colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additiona
 
 ```
 
+# Discussion
+We don't have qualitative or quantitive explanations for why some replicated and some didn't. We can't predict what replication failures are likely to resolve given another try (or a more thoughtful try), beyond that suggestion that glaring problems and low samples may sometimes be resolvable. 
 
+So, if you have a replication that failed, in a topic you're interested in pursuing cumulative science on, should you drop it, or try again? Our sample says that the odds of a re-replication working are low, so especially if there isn't a super clear failure mode to point to, another try probably won't fix it. 
+
+Something about how even the "successes" have diminished effect sizes 
+## Limitations
+it's a small sample size and non-random 
+Constraints on budget, timeline, and primarily online studies obviously constrain how closely and well some studies could be replicated. However, these are representative of the sort of limitations on early-career researchers. 
 # Acknowledgements {-}
 
 

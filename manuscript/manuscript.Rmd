@@ -380,46 +380,51 @@ parsed_d |> select(name_pretty, type, N, closeness, replication_score) |>
 Aside from the suggestion that fixing sample size issues may have helped, it's unclear why some projects replicated this time and most did not.  
 
 
-```{r, fig.cap="TODO"}
+```{r, fig.cap="Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. "}
 
 
 #test on just one
 colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+shape <- c("original"=21,"rep1"=22,"rescue"=23,"additional"=24)
 
-
-
-for_plotting <- parsed_d |> filter(is.na(calc_d_calc)&!is.na(calc_ES)) |> 
-  mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE) 
+big <- parsed_d |> filter(type=="original") |> filter(calc_d_calc>1) |> select(target_lastauthor_year)
 for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |> 
   mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se) 
 
-orig_scale <- ggplot(for_plotting,aes(x=reorder(name_pretty, point, FUN=max), y,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
-  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
-  geom_point(position=position_dodge(width=.4))+
-  coord_flip()+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "none",
-        panel.grid.major.x = element_blank(), 
-        panel.grid.minor.x=element_blank()
-        )+
-  scale_color_manual(values=colors)+
-  labs(y="effect size on original scale", x="")
 
-smd_scale <- ggplot(for_plotting_d,aes(x=reorder(name_pretty, point, FUN=max),y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
+
+smd_scale_small <- ggplot(for_plotting_d |> anti_join(big),aes(x=reorder(name_pretty, point, FUN=max),y=point,ymin=low,ymax=high,shape=type, color=type, fill=type, group=desc(type)))+
   geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
   geom_point(position=position_dodge(width=.5))+
-  coord_flip(ylim=c(-1.1,1.5))+
+ coord_flip()+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
-    scale_color_manual(values=colors)+
+    scale_color_manual(values=colors, aesthetics=c("color", "fill"))+
+  scale_shape_manual(values=shape)+
   theme(legend.position = "bottom", 
         panel.grid.major.x = element_blank(), 
         panel.grid.minor.x=element_blank()
         )+
   labs(y="Standarized mean difference", x="")
 
-plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
+smd_scale_big <- ggplot(for_plotting_d |> inner_join(big),aes(x=reorder(name_pretty, point, FUN=max),y=point,ymin=low,ymax=high,shape=type, color=type, fill=type, group=desc(type)))+
+  geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
+  geom_point(position=position_dodge(width=.5))+
+ coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+    scale_color_manual(values=colors, aesthetics=c("color", "fill"))+
+    scale_shape_manual(values=shape)+
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  labs(y="Standarized mean difference", x="")
+
+#smd_scale_big
+#smd_scale_small
+
+plot_grid(smd_scale_big, smd_scale_small, rel_heights=c(.3,1), nrow=2)
 ```
 
 ## Effect sizes 
@@ -588,18 +593,19 @@ predInts_het <- parsed_d |>
   unnest_wider(data)
 
 
-
 ```
 
 ```{r, fig.height=6, fig.width=6}
 colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+shape <- c("original"=21,"rep1"=22,"rescue"=23,"additional"=24)
+col_code <- c("TRUE"="darkgreen", "FALSE"="black")
 
+big <- predInts_het |> filter(d>1) |> select(target_lastauthor_year)
 
- ggplot(predInts_het |> filter(!is.na(d_inside)), aes(x=reorder(name_pretty, d, FUN=max), y=rep_d, ymin=d_low, ymax=d_high, color=type, group=desc(type), shape=type))+
-  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black", alpha=.5)+
-  geom_point(aes(y=d), color="black", position=position_dodge(width=.3), shape=1, alpha=.5)+
-     geom_point(size=2.5, position=position_dodge(width=.4))+
-
+small_predInt <-  ggplot(predInts_het |> filter(!is.na(d_inside)) |> anti_join(big), aes(x=reorder(name_pretty, d, FUN=max), y=rep_d, ymin=d_low, ymax=d_high, fill=type, color=d_inside, group=desc(type), shape=type))+
+  geom_errorbar(size=.5, width=.25, position=position_dodge(width=.4), alpha=.5)+
+  geom_point(aes(y=d), position=position_dodge(width=.4), shape=1, alpha=.5)+
+     geom_point(size=2.5, position=position_dodge(width=.4), color="transparent")+
   coord_flip()+
   scale_size_area()+
   geom_hline(yintercept=0,color="black")+
@@ -607,9 +613,28 @@ colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additiona
         panel.grid.major.x = element_blank(), 
         panel.grid.minor.x=element_blank()
         )+
-  scale_color_manual(values=colors)+
+  scale_fill_manual(values=colors)+
+  scale_shape_manual(values=shape)+
+  scale_color_manual(values=col_code)+
   labs(y="predInts on SMD scale", x="")
 
+big_predInt <-  ggplot(predInts_het |> filter(!is.na(d_inside)) |> inner_join(big), aes(x=reorder(name_pretty, d, FUN=max), y=rep_d, ymin=d_low, ymax=d_high, color=d_inside, fill=type, group=desc(type), shape=type))+
+  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), alpha=.5)+
+  geom_point(aes(y=d), position=position_dodge(width=.4), shape=1, alpha=.5)+
+     geom_point(size=2.5, position=position_dodge(width=.4), color="transparent")+
+  coord_flip()+
+  scale_size_area()+
+  geom_hline(yintercept=0,color="black")+
+  theme(legend.position="none", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x=element_blank()
+        )+
+  scale_fill_manual(values=colors)+
+  scale_shape_manual(values=shape)+
+  scale_color_manual(values=col_code)+
+  labs(y="predInts on SMD scale", x="")
+
+plot_grid(big_predInt, small_predInt, nrow=2, rel_heights = c(.3,1))
 
 ```
 

@@ -60,20 +60,37 @@ parse_prop <- function(propval){
   est2_var <- est2*(1-est2)/den2
   diff <- est1-est2
   diff_var <- est1_var+est2_var
-  return(data.frame("df_1"=NA, "df_2"=NA,"tstat"=NA, "fstat"=NA, "p_calc"=NA, "d_calc"=NA, "d_calc_se"=NA, "N_calc"=NA, "ES"=diff, "SE"=sqrt(diff_var)))
+  OR_result<- escalc(ai=num1, ci=num2, n1i=den1, n2i=den2, measure="OR")
+  #following https://training.cochrane.org/handbook/current/chapter-10#section-10-6 for conversion!
+  OR <- OR_result$yi
+  se_OR <- OR_result$vi**.5 #SE is sqrt variance in this context
+  d_calc=sqrt(3)/3.14159*OR
+  d_calc_se=sqrt(3)/3.14159*se_OR
+  return(data.frame("df_1"=NA, "df_2"=NA,"tstat"=NA, "fstat"=NA, "p_calc"=NA, "d_calc"=d_calc, "d_calc_se"=d_calc_se, "N_calc"=NA, "ES"=diff, "SE"=sqrt(diff_var)))
 }
+#parse_prop(ex)
+
 #parse_prop(ex)
 
 
 # for one proportion
-#ex <- "raw prop : 10 / 18"
+#ex <- "raw prop : 10 / 18, chance= 1/3"
 parse_raw_prop <- function(propval){
   val <- str_extract_all(propval, "[0-9]+")[[1]]
+  chance <- str_extract(propval, "chance=.*")
+  chance_val <- str_extract_all(chance, "[0-9]+")[[1]]
+  chance_rate <- as.numeric(chance_val[1])/as.numeric(chance_val[2])
   num1 <- val[1] |> as.numeric()
   den1 <- val[2] |> as.numeric()
   est1 <- num1/den1
   est1_var <- est1*(1-est1)/den1
-  return(data.frame("df_1"=NA, "df_2"=NA,"tstat"=NA, "fstat"=NA, "p_calc"=NA, "d_calc"=NA, "d_calc_se"=NA,"N_calc"=NA, "ES"=est1, "SE"=sqrt(est1_var)))
+  d_calc <- (est1-chance_rate)/sqrt(est1_var)
+  d_se <- (1 / den1) + (d_calc ^ 2 / (2 * den1)) 
+  foo <- escalc(m1i=est1, m2i=chance_rate, sd1i=sqrt(est1_var), ni=den1, ri=0, measure="SMCR")
+  # this models what is done in metafor package, escalc(measure="SMCR"() (Viechtbauer, 2010)
+  #following https://github.com/AaronChuey/online_devo_metaanalysis/blob/main/scripts/compute_es.R
+  
+  return(data.frame("df_1"=NA, "df_2"=NA,"tstat"=NA, "fstat"=NA, "p_calc"=NA, "d_calc"=foo$yi, "d_calc_se"=sqrt(foo$vi),"N_calc"=NA, "ES"=est1, "SE"=sqrt(est1_var)))
 }
 #parse_raw_prop(ex)
 

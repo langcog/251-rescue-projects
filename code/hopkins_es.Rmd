@@ -1,0 +1,179 @@
+---
+title: "Hopkins M & SD"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(here)
+```
+Key effect is that explantion level predicts rating (this is in an lm, but we're doing it outside for SMD here)
+
+# Original
+
+```{r}
+dat <- read_csv(here("hopkins_raw.csv")) |>  # this has 147 unique IDs so seems likely to be the mturk sample post attention check?
+  select(ID, rating, condition) |> 
+  group_by(ID, condition) |> 
+  summarize(rating=mean(rating)) |> 
+  group_by(condition) |> 
+  summarize(m=mean(rating), s=sd(rating))
+
+  dat
+```
+# First rep
+```{r}
+## FROM https://github.com/psych251/hopkins2016/blob/master/writeup/hopkins2016_writeup.Rmd
+raw_data <- read_csv("https://raw.githubusercontent.com/psych251/hopkins2016/master/writeup/data/hopkins2016_replication_data.csv")
+
+#delete junk rows
+raw_data <- raw_data[-c(1),]
+raw_data <- raw_data[-c(1),]
+
+#delete junk columns
+raw_data <- raw_data %>%
+  select(-(StartDate:Consent))
+#add participant numbers
+data_num <- raw_data %>%
+  mutate(ID = 1:nrow(raw_data))
+
+data_num <- data_num %>%
+  select(-('Year':'Feedback'))
+data_num <- data_num %>%
+  select(Att_1, everything())
+
+#convert to long format
+data_long <- data_num %>%
+  pivot_longer(cols = 'P1-HG_1':'S4-RB_1', names_to = "full_item", values_to = "rating", values_drop_na=TRUE)
+
+#specify item attributes
+data_long <- data_long %>%
+  mutate(science = substr(full_item, start=1, stop=1))
+
+data_long <- data_long %>%
+  mutate(item = substr(full_item, start=1, stop=2))
+
+data_long <- data_long %>%
+  mutate(quality = substr(full_item, start=5, stop=5))
+  
+data_long <- data_long %>%
+  select(-full_item)
+
+data_long <- data_long %>%
+  filter(rating!="")
+
+#recode item names
+data_long$quality <- ifelse(data_long$quality=="G", "good", "bad")
+
+data_long$science <- ifelse(data_long$science=="P", "physics", data_long$science)
+data_long$science <- ifelse(data_long$science=="C", "chemistry", data_long$science)
+data_long$science <- ifelse(data_long$science=="B", "biology", data_long$science)
+data_long$science <- ifelse(data_long$science=="N", "neuroscience", data_long$science)
+data_long$science <- ifelse(data_long$science=="Y", "psychology", data_long$science)
+data_long$science <- ifelse(data_long$science=="S", "social", data_long$science)
+
+#convert columns to intended data types for analysis
+data_long$rating <- as.integer(as.character(data_long$rating))
+
+data_long$science <- factor(data_long$science, 
+                  levels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"),
+                  labels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"))
+data_long$quality <- factor(data_long$quality, 
+                  levels = c("good", "bad"),
+                  labels = c("good", "bad"))
+data_long$condition <- factor(data_long$Condition, 
+                  levels = c("H", "R"),
+                  labels = c("Horizontal", "Reductive"))
+
+#exclude participants who failed attention check 1
+data_excluded_both <- data_long %>%
+  filter(Slider1_1==0)
+
+#exclude participants who failed attention check 2
+data_excluded_both <- data_excluded_both %>%
+  filter(Att_1==3)
+```
+```{r}
+data_excluded_both |>  select(ID, rating, condition) |> 
+  group_by(ID, condition) |> 
+  summarize(rating=mean(rating)) |> 
+  group_by(condition) |> 
+  summarize(m=mean(rating), s=sd(rating))
+```
+# Rescue
+
+```{r}
+raw_data <- read_csv("https://raw.githubusercontent.com/psych251/hopkins2016_rescue/main/data/replicationfull.csv")
+## FROM https://github.com/psych251/hopkins2016/blob/master/writeup/hopkins2016_writeup.Rmd
+
+
+#delete junk rows
+raw_data <- raw_data[-c(1),]
+raw_data <- raw_data[-c(1),]
+
+#add participant numbers
+data_num <- raw_data %>%
+  mutate(ID = 1:nrow(raw_data))
+
+data_num <- data_num %>%
+  select(Att_1, everything())
+
+#convert to long format
+data_long <- data_num %>%
+  pivot_longer(cols = 'P1-HG_1':'S4-RB_1', names_to = "full_item", values_to = "rating", values_drop_na=TRUE)
+
+#specify item attributes
+data_long <- data_long %>%
+  mutate(science = substr(full_item, start=1, stop=1))
+
+data_long <- data_long %>%
+  mutate(item = substr(full_item, start=1, stop=2))
+
+data_long <- data_long %>%
+  mutate(quality = substr(full_item, start=5, stop=5))
+  
+data_long <- data_long %>%
+  select(-full_item)
+
+data_long <- data_long %>%
+  filter(rating!="")
+
+#recode item names
+data_long$quality <- ifelse(data_long$quality=="G", "good", "bad")
+
+data_long$science <- ifelse(data_long$science=="P", "physics", data_long$science)
+data_long$science <- ifelse(data_long$science=="C", "chemistry", data_long$science)
+data_long$science <- ifelse(data_long$science=="B", "biology", data_long$science)
+data_long$science <- ifelse(data_long$science=="N", "neuroscience", data_long$science)
+data_long$science <- ifelse(data_long$science=="Y", "psychology", data_long$science)
+data_long$science <- ifelse(data_long$science=="S", "social", data_long$science)
+
+#convert columns to intended data types for analysis
+data_long$rating <- as.integer(as.character(data_long$rating))
+
+data_long$science <- factor(data_long$science, 
+                  levels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"),
+                  labels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"))
+data_long$quality <- factor(data_long$quality, 
+                  levels = c("good", "bad"),
+                  labels = c("good", "bad"))
+data_long$condition <- factor(data_long$Condition, 
+                  levels = c("H", "R"),
+                  labels = c("Horizontal", "Reductive"))
+
+#exclude participants who failed attention check 1
+data_excluded_both <- data_long %>%
+  filter(Slider1_1==0)
+
+#exclude participants who failed attention check 2
+data_excluded_both <- data_excluded_both %>%
+  filter(Att_1==3)
+```
+
+```{r}
+data_excluded_both |>  select(ID, rating, condition) |> 
+  group_by(ID, condition) |> 
+  summarize(rating=mean(rating)) |> 
+  group_by(condition) |> 
+  summarize(m=mean(rating), s=sd(rating))
+```

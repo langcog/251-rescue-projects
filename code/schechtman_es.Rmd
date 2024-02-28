@@ -1,0 +1,115 @@
+---
+title: "Hopkins M & SD"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(R.matlab)
+```
+Key effect is that explantion level predicts rating (this is in an lm, but we're doing it outside for SMD here)
+
+# Original
+
+```{r}
+
+dematlabify <- function(stuff) {
+  foo <- stuff|> 
+    as_tibble() |> 
+    slice(2:n()) |> 
+    mutate(across(everything(), ~map_vec(., ~ifelse(is.null(.), NA, .[[1]]))))
+  
+  names <- stuff[1,]|> map_vec(~.[[1]])
+  colnames(foo) <- names
+  
+  return(foo)
+}
+
+# paper reports 39, but partway through reports "loss aversion" with 14, so I think maybe 25 in main analysis? That matches how many we have in thing1 at least
+
+thing1 <- readMat(here("DataTest1.mat"))
+
+ids <- dematlabify(thing1$BasicInfo)
+
+dat1 <- dematlabify(thing1$DataStage1) # acquisition?
+
+dat2 <- dematlabify(thing1$DataStage2) # testing
+
+thing2 <- readMat(here("DataTest2.mat"))
+
+ids2 <- dematlabify(thing2$BasicInfo) # has 6 22 13 2 11
+
+dat3 <- dematlabify(thing2$DataSheet)
+
+thing3 <- readMat(here("DataTest1_cases 4 13 18 omitted.mat")) # has 1-22
+
+ids3 <- dematlabify(thing3$BasicInfo)
+
+dat4 <- dematlabify(thing3$DataStage1) #acquisition
+
+dat5 <- dematlabify(thing3$DataStage2) # testing
+
+# not sure why 4 13 and 18 got excluded, but that seems to be what's reported in paper
+```
+
+```{r}
+df <- dat5 |> left_join(ids3 |> select(IDNUM, `Tone Assignment nu.`)) |> 
+  mutate(goodtone=ifelse(`Tone Assignment nu.`==1, 300,700),
+         badtone=ifelse(`Tone Assignment nu.`==1, 700, 300)) |> 
+  mutate(closest_distance=ifelse(abs(`absolute freq`-goodtone) > abs(`absolute freq`-badtone),abs(`absolute freq`-badtone), abs(`absolute freq`-goodtone) )) |> 
+  filter(closest_distance<101) |> 
+  mutate(closest_sound=ifelse(abs(`absolute freq`-goodtone) > abs(`absolute freq`-badtone),badtone, goodtone ),
+         abs_diff=abs(closest_sound-`absolute freq`),
+         generalized=ifelse(`Users choice: 1=positive 2=negative 3=other`==`closest sound: 1=good, 2=bad, 3=neither was closer than 200 Hz`,1,0),
+         close_tone = ifelse(`closest sound: 1=good, 2=bad, 3=neither was closer than 200 Hz`==1, "good", "bad")) |> 
+  select(IDNUM, goodtone, badtone, closest_sound, close_tone, abs_diff, generalized)
+
+
+df |> nrow() #1584
+
+# so 22 people, 3 rounds, 16 / round = 8 neg and 8 pos, if we exclude 0s
+# or +4 in each category if we include 0s
+
+#for rep 1420ish/20 = 71 so that's the same 72 if we include 0s
+
+# for rescue 
+
+```
+
+```{r}
+
+mod <- lm(generalized ~ abs_diff*close_tone, df)
+
+summary(mod)
+```
+
+```{r}
+
+# figure out rescue
+full_data <- read_csv(here("subject_data_final_full_processed.csv"))
+
+# get all control questions
+control_data = full_data %>%
+  filter(trial_type == 'audio-button-response')
+
+# check which participants did not answer "I can hear this" to 2 or more questions (button_pressed = 0)
+exclude = control_data %>%
+  filter(button_pressed != 0) %>%
+  mutate(run_id = as.integer(run_id))
+
+run_id_counts <- exclude %>%
+  count(run_id)
+
+run_id_counts_fin <- run_id_counts %>%
+  filter(n != 1)
+
+exclusion_participants = unique(run_id_counts_fin$run_id)
+
+res <- full_data|> filter(run_id!=26) |> 
+  filter(stage=="generalization") #|>
+  #select(negative_tone, positive_tone, valence_match, distance, tone, key_responses, stimulus, run_id) |> 
+  #filter(!is.na(distance))
+
+nrow(res) #1512
+```

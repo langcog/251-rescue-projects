@@ -16,7 +16,7 @@ footnote:
   - code: corresp
     text: "Corresponding author. Email: vboyce@stanford.edu"
 bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
-csl: apa6.csl # Use any CSL style. See https://www.zotero.org/styles for a good list. Ignored if citation_package: natbib
+csl: apa7.csl # Use any CSL style. See https://www.zotero.org/styles for a good list. Ignored if citation_package: natbib
 link-citations: TRUE
 output:
   bookdown::pdf_document2:
@@ -100,96 +100,6 @@ options(knitr.table.format = "pdf")
 
 model_location="code/models"
 
-```
-
-```{r}
-
-
-library(tidyverse)
-library(testthat)
-all_projects <- read_csv("https://raw.githubusercontent.com/vboyce/251-254-MA/main/data/raw_data.csv")
-
-filtered <- all_projects |>
-  mutate(sub_rep=ifelse(replicated_instructor_code==replicated_report_code, 
-                 replicated_report_code, 
-                 adjudicated_replication_code)) |> 
-  filter(sub_rep %in% c(0,.25, .5)) |> 
-  filter(include!="no") |> 
-  filter(target_N <=200) |> 
-  filter(academic_year %in% c("2015-2016", "2016-2017", "2017-2018", "2018-2019", 
-                              "2019-2020", "2020-2021","2021-2022", "2022-2023")) 
-# what we really want is whether there was a github, but that column is private and so not in the public raw data
-# but 2015 is the first year where we have github links
-
-#test_that("number of rows in filtered", {expect_equal(nrow(filtered),49)})
-
-#given this sample, we then sought original replicator permission, 
-#since it would involve sharing their repo and write-up with a new student
-#which wouldn't have been anticipated at original classtime
-
-#we heard back from 29 students of the 49 we attempted to contact 
-#(1 we couldn't contact due to email bouncing) 
-#2 responses were negative, rest were positive, for 27 options
-
-approved <- c("krauss2003","yeshurun2003", "daffner2000", "ngo2019",
-              "child2018", "schechtman2010", "payne2008", "paxton2012",
-              "hart2018", "lewis2015", "tarampi2016", "jara-ettinger2022",
-              "porter_2016_1", "hopkins2016", "birch2007_2", "gong2019",
-              "correll2007", "pilditch2019", "daw2011", "dehaene2009",
-              "sofer2015", "todd2016_1", "chou2016", "mani2013", 
-              "haimovitz2016_2", "haimovitz2016_1", "craig2014")
-options <- filtered |> filter(target_lastauthor_year %in% approved)
-
-#test_that("number of rows in options", {expect_equal(nrow(options),27)})
-
-# students were then given this list and the opportunity to choose what to do
-
-# projects that we believe are being rescued (as of Oct 23)
-
-chosen <- c("birch2007_2", "jara-ettinger2022", "porter_2016_1",
-            "hopkins2016", "yeshurun2003", "craig2014", "tarampi2016", 
-            "mani2013", "krauss2003", "schechtman2010", "child2018",
-            "haimovitz2016_1", "todd2016_1", "haimovitz2016_2", "payne2008", 
-            "paxton2012", "dehaene2009", "chou2016", "ngo2019", "gong2019")
-
-rescue_started <- options |> filter(target_lastauthor_year %in% chosen)
-
-#test_that("number of rows in final sample", {expect_equal(nrow(final_sample),21)})
-
-```
-
-```{r}
-d <- read_csv(here("data", "combined_data.csv")) |> 
-  select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
-         same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
-         open_data, open_materials, within_between, single_vignette, cost, name_pretty)
-
-source(here("code","helper","parse_stats.R"))
-
-parsed_d <- d |> 
-  mutate(raw_stat=gsub(" ","",raw_stat),
-         calc=pmap(list(raw_stat, within_between,N), do_parsing)) |> 
-  unnest(cols=c(calc), names_sep="_") |> 
-    mutate(
-    calc_d_calc=case_when(
-      type=="original" ~ abs(calc_d_calc),
-      same_direction=="yes" ~ abs(calc_d_calc),
-      same_direction=="no" ~ -abs(calc_d_calc),
-      T ~ as.numeric(NA)
-      ),
-    calc_ES=case_when(
-      type=="original" ~ abs(calc_ES),
-      same_direction=="yes" ~ abs(calc_ES),
-      same_direction=="no" ~ -abs(calc_ES),
-      T ~ as.numeric(NA)
-      ),
-    type=factor(type, levels=c("original", "rep1", "rescue", "additional"))
-    ) |> 
-  rowwise()
-
-num_proj <- parsed_d |> filter(type=="rescue") |> nrow()
-
-cost <- parsed_d |> filter(type=="rescue") |> ungroup() |>  summarize(total=sum(cost, na.rm=T))
 ```
 
 <!---------------------- Abstract --------------------->
@@ -282,6 +192,96 @@ Overall, it seems that there are both potential causes of replication failure th
 
 the current study
 
+```{r}
+
+
+library(tidyverse)
+library(testthat)
+all_projects <- read_csv("https://raw.githubusercontent.com/vboyce/251-254-MA/main/data/raw_data.csv")
+
+filtered <- all_projects |>
+  mutate(sub_rep=ifelse(replicated_instructor_code==replicated_report_code, 
+                 replicated_report_code, 
+                 adjudicated_replication_code)) |> 
+  filter(sub_rep %in% c(0,.25, .5)) |> 
+  filter(include!="no") |> 
+  filter(target_N <=200) |> 
+  filter(academic_year %in% c("2015-2016", "2016-2017", "2017-2018", "2018-2019", 
+                              "2019-2020", "2020-2021","2021-2022", "2022-2023")) 
+# what we really want is whether there was a github, but that column is private and so not in the public raw data
+# but 2015 is the first year where we have github links
+
+#test_that("number of rows in filtered", {expect_equal(nrow(filtered),49)})
+
+#given this sample, we then sought original replicator permission, 
+#since it would involve sharing their repo and write-up with a new student
+#which wouldn't have been anticipated at original classtime
+
+#we heard back from 29 students of the 49 we attempted to contact 
+#(1 we couldn't contact due to email bouncing) 
+#2 responses were negative, rest were positive, for 27 options
+
+approved <- c("krauss2003","yeshurun2003", "daffner2000", "ngo2019",
+              "child2018", "schechtman2010", "payne2008", "paxton2012",
+              "hart2018", "lewis2015", "tarampi2016", "jara-ettinger2022",
+              "porter_2016_1", "hopkins2016", "birch2007_2", "gong2019",
+              "correll2007", "pilditch2019", "daw2011", "dehaene2009",
+              "sofer2015", "todd2016_1", "chou2016", "mani2013", 
+              "haimovitz2016_2", "haimovitz2016_1", "craig2014")
+options <- filtered |> filter(target_lastauthor_year %in% approved)
+
+#test_that("number of rows in options", {expect_equal(nrow(options),27)})
+
+# students were then given this list and the opportunity to choose what to do
+
+# projects that we believe are being rescued (as of Oct 23)
+
+chosen <- c("birch2007_2", "jara-ettinger2022", "porter_2016_1",
+            "hopkins2016", "yeshurun2003", "craig2014", "tarampi2016", 
+            "mani2013", "krauss2003", "schechtman2010", "child2018",
+            "haimovitz2016_1", "todd2016_1", "haimovitz2016_2", "payne2008", 
+            "paxton2012", "dehaene2009", "chou2016", "ngo2019", "gong2019")
+
+rescue_started <- options |> filter(target_lastauthor_year %in% chosen)
+
+#test_that("number of rows in final sample", {expect_equal(nrow(final_sample),21)})
+
+```
+
+```{r}
+d <- read_csv(here("data", "combined_data.csv")) |> 
+  select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
+         same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
+         open_data, open_materials, within_between, single_vignette, cost, name_pretty)
+
+source(here("code","helper","parse_stats.R"))
+
+parsed_d <- d |> 
+  mutate(raw_stat=gsub(" ","",raw_stat),
+         calc=pmap(list(raw_stat, within_between,N), do_parsing)) |> 
+  unnest(cols=c(calc), names_sep="_") |> 
+    mutate(
+    calc_d_calc=case_when(
+      type=="original" ~ abs(calc_d_calc),
+      same_direction=="yes" ~ abs(calc_d_calc),
+      same_direction=="no" ~ -abs(calc_d_calc),
+      T ~ as.numeric(NA)
+      ),
+    calc_ES=case_when(
+      type=="original" ~ abs(calc_ES),
+      same_direction=="yes" ~ abs(calc_ES),
+      same_direction=="no" ~ -abs(calc_ES),
+      T ~ as.numeric(NA)
+      ),
+    type=factor(type, levels=c("original", "rep1", "rescue", "additional"))
+    ) |> 
+  rowwise()
+
+num_proj <- parsed_d |> filter(type=="rescue") |> nrow()
+
+cost <- parsed_d |> filter(type=="rescue") |> ungroup() |>  summarize(total=sum(cost, na.rm=T))
+```
+
 [Probably needs a better transition in] Here we report the results of `r num_proj` re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in @boyce2023. This is a non-random sample, and given the small number of projects, we provide descriptive statistics and discuss qualitatively some potential sources of differential re-replication outcomes. 
 
 
@@ -314,7 +314,7 @@ Students conducted their rescue projects over the course of the 10-week class. O
 
 Students were required to think of reasons the original replication might not have worked, and address them if they could. A list of possible reasons and solutions TODO LINK was given to students. In general, we encouraged students to add manipulation checks as appropriate, and better adapt materials to online studies. For instance, TODO rescue switched from using the CRT which is overused in online samples for the newer TODO. TODO rescue discovered that the replication had accidentally used the drawn version of the stimuli rather than the photographic stimuli used in the original and reverted to the photographic stimuli. TODO @tarampi original had participants indicate their answers (left or right) on a piece of paper in a timed navigation task, the replication had them indicate by clicking a drop down, and rescue went with press keyboard keys to indicate. TODO others to note?  Once students experimental designs and analytic plans were approved by TAs (VB and BP), students pre-registered and ran their samples. 
 
-
+TODO do we have something to say about the range of interventions that went into replications? e.g., larger sample size, manipulation check, etc.
 
 With one exception, samples were collected on Prolific (the rescue of @yeshurun2003 ran in-person on the Stanford student subject pool). We tried to power studies adequately (with a target of 2.5x original following @simonsohn2015), but due to cost constraints, not all studies were powered at this level. The rescues had on average `r round(m,2)` times the original sample post-exclusion (median: `r round(mid,2)`, IQR: `r round(low,2)` - `r round(high,2)`, minimum: `r round(lowest, 2)`, maximum: `r round(highest,2)`, see TABLE TODO for all sample sizes). 
 Across the `r num_proj-1` Prolific studies, we spent $`r pluck(cost,1,1) |> round()`, for an average of $`r (pluck(cost,1,1)/(num_proj-1)) |> round()` per project. 

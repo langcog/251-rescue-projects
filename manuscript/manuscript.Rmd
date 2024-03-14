@@ -245,6 +245,7 @@ TODO FIX CITATION / BIB INFO
 # Introduction
 
 
+
 Imagine the scenario where you are a new graduate student, and you run a replication of a study in the literature that you are interested in building upon in your research.
 The replication fails: perhaps the interaction you hoped for is directionally correct, but the point estimate is small and the confidence interval definitely overlaps 0, with a p-value of .3.
 Or perhaps the interaction is numerically in the wrong direction, and also the main effects look different.
@@ -259,79 +260,46 @@ With large multi-site samples, Many Labs 1 replicated 11/13 effects (84.6%), Man
 Psychology is not the only discipline where not everything replicates.
 Large scale replication projects in other disciplines have found 39/97 (40%) for positive effects in cancer biology [@errington2021], 11/18 (61%) in economics [@camerer2016], and 31/40 (78%) for experimental philosophy [@cova2021].
 
-____
-TODO VB IS UNSURE WHAT EXACTLY THE PROPOSED REORDERING IS
+Replications can fail for any reason. In principle, the question of why a replication failed is the same as asking why did two closely related studies have different results, which could be due to any differences between the study. In the case of replication failure, there's an asymmetry where the original study happened first and set the methods and analyses and got the more significant result.  [VB is struggling to articulate ideas here] 
+One source of replication failure is that the result is fragile in some way: it could be a statistically unlikely result that was achieved through chance or p-hacking, or it could be sensitive to the exact conditions and time it was run under ("hidden moderators"). The reported effect sizes might be biased estimates due to some combination of heterogeneity, p-hacking, luck, underpowering, and publication bias. The replication study could be underpowered to detect the effect, perhaps due to powering for the reported (inflated) effect size, or unexpected attrition in the replication sample. 
 
-Running studies can be costly, so scientists must decide how to allocate their limited resources in the face of an uncertain literature.
-Attempting to replicate existing studies is a common choice.
-Scientists replicate studies for a variety of reasons, including calibrating their equipment, confirming a result before building on it, and engaging in meta-scientific practices [other reasons to highlight?
-is there any citation for this?]
-.
-We focus on this middle motivation, where a scientist wants to build on a result, and thus wants it to succeed, but does not have strong reasons to believe or disbelieve the finding: it isn't a robust, well-tested effect, nor is it something they have particular suspicions about.
-In an uncertain literature, we might not want to commit resources to building on an effect without first checking that we, with our resources and participant sample, can get the core effect we wish to build on.
-Thus, scientists may want to re-replicate failed replications if the re-replication is likely to work and is indicative that future experiments in this tradition are likely to be informative.
+Replications might get different results from an original study due to differences in how the question of interest was instantiated; these differences in design could be intentional adaptations, or they could be unintentional if a replication recreates instructions or materials because the original ones are not available, or they could be trivial differences that turn out to be crucial to the effect. 
 
-This scientist-decision focused angle is different from the standard approach to replication which has take then the meta-scientific approach which has been primarily concerned with estimating the proportion of true effects in the literature.
-Large-scale replication studies indicate that the literature is unreliable.
+A difference in experiment platforms (ex. online versus in-person) might mean that an implementation doesn't fit the platform, or the data quality controls and attention checks are inadequate. If there are differences in time, place, or subject population between the two studies, there may need to be differences in the materials, instructions, or procedure to provide a good *translation* -- too many changes could cause differing results, but so could not enough changes. 
+
+When replications fail, we generally do not know why they failed, although we often speculate on potential reasons. [TODO not sure how to transition here] The goal of most large-scale replication studies has been metascientific, with the aims of estimating the true proportion of effects in a literature or understanding the role of heterogeneity. For these purposes, it may not matter exactly why any individual replication failed because they are assessed as a whole. 
+
+But when individual scientists attempt to replicate an effect with the goal of building on it, they do care about the individual failed replication. In an uncertain literature, we might not want to commit resources to building on an effect without first checking that we, with our resources and participant sample, can get the core effect we wish to build on. Thus, it's very important whether the replication failure was caused by something fixable about the replication or whether it was caused by something not-fixable about the original result (ex. extreme lack of generalizability, p-hacking, etc). 
+
+While one can theorize after the fact about potential causes of replication failure, in most circumstances it is hard to diagnose for certain what made for the difference in the results. An exception might be if a specific error in one study or the other is found, such that the results were not what was thought (analytic error) or the data was not what was thought (experimental error). Thus, we usually can't know whether the replication failure was caused by factors that could be feasibly addressed or not. 
+
+Re-replication could serve as a way of triangulating on reasons for replication failure, as well as another chance for a scientist to get a working protocol that picks up the effect of interest. Thus, scientists may want to know both how often and when a re-replication is likely to work and detect an effect that is indicative that future experiments in this tradition are likely to be informative.
 
 
- What these replication rates say about the truth of the literature is beyond our scope, but these rates do indicate that scientists are far from guaranteed at being able to replicate effects from the literature in their own labs.
-Thus, the question of what to do with a failed replication is a practical one that comes up frequently.
 
-Replications can fail for many reasons.
-Replication failure implies a certain time direction: first a "successful" study, usually one that got a certain statistically significant result, and (later) a "failed" replication that did not get this statistically significant result.
-The replication failure framing implies a time direction (TODO THERE IS A CITATION FOR THIS IDEA RIGHT OF PRECEDENCE).
-Taking out the time component, we can instead analyse a replication failure as two very-related studies with differing results.
-Under this frame, the question becomes: what is different between these two studies that could account for the differing results?
 
-[query: should I try to frame this as two that are symmetric , or should I stick to an original / rep framing?
-I'm torn]
-
-There are many potential reasons for differing results (see also @ebersole2020).
-One option is that one of the studies had a statistically unlikely result (either through chance or p-hacking).
-The result could be sensitive to some of the exact conditions and time when the two studies were run ("hidden moderators") and lack generalizability.
-Reported effect sizes might be biased estimates due to some combination of heterogeneity, p-hacking, luck, underpowering, and publication bias.
-One or both studies might be underpowered, potentially due to believing the effect was larger, or unexpected attrition in the sample.
-
-Studies might differ in how they instantiated the question of interest, and this might cause different results.
-For example if a manipulation check failed, that could be a proximate cause of difference, which also raises questions about why the manipulation check failed.
-Differences in materials or instructions might turn out to be crucial to the effect.
-A difference in experiment platforms (ex. online versus in-person) might mean that an implementation doesn't fit the platform, or the data quality controls and attention checks may not be appropriate to the sample population.
-Some trivial changes intended to adapt the experimental question to the setting might actually change the result.
-If there are differences in time, place, or subject population between the two studies, there may need to be differences in the materials, instructions, or procedure to provide a good *translation* -- too many changes could cause differing results, but so could not enough changes.
-
-While one can theorize after the fact about potential causes of replication failure, in most circumstances it is hard to diagnose for certain what made for the difference in the results.
-An exception might be if a specific error in one study or the other is found, such that the results were not what was thought (analytic error) or the data was not what was thought (experimental error).
-Re-replication could serve as a way of triangulating on reasons for replication failure, as well as another chance for a scientist to get a working protocol that picks up the effect of interest.
-However, re-replication has not been studied much, so it is uncertain how definitive a replication failure is.
-That is, conditioned on a failed replication, how likely is a re-replication to succeed?
-Re-replication was tested in a sample of 10 psychology studies in @ebersole2020.
-After @openscienceconsortium published their results with a replication rate of TODO, @gilbert2016 raised concerns that methodological differences were the problem.
-In 11 of the OSF studies, concerns about protocol fidelity had been raised by original authors prior to data-collection (and thus not contingent on results).
-Of these 11 with concerns, 10 failed to obtain significant results in the RP:P replication [@openscienceconsortium].
-In a follow-up, @ebersole2020 re-replicated 10 of these 11 in larger samples, using both the RP:P protocol and a new protocol revised under advice of the original authors or other experts, thus testing whether larger sample sizes and/or "better" methodologies would "rescue" the failed RP:P replications.
-The result: 0 of the RP:P protocols found significant results, 2 of the 10 revised protocols did (but not the 1 that had a significant result in the original RP:P sample).
-The replication effect size was much smaller CITE NUMBER [@ebersole2020].
-We could frame @ebersole2020 as an attempt to recover the original effects of the 9 studies with significant original effects and non-significant RP:P effects by a combination of high power and design tweaks.
-This suggests a successful re-replication rate of 2/9 (22%) for studies with non-significant first replications, under fairly favorable, high resource circumstances.
-
-Returning to the question of potential causes of non-replication, what do reasons for replication failure say about the success of another replication?
-For our purposes, we're considering another replication with roughly the same environment, knowledge, and resources of the first replication, but with the benefit of hindsight on the first replication, as this is the situation scientists considering doing a re-replicaton for cumulative science are in.
-
-Factors that suggest another failure include heterogeneity and lack-of-generalizability ("hidden moderator"), as the second replication is likely to be closer to the first replication than to the original in these random factors.
+<!--TODO THIS PARAGRAPH NEEDS HELP Factors that suggest another failure include heterogeneity and lack-of-generalizability ("hidden moderator"), as the second replication is likely to be closer to the first replication than to the original in these random factors.
 TODO CITE THAT PAPER about types of heterogeneity and which way they would fall An original result due to p-hacking or a lucky false positive is unlikely to re-replicate.
 Sensitivity to environment or not working well online are unlikely to be fixable if the replications remain constrained to using online methods.
 Similarly, if the result is specific to a special population, then a new replication is also likely to fail, unless it has gained access to this population.
-
 Factors that may be fixable include sample size issues with the replication, assuming the re-replication can recruit a larger sample or reduce attrition.
 It may be possible to fix underpoweredness and inflated effect size, at least to an extent.
 If the effect size was inflated and the first replication powered for the effect, a better powered (but not huge) replication may be able to recover a smaller, but still convincing effect.
 Failures due to differences between the materials may or may not be fixable.
 If the original materials are still unavailable, a second replication is no better off.
 If a second replication can get closer to the original, either by using closer materials, or better adapting the study to a new environment, the second replication might succeed at better approximating the results of the original.
-A failed manipulation check failure may not be fixable, but it might at least be diagnoseable.
+A failed manipulation check failure may not be fixable, but it might at least be diagnoseable.-->
 
-Overall, there are some potential causes of replication failure that may be resolvable with a similar level of resources, and also some potential causes of replication failure that are not resolvable, either at all, or given resource constraints.
+
+Re-replication has not been studied much, so it is uncertain how definitive a replication failure is. 
+One study on re-replications was @bersole2020 which re-replicated 10 psychology studies that had failed replications reported in RP:P [@openscienceconsortium]. 
+After  @openscienceconsortium published their results with a replication rate around 40%, @gilbert2016 raised concerns that methodological differences were the reason for the low replication rate. In 11 of the OSF studies, concerns about protocol fidelity had been raised by original authors prior to data-collection (and thus not contingent on results).
+Of these 11 with concerns, 10 failed to obtain significant results in the RP:P replication [@openscienceconsortium]. In a follow-up, @ebersole2020 re-replicated 10 of these 11 in larger samples, using both the RP:P protocol and a new protocol revised under advice of the original authors or other experts, thus testing whether larger sample sizes and/or "better" methodologies would "rescue" the failed RP:P replications.
+
+The result: 0 of the RP:P protocols found significant results, 2 of the 10 revised protocols did (but not the 1 that had a significant result in the original RP:P sample).
+The replication effect size was much smaller CITE NUMBER [@ebersole2020].
+We could frame @ebersole2020 as an attempt to recover the original effects of the 9 studies with significant original effects and non-significant RP:P effects by a combination of high power and design tweaks.
+This suggests a successful re-replication rate of 2/9 (22%) for studies with non-significant first replications, under fairly favorable, high resource circumstances.
 
 After a failed replication, we might speculate on what caused the replication result, and what that would mean for future work on the topic.
 As the @gilbert2016 and @ebersole2020 example showed, these speculations on causes and thus re-replication outcomes are not always correct.
@@ -345,7 +313,7 @@ One option for their class project was to "rescue" an experiment that a student 
 Thus, students were likely to be looking at both the original paper and the failed replication through the lens of best practices to see what they could fix.
 [TODO Mike mentioned something about a sampling side box on experimentology that VB is having trouble finding]
 
-In the present paper, we report the results of `r num_proj` re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in @boyce2023.
+In the present paper, we report the results of `r num_proj` re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in @boyce2023. 
 TODO PREVIEW RESULTS??
 
 # Methods

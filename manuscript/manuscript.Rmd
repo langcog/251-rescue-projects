@@ -238,73 +238,83 @@ cost <- parsed_d |> filter(type=="rescue") |> ungroup() |>  summarize(total=sum(
 <!---------------------- Abstract --------------------->
 
 ::: {.abstract data-latex="" lang="en"}
-When a replication fails, scientists have to decide whether to make a second attempt or move on. Psychology researchers who attempt to replicate studies before building on them often face this decision, given the relatively low rates of replication success in psychology. Here, we report on 17 re-replications of experiments with failed replications reported in Boyce et al. (2023). In 5/17 of these "rescue" projects (29%), the re-replication mostly or fully replicated the original results, albeit with smaller effect sizes. While a few replications were rescued with larger sample sizes and minor methodological changes, most re-replications failed again. In many situations, it may be most efficient to stop pursuing an effect after a single failed replication.
+When a replication fails, scientists have to decide whether to make a second attempt or move on. Psychology researchers who attempt to replicate studies often face this decision, given the empirical rate of replication success in psychology, which is lower than desired. Here, we report 17 re-replications of experiments for which an original replication had failed. In 5/17 of these "rescue" projects (29%), the "rescue" study mostly or fully replicated the original results, albeit with a smaller effect size; in the other 12, the second replication was also judged to have failed. We speculate that successful rescue projects were due to larger sample sizes or methodological changes such as attention checks. In the absence of obvious weaknesses in a failed replication study's sample or procedure, however, it may be most efficient to stop pursuing an effect after a single failed replication.
 :::
-TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero)
+<!-- TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero) -->
 
 
-TODO compile everything into OSF repo & link
-TODO link individual pre-reg's in repo
-TODO link overall pre-reg
-TODO include in repo & link the reasons for replication failure that were offered to students
-TODO redo/double check closeness scores for first rep and rescues 
-TODO add something about Verity's to case-study? 
-TODO author contributions, acknowledgements
+<!-- TODO compile everything into OSF repo & link -->
+<!-- TODO link individual pre-reg's in repo -->
+<!-- TODO link overall pre-reg -->
+<!-- TODO include in repo & link the reasons for replication failure that were offered to students -->
+<!-- TODO redo/double check closeness scores for first rep and rescues  -->
+<!-- TODO add something about Verity's to case-study?  -->
+<!-- TODO author contributions, acknowledgements -->
 
 # Introduction
 
-Imagine the scenario where you are a new graduate student, and you run a replication of a study in the literature that you are interested in building upon in your research.
-The replication fails: perhaps the interaction you hoped for is directionally correct, but the point estimate is small and the confidence interval definitely overlaps 0, with a p-value of .3.
-Or perhaps the interaction is numerically in the wrong direction, and also the main effects look different.
+Imagine you are a graduate student, and you run a replication of a study that you are interested in building upon in your research.
+The replication fails. Perhaps the interaction you hoped for is directionally correct, but the point estimate is small and the confidence interval definitely overlaps 0, with a $p$-value of .3.
+Or perhaps the interaction is numerically in the wrong direction and the main effects look different.
 <!--Or maybe the main effect of interest may be null, but you found a significant effect interaction that wasn't hypothesized.-->
-Whatever the details of the replication failure, you are left with a question: Should you *try again* and run a re-replication, or should you *give up* and pick a different study to replicate and build on?
+Whatever the details of the replication failure, you are left with a question: Should you try again and run a re-replication, or should you give up and pick a different study to extend?
 
-In psychology, large scale replication projects have found that around half the studies successfully replicate. 
-Across 100 studies with positive results, RP:P replicated 36 - 47% depending on the metric for replication success [@openscienceconsortium].
+In psychology, large scale replication projects have found that around half of studies successfully replicate. 
+Across 100 studies with positive results, the reproducibility project in psychology (RP:P) replicated 36 - 47% depending on the metric for replication success [@openscienceconsortium].
 With large multi-site samples, Many Labs 1 replicated 11/13 effects (84.6%), Many Labs 2 replicated 14/28 effects (50%), and Many Labs 3 replicated 3/10 effects (30%) [@klein2014; @klein2018; @ebersole2016].
-@camerer2018 included 21 behavioral social science studies and replicated 12-14 of them (57%-67%) depending on the metric used.
-@boyce2023 reported an average replication score of 49% for 176 replications primary in psychology.
+@camerer2018 examined 21 behavioral social science studies and successfully replicated 12-14 of them (57%-67%) depending on the metric used.
+@boyce2023 reported an average subjective replication score of 49% for 176 replications primary in psychology.
+
 Psychology is not the only discipline where many studies do not replicate.
 Large scale replication projects in other disciplines have found 39/97 of studies with positive effects (40%) replicating in cancer biology [@errington2021], 11/18 studies (61%) replicating in economics [@camerer2016], and 31/40 studies (78%) replicating in experimental philosophy [@cova2021]. Across these disciplines, and especially in psychology, large-scale replications indicate a substantial chance of scientists encountering failed replications if they try to replicate published findings. 
 
-Replications can fail for many reasons. In principle, any difference between the original study and replication could be a root cause of the difference in their outcomes. In practice, the relationship is not symmetric, and many causes of replication failure can be attributed more to the original study or more to the replication. 
-One potential reason for replication failure is that the original result is fragile in some way: it could be a statistically unlikely result that was achieved through chance or p-hacking, or it could be sensitive to the exact conditions and time it was run under ("hidden moderators"). Another possibility is that the reported effect size might be inflated due to some combination of heterogeneity, p-hacking, low power, and publication bias. One consequence of inflated effect sizes is that replication studies might power for the reported effect size and then have too small a sample to reliably detect the (true) smaller effect. Replication studies might also end up underpowered due to unexpected attrition or noise in the replication sample. 
+Replications can fail for many reasons, having to do with the original study or the replication. 
+<!-- In principle, any difference between the original study and replication could be a root cause of the difference in their outcomes. But in practice, the relationship between original and replication is not symmetric, and many causes of replication failure can be attributed either more to the original study or more to the replication.  -->
+Starting with the original study, one potential reason for replication failure is that the original result is fragile in some way. It could be a statistically unlikely result that was achieved through chance or $p$-hacking, or it could be sensitive to the exact conditions and time it was run under ("hidden moderators"). Another possibility is that the original reported effect size might be inflated due to some combination of heterogeneity, $p$-hacking, low power, and publication bias. A consequence of inflated effect sizes is that replication studies might select a sample size with appropriate sttaistical power for the reported effect size and then have too small a sample to reliably detect the (true) smaller effect. Replication studies might also end up underpowered due to unexpected attrition or noise in the replication sample. 
 
-Replications could also get different results from an original study due to differences in how the question of interest was instantiated. These differences in design could be intentional adaptations, unavoidable changes from lack of access to the original instructions or materials, or changes that were not expected to be critical. A difference in experiment platforms (ex. online versus in-person) might mean that an implementation no longer is appropriate, or the data quality controls and attention checks are inadequate. If there are differences in time, place, or subject population between the two studies, corresponding changes to the materials, instructions, or procedure may be needed to provide a good *translation* -- too many changes could cause differing results, but so could not enough changes. 
+Other reasons for replication failure are also primarily due to the replication study. 
+A replication could observe different results from the original due to methodological differences. 
+These differences in design could be intentional adaptations, unavoidable changes from lack of access to the original instructions or materials, or changes that were not expected to be critical. 
+A difference in the details of recruitment (e.g., online versus in-person) might mean that particular details of a study implementation would no longer be appropriate, or the data quality controls and attention checks might be inadequate. 
+If there are differences in time, place, or subject population between the two studies, corresponding changes to the materials, instructions, or procedure could be needed to provide an adaptation of the experimental paradigm to a new context. 
+Such adaptation creates yet more challenges in interpretation: too many changes could cause differing results, but so could not enough changes. 
+In sum, when replications fail, we generally do not know why they failed, although we may speculate. 
 
-When replications fail, we generally do not know why they failed, although we may speculate. For the metascientific goals of most large-scale replication projects, it doesn't matter why any particular study failed to replicate, because the aim is to estimate the true proportion of effects in a literature. 
 
-In contrast, when individual scientists attempt to replicate an effect with the goal of building on it, they do care about why an individual replication failed. In an uncertain literature, scientists might not want to commit resources to building on an effect without first checking that they, with their resources and participant sample, can get the core effect. In this case, it's very important whether the replication failure is due to something fixable about the replication or something not-fixable about the original result. 
+For the goals of large-scale replication projects, it doesn't matter why any particular study failed to replicate, because the aim is to estimate the proportion of replication effects in a literature. In contrast, howver, when individual scientists attempt to replicate an effect with the goal of building on it, they do care about why an individual replication failed. In an uncertain literature, scientists might not want to commit resources to studying extensions of an effect without first checking that they can measure that effect themselves. For those individual scientists, it is much more important whether the replication failure is due to a fixable issue with the the replication or an intrinsic feature of the original result. 
 
-While one can theorize after the fact about potential causes of replication failure, in most circumstances it is hard to diagnose for certain what made for the difference in the results. An exception might be if a specific error in one study or the other is found, such that the results were not what was thought (analytic error) or the data was not what was thought (experimental error). Aside from these rare cases, we usually can't know whether the replication failure is fixable just by looking at the replication failure itself. 
+Re-replication can serve as a way to test explanations for replication failure. While it's possible to speculate after the fact about potential causes of a single replication failure, in most circumstances these causes are hard to discern (absent clear evidence of errors). In contrast, a second replication provides a chance to test explanations by making modifications -- as well as giving another chance for researchers to measure an effect of interest. But what are the chances that a re-replication succeeds?
 
-Instead, re-replication could serve as a way of triangulating on reasons for re-replication failure, as well as another chance for a scientist to get a working protocol that picks up the effect of interest. Thus, scientists may want to know what the chances are that a re-replication succeeds at detecting an effect that indicates future experiments with this protocol are worth pursuing.
 
-Re-replication has not been studied much, so it is uncertain how often re-replications recover the results of an original study. That is, it is not well known how definitive a first replication failure is. 
+<!-- is hard to diagnose for certain what made for the difference in the results. An exception might be if a specific error in one study or the other is found, such that the results were not what was thought (analytic error) or the data was not what was thought (experimental error). Aside from these rare cases, we usually can't know whether the replication failure is fixable just by looking at the replication failure itself.  -->
 
-One estimate of re-replication success rates comes from @ebersole2020 which re-replicated 10 psychology studies that had failed replications reported in RP:P [@openscienceconsortium]. 
-After @openscienceconsortium published their results with a replication rate around 40%, @gilbert2016 raised concerns that methodological differences were the reason for the low replication rate. In 11 of the RP:P studies, the original authors had raised concerns about protocol fidelity prior to data-collection.
-Of these 11 with concerns, 10 failed to obtain significant results in the RP:P replication [@openscienceconsortium]. In a follow-up, @ebersole2020 re-replicated 10 of these 11 in larger samples, using both the RP:P protocol and a new protocol revised under advice of the original authors or other experts, thus testing whether larger sample sizes and/or "better" methodologies would "rescue" the failed RP:P replications.
 
-The result was that 0 of the RP:P protocols found significant results, and 2 of the 10 revised protocols did (but not the 1 that had a significant result in the original RP:P sample). Even when a significant effect was recovered, the effect size was much diminished [@ebersole2020].
-We could frame @ebersole2020 as an attempt to recover the original effects of the 9 studies with significant original effects and non-significant RP:P effects by a combination of high power and design tweaks.
-This suggests a successful re-replication rate of 2/9 (22%) for studies with non-significant first replications, under fairly favorable, high resource circumstances.
+<!-- Re-replication has not been studied much, so it is uncertain how often re-replications recover the results of an original study. That is, it is not well known how definitive a first replication failure is.  -->
+Relatively few studies have estimated re-replication success. 
+One estimate comes from @ebersole2020. After the original RP:P result of a replication rate around 40% [@openscienceconsortium], @gilbert2016 raised concerns that methodological differences might explain low replication rate. In 11 of the RP:P studies, the original authors had raised concerns about protocol fidelity prior to data-collection.
+Of these 11 with concerns, 10 failed to obtain significant results in the RP:P replication. 
+Thus, @ebersole2020 re-replicated 10 of these 11 in larger samples, using both the RP:P protocol and a new protocol revised under advice of the original authors or other experts. This study thus tested whether larger sample sizes and/or "better" methodologies would "rescue" the failed RP:P replications.
+The result was that 2 of the 10 revised protocols found a significant result (but not the 1/11 that originally was successful).
+Even when a significant effect was recovered, the effect size was much diminished [@ebersole2020].
+<!-- We could frame @ebersole2020 as an attempt to recover the original effects of the 9 studies with significant original effects and non-significant RP:P effects by a combination of high power and design tweaks. -->
+The re-replication success rate was thus 2/9 (22%) for studies with non-significant first replications, under favorable, high-resource circumstances.
 
-While it is tempting to speculate on the reasons for failed replications, the @gilbert2016 and @ebersole2020 example shows these speculations on causes of replication failure do not always pan out in re-replication outcomes.
+<!-- While it is tempting to speculate on the reasons for failed replications, the @gilbert2016 and @ebersole2020 example shows these speculations on causes of replication failure do not always pan out in re-replication outcomes. -->
 
-While @ebersole2020 looked at re-replication success rate in a high resource setting with access to large, multi-site samples and expert input, most early career scientists do not have those kinds of resources to devote to re-replication attempts. On the other hand, early career researchers may also be prone to a different distribution of causes of initial replication failure. Thus, it is an open question what the re-replication rate is for failed replications of early career researchers, and estimating this rate could inform decisions on how to act after failed replications. 
+While @ebersole2020 looked at re-replication success rate in a high resource setting with access to large, multi-site samples and expert input, most early career scientists do not have those kinds of resources to devote to re-replication attempts. On the other hand, early career researchers may also be prone to a different distribution of causes of initial replication failure. Thus, it is an open question what the re-replication rate is for failed replications of early career researchers. Further, estimating this rate could inform researhcers' decisions on what to do next after failed replications. 
 
 Here, we investigate re-replication in the context of graduate student replication class projects.
-Students in a graduate methods class on experimental methods were learning about best practices for experimental research and had the option to "rescue" an experiment that a student in a prior year had previously failed to replicate as their class project (first replications reported in @boyce2023).
-Thus, students looked at both the original paper and the failed replication through the lens of best practices to see what potential issues in the replication they could fix. 
-In the present paper, we report the results of `r num_proj` re-replication "rescue" projects which each re-replicated a study which had a failed or only partially-successful replication in @boyce2023. We find that a minority of projects (5/17, 29%) successful recovered the original effect. 
+Students in a graduate methods class on experimental methods in psychology were given the option to "rescue" an experiment that a student in a prior year had previously failed to replicate as their class project [first replications reported in @boyce2023].
+The focus of the class was best practices in experimental design; thus, students looked at both the original paper and the failed replication to examine potential issues in the replication that they could fix in their rescue project. 
+In the present paper, we report the results of `r num_proj` re-replication rescue projects. We find that a minority of projects (5/17, 29%) successful recovered the original effect. 
 
 # Methods
 
 PSYCH 251 is a graduate-level experimental methods class taught by MCF.
-In previous years, students have conducted replication projects, as reported in @boyce2023.
-In Fall 2023, students in PSYCH 251 were offered the option to do a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year.
+In previous years, students have conducted replication projects [as reported in @boyce2023 and @hawkins2018].
+In Fall 2023, students were offered the option to complete a "rescue" project where they re-replicated one of the unsuccessful replications from a previous year.
 Students could also opt to do a normal replication instead.
+If they opted for a rescue, they were given the option to participate in a collaborative meta-science project and earn authorship on the current paper based on 1) completing a rescue project, 2) reviewing another student's rescue project for analytic errors, and 3) reviewing and approving the final manuscript. 
 We report on the result of `r num_proj` rescue projects that opted to be part of the paper and completed data collection.
 
 A spreadsheet of projects, individual project write-ups (both first replications and rescues), links to individual project data and analyses for rescue projects, and the analytic code for this paper are all available at TODO OSF LINK GOES HERE.
@@ -314,16 +324,16 @@ Each project was also individually pre-registered by the student conducting it.
 The overall analysis is at LINK, individual pre-registrations are linked from LINK.
 We note one deviation from our pre-registration here: we pre-registered visual comparisons between original, first replication, and rescue projects using prediction intervals.
 Prediction intervals depend on both the original effect size and variance and the variance of the comparison (replication or rescue) study [@patil2016].
-Thus we cannot show *the* prediction interval for the original study, but would have to show a prediction interval between each pair of studies, which we thought would not offer clarity.
+Thus we cannot show a single prediction interval for the original study, but would have to show a prediction interval between each pair of studies. We thought this analysis would not offer additional clarity and hence we did not perform it. 
 
 ## Sample
 
 The experiments that were re-replicated were chosen from studies that failed to replicate in @boyce2023.
-We created an initial list of `r nrow(filtered)` rescue-eligible studies that had received a subjective replication success score of 0, .25 or .5 (on a 0-1 scale) in @boyce2023, where the replication had a Github repository available (github repositories were used starting in academic year 2015-2016), and where the original experiment had 200 or fewer participants (to ensure we could afford to increase the sample size).
+We created an initial list of `r nrow(filtered)` rescue-eligible studies that 1) had received a subjective replication success score of 0, .25 or .5 (on a 0--1 scale) in @boyce2023, 2) had a Github repository available (github repositories were used in class starting in academic year 2015-2016), and 3) where the original experiment had 200 or fewer participants (to ensure we could afford to match or increase the sample size based on the class budget).
 We then contacted the replication project authors for permission to share their report and repository with a new student and include it as a supplement on a resulting paper.
 This left `r length(approved)` options for the students to choose from.
 `r length(chosen)` students chose to do rescue projects, and
-`r length(chosen)-num_proj` students took an incomplete or did not indicate interest in being part of this paper, leaving a final sample of `r num_proj` rescue projects.
+`r length(chosen)-num_proj` students did not finish their project or did not indicate interest in being part of this paper, leaving a final sample of `r num_proj` rescue projects.
 
 ```{r}
 rel_size <- parsed_d |> filter(type %in% c("original", "rescue")) |> select(target_lastauthor_year, type, N)  |> 
@@ -346,14 +356,14 @@ In many cases, students were also given the contact information of the original 
 
 Students were required to think of reasons the first replication might not have worked, and address them if they could.
 A list of possible reasons and solutions TODO LINK was given to students.
-In general, we encouraged students to add manipulation checks as appropriate, and better adapt materials to online studies.
-For instance, the rescue of @paxton2012 switched from using the CRT which many online participants are overfamiliar with for the newer CRT-2 which is less overused but gets at the same construct [@thomson2016].
-The rescue of @jara-ettinger2022 discovered that the replication had accidentally used the drawn version of the stimuli rather than the photographic stimuli used in the original and reverted to the photographic stimuli.
-@tarampi2016 had participants do a timed navigation task where they wrote L or R to indicate which way to turn at each intersection on a paper map. The replication ported this experiment online and had participants click a drop down to select left or write for each turn. The rescue switched for the unwieldy dropdown menus to having participants press keys on the keyboard to indicate the direction of a turn, which seemed like a more natural interface.
-Once students experimental designs and analytic plans were approved by TAs (VB and BP), students pre-registered and ran their samples.
+In general, we encouraged students to add manipulation checks as appropriate, and to adapt their materials to online studies, which may benefit from attention checks and/or shorter duration.
+For instance, the rescue of @paxton2012 switched from using the cognitive reflection task (CRT) which many online participants are over-familiar with for the newer CRT-2 which is less overused but attempts to measure the same construct [@thomson2016].
+The rescue of @jara-ettinger2022 discovered that the replication had accidentally used an illustrated version of the stimuli rather than the photographic stimuli used in the original and used the photographic stimuli instead.
+@tarampi2016 had participants do a timed navigation task where they wrote L or R to indicate which way to turn at each intersection on a paper map. The replication ported this experiment online and had participants click a drop down menu to select left or write for each turn. The rescue removed the unwieldy dropdown menus and opted to have participants press keys on the keyboard to indicate the direction of a turn, which seemed like a more natural interface.
+Once experimental designs and analytic plans were approved by class TAs (VB and BP), students pre-registered and ran their samples.
 
-With one exception, samples were collected on Prolific (the rescue of @yeshurun2003 ran in-person on the Stanford student subject pool).
-We tried to power studies adequately (with a target of 2.5x original following @simonsohn2015), but due to cost constraints, not all studies were powered at this level.
+With one exception, samples were collected on Prolific [the rescue of @yeshurun2003 ran in-person on the Stanford student subject pool].
+We tried to power studies adequately [with a target of 2.5x original following @simonsohn2015], but due to cost constraints, not all studies were powered at this level.
 The rescues had on average `r round(m,2)` times the original sample post-exclusion (median: `r round(mid,2)`, IQR: `r round(low,2)` - `r round(high,2)`, minimum: `r round(lowest, 2)`, maximum: `r round(highest,2)`, see Table \@ref(tab:tab-size) for all sample sizes).
 Across the `r num_proj-1` Prolific studies, we spent \$`r pluck(cost,1,1) |> round()`, for an average of \$`r (pluck(cost,1,1)/(num_proj-1)) |> round()` per project.
 
@@ -361,15 +371,16 @@ Across the `r num_proj-1` Prolific studies, we spent \$`r pluck(cost,1,1) |> rou
 
 ## Coding of results
 
-We followed @boyce2023 in the properties of the studies we measure and how we quantify replication success.
+We followed @boyce2023 in the properties of the studies we measure and how we quantify replication success. 
+Each project was rated on the basis of subjective replication success (on a 0--1 scale) by both MCF and one of VB and BP.
+We thought about replication in terms of general match in key study results (direction, magnitude, and significance), rather than focusing on any singular numeric result or significance cut-off.
+Interrater reliability was `r irr |> round(3)`; disagreements were minor (at no point greater than .25) and were resolved through discussion.
 
-Each project was rated on the basis of subjective replication success both by MCF and by one of VB and BP.
-Disagreements were resolved through discussion.
 As a complement to the subjective rating of overall success, we statistically compared one key measure of interest for each study, following @boyce2023. In order to statistically compare the key measures, we needed effect sizes reported in the same way for each original study, first replication, and rescue.
 When effects were not reported in consistent ways across original and replications, we recalculated effects from raw data when necessary to obtain comparable values.
 
 We recorded the same set of potential correlates that were used in @boyce2023 for original, first replication, and rescue (these were already rated for original and first replication).
-These potential correlates included the subfield of the study (cognitive, social, or other psychology), its publication year, experimental design features including whether it was a within- or between- subject design, whether each condition was instantiated with one vignette or multiple, how many items each participant saw, and whether there were open materials and open data.
+These potential correlates included the subfield of the study (cognitive, social, or other psychology), its publication year, experimental design features including whether it was a within- or between-subject design, whether each condition was instantiated with one vignette or multiple, how many items each participant saw, and whether there were open materials and open data.
 
 For the original study and each replication, we recorded the number of participants post-exclusions.
 For studies where some extra conditions were dropped in some replications, we counted only the participants in the key conditions all replications had for comparability.
@@ -378,8 +389,9 @@ We also recorded whether each study was conducted online using crowd-sourced pla
 
 # Results
 
-Our primary question of interest was how many of the `r num_proj` rescue projects succeeded at replicating the results in the original study.
-When a replication fails to obtain the same results, one may have intuitions about what may have gone wrong -- these rescue projects test how often addressing these potential issues in fact works.
+## Overall replication rate
+
+<!-- When a replication fails to obtain the same results, one may have intuitions about what may have gone wrong -- these rescue projects test how often addressing these potential issues in fact works. -->
 
 ```{r}
 subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
@@ -403,17 +415,14 @@ percent_rep <- boyce2023_sample |> mutate(is_rep=ifelse(sub_rep>.5,1,0)) |> summ
 overall <- (percent_rep[1])+(1-percent_rep[1])*nrow(success)/nrow(subj)
 ```
 
-## Overall replication rate
 
 ```{=html}
 <!--* We will report the distribution of subjective replication success in our rescue sample
 
 * If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role. -->
 ```
-All rescue projects were rated holistically for how well they replicated the original results.
-We thought about replication in terms of how confident one would be to build on the line of work given the replication results, rather than focusing on any singular numeric result or significance cut-off.
-All projects were rated both by the instructor (MCF) and by one of the TAs (VB or BP); the interrater reliability was `r irr |> round(3)`.
 
+Our primary question of interest was how many of the `r num_proj` rescue projects succeeded at replicating the results in the original study.
 Across the `r nrow(subj)` rescue projects, `r nrow(success)` mostly or fully replicated the original results according to the subjective replication ratings.
 `r pluck(tallied,2,1)` had a rating of 0, `r pluck(tallied, 2,2)` got a rating of .75, and `r pluck(tallied, 2,3)` got a rating of 1.
 Thus, a first pass answer to the question "how often can a failed replication be salvaged?" is `r round(nrow(success)/nrow(subj)*100)`% (bootstrapped 95% CI: `r round(bootstrap[2]*100)`% - `r round(bootstrap[3]*100)`%) of the time.
@@ -423,7 +432,7 @@ Note that @boyce2023 report the average replication score as a percent success (
 If the re-replication rate in our sample is representative of the re-replication rate for the initially non-replicating studies, then the combined chance of mostly or fully replicating in a first replication or one follow-up replication is `r round(overall*100)`%.
 
 
-## Effect sizes
+## Effect size comparison
 
 ```{r smd, fig.cap="Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was non-zero in the same direction as the original; however, in these cases the larger pattern of results was not fully consistent between original and first replication.  "}
 
@@ -484,9 +493,8 @@ smd_scale_big <- ggplot(for_plotting_d |> inner_join(big) |>
 plot_grid(smd_scale_big, smd_scale_small, rel_heights=c(.4,1), nrow=2)
 ```
 
-As a complement to the holistic, qualitative replication ratings used above, we also statistically compared the effect sizes of the rescue, first replication, and original study on one key measure per study.
-We followed @boyce2023 in determining a key measure for each study.
-When we were aware of additional direct replications (either from other class projects, or external replications in the literature), we also consider the effect sizes obtained in these additional replications.
+As a complement to subjective replication ratings, we also statistically compared the effect sizes of the rescue, first replication, and original study on one preregistered key measure per study [again following @boyce2023].
+Though we did not conduct a systematic review of the literature to identify all possible replications, we also consider the effect sizes obtained in additional replications when we were aware of them (either from other class projects, or external replications in the literature), 
 
 We standardized all effect sizes into standardized mean difference (SMD) units.
 One potential issue with comparisons using SMD is that noisier measures will have smaller standardized effect sizes even if the effect on the original scale is the same.
@@ -594,6 +602,8 @@ all |> ungroup() |>  left_join(names) |> select(Paper=name_pretty, `All reps`=or
 Scientists' intuitions about whether a replication is successful and whether an effect provides support for a hypothesis (including heuristic cutoffs like p\<.05) do not always align with measures of statistical consistency [@patil2016].
 For instance, two studies may both find that condition 1 results in a significantly higher outcome measure than condition 2, but the effect magnitudes may be sufficiently different that they are statistically unlikely to have come from the same population.
 On the other hand, one study may find a statistically significant, but imprecisely estimated effect in a small sample, and second study may find a near-zero (null) effect, but the effect estimates from the two studies may be statistically compatible, despite one supporting a hypothesized difference and the other not.
+
+<!-- MCF: I wonder if this para needs to go in the methods?  -->
 
 Here, we measure statistical consistency using $p$-original, the $p$-value on the null hypothesis that one study's population effect comes from the same distribution of population effects as another study or studies [@mathurNewStatisticalMetrics2020a] If we assume no heterogeneity between studies, then this is the same as asking how consistent one study's estimate of the population-level effect is with another study's estimate of the population-level effect. However, meta-analyses of closely related studies, such as those from different sites of multi-site replications, indicate that there is often heterogeneity between studies. We cannot accurately estimate the level of heterogeneity for an effect meta-analytically as we have only a small number of replications per study. Instead, we impute a heterogeneity value of $\tau=.21$ SMD, which is the average level of heterogeneity found by @olsson-collentine2020 in prior multi-site replications in psychology.
 
@@ -705,19 +715,21 @@ knitr::kable(cors, digits = 3, align='rcc', format="latex", booktabs=T, linesep=
 
 ```
 
-Are there signals in the features of a study or it's replication that predict whether a re-replication will succeed? To address this question, we ran correlations between the set of predictor variables used in @boyce2023 and the subjective replication scores of the rescues.
-We also added some (non-preregistered) predictors related to the sample size of the first replication, after seeing the successful re-replications of @ngo2019 and @krauss2003, both of which had small replication samples.
+Are there signals in the features of original or replication studies that predict whether a re-replication will succeed? To address this question, we report correlations between the set of predictor variables used in @boyce2023 and the subjective replication scores of the rescues.
+We also added some (non-preregistered) predictors related to the sample size of the first replication, after seeing the successful re-replications of @ngo2019 and @krauss2003, both of which had small replication samples and larger rescue samples.
 
-The number of rescues is small, and many of these predictors are correlated, so we caution against over interpretation. All of the correlations are presented in Figure \@ref(tab:cor-table).
+All of the correlations are presented in Figure \@ref(tab:cor-table).
+The number of rescues is small, and many of these predictors are correlated, so we caution against over interpretation. 
 The strongest correlates of rescue success were open materials, a small sample size on the first replication, a small sample size on the first replication relative to the original sample size, and a large rescue sample size relative to the first replication.
 None of the pre-registered correlates meet the conventional significance threshold; the two correlates based on ratios that reflect a relatively smaller replication sample size are marginally significant.  
 
 Small replication samples relative to original and rescue could be due to both a) powering a replication according to a reported large effect size or b) difficulties with recruitment or high exclusion rates leading to a smaller than intended sample.
-Since relative sizes of the studies may play a role in replication success and how probitive replications are, we show the sample sizes in Table \@ref(tab:tab-size).
+Since relative sizes of the studies may play a role in replication success and how probative replications are, we show the sample sizes in Table \@ref(tab:tab-size).
 
 An additional factor that influences the interpretation of a replication is how close the replication's methods were to the original.
 In the rescue projects, we aimed to have methods be as close as was feasible or appropriate. However, rescue projects varied in how close the re-replications actually were, often due to limitations in the availability of original stimuli and original instructions, in addition to the use of primarily online subject pools.
-Table \@ref(tab:tab-size) shows the closeness of each first replication and rescue according to the classification scheme from @lebel2018. TODO CLOSENESS NUMBERS SHOULD BE DOUBLE CHECKED AND FIRST REPS REVISED AS NEEDED
+Table \@ref(tab:tab-size) shows the closeness of each first replication and rescue according to the classification scheme from @lebel2018.
+<!-- TODO CLOSENESS NUMBERS SHOULD BE DOUBLE CHECKED AND FIRST REPS REVISED AS NEEDED -->
 
 ```{r tab-size}
 parsed_d |> select(name_pretty, type, N, closeness, replication_score) |> 
@@ -736,62 +748,61 @@ Overall, we do not have a clear picture of why certain studies replicated in the
 
 Given the mix of successful and unsuccessful rescues, we discuss a few projects where we have speculations about why they turned out the way they did.
 
-One of the rescues that went from a replication with score of 0 to a rescue with score of 1 was the rescue of @krauss2003.
+The rescue of @krauss2003 was successful despite an unsuccessful replication.
 This study looked at the influence of a guided thinking on whether or not people gave correct justifications (drawn or written) for their answer on the Monty Hall problem.
 The original paper reported correct justification from 2/67 (`r round(2/67*100)`%) in the control condition and 13/34 (`r round(13/34*100)`%) in the guided thinking condition.
 The first replication struggled to recruit participants who were naive to the problem (an exclusion criterion), and many participants give very short text responses in the provided text box (only textual responses were allowed).
 The replication found 0/8 correct justifications in the control and 0/11 in the guided thinking condition.
 While we can't know for sure what caused the non-replication, there were clear problems observable from the small final sample and low-quality responses.
-The rescue targeted these issues by adding a pre-screen for naivete to the Monty Hall problem, switched the name of the problem (to reduce googling for answers), and had participants upload drawings for their justifications.
-Collectively, these changes brought the rescue closer to the intent of the original.
+The rescue targeted these issues by adding a pre-screening that ensured participants were not familiar with the Monty Hall problem, switched the name of the problem (to reduce googling for answers), and had participants upload drawings for their justifications.
+Collectively, we believe these changes brought the rescue closer to the intent of the original.
 The rescue had 1/40 (`r round(1/40*100)`%) correct justifications in the control group and 6/35 (`r round(6/35*100)`%) in the guided thinking group.
-The rescue effect is smaller, but the overall pattern of results replicated, and the online adaptation in the rescue feels like it could be built on.
+This effect was significant, though smaller than the effect in the original. 
 
-Another successful rescue was that of @ngo2019.
-Here, the original study found a large effect.
-The first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people.
-It failed to find the effect.
-The rescue, powered using 2.5x the original sample (as recommended by @simonsohn2015), recovered a clear effect (albeit a much smaller one).
+@ngo2019 was a second successful rescue. The original study found a large effect; hence the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people. This small study failed to find the original effect.
+The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one).
 There are reasons to think that some effect sizes in the literature may be inflated [@openscienceconsortium, @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
 Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic, and could potentially benefit from a re-replication.
 
 Not all rescues of small replications succeeded, however.
-@payne2008 was a study of the effects of sleep versus wake on memory consolidation that showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images.
-The first replication struggled to recruit participants and only got 23 (the original had 48).
-The rescue attempted to recruit a larger sample (target 88), but due to difficulties getting participants to complete the second part of the experiment 12 hours after the first, the rescue only managed to recruit 23 people.
+@payne2008 was a study of the effects of sleep on memory consolidation. They  showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images.
+The first replication struggled to recruit participants to complete a followup session after sleep and only reported a sample size of 23 (the original had 48).
+The rescue attempted to recruit a larger sample (target 88), but also experienced difficulties getting participants to complete the second part of the experiment 12 hours after the first, managing also only to recruit 23 people.
 The lesson here may be that sleep research is difficult to conduct online.
 However, an online replication by @denis2022 reports qualitatively similar (but quantitatively smaller) results to @payne2008 on related but not identical measures.
 
-(TODO other successes or failures we want to discuss? ) (Ben: Emily's project was interesting: the rescue succeeded but with big stimulus-level random effects. Verity's project was also interesting: the previous replication, as well as another in the literature, showed similar but smaller findings and it really looked like she could get the effect with a bigger sample, but she ended up finding totally different results.)
+<!-- (TODO other successes or failures we want to discuss? ) (Ben: Emily's project was interesting: the rescue succeeded but with big stimulus-level random effects. Verity's project was also interesting: the previous replication, as well as another in the literature, showed similar but smaller findings and it really looked like she could get the effect with a bigger sample, but she ended up finding totally different results.) -->
 
 
 # Discussion
 
-We presented the results of `r num_proj` new replications that attempted to "rescue" previous failed replications reported in @boyce2023 by identifying and ameliorating possible causes of non-replication.
+Faced with a failed replication, should investigators devote more time to continued replications? There are limited data that inform this decision. 
+To address this gap, we presented the results of `r num_proj` new replications that attempted to "rescue" previous failed replications by identifying and ameliorating possible causes of non-replication.
 `r nrow(success)` of these rescue projects (`r round(nrow(success)/num_proj*100)`%) mostly or fully replicated the original results.
 
-We don't have qualitative or quantitative explanations for why the specific studies did or did not replicate.
+
 In some cases, increasing sample size and fixing internal validity issues in the replication seems to have led to a successful rescue (although we can't establish causality even in these cases).
 However, there were other cases where the first replications had issues with a small sample or deviations in the implementation, and the rescue addressed these issues but still failed to replicate the original results.
-We can't predict what replication failures are likely to resolve given another, more thoughtful try, beyond that suggestion that glaring problems and low samples may sometimes be resolvable.
+We can't predict what replication failures are likely to resolve given another, more thoughtful try, beyond the suggestion to review studies for best practices in experimental design and sampling [e.g., @frank2024].
 
 The rescues all showed smaller effect sizes than their original studies, regardless of whether the pattern of effects replicated.
 A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies.
 These diminished and inconsistent effects suggest that even if a re-replication "works", it may be difficult to build upon as follow-up studies will need large samples to detect small effects.
 
-The reported rescue projects are a small sample of replications.
-They are also chosen non-randomly, as they have been selected for twice by student interest.
-However, this selection bias is likely to correlate with how graduate students choose what topics to work on and what studies to build on.
-Nonetheless, with a small sample all our estimates are highly uncertain.
+The reported rescue projects are a small sample of replications, leading to highly uncertain estimates. 
+They are also chosen non-randomly, as they have been selected for twice based on student interest -- once for the original replication and again for the rescue.
+However, this selection bias is likely to correlate with how graduate students and other early career researchers choose what topics to work on and what studies to build on.
+Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 [29% vs. 22%; @ebersole20202]
 
-The authors of the rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and primarily running online studies.
+In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results.
+Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online.
 These limitations are representative of the sort of resource limitations often faced by early-career researchers.
 That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise and more time.
-Thus, where re-replications failed, we do not make any statements about whether the original results were false positives, we merely claim the original results do not support cumulative research by early-career researchers under the constrained conditions we tested.
+<!-- were false positives, we merely claim the original results do not support cumulative research by early-career researchers under the constrained conditions we tested. -->
 
-We opened this paper with a question about what an early-career psychology researcher should do given a failed replication: should they *try again* or *give up* and move on?
-From our sample of testing the *try again* approach, it seems that the odds of a re-replication working are low (consistent with @ebersole2020).
-Especially if there is not a clear, identifiable reason for the first replication's failure, another try is unlikely to recover the original result, and it may be more efficient to *give up* and build on a different result instead.
+We opened  with a question about what an early-career psychology researcher should do given a failed replication: should they try again or give up and move on?
+In our sample, the odds of a re-replication working are low [consistent with @ebersole2020].
+Especially if there is not a clear, identifiable candidate for replication failure, it may be more efficient to select another result to build on.
 
 # Acknowledgements {.unnumbered}
 

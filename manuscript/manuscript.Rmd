@@ -242,6 +242,7 @@ When a replication fails, scientists have to decide whether to make a second att
 :::
 <!-- TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero) -->
 
+TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero)
 
 <!-- TODO compile everything into OSF repo & link -->
 <!-- TODO link individual pre-reg's in repo -->
@@ -366,8 +367,6 @@ With one exception, samples were collected on Prolific [the rescue of @yeshurun2
 We tried to power studies adequately [with a target of 2.5x original following @simonsohn2015], but due to cost constraints, not all studies were powered at this level.
 The rescues had on average `r round(m,2)` times the original sample post-exclusion (median: `r round(mid,2)`, IQR: `r round(low,2)` - `r round(high,2)`, minimum: `r round(lowest, 2)`, maximum: `r round(highest,2)`, see Table \@ref(tab:tab-size) for all sample sizes).
 Across the `r num_proj-1` Prolific studies, we spent \$`r pluck(cost,1,1) |> round()`, for an average of \$`r (pluck(cost,1,1)/(num_proj-1)) |> round()` per project.
-
-
 
 ## Coding of results
 
@@ -605,15 +604,22 @@ On the other hand, one study may find a statistically significant, but imprecise
 
 <!-- MCF: I wonder if this para needs to go in the methods?  -->
 
-Here, we measure statistical consistency using $p$-original, the $p$-value on the null hypothesis that one study's population effect comes from the same distribution of population effects as another study or studies [@mathurNewStatisticalMetrics2020a] If we assume no heterogeneity between studies, then this is the same as asking how consistent one study's estimate of the population-level effect is with another study's estimate of the population-level effect. However, meta-analyses of closely related studies, such as those from different sites of multi-site replications, indicate that there is often heterogeneity between studies. We cannot accurately estimate the level of heterogeneity for an effect meta-analytically as we have only a small number of replications per study. Instead, we impute a heterogeneity value of $\tau=.21$ SMD, which is the average level of heterogeneity found by @olsson-collentine2020 in prior multi-site replications in psychology.
+Here, we measure statistical consistency using $p$-original, the $p$-value on the null hypothesis that one study's population effect comes from the same distribution of population effects as another study or studies [@mathurNewStatisticalMetrics2020a] If we assume no heterogeneity between studies, then this is the same as asking how consistent one study's estimate of the population-level effect is with another study's estimate of the population-level effect.
+However, meta-analyses of closely related studies, such as those from different sites of multi-site replications, indicate that there is often heterogeneity between studies.
+$p$-original allows for such heterogeneity, as governed by a parameter $\tau$.
+We cannot accurately estimate the level of heterogeneity for an effect meta-analytically as we have only a small number of replications per study.
+Instead, we impute a heterogeneity value of $\tau=.21$ SMD, which is the average level of heterogeneity found by @olsson-collentine2020 in prior multi-site replications in psychology.
 
-As our primary comparison, we compare the effect size of the original study to the meta-analytic effect of the totality of the replications (first replication, rescue, and additional if found). The value of $p$-original thus represents how likely an effect size equal to or more extreme than the original effect size is to occur if it comes from a distribution of population effect sizes defined by the mean and standard error of the replications (combined meta-analytically) with a between-population standard deviation of $\tau=.21$. That is, it $p$-original is a measure of the statistical consistency of the original result with the totality of the replications, assuming a given level of heterogeneity of effects between studies. Smaller $p$-original values indicate more inconsistency. 
+As our primary comparison, we compare the effect size of the original study to the meta-analytic effect of the totality of the replications (first replication, rescue, and additional if found).
+The value of $p$-original thus represents how likely an effect size equal to or more extreme than the original effect size is to occur if it comes from a distribution of population effect sizes defined by the mean and standard error of the replications (combined meta-analytically) with a between-population standard deviation of $\tau=.21$.
+That is, it $p$-original is a measure of the statistical consistency of the original result with the totality of the replications, assuming a given level of heterogeneity of effects between studies.
+Smaller $p$-original values indicate more inconsistency.
 
 The median value of $p$-original between an original study and its replications was `r main_summ$median |> round(2)` [IQR: `r main_summ$low |> round(2)` - `r main_summ$high |> round(2)`].
-`r round(main_summ$less_than*100)`% of the $p$-original values were less than .05, indicating by conventional thresholds a rejection of the null hypothesis that the original comes from the same distribution of population effects as the replications. 
+`r round(main_summ$less_than*100)`% of the $p$-original values were less than .05, indicating by conventional thresholds a rejection of the null hypothesis that the original comes from the same distribution of population effects as the replications.
 Individual $p$-original values for each study are shown in Table \@ref(tab:tab-porig).
 
-As secondary measures, we calculated the $p$-original values between a) the original and the rescue, b) the original and non-rescue replications, and c) the rescue and other replications. 
+As secondary measures, we calculated the $p$-original values between a) the original and the rescue, b) the original and non-rescue replications, and c) the rescue and other replications.
 For a) the original versus the rescue, median value of $p$-original was `r rescue_summ$median |> round(2)` [IQR: `r rescue_summ$low |> round(2)` - `r rescue_summ$high|> round(2)`], and `r round(rescue_summ$less_than*100)`% of the $p$-original values were less than .05.
 For b) the original versus all the non-rescue replications, median value of $p$-original was `r rep_summ$median |> round(2)` [IQR: `r rep_summ$low |> round(2)` - `r rep_summ$high |> round(2)`], and `r round(rep_summ$less_than*100)`% of the $p$-original values were less than .05.
 For c) the rescue versus the other replications, median value of $p$-original was `r rescue_rep_summ$median |> round(2)` [IQR: `r rescue_rep_summ$low |> round(2)` - `r rescue_rep_summ$high |> round(2)`], and `r round(rescue_rep_summ$less_than*100)`% of the $p$-original values were less than .05.
@@ -622,7 +628,7 @@ For c) the rescue versus the other replications, median value of $p$-original wa
 
 <!--* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. -->
 
-Overall, allowing for a heterogeneity level of $\tau$=.21 SMD, a number of original effects are not statistically consistent with rescues and replication effects. 
+Overall, allowing for a heterogeneity level of $\tau$=.21 SMD, a number of original effects are not statistically consistent with rescues and replication effects.
 The pattern of inconsistency does not align with which studies were rated as having replicated.
 In all cases, the point estimate of the re-replication is smaller than, or in the opposite direction of, the original effect on the key measure of interest.
 
@@ -661,7 +667,6 @@ predInts_het <- parsed_d |>
 
 
 ```
-
 
 ## Correlates of rescue success
 
@@ -720,8 +725,9 @@ We also added some (non-preregistered) predictors related to the sample size of 
 
 All of the correlations are presented in Figure \@ref(tab:cor-table).
 The number of rescues is small, and many of these predictors are correlated, so we caution against over interpretation. 
+
 The strongest correlates of rescue success were open materials, a small sample size on the first replication, a small sample size on the first replication relative to the original sample size, and a large rescue sample size relative to the first replication.
-None of the pre-registered correlates meet the conventional significance threshold; the two correlates based on ratios that reflect a relatively smaller replication sample size are marginally significant.  
+None of the pre-registered correlates meet the conventional significance threshold; the two correlates based on ratios that reflect a relatively smaller replication sample size are marginally significant.
 
 Small replication samples relative to original and rescue could be due to both a) powering a replication according to a reported large effect size or b) difficulties with recruitment or high exclusion rates leading to a smaller than intended sample.
 Since relative sizes of the studies may play a role in replication success and how probative replications are, we show the sample sizes in Table \@ref(tab:tab-size).
@@ -742,9 +748,7 @@ parsed_d |> select(name_pretty, type, N, closeness, replication_score) |>
 
 Overall, we do not have a clear picture of why certain studies replicated in the rescue sample and others did not, other than a few cases where fixing sample size issues may have helped.
 
-
 ## Case studies
-
 
 Given the mix of successful and unsuccessful rescues, we discuss a few projects where we have speculations about why they turned out the way they did.
 
@@ -771,8 +775,14 @@ The rescue attempted to recruit a larger sample (target 88), but also experience
 The lesson here may be that sleep research is difficult to conduct online.
 However, an online replication by @denis2022 reports qualitatively similar (but quantitatively smaller) results to @payne2008 on related but not identical measures.
 
-<!-- (TODO other successes or failures we want to discuss? ) (Ben: Emily's project was interesting: the rescue succeeded but with big stimulus-level random effects. Verity's project was also interesting: the previous replication, as well as another in the literature, showed similar but smaller findings and it really looked like she could get the effect with a bigger sample, but she ended up finding totally different results.) -->
-
+\@child2018 studied reading times for passages of text with different emotional valences written from either a third-person or second-person perspective.
+They found a significant interaction between perspective and valence: participants read positively-valenced passages faster than negatively-valenced passages, but only when they were written from a second-person perspective.
+The first replication used a similar sample size to the original study (40) and found an effect that trended in the same direction, but was substantially smaller.
+The rescuer identified several possible reasons for this failure, foremost among them that the replication was conducted online while the original was conducted in person.
+It is reasonable to expect online studies of reading time to be noisier than in-person studies because the environments participants completed the study in varied much more online.
+The rescue attempt was still online, but used a much larger sample size to account for noisier data.
+Still, the rescue found a non-significant effect that trended in the opposite direction from the original and first replication.
+Even though the first replication trended in the same direction and there was an identifiable reason for the smaller effect size, increasing sample size did not rescue the effect.
 
 # Discussion
 

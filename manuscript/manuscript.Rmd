@@ -240,7 +240,6 @@ cost <- parsed_d |> filter(type=="rescue") |> ungroup() |>  summarize(total=sum(
 ::: {.abstract data-latex="" lang="en"}
 When a replication fails, scientists have to decide whether to make a second attempt or move on. Psychology researchers who attempt to replicate studies often face this decision, given the empirical rate of replication success in psychology, which is lower than desired. Here, we report 17 re-replications of experiments for which an original replication had failed. In 5/17 of these "rescue" projects (29%), the "rescue" study mostly or fully replicated the original results, albeit with a smaller effect size; in the other 12, the second replication was also judged to have failed. We speculate that successful rescue projects were due to larger sample sizes or methodological changes such as attention checks. In the absence of obvious weaknesses in a failed replication study's sample or procedure, however, it may be most efficient to stop pursuing an effect after a single failed replication.
 :::
-<!-- TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero) -->
 <!-- TODO compile everything into OSF repo & link -->
 <!-- TODO link individual pre-reg's in repo -->
 <!-- TODO link overall pre-reg -->
@@ -314,11 +313,11 @@ Students could also opt to do a normal replication instead.
 If they opted for a rescue, they were given the option to participate in a collaborative meta-science project and earn authorship on the current paper based on 1) completing a rescue project, 2) reviewing another student's rescue project for analytic errors, and 3) reviewing and approving the final manuscript. 
 We report on the result of `r num_proj` rescue projects that opted to be part of the paper and completed data collection.
 
-A spreadsheet of projects, individual project write-ups (both first replications and rescues), links to individual project data and analyses for rescue projects, and the analytic code for this paper are all available at TODO OSF LINK GOES HERE.
+A spreadsheet of projects, individual project write-ups (both first replications and rescues), links to individual project data and analyses for rescue projects, and the analytic code for this paper are all available at https://osf.io/cyk5w/.
 
 Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects.
 Each project was also individually pre-registered by the student conducting it.
-The overall analysis is at LINK, individual pre-registrations are linked from LINK.
+The overall analysis is pre-registered at https://osf.io/5qz7v, individual pre-registrations are linked from TODO LINK.
 We note one deviation from our pre-registration here: we pre-registered visual comparisons between original, first replication, and rescue projects using prediction intervals.
 Prediction intervals depend on both the original effect size and variance and the variance of the comparison (replication or rescue) study [@patil2016].
 Thus we cannot show a single prediction interval for the original study, but would have to show a prediction interval between each pair of studies. We thought this analysis would not offer additional clarity and hence we did not perform it. 
@@ -806,13 +805,13 @@ Especially if there is not a clear, identifiable candidate for replication failu
 
 # Acknowledgements {.unnumbered}
 
-We thank the students from previous years of PSYCH 251 who graciously agreed to let us re-replicate their projects and shared their work with us. We thank the other members of 251 teaching team and students for feedback on projects. [DO we thank the departments that gave us money for projects?]
+We thank the students from previous years of PSYCH 251 who graciously agreed to let us re-replicate their projects and shared their work with us. We thank the other members of 251 teaching team and students for feedback on projects. Data collection was supported by funding from the Stanford Departments of Psychology and Philosophy, Graduate School of Education, and the Symbolic Systems program. 
 
 # Author Contributions {.unnumbered}
 
-VB and MCF did conceptualization. BP did project administration, VB did formal analysis, and MCF did supervision.
+VB and MCF contributed to conceptualization. BP contributed to project administration, VB contributed to formal analysis, and MCF contributed to supervision.
 
-Authors other than VB, BP, and MCF each designed, conducted, analyzed, and wrote up one of the projects -- these authors did investigation, formal analysis, and visualization. 
+Authors other than VB, BP, and MCF each designed, conducted, analyzed, and wrote up one of the projects -- these authors contributed to investigation, formal analysis, and visualization. 
 
 VB wrote the first draft, BP and MCF did editing, and all authors reviewed the final manuscript. 
 

@@ -241,15 +241,11 @@ cost <- parsed_d |> filter(type=="rescue") |> ungroup() |>  summarize(total=sum(
 When a replication fails, scientists have to decide whether to make a second attempt or move on. Psychology researchers who attempt to replicate studies often face this decision, given the empirical rate of replication success in psychology, which is lower than desired. Here, we report 17 re-replications of experiments for which an original replication had failed. In 5/17 of these "rescue" projects (29%), the "rescue" study mostly or fully replicated the original results, albeit with a smaller effect size; in the other 12, the second replication was also judged to have failed. We speculate that successful rescue projects were due to larger sample sizes or methodological changes such as attention checks. In the absence of obvious weaknesses in a failed replication study's sample or procedure, however, it may be most efficient to stop pursuing an effect after a single failed replication.
 :::
 <!-- TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero) -->
-
-TODO FIX CITATION / BIB INFO (re OSC for RP:P but only after we unlink from zotero)
-
 <!-- TODO compile everything into OSF repo & link -->
 <!-- TODO link individual pre-reg's in repo -->
 <!-- TODO link overall pre-reg -->
 <!-- TODO include in repo & link the reasons for replication failure that were offered to students -->
 <!-- TODO redo/double check closeness scores for first rep and rescues  -->
-<!-- TODO add something about Verity's to case-study?  -->
 <!-- TODO author contributions, acknowledgements -->
 
 # Introduction
@@ -349,6 +345,27 @@ highest <- quantile(rel_size$multiplier, 1)
 
 ```
 
+```{r}
+subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
+
+tallied <- subj|> group_by(replication_score) |> tally()
+
+success <- filter(subj, binary_success==1)
+
+d <- read_csv(here("data", "combined_data.csv")) |> filter(type=="rescue") 
+
+irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
+
+bootstrap <- subj$binary_success |> Hmisc::smean.cl.boot()
+```
+
+```{r}
+boyce2023_sample <- read_csv(here("data/boyce_2023_data.csv")) |> select(sub_rep)
+
+percent_rep <- boyce2023_sample |> mutate(is_rep=ifelse(sub_rep>.5,1,0)) |> summarize(m=mean(is_rep))
+
+overall <- (percent_rep[1])+(1-percent_rep[1])*nrow(success)/nrow(subj)
+```
 ## Procedure
 
 Students conducted their rescue projects over the course of the 10-week class.
@@ -378,6 +395,12 @@ Interrater reliability was `r irr |> round(3)`; disagreements were minor (at no 
 As a complement to the subjective rating of overall success, we statistically compared one key measure of interest for each study, following @boyce2023. In order to statistically compare the key measures, we needed effect sizes reported in the same way for each original study, first replication, and rescue.
 When effects were not reported in consistent ways across original and replications, we recalculated effects from raw data when necessary to obtain comparable values.
 
+We measure statistical consistency using $p$-original, the $p$-value on the null hypothesis that one study's population effect comes from the same distribution of population effects as another study or studies [@mathurNewStatisticalMetrics2020a] If we assume no heterogeneity between studies, then this is the same as asking how consistent one study's estimate of the population-level effect is with another study's estimate of the population-level effect.
+However, meta-analyses of closely related studies, such as those from different sites of multi-site replications, indicate that there is often heterogeneity between studies.
+$p$-original allows for such heterogeneity, as governed by a parameter $\tau$.
+We cannot accurately estimate the level of heterogeneity for an effect meta-analytically as we have only a small number of replications per study.
+Instead, we impute a heterogeneity value of $\tau=.21$ SMD, which is the average level of heterogeneity found by @olsson-collentine2020 in prior multi-site replications in psychology.
+
 We recorded the same set of potential correlates that were used in @boyce2023 for original, first replication, and rescue (these were already rated for original and first replication).
 These potential correlates included the subfield of the study (cognitive, social, or other psychology), its publication year, experimental design features including whether it was a within- or between-subject design, whether each condition was instantiated with one vignette or multiple, how many items each participant saw, and whether there were open materials and open data.
 
@@ -392,34 +415,9 @@ We also recorded whether each study was conducted online using crowd-sourced pla
 
 <!-- When a replication fails to obtain the same results, one may have intuitions about what may have gone wrong -- these rescue projects test how often addressing these potential issues in fact works. -->
 
-```{r}
-subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
-
-tallied <- subj|> group_by(replication_score) |> tally()
-
-success <- filter(subj, binary_success==1)
-
-d <- read_csv(here("data", "combined_data.csv")) |> filter(type=="rescue") 
-
-irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
-
-bootstrap <- subj$binary_success |> Hmisc::smean.cl.boot()
-```
-
-```{r}
-boyce2023_sample <- read_csv(here("data/boyce_2023_data.csv")) |> select(sub_rep)
-
-percent_rep <- boyce2023_sample |> mutate(is_rep=ifelse(sub_rep>.5,1,0)) |> summarize(m=mean(is_rep))
-
-overall <- (percent_rep[1])+(1-percent_rep[1])*nrow(success)/nrow(subj)
-```
 
 
-```{=html}
-<!--* We will report the distribution of subjective replication success in our rescue sample
 
-* If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role. -->
-```
 
 Our primary question of interest was how many of the `r num_proj` rescue projects succeeded at replicating the results in the original study.
 Across the `r nrow(subj)` rescue projects, `r nrow(success)` mostly or fully replicated the original results according to the subjective replication ratings.
@@ -602,16 +600,8 @@ Scientists' intuitions about whether a replication is successful and whether an 
 For instance, two studies may both find that condition 1 results in a significantly higher outcome measure than condition 2, but the effect magnitudes may be sufficiently different that they are statistically unlikely to have come from the same population.
 On the other hand, one study may find a statistically significant, but imprecisely estimated effect in a small sample, and second study may find a near-zero (null) effect, but the effect estimates from the two studies may be statistically compatible, despite one supporting a hypothesized difference and the other not.
 
-<!-- MCF: I wonder if this para needs to go in the methods?  -->
-
-Here, we measure statistical consistency using $p$-original, the $p$-value on the null hypothesis that one study's population effect comes from the same distribution of population effects as another study or studies [@mathurNewStatisticalMetrics2020a] If we assume no heterogeneity between studies, then this is the same as asking how consistent one study's estimate of the population-level effect is with another study's estimate of the population-level effect.
-However, meta-analyses of closely related studies, such as those from different sites of multi-site replications, indicate that there is often heterogeneity between studies.
-$p$-original allows for such heterogeneity, as governed by a parameter $\tau$.
-We cannot accurately estimate the level of heterogeneity for an effect meta-analytically as we have only a small number of replications per study.
-Instead, we impute a heterogeneity value of $\tau=.21$ SMD, which is the average level of heterogeneity found by @olsson-collentine2020 in prior multi-site replications in psychology.
-
 As our primary comparison, we compare the effect size of the original study to the meta-analytic effect of the totality of the replications (first replication, rescue, and additional if found).
-The value of $p$-original thus represents how likely an effect size equal to or more extreme than the original effect size is to occur if it comes from a distribution of population effect sizes defined by the mean and standard error of the replications (combined meta-analytically) with a between-population standard deviation of $\tau=.21$.
+The value of $p$-original represents how likely an effect size equal to or more extreme than the original effect size is to occur if it comes from a distribution of population effect sizes defined by the mean and standard error of the replications (combined meta-analytically) with a between-population standard deviation of $\tau=.21$ [imputed from @olsson-collentine2020].
 That is, it $p$-original is a measure of the statistical consistency of the original result with the totality of the replications, assuming a given level of heterogeneity of effects between studies.
 Smaller $p$-original values indicate more inconsistency.
 
@@ -793,7 +783,7 @@ To address this gap, we presented the results of `r num_proj` new replications t
 
 In some cases, increasing sample size and fixing internal validity issues in the replication seems to have led to a successful rescue (although we can't establish causality even in these cases).
 However, there were other cases where the first replications had issues with a small sample or deviations in the implementation, and the rescue addressed these issues but still failed to replicate the original results.
-We can't predict what replication failures are likely to resolve given another, more thoughtful try, beyond the suggestion to review studies for best practices in experimental design and sampling [e.g., @frank2024].
+We can't predict what replication failures are likely to resolve given another, more thoughtful try, beyond the suggestion to review studies for best practices in experimental design and sampling [e.g., @experimentology2024].
 
 The rescues all showed smaller effect sizes than their original studies, regardless of whether the pattern of effects replicated.
 A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies.
@@ -802,7 +792,7 @@ These diminished and inconsistent effects suggest that even if a re-replication 
 The reported rescue projects are a small sample of replications, leading to highly uncertain estimates. 
 They are also chosen non-randomly, as they have been selected for twice based on student interest -- once for the original replication and again for the rescue.
 However, this selection bias is likely to correlate with how graduate students and other early career researchers choose what topics to work on and what studies to build on.
-Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 [29% vs. 22%; @ebersole20202]
+Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 [29% vs. 22%, @ebersole2020].
 
 In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results.
 Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online.
@@ -816,11 +806,15 @@ Especially if there is not a clear, identifiable candidate for replication failu
 
 # Acknowledgements {.unnumbered}
 
-TODO
+We thank the students from previous years of PSYCH 251 who graciously agreed to let us re-replicate their projects and shared their work with us. We thank the other members of 251 teaching team and students for feedback on projects. [DO we thank the departments that gave us money for projects?]
 
 # Author Contributions {.unnumbered}
 
-TODO
+VB and MCF did conceptualization. BP did project administration, VB did formal analysis, and MCF did supervision.
+
+Authors other than VB, BP, and MCF each designed, conducted, analyzed, and wrote up one of the projects -- these authors did investigation, formal analysis, and visualization. 
+
+VB wrote the first draft, BP and MCF did editing, and all authors reviewed the final manuscript. 
 
 # References {.unnumbered}
 

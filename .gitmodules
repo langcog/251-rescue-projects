@@ -1,51 +1,51 @@
 [submodule "individual-projects/birch2007_2_rescue"]
-	path = individual-projects/birch2007_2_rescue
+	path = individual-rescue-projects/birch2007_2_rescue
 	url = git@github.com:psych251/birch2007_2_rescue.git
 [submodule "individual-projects/child2018_rescue"]
-	path = individual-projects/child2018_rescue
+	path = individual-rescue-projects/child2018_rescue
 	url = git@github.com:psych251/child2018_rescue.git
 [submodule "individual-projects/chou2016_rescue"]
-	path = individual-projects/chou2016_rescue
+	path = individual-rescue-projects/chou2016_rescue
 	url = git@github.com:psych251/chou2016_rescue.git
 [submodule "individual-projects/yeshurun2003_rescue"]
-	path = individual-projects/yeshurun2003_rescue
+	path = individual-rescue-projects/yeshurun2003_rescue
 	url = git@github.com:psych251/yeshurun2003_rescue.git
 [submodule "individual-projects/todd2016_1_rescue"]
-	path = individual-projects/todd2016_1_rescue
+	path = individual-rescue-projects/todd2016_1_rescue
 	url = git@github.com:psych251/todd2016_1_rescue.git
 [submodule "individual-projects/tarampi2016_rescue"]
-	path = individual-projects/tarampi2016_rescue
+	path = individual-rescue-projects/tarampi2016_rescue
 	url = git@github.com:psych251/tarampi2016_rescue.git
 [submodule "individual-projects/schechtman2010_rescue"]
-	path = individual-projects/schechtman2010_rescue
+	path = individual-rescue-projects/schechtman2010_rescue
 	url = git@github.com:psych251/schechtman2010_rescue.git
 [submodule "individual-projects/porter_2016_1_rescue"]
-	path = individual-projects/porter_2016_1_rescue
+	path = individual-rescue-projects/porter_2016_1_rescue
 	url = git@github.com:psych251/porter_2016_1_rescue.git
 [submodule "individual-projects/payne2008_rescue"]
-	path = individual-projects/payne2008_rescue
+	path = individual-rescue-projects/payne2008_rescue
 	url = git@github.com:dogunbamowo/payne2008_rescue.git
 [submodule "individual-projects/paxton2012_rescue"]
-	path = individual-projects/paxton2012_rescue
+	path = individual-rescue-projects/paxton2012_rescue
 	url = git@github.com:psych251/paxton2012_rescue.git
 [submodule "individual-projects/ngo19_rescue"]
-	path = individual-projects/ngo19_rescue
+	path = individual-rescue-projects/ngo19_rescue
 	url = git@github.com:psych251/ngo19_rescue.git
 [submodule "individual-projects/krauss2003_rescue"]
-	path = individual-projects/krauss2003_rescue
+	path = individual-rescue-projects/krauss2003_rescue
 	url = git@github.com:psych251/krauss2003_rescue.git
 [submodule "individual-projects/jara-ettinger2022_rescue"]
-	path = individual-projects/jara-ettinger2022_rescue
+	path = individual-rescue-projects/jara-ettinger2022_rescue
 	url = git@github.com:psych251/jara-ettinger2022_rescue.git
 [submodule "individual-projects/hopkins2016_rescue"]
-	path = individual-projects/hopkins2016_rescue
+	path = individual-rescue-projects/hopkins2016_rescue
 	url = git@github.com:psych251/hopkins2016_rescue.git
 [submodule "individual-projects/craig2014_rescue"]
-	path = individual-projects/craig2014_rescue
+	path = individual-rescue-projects/craig2014_rescue
 	url = git@github.com:psych251/craig2014_rescue.git
 [submodule "individual-projects/haimovitz_rescue"]
-	path = individual-projects/haimovitz_rescue
+	path = individual-rescue-projects/haimovitz_rescue
 	url = git@github.com:psych251/haimovitz_rescue.git
 [submodule "individual-projects/gong2019_rescue"]
-	path = individual-projects/gong2019_rescue
+	path = individual-rescue-projects/gong2019_rescue
 	url = git@github.com:psych251/gong2019_rescue.git

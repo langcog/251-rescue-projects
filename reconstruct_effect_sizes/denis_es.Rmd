@@ -1,0 +1,76 @@
+---
+title: "Denis"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(here)
+```
+We want an anova on general recognition of objects in wake v sleep x neg v neutral
+
+It didn't come out so I checked other things
+
+note that denis reports a hit - false alarm value but that very much isn't what payne does, so we try overall/general/specific on hit rate alone  to try to understand
+
+```{r}
+overall <- read_csv(here("reconstruct_effect_sizes/Expt1_OverallRecognition.csv")) |> 
+  select(id, delay_cond, starts_with("hit")) |> 
+  pivot_longer(starts_with("hit")) |> 
+  rename(overall=value)
+
+combined <- read_csv(here("reconstruct_effect_sizes/Expt1_SpecificRecognition.csv")) |> 
+    select(id, delay_cond, starts_with("hit")) |> 
+  pivot_longer(starts_with("hit")) |> 
+  rename(specific=value) |> 
+  left_join(overall) |> 
+  separate(name, into=c(NA, "valence", "target")) |> 
+  mutate(general=(overall-specific)/(1-specific))
+
+test <- combined |> filter(!is.na(general))|> filter(! id %in% c("p1025", "p1032", "p1038", "p1050", "p1073", "p1104", "p1132", "p1239")) #can't handle NAs for general, so remove those participants
+
+```
+
+
+```{r}
+# check 3-ways
+library(ez)
+anova_3way_obj = ezANOVA(
+    #data=combined,
+    data = test,
+    #dv = .(overall),
+    #dv = .(specific),
+    dv= .(general),
+    wid = .(id), 
+    within = .(valence,target),
+    between = .(delay_cond)
+)
+
+anova_3way_obj
+
+#valence, target, valence x target on overall and specific
+# cond x valence x target on specific only 
+
+#target, valence x target on general
+```
+
+```{r}
+
+library(ez)
+anova_2way_obj = ezANOVA(
+    #data=combined |> filter(target=="object"),
+    data = test |> filter(target=="object"),
+    #dv = .(overall),
+    #dv = .(specific),
+    dv= .(general),
+    wid = .(id), 
+    within = .(valence),
+    between = .(delay_cond)
+)
+
+anova_2way_obj
+
+#valence on overall, specific, general 
+
+test |> filter(target=="object") |> group_by(valence, delay_cond) |> summarize(m=mean(general))
+```

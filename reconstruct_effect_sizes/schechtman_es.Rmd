@@ -28,7 +28,7 @@ dematlabify <- function(stuff) {
 
 # paper reports 39, but partway through reports "loss aversion" with 14, so I think maybe 25 in main analysis? That matches how many we have in thing1 at least
 
-thing1 <- readMat(here("DataTest1.mat"))
+thing1 <- readMat(here("reconstruct_effect_sizes/DataTest1.mat"))
 
 ids <- dematlabify(thing1$BasicInfo)
 
@@ -36,13 +36,13 @@ dat1 <- dematlabify(thing1$DataStage1) # acquisition?
 
 dat2 <- dematlabify(thing1$DataStage2) # testing
 
-thing2 <- readMat(here("DataTest2.mat"))
+thing2 <- readMat(here("reconstruct_effect_sizes/DataTest2.mat"))
 
 ids2 <- dematlabify(thing2$BasicInfo) # has 6 22 13 2 11
 
 dat3 <- dematlabify(thing2$DataSheet)
 
-thing3 <- readMat(here("DataTest1_cases 4 13 18 omitted.mat")) # has 1-22
+thing3 <- readMat(here("reconstruct_effect_sizes/DataTest1_cases 4 13 18 omitted.mat")) # has 1-22
 
 ids3 <- dematlabify(thing3$BasicInfo)
 
@@ -87,7 +87,7 @@ summary(mod)
 ```{r}
 
 # figure out rescue
-full_data <- read_csv(here("subject_data_final_full_processed.csv"))
+full_data <- read_csv(here("reconstruct_effect_sizes/subject_data_final_full_processed.csv"))
 
 # get all control questions
 control_data = full_data %>%

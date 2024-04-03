@@ -60,7 +60,9 @@ footnote:
   - code: corresp
     text: "Corresponding author. Email: vboyce@stanford.edu"
 bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
-csl: apa7.csl # Use any CSL style. See https://www.zotero.org/styles for a good list. Ignored if citation_package: natbib
+csl: apa7.csl # Use any CSL
+nocite: |
+  @krauss2003, @ngo2019, @todd2016, @jara-ettinger2022, @porter2016, @birch2007, @child2018, @chou2016, @craig2014, @gong2019, @haimovitz2016, @hopkins2016, @paxton2012, @payne2008, @schechtman2010, @tarampi2016, @yeshurun2003
 link-citations: TRUE
 output:
   bookdown::pdf_document2:
@@ -277,7 +279,7 @@ Such adaptation creates yet more challenges in interpretation: too many changes 
 In sum, when replications fail, we generally do not know why they failed, although we may speculate. 
 
 
-For the goals of large-scale replication projects, it doesn't matter why any particular study failed to replicate, because the aim is to estimate the proportion of replication effects in a literature. In contrast, howver, when individual scientists attempt to replicate an effect with the goal of building on it, they do care about why an individual replication failed. In an uncertain literature, scientists might not want to commit resources to studying extensions of an effect without first checking that they can measure that effect themselves. For those individual scientists, it is much more important whether the replication failure is due to a fixable issue with the the replication or an intrinsic feature of the original result. 
+For the goals of large-scale replication projects, it doesn't matter why any particular study failed to replicate, because the aim is to estimate the proportion of replication effects in a literature. In contrast, however, when individual scientists attempt to replicate an effect with the goal of building on it, they do care about why an individual replication failed. In an uncertain literature, scientists might not want to commit resources to studying extensions of an effect without first checking that they can measure that effect themselves. For those individual scientists, it is much more important whether the replication failure is due to a fixable issue with the the replication or an intrinsic feature of the original result. 
 
 Re-replication can serve as a way to test explanations for replication failure. While it's possible to speculate after the fact about potential causes of a single replication failure, in most circumstances these causes are hard to discern (absent clear evidence of errors). In contrast, a second replication provides a chance to test explanations by making modifications -- as well as giving another chance for researchers to measure an effect of interest. But what are the chances that a re-replication succeeds?
 
@@ -317,7 +319,7 @@ A spreadsheet of projects, individual project write-ups (both first replications
 
 Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects.
 Each project was also individually pre-registered by the student conducting it.
-The overall analysis is pre-registered at https://osf.io/5qz7v, individual pre-registrations are linked from TODO LINK.
+The overall analysis is pre-registered at https://osf.io/5qz7v, individual pre-registrations are linked from https://osf.io/vkbfw.
 We note one deviation from our pre-registration here: we pre-registered visual comparisons between original, first replication, and rescue projects using prediction intervals.
 Prediction intervals depend on both the original effect size and variance and the variance of the comparison (replication or rescue) study [@patil2016].
 Thus we cannot show a single prediction interval for the original study, but would have to show a prediction interval between each pair of studies. We thought this analysis would not offer additional clarity and hence we did not perform it. 
@@ -372,7 +374,7 @@ Once they had chosen a project we gave them access to the original replicators' 
 In many cases, students were also given the contact information of the original replicator (a few original replicators opted not to be contacted by students).
 
 Students were required to think of reasons the first replication might not have worked, and address them if they could.
-A list of possible reasons and solutions TODO LINK was given to students.
+A list of possible reasons and solutions was given to students (https://osf.io/dfwk2).
 In general, we encouraged students to add manipulation checks as appropriate, and to adapt their materials to online studies, which may benefit from attention checks and/or shorter duration.
 For instance, the rescue of @paxton2012 switched from using the cognitive reflection task (CRT) which many online participants are over-familiar with for the newer CRT-2 which is less overused but attempts to measure the same construct [@thomson2016].
 The rescue of @jara-ettinger2022 discovered that the replication had accidentally used an illustrated version of the stimuli rather than the photographic stimuli used in the original and used the photographic stimuli instead.
@@ -756,7 +758,7 @@ This effect was significant, though smaller than the effect in the original.
 
 @ngo2019 was a second successful rescue. The original study found a large effect; hence the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people. This small study failed to find the original effect.
 The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one).
-There are reasons to think that some effect sizes in the literature may be inflated [@openscienceconsortium, @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
+There are reasons to think that some effect sizes in the literature may be inflated [@openscienceconsortium; @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
 Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic, and could potentially benefit from a re-replication.
 
 Not all rescues of small replications succeeded, however.

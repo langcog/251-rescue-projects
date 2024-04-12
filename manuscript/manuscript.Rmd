@@ -471,7 +471,7 @@ smd_scale_small <- ggplot(for_plotting_d |> anti_join(big),aes(x=reorder(name_pr
 level_order = c("Yeshurun & Levy 2003",
                 "Ngo et al. 2019", 
                  "Krauss & Wang 2003",
-                 "Jara-Ettinger et al 2022")
+                 "Jara-Ettinger et al. 2022")
 smd_scale_big <- ggplot(for_plotting_d |> inner_join(big) |> 
                           mutate(name_pretty=factor(name_pretty, levels=level_order)), aes(x=name_pretty,y=point,ymin=low,ymax=high,shape=type, color=type, fill=type, group=desc(type)))+
   geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+

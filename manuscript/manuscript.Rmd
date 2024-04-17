@@ -7,9 +7,9 @@ author:
       - corresp
   - name: Ben Prystawski
     affiliation: Psych
-  - name: Adani Abutto
+  - name: Adani B. Abutto
     affiliation: Psych
-  - name: Emily Chen
+  - name: Emily M. Chen
     affiliation: Psych
   - name: Ziwen Chen
     affiliation: GSB
@@ -34,7 +34,7 @@ author:
   - name: Dan Ogunbamowo
     affiliation: Psych
   - name: Alexander Pereira
-    affiliation: Philosophy
+    affiliation: [Psych, Philosophy]
   - name: Jordan Troutman
     affiliation: CS
   - name: Sarah Tung
@@ -279,7 +279,7 @@ Such adaptation creates yet more challenges in interpretation: too many changes 
 In sum, when replications fail, we generally do not know why they failed, although we may speculate. 
 
 
-For the goals of large-scale replication projects, it does not matter why any particular study failed to replicate, because the aim is to estimate the proportion of replication effects in a literature. In contrast, however, when individual scientists attempt to replicate an effect with the goal of building on it, they do care about why an individual replication failed. In an uncertain literature, scientists might not want to commit resources to studying extensions of an effect without first checking that they can measure that effect themselves. For those individual scientists, it is much more important whether the replication failure is due to a fixable issue with the the replication or an intrinsic feature of the original result. 
+For the goals of large-scale replication projects, it does not matter why any particular study failed to replicate, because the aim is to estimate the proportion of replication effects in a literature. In contrast, however, when individual scientists attempt to replicate an effect with the goal of building on it, they do care about why an individual replication failed. In an uncertain literature, scientists might not want to commit resources to studying extensions of an effect without first checking that they can measure that effect themselves. For those individual scientists, it is much more important whether the replication failure is due to a fixable issue with  the replication or an intrinsic feature of the original result. 
 
 Re-replication can serve as a way to test explanations for replication failure. While it is possible to speculate after the fact about potential causes of a single replication failure, in most circumstances these causes are hard to discern (absent clear evidence of errors). In contrast, a second replication provides a chance to test explanations by making modifications -- as well as giving another chance for researchers to measure an effect of interest. But what are the chances that a re-replication succeeds?
 
@@ -748,10 +748,10 @@ Given the mix of successful and unsuccessful rescue projects, we discuss a few p
 The rescue of @krauss2003 was successful despite an unsuccessful replication.
 This study looked at the influence of guided thinking on whether or not people gave correct justifications (drawn or written) for their answer on the Monty Hall problem.
 The original paper reported correct justification from 2/67 (`r round(2/67*100)`%) in the control condition and 13/34 (`r round(13/34*100)`%) in the guided thinking condition.
-The first replication struggled to recruit participants who were naive to the problem (an exclusion criterion), and many participants give very short text responses in the provided text box (only textual responses were allowed).
+The first replication struggled to recruit participants who were naive to the problem (an exclusion criterion), and many participants gave very short text responses in the provided text box (only textual responses were allowed).
 The replication found 0/8 correct justifications in the control and 0/11 in the guided thinking condition.
 While we cannot know for sure what caused the non-replication, there were clear problems observable from the small final sample and low-quality responses.
-The rescue targeted these issues by adding a pre-screening that ensured participants were not familiar with the Monty Hall problem, switched the name of the problem (to reduce googling for answers), and had participants upload drawings for their justifications.
+The rescue targeted these issues by adding a pre-screening that ensured participants were not familiar with the Monty Hall problem, reskinned the problem and changed its name (to reduce googling for answers), and had participants upload drawings for their justifications.
 Collectively, we believe these changes brought the rescue closer to the intent of the original.
 The rescue had 1/40 (`r round(1/40*100)`%) correct justifications in the control condition and 6/35 (`r round(6/35*100)`%) in the guided thinking condition.
 This effect was significant, though smaller than the effect in the original. 
@@ -759,7 +759,7 @@ This effect was significant, though smaller than the effect in the original.
 @ngo2019 was a second successful rescue. The original study found a large effect; hence the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people. This small study failed to find the original effect.
 The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one).
 There are reasons to think that some effect sizes in the literature may be inflated [@openscienceconsortium; @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
-Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic, and could potentially benefit from a re-replication.
+Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic and could potentially benefit from a re-replication.
 
 Not all rescues of small replications succeeded, however.
 @payne2008 was a study of the effects of sleep on memory consolidation. They  showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images.

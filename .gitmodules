@@ -50,50 +50,50 @@
 	path = individual-rescue-projects/gong2019_rescue
 	url = git@github.com:psych251/gong2019_rescue.git
 [submodule "first-replications/porter2016"]
-	path = first-replications/porter2016
+	path = first-replication-projects/porter2016
 	url = git@github.com:psych251/porter2016.git
 [submodule "first-replications/Yeshurun2003"]
-	path = first-replications/Yeshurun2003
+	path = first-replication-projects/Yeshurun2003
 	url = git@github.com:psych251/Yeshurun2003.git
 [submodule "first-replications/Todd2016"]
-	path = first-replications/Todd2016
+	path = first-replication-projects/Todd2016
 	url = git@github.com:psych251/Todd2016.git
 [submodule "first-replications/payne2008"]
-	path = first-replications/payne2008
+	path = first-replication-projects/payne2008
 	url = git@github.com:psych251/payne2008.git
 [submodule "first-replications/paxton2012"]
-	path = first-replications/paxton2012
+	path = first-replication-projects/paxton2012
 	url = git@github.com:psych251/paxton2012.git
 [submodule "first-replications/ngo2019"]
-	path = first-replications/ngo2019
+	path = first-replication-projects/ngo2019
 	url = git@github.com:psych251/ngo2019.git
 [submodule "first-replications/krauss2003"]
-	path = first-replications/krauss2003
+	path = first-replication-projects/krauss2003
 	url = git@github.com:psych251/krauss2003.git
 [submodule "first-replications/hopkins2016"]
-	path = first-replications/hopkins2016
+	path = first-replication-projects/hopkins2016
 	url = git@github.com:psych251/hopkins2016.git
 [submodule "first-replications/Haimovitz2016"]
-	path = first-replications/Haimovitz2016
+	path = first-replication-projects/Haimovitz2016
 	url = git@github.com:psych251/Haimovitz2016.git
 [submodule "first-replications/gong2017"]
-	path = first-replications/gong2017
+	path = first-replication-projects/gong2017
 	url = git@github.com:psych251/gong2017.git
 [submodule "first-replications/birch2007"]
-	path = first-replications/birch2007
+	path = first-replication-projects/birch2007
 	url = git@github.com:psych251/birch2007.git
 [submodule "first-replications/child2018"]
-	path = first-replications/child2018
+	path = first-replication-projects/child2018
 	url = git@github.com:psych251/child2018.git
 [submodule "first-replications/Chou2016"]
-	path = first-replications/Chou2016
+	path = first-replication-projects/Chou2016
 	url = git@github.com:psych251/Chou2016.git
 [submodule "first-replications/craig2014"]
-	path = first-replications/craig2014
+	path = first-replication-projects/craig2014
 	url = git@github.com:psych251/craig2014.git
 [submodule "first-replications/tarampi2016"]
-	path = first-replications/tarampi2016
+	path = first-replication-projects/tarampi2016
 	url = git@github.com:psych251/tarampi2016.git
 [submodule "first-replications/schechtman2010"]
-	path = first-replications/schechtman2010
+	path = first-replication-projects/schechtman2010
 	url = git@github.com:tzler/perception_affect_memory.git

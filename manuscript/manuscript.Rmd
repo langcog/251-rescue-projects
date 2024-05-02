@@ -466,7 +466,7 @@ smd_scale_small <- ggplot(for_plotting_d |> anti_join(big),aes(x=reorder(name_pr
         legend.title=element_blank(),
         legend.text=element_text(size=10)
         )+
-  labs(y="Standarized mean difference", x="")
+  labs(y="Standardized mean difference", x="")
 
 level_order = c("Yeshurun & Levy 2003",
                 "Ngo et al. 2019", 
@@ -485,7 +485,7 @@ smd_scale_big <- ggplot(for_plotting_d |> inner_join(big) |>
         panel.grid.major.x = element_blank(), 
         panel.grid.minor.x=element_blank()
         )+
-  labs(y="Standarized mean difference", x="", )
+  labs(y="Standardized mean difference", x="", )
 
 #smd_scale_big
 #smd_scale_small
@@ -751,7 +751,7 @@ The original paper reported correct justification from 2/67 (`r round(2/67*100)`
 The first replication struggled to recruit participants who were naive to the problem (an exclusion criterion), and many participants gave very short text responses in the provided text box (only textual responses were allowed).
 The replication found 0/8 correct justifications in the control and 0/11 in the guided thinking condition.
 While we cannot know for sure what caused the non-replication, there were clear problems observable from the small final sample and low-quality responses.
-The rescue targeted these issues by adding a pre-screening that ensured participants were not familiar with the Monty Hall problem, reskinned the problem and changed its name (to reduce googling for answers), and had participants upload drawings for their justifications.
+The rescue targeted these issues by adding a pre-screening that ensured participants were not familiar with the Monty Hall problem, changed the content items for the problem and changed its name (to reduce googling for answers), and had participants upload drawings for their justifications.
 Collectively, we believe these changes brought the rescue closer to the intent of the original.
 The rescue had 1/40 (`r round(1/40*100)`%) correct justifications in the control condition and 6/35 (`r round(6/35*100)`%) in the guided thinking condition.
 This effect was significant, though smaller than the effect in the original. 
@@ -759,7 +759,7 @@ This effect was significant, though smaller than the effect in the original.
 @ngo2019 was a second successful rescue. The original study found a large effect; hence the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people. This small study failed to find the original effect.
 The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one).
 There are reasons to think that some effect sizes in the literature may be inflated [@openscienceconsortium; @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
-Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic and could potentially benefit from a re-replication.
+Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic, and could potentially benefit from a re-replication.
 
 Not all rescues of small replications succeeded, however.
 @payne2008 was a study of the effects of sleep on memory consolidation. They  showed participants a number of images and then hours later (after either sleep or no sleep) measured their recall for parts of the images.
@@ -823,5 +823,3 @@ VB wrote the first draft, BP and MCF contributed editing, and all authors review
 
 <!-- Use this magic to place references here. -->
 
-::: {#refs}
-:::

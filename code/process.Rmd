@@ -108,6 +108,7 @@ parsed_d |> filter(is.na(calc_ES)&(is.na(calc_d_calc))) |>  select(target_lastau
 parsed_d |> filter(is.na(calc_SE)&(is.na(calc_d_calc_se))) |>  select(target_lastauthor_year, type, raw_stat)
 
 #everything is parsing, yay!
+parsed_d |> write_csv(here("data/parsed_data.csv"))
 ```
 
 # Draft plot of effect sizes

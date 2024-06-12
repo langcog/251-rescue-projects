@@ -1,0 +1,115 @@
+---
+title: "Estimating the replicability of psychology experiments after an initial failure to replicate"
+author:
+  - name: Veronica Boyce
+    affiliation: Psych
+    footnote:
+      - corresp
+  - name: Ben Prystawski
+    affiliation: Psych
+  - name: Adani B. Abutto
+    affiliation: Psych
+  - name: Emily M. Chen
+    affiliation: Psych
+  - name: Ziwen Chen
+    affiliation: GSB
+  - name: Howard Chiu
+    affiliation: Edu
+  - name: Irmak Ergin
+    affiliation: Psych
+  - name: Anmol Gupta
+    affiliation: Psych
+  - name: Chuqi Hu
+    affiliation: Symsys
+  - name: Bendix Kemmann
+    affiliation: Philosophy
+  - name: Nastasia Klevak
+    affiliation: Psych
+  - name: Verity Y. Q. Lua
+    affiliation: Psych
+  - name: Mateus M. Mazzaferro
+    affiliation: Edu
+  - name: Khaing Mon
+    affiliation: Symsys
+  - name: Dan Ogunbamowo
+    affiliation: Psych
+  - name: Alexander Pereira
+    affiliation: [Psych, Philosophy]
+  - name: Jordan Troutman
+    affiliation: CS
+  - name: Sarah Tung
+    affiliation: Psych
+  - name: Raphael Uricher
+    affiliation: Psych
+  - name: Michael C. Frank
+    affiliation: Psych
+address:
+  - code: Psych
+    address: Department of Psychology, Stanford University, Stanford, CA, USA
+  - code: GSB
+    address: Graduate School of Business, Stanford University, Stanford, CA, USA
+  - code: Edu
+    address: Graduate School of Education, Stanford University, Stanford, CA, USA
+  - code: Symsys
+    address: Symbolic Systems Program, Stanford University, Stanford, CA, USA
+  - code: Philosophy
+    address: Department of Philosophy, Stanford University, Stanford, CA, USA
+  - code: CS
+    address: Department of Computer Science, Stanford University, Stanford, CA, USA
+footnote:
+  - code: corresp
+    text: "Corresponding author. Email: vboyce@stanford.edu"
+bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
+csl: apa7.csl # Use any CSL
+link-citations: TRUE
+output:
+  bookdown::pdf_document2:
+    toc: FALSE
+    keep_tex: TRUE
+    template: generic_article_template.tex
+    #md_extensions: "-autolink_bare_uris"
+    number_sections: TRUE
+    citation_package: default # Can also be "natbib"
+lang: en # Main document language in BCP47 format
+geometry: "margin=25mm"
+papersize: a4
+#linestretch: 2 # for double spacing
+endfloat: FALSE # Set to TRUE to turn on latex endfloat package to place figures and tables at end of document
+# endfloatoption: # See endfloat documentation for more possibilities
+numberlines: FALSE
+authblk: TRUE # FALSE = author affiliations in footnotes; TRUE = author affiliations in a block below author names
+footnotehyper: FALSE # TRUE will give you enhanced table footnote capabilities. Set to FALSE to be able to use French blocks. Needed due to what appears to be a latex bug.
+urlcolor: blue
+linkcolor: blue
+citecolor: blue
+graphics: TRUE # Needed to be able to include images
+tables: TRUE # Needed to be able to include tables
+# fancyhdr:
+#   first:
+#     #headleft: "REPORT-NO-XXXX"
+#     headright: "Kaplan et al. (2021)"
+#     headrulewidth: 0pt
+#     #footleft: A left foot
+#     footrulewidth: 0pt
+#   subsequent:
+#     #headleft: "NEXT-PAGE-HEADER-LEFT"
+#     headright: "Kaplan et al. (2021)"
+#     headrulewidth: 1pt
+#     footrulewidth: 0pt
+header-includes:
+ - \usepackage{tikz}
+ - \usetikzlibrary{positioning,chains}
+ - \usepackage{setspace}\singlespacing
+ - \renewcommand{\textfraction}{0.00}
+ - \renewcommand{\topfraction}{1}
+ - \renewcommand{\bottomfraction}{1}
+ - \renewcommand{\floatpagefraction}{1}
+ - \setcounter{topnumber}{3}
+ - \setcounter{bottomnumber}{3}
+ - \setcounter{totalnumber}{4}
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+\* Corresponding author. Email: vboyce@stanford.edu

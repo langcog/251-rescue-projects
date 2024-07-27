@@ -199,8 +199,6 @@ chosen <- c("birch2007_2", "jara-ettinger2022", "porter_2016_1",
 
 rescue_started <- options |> filter(target_lastauthor_year %in% chosen)
 
-#test_that("number of rows in final sample", {expect_equal(nrow(final_sample),21)})
-
 ```
 
 ```{r}
@@ -210,7 +208,9 @@ d <- read_csv(here("data", "combined_data.csv")) |>
          open_data, open_materials, within_between, single_vignette, cost, name_pretty)
 
 source(here("code","helper","parse_stats.R"))
+```
 
+```{r}
 parsed_d <- d |> 
   mutate(raw_stat=gsub(" ","",raw_stat),
          calc=pmap(list(raw_stat, within_between,N), do_parsing)) |> 
@@ -258,7 +258,7 @@ Or perhaps the interaction is numerically in the wrong direction and the main ef
 Whatever the details of the replication failure, you are left with a question: Should you try again and run a re-replication, or should you give up and pick a different study to build upon?
 
 In psychology, large scale replication projects have found that around half of studies successfully replicate. 
-Across 100 studies with positive results, the reproducibility project in psychology (RP:P) replicated 36%-47% depending on the metric for replication success [@openscienceconsortium].
+Across 100 studies with positive results, the reproducibility project in psychology (RP:P) replicated 36%-47% depending on the metric for replication success [@opensciencecollaboration].
 With large multi-site samples, Many Labs 1 replicated 11/13 effects (84.6%), Many Labs 2 replicated 14/28 effects (50%), and Many Labs 3 replicated 3/10 effects (30%) [@klein2014; @klein2018; @ebersole2016].
 @camerer2018 examined 21 behavioral social science studies and successfully replicated 12-14 of them (57%-67%) depending on the metric used.
 @boyce2023 reported an average subjective replication score of 49% for 176 replications primary in psychology.
@@ -289,7 +289,7 @@ Re-replication can serve as a way to test explanations for replication failure. 
 
 <!-- Re-replication has not been studied much, so it is uncertain how often re-replications recover the results of an original study. That is, it is not well known how definitive a first replication failure is.  -->
 Relatively few studies have estimated re-replication success. 
-One estimate comes from @ebersole2020. After the original RP:P study reported of a replication rate around 40% [@openscienceconsortium], @gilbert2016 raised concerns that methodological differences might explain the low replication rate. In 11 of the RP:P studies, the original authors had raised concerns about protocol fidelity prior to data collection.
+One estimate comes from @ebersole2020. After the original RP:P study reported of a replication rate around 40% [@opensciencecollaboration], @gilbert2016 raised concerns that methodological differences might explain the low replication rate. In 11 of the RP:P studies, the original authors had raised concerns about protocol fidelity prior to data collection.
 Of these 11 with concerns, 10 failed to obtain significant results in the RP:P replication. 
 Thus, @ebersole2020 re-replicated 10 of these 11 in larger samples, using both the RP:P protocol and a new protocol revised under advice of the original authors or other experts. This study thus tested whether larger sample sizes and/or "better" methodologies would "rescue" the failed RP:P replications.
 The result was that 2 of the 10 revised protocols found a significant result (but not the 1/11 that originally was successful).
@@ -432,7 +432,7 @@ If the re-replication rate in our sample is representative of the re-replication
 
 ## Effect size comparison
 
-```{r smd, fig.cap="Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was non-zero in the same direction as the original; however, in these cases the larger pattern of results was not fully consistent between original and first replication.  "}
+```{r smd, fig.cap="Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was in the same direction as the original with a 95% CI that did not overlap 0; however, in these cases the larger pattern of results was not fully consistent between original and first replication.  "}
 
 
 #test on just one
@@ -531,6 +531,16 @@ orig_v_others <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc,
   rowwise() |> 
   mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
 
+orig_v_rr <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se) |> 
+  filter(type=="rescue"|type=="rep1") |> 
+  group_by(target_lastauthor_year) |> 
+  nest() |> 
+  mutate(d_rma_result=map(data, do_d_rma)) |> 
+  unnest_wider(d_rma_result) |> 
+  left_join(orig) |> 
+  rowwise() |> 
+  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
+
 orig_v_rescue <- parsed_d |>   filter(type=="rescue") |> 
   select(target_lastauthor_year, type, res_d=calc_d_calc, res_d_se=calc_d_calc_se) |> 
   left_join(orig) |> 
@@ -561,6 +571,7 @@ rescue_v_reps <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc,
   mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
 
  all <- orig_v_others |> select(target_lastauthor_year, orig_v_other=d_p_orig) |> 
+   left_join(orig_v_rr |> select(target_lastauthor_year, orig_v_rr=d_p_orig)) |> 
   left_join(orig_v_rescue |> select(target_lastauthor_year, orig_v_rescue=d_p_orig)) |> 
   left_join(orig_v_not_rescue |> select(target_lastauthor_year, orig_v_not_rescue=d_p_orig)) |> 
   left_join(rescue_v_reps |> select(target_lastauthor_year, rescue_v_reps=d_p_orig)) 
@@ -570,6 +581,12 @@ main_summ <- all |> ungroup() |> select(orig_v_other) |>
             low=quantile(orig_v_other, .25, na.rm=T),
             high=quantile(orig_v_other, .75, na.rm=T),
             less_than=sum(orig_v_other<.05, na.rm=T)/sum(!is.na(orig_v_other)))
+
+rr_summ <- all |> ungroup() |> select(orig_v_rr) |>
+  summarize(median=median(orig_v_rr, na.rm=T),
+            low=quantile(orig_v_rr, .25, na.rm=T),
+            high=quantile(orig_v_rr, .75, na.rm=T),
+            less_than=sum(orig_v_rr<.05, na.rm=T)/sum(!is.na(orig_v_rr)))
 
 rescue_summ <- all |> ungroup() |> select(orig_v_rescue) |>
   summarize(median=median(orig_v_rescue, na.rm=T),
@@ -593,8 +610,8 @@ rescue_rep_summ <- all |> ungroup() |> select(rescue_v_reps) |>
 ```{r tab-porig}
 names <- parsed_d |> select(target_lastauthor_year, name_pretty) |> unique()
 
-all |> ungroup() |>  left_join(names) |> select(Paper=name_pretty, `All reps`=orig_v_other, "Rescue" = orig_v_rescue, "Non-rescue"=orig_v_not_rescue, "Other reps"=rescue_v_reps) |> knitr::kable(format="latex", booktabs=T, linesep="", caption="$P$-original values between different sets of experiments. The primary analysis is between the original result and the meta-analytic aggregation of all replications. All $p$-original values assume an imputed heterogeneity value of $\\tau$=.21.", digits=3) |> 
-  add_header_above(c(" "=1, "Original and"=3, "Rescue and"=1)) |> add_header_above(c(" "=1, "p-original comparing between"=4))
+all |> ungroup() |>  left_join(names) |> select(Paper=name_pretty, `All reps`=orig_v_other, "1st rep and Rescue"=orig_v_rr, "Rescue" = orig_v_rescue, "Non-rescue"=orig_v_not_rescue, "Other reps"=rescue_v_reps) |> knitr::kable(format="latex", booktabs=T, linesep="", caption="$P$-original values between different sets of experiments. The primary analysis is between the original result and the meta-analytic aggregation of all replications. All $p$-original values assume an imputed heterogeneity value of $\\tau$=.21.", digits=3) |> 
+  add_header_above(c(" "=1, "Original and"=4, "Rescue and"=1)) |> add_header_above(c(" "=1, "p-original comparing between"=5))
 
   
 ```
@@ -612,10 +629,11 @@ The median value of $p$-original between an original study and its replications 
 `r round(main_summ$less_than*100)`% of the $p$-original values were less than .05, indicating by conventional thresholds a rejection of the null hypothesis that the original comes from the same distribution of population effects as the replications.
 Individual $p$-original values for each study are shown in Table \@ref(tab:tab-porig).
 
-As secondary measures, we calculated the $p$-original values between a) the original and the rescue, b) the original and non-rescue replications, and c) the rescue and other replications.
-For a) the original versus the rescue, the median value of $p$-original was `r rescue_summ$median |> round(2)` [IQR: `r rescue_summ$low |> round(2)` - `r rescue_summ$high|> round(2)`], and `r round(rescue_summ$less_than*100)`% of the $p$-original values were less than .05.
-For b) the original versus all the non-rescue replications, the median value of $p$-original was `r rep_summ$median |> round(2)` [IQR: `r rep_summ$low |> round(2)` - `r rep_summ$high |> round(2)`], and `r round(rep_summ$less_than*100)`% of the $p$-original values were less than .05.
-For c) the rescue versus the other replications, the median value of $p$-original was `r rescue_rep_summ$median |> round(2)` [IQR: `r rescue_rep_summ$low |> round(2)` - `r rescue_rep_summ$high |> round(2)`], and `r round(rescue_rep_summ$less_than*100)`% of the $p$-original values were less than .05.
+As secondary measures, we calculated the $p$-original values between a) the original and just the first replication and rescue, b) the original and the rescue, c) the original and non-rescue replications, and d) the rescue and other replications.
+For a) the original versus the rescue, the median value of $p$-original was `r rr_summ$median |> round(2)` [IQR: `r rr_summ$low |> round(2)` - `r rr_summ$high|> round(2)`], and `r round(rr_summ$less_than*100)`% of the $p$-original values were less than .05.
+For b) the original versus the rescue, the median value of $p$-original was `r rescue_summ$median |> round(2)` [IQR: `r rescue_summ$low |> round(2)` - `r rescue_summ$high|> round(2)`], and `r round(rescue_summ$less_than*100)`% of the $p$-original values were less than .05.
+For c) the original versus all the non-rescue replications, the median value of $p$-original was `r rep_summ$median |> round(2)` [IQR: `r rep_summ$low |> round(2)` - `r rep_summ$high |> round(2)`], and `r round(rep_summ$less_than*100)`% of the $p$-original values were less than .05.
+For d) the rescue versus the other replications, the median value of $p$-original was `r rescue_rep_summ$median |> round(2)` [IQR: `r rescue_rep_summ$low |> round(2)` - `r rescue_rep_summ$high |> round(2)`], and `r round(rescue_rep_summ$less_than*100)`% of the $p$-original values were less than .05.
 
 <!--Visualizations of the statistical consistency between the original and each replication are shown in TODO FIGURE. The range around the open circle is the 95% predictive interval, representing the interval where, assuming that both are drawn from the same distribution, the replication will fall 95% of the time, given the precision (standard deviation) of the replication [@patil2016]. We again impute a heterogeneity value of $\tau=.21$ SMD for the construction of the prediction intervals.-->
 
@@ -705,10 +723,10 @@ cors <- tibble(preds = preds) |>
   mutate(r = sapply(preds, function(x) sub_cor(x, stat = "estimate")),
          p = sapply(preds, function(x) sub_cor(x, stat = "p"))) |> 
 
-  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rescue/original sample size", "Log replication sample size", "Log replication/original sample size", "Log rescue/replication sample size"))) |> arrange(Predictors) |> select(Predictors, r, p)
+  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Original authors at Stanford", "Publication year", "Log number of trials", "Log original sample size", "Log rescue/original sample size", "Log replication sample size", "Log replication/original sample size", "Log rescue/replication sample size"))) |> arrange(Predictors) |> select(Predictors, r, p)
 
 library(kableExtra)
-knitr::kable(cors, digits = 3, align='rcc', format="latex", booktabs=T, linesep="", caption="Correlations between an individual predictor and the subjective replication score of the rescue project. The first set of predictors were pre-registered based on the correlates used in Boyce et al. (2023). The last three predictors were added post-hoc.") |> row_spec(11, hline_after=T)
+knitr::kable(cors, digits = 3, align='rcc', format="latex", booktabs=T, linesep="", caption="Correlations between an individual predictor and the subjective replication score of the rescue project. The first set of predictors were pre-registered based on the correlates used in Boyce et al. (2023). Original authors at Stanford refers to at the time of the first replication as this may mean the first replication was not independent. For details about how the predictors were coded, see the Methods section of Boyce et al. (2023). The last three predictors were added post-hoc.") |> row_spec(11, hline_after=T)
 
 
 ```
@@ -758,7 +776,7 @@ This effect was significant, though smaller than the effect in the original.
 
 @ngo2019 was a second successful rescue. The original study found a large effect; hence the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people. This small study failed to find the original effect.
 The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one).
-There are reasons to think that some effect sizes in the literature may be inflated [@openscienceconsortium; @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
+There are reasons to think that some effect sizes in the literature may be inflated [@opensciencecollaboration; @camerer2018], and it is also possible that changes to experiments or switches to online could result in noisier samples and thus smaller effect sizes.
 Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic, and could potentially benefit from a re-replication.
 
 Not all rescues of small replications succeeded, however.
@@ -792,15 +810,20 @@ The rescues all showed smaller effect sizes than their original studies, regardl
 A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies.
 These diminished and inconsistent effects suggest that even if a re-replication "works", it may be difficult to build upon as follow-up studies will need large samples to detect small effects.
 
+## Limitations
+
 The reported rescue projects are a small sample of replications, leading to highly uncertain estimates. 
-They are also chosen non-randomly, as they have been selected for twice based on student interest -- once for the original replication and again for the rescue.
+Additionally, they are also chosen non-randomly, as they have been selected for twice based on student interest -- once for the original replication and again for the rescue.
 However, this selection bias is likely to correlate with how graduate students and other early career researchers choose what topics to work on and what studies to build on.
-Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 [29% vs. 22%, @ebersole2020].
+Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 [29% vs. 22%, @ebersole2020]. 
 
 In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results.
 Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online.
 These limitations are representative of the sort of resource limitations often faced by early-career researchers.
-That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise and more time.
+That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise and more time. 
+
+Due to the limited number of replications that are conducted and systematically reported, and the even smaller number of re-replications reported, there is a lot of uncertainty in how much replicability varies across features of the original experiment and replications. 
+## Conclusion
 <!-- were false positives, we merely claim the original results do not support cumulative research by early-career researchers under the constrained conditions we tested. -->
 
 We opened  with a question about what an early-career psychology researcher should do given a failed replication: should they try again or give up and move on?

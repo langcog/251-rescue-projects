@@ -459,7 +459,7 @@ If the re-replication rate in our sample is representative of the re-replication
 
 ## Effect size comparison
 
-```{r smd, fig.cap="Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was in the same direction as the original with a 95% CI that did not overlap 0; however, in these cases the larger pattern of results was not fully consistent between original and first replication.  "}
+```{r smd, fig.cap="Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was in the same direction as the original with a 95% CI that did not overlap 0; however, in these cases the larger pattern of results was not consistent between original and first replication.  "}
 
 
 #test on just one
@@ -656,7 +656,7 @@ The median value of $p$-original between an original study and its replications 
 `r round(main_summ$less_than*100)`% of the $p$-original values were less than .05, indicating by conventional thresholds a rejection of the null hypothesis that the original comes from the same distribution of population effects as the replications.
 Individual $p$-original values for each study are shown in Table \@ref(tab:tab-porig).
 
-As secondary measures, we calculated the $p$-original values between a) the original and just the first replication and rescue, b) the original and the rescue, c) the original and non-rescue replications, and d) the rescue and other replications.
+As secondary measures, we calculated the $p$-original values between a) the original and just the first replication and rescue (i.e. excluding additional replications), b) the original and the rescue, c) the original and non-rescue replications, and d) the rescue and other replications.
 For a) the original versus the first replication and the rescue, the median value of $p$-original was `r rr_summ$median |> round(2)` [IQR: `r rr_summ$low |> round(2)` - `r rr_summ$high|> round(2)`], and `r round(rr_summ$less_than*100)`% of the $p$-original values were less than .05.
 For b) the original versus the rescue, the median value of $p$-original was `r rescue_summ$median |> round(2)` [IQR: `r rescue_summ$low |> round(2)` - `r rescue_summ$high|> round(2)`], and `r round(rescue_summ$less_than*100)`% of the $p$-original values were less than .05.
 For c) the original versus all the non-rescue replications, the median value of $p$-original was `r rep_summ$median |> round(2)` [IQR: `r rep_summ$low |> round(2)` - `r rep_summ$high |> round(2)`], and `r round(rep_summ$less_than*100)`% of the $p$-original values were less than .05.
@@ -841,7 +841,9 @@ However, there were other cases where the first replications had issues with a s
 We cannot predict what replication failures are likely to resolve given another, more thoughtful try, beyond the suggestion to review studies for best practices in experimental design and sampling [e.g., @experimentology2024].
 
 The rescues all showed smaller effect sizes than their original studies, regardless of whether the pattern of effects replicated.
-A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies.
+A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies. 
+
+In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results. 
 
 ## Limitations
 
@@ -850,9 +852,13 @@ Additionally, they were chosen non-randomly, as they were doubly selected for ba
 However, this selection bias is likely to correlate with how graduate students and other early career researchers choose what topics to work on and what studies to build on.
 Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 [29% vs. 22%, @ebersole2020].
 
-In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results.
-The rescue projects (and first replications) were primarily conducted by first year PhD students, in a program where it is expected that PhD students author peer-reviewed papers, and where some of the rescuers already had publications. Thus, while we refer to the rescuers as students, they are investigators doing experiments that become part of the literature. 
-Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online. Additionally, while many students had done research before and were learning best-practices for experiments, they were not experts in the particular paradigms. These limitations are representative of the sort of knowledge and resource limitations often faced by early-career researchers. That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise, more time, or more privileged knowledge about how the original experiments were conducted.
+One potentially salient limitation of our work here is that the rescue projects (and the first replications) were primarily conducted by first year PhD students; hence the generality of our conclusions to other investigators is unknown. We believe, however, that this is more of an apparent than an actual limitation. Students were enrolled in a highly-competitive graduate program where it is expected that PhD students author peer-reviewed papers; several of the rescuers already had published first-authored peer reviewed articles. Thus, while we refer to the rescuers as students, they are investigators doing experiments that become part of the literature. 
+
+Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online. Additionally, while most students had done research before and were learning best practices for experiments, they were not experts in the particular paradigms they were implementing. These limitations are representative of the sort of knowledge and resource limitations often faced by early-career researchers. That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise, more time, or more privileged knowledge about how the original experiments were conducted.
+
+
+
+
 
 Due to the limited number of replications that are conducted and systematically reported, and the even smaller number of re-replications reported, there is substantial uncertainty in how much replicability varies across features of the original experiment and replications.
 
@@ -862,7 +868,7 @@ Overall, the diminished and inconsistent effects we found in the rescues suggest
 
 We have focused here on a narrow type of replication and rescue: that done by an early career researcher with the goal of establishing whether this is a result *they* can build on. We acknowledge that this type of replication exists as part of a wider ecosystem of replications that have different properties and are done for different reasons. 
 
-In many cases, researchers may have strong prior beliefs about where a replication will succeed, and these priors may influence a researchers interpretation of a failed replication, and thus their calculations about where a re-replication will succeed or is worth attempting. For instance, a researcher who has high credence in the main result is more likely to attribute failure to specific details in the replication, and thus may want to do a rescue where those details are adjusted. On the other hand, a researcher who is dubious of the methods, results, or statistical approaches in an experiment, or who has previously failed to extend the work, may be quicker to interpret a non-replication as a more definitive negative result. What a researcher chooses to do may also depend on the perceived strength of the replication, what size effects they think are relevant, and how important they think the target effect is. Thus, in some cases, when to re-replicate may be a question of prior beliefs and perceived utility rather than just likelihood of a re-replication succeeding. 
+In many cases, researchers may have strong prior beliefs about where a replication will succeed, and these priors may influence a researchers interpretation of a failed replication, and thus their calculations about where a re-replication will succeed or is worth attempting. For instance, a researcher who has high credence in the main result is more likely to attribute failure to specific details in the replication, and thus may want to do a rescue where those details are adjusted. On the other hand, a researcher who is dubious of the methods, results, or statistical approaches in an experiment, or who has previously failed to extend the experimental result, may be quicker to interpret a non-replication as a more definitive negative result. What a researcher chooses to do may also depend on the perceived strength of the replication, what size effects they think are relevant, and how important they think the target effect is. Thus, in some cases, when to re-replicate may be a question of prior beliefs and perceived utility rather than just likelihood of a re-replication succeeding. 
 
 We opened with a question about what an early-career psychology researcher should do given a failed replication: should they try again or give up and move on?
 In our sample, the odds of a re-replication working are low [consistent with @ebersole2020].

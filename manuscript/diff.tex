@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL manuscript_submitted.tex   Mon Jun 10 15:16:14 2024
-%DIF ADD manuscript.tex             Tue Aug  6 16:03:48 2024
+%DIF ADD manuscript.tex             Thu Aug  8 13:35:33 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -792,7 +792,7 @@ If the re-replication rate in our sample is representative of the re-replication
 
 \begin{figure}
 \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=1\linewidth]{manuscript_anon_files/figure-latex/smd-1} %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=1\linewidth]{manuscript_files/figure-latex/smd-1} \DIFaddendFL \caption{Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was \DIFdelbeginFL \DIFdelFL{non-zero }\DIFdelendFL in the same direction as the original \DIFaddbeginFL \DIFaddFL{with a 95\% CI that did not overlap 0}\DIFaddendFL ; however, in these cases the larger pattern of results was not fully consistent between original and first replication.  }\label{fig:smd}
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=1\linewidth]{manuscript_files/figure-latex/smd-1} \DIFaddendFL \caption{Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was \DIFdelbeginFL \DIFdelFL{non-zero }\DIFdelendFL in the same direction as the original \DIFaddbeginFL \DIFaddFL{with a 95\% CI that did not overlap 0}\DIFaddendFL ; however, in these cases the larger pattern of results was not \DIFdelbeginFL \DIFdelFL{fully }\DIFdelendFL consistent between original and first replication.  }\label{fig:smd}
 \end{figure}
 
 As a complement to subjective replication ratings, we also statistically compared the effect sizes of the rescue, first replication, and original study on one preregistered key measure per study (again following \citeproc{ref-boyce2023}{Boyce et al., 2023}).
@@ -806,17 +806,14 @@ In general, the replication and rescue effect sizes were smaller than the origin
 
 \caption{\label{tab:tab-porig}$P$-original values between different sets of experiments. The primary analysis is between the original result and the meta-analytic aggregation of all replications. All $p$-original values assume an imputed heterogeneity value of $\tau$=.21.}
 \centering
-\DIFdelbeginFL %DIFDELCMD < \begin{tabular}[t]{lrrrr}
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \begin{tabular}[t]{lrrrrr}
+\begin{tabular}[t]{lrrrrr}
 	\toprule
 	\multicolumn{1}{c}{ } & \multicolumn{5}{c}{p-original comparing between} \\
 	\cmidrule(l{3pt}r{3pt}){2-6}
 	\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Original and} & \multicolumn{1}{c}{Rescue and} \\
 	\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-6}
-	Paper & All reps & \DIFaddbeginFL \DIFaddFL{1st Rep and Rescue } \DIFaddendFL& Rescue & Non-rescue & Other reps\\
+	Paper & All reps &  \DIFaddbeginFL \DIFaddFL{1st Rep and Rescue} \DIFaddendFL & Rescue & Non-rescue & Other reps\\
 	\midrule
-
 Birch \& Bloom 2007 & 0.192 & \DIFaddbeginFL \DIFaddFL{0.189 }& \DIFaddendFL 0.194 & 0.191 & 0.989\\
 Child et al. 2018 & 0.669 & \DIFaddbeginFL \DIFaddFL{0.669 }& \DIFaddendFL 0.641 & 0.858 & 0.778\\
 Chou et al. 2016 & 0.055 & \DIFaddbeginFL \DIFaddFL{0.055 }& \DIFaddendFL 0.101 & 0.005 & 0.231\\
@@ -851,7 +848,7 @@ The median value of \(p\)-original between an original study and its replication
 24\% of the \(p\)-original values were less than .05, indicating by conventional thresholds a rejection of the null hypothesis that the original comes from the same distribution of population effects as the replications.
 Individual \(p\)-original values for each study are shown in Table \ref{tab:tab-porig}.
 
-As secondary measures, we calculated the \(p\)-original values between a) the original and \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{just the first replication and }\DIFaddend rescue, b) the original and \DIFaddbegin \DIFadd{the rescue, c) the original and }\DIFaddend non-rescue replications, and \DIFdelbegin \DIFdel{c}\DIFdelend \DIFaddbegin \DIFadd{d}\DIFaddend ) the rescue and other replications.
+As secondary measures, we calculated the \(p\)-original values between a) the original and \DIFdelbegin \DIFdel{the rescue}\DIFdelend \DIFaddbegin \DIFadd{just the first replication and rescue (i.e.~excluding additional replications)}\DIFaddend , b) the original and \DIFaddbegin \DIFadd{the rescue, c) the original and }\DIFaddend non-rescue replications, and \DIFdelbegin \DIFdel{c}\DIFdelend \DIFaddbegin \DIFadd{d}\DIFaddend ) the rescue and other replications.
 For a) the original versus the \DIFaddbegin \DIFadd{first replication and the rescue, the median value of \(p\)-original was 0.1 }{[}\DIFadd{IQR: 0.01 - 0.27}{]}\DIFadd{, and 35\% of the \(p\)-original values were less than .05.
 For b) the original versus the }\DIFaddend rescue, the median value of \(p\)-original was 0.06 {[}IQR: 0.01 - 0.52{]}, and 47\% of the \(p\)-original values were less than .05.
 For \DIFdelbegin \DIFdel{b}\DIFdelend \DIFaddbegin \DIFadd{c}\DIFaddend ) the original versus all the non-rescue replications, the median value of \(p\)-original was 0.14 {[}IQR: 0.01 - 0.38{]}, and 35\% of the \(p\)-original values were less than .05.
@@ -1010,20 +1007,22 @@ We cannot predict what replication failures are likely to resolve given another,
 
 The rescues all showed smaller effect sizes than their original studies, regardless of whether the pattern of effects replicated.
 A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies.
-\DIFdelbegin \DIFdel{These diminished and inconsistent effects suggest that even if a re-replication ``works'', it may be difficult to build upon as follow-up studies will need large samples to detect small effects.
-}\DIFdelend \DIFaddbegin 
+\DIFdelbegin \DIFdel{These diminished and inconsistent effects suggest that even if a re-replication ``works'', it may be difficult to build upon as follow-up studies will need large samples to detect small effects}\DIFdelend \DIFaddbegin 
 
-\subsection{\DIFadd{Limitations}}\label{limitations}
-\DIFaddend 
+\DIFadd{In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results}\DIFaddend .
 
-The reported rescue projects are a small sample of replications, leading to highly uncertain estimates.
+\DIFaddbegin \subsection{\DIFadd{Limitations}}\label{limitations}
+
+\DIFaddend The reported rescue projects are a small sample of replications, leading to highly uncertain estimates.
 \DIFdelbegin \DIFdel{They are also }\DIFdelend \DIFaddbegin \DIFadd{Additionally, they were }\DIFaddend chosen non-randomly, as they \DIFdelbegin \DIFdel{have been selected for twice }\DIFdelend \DIFaddbegin \DIFadd{were doubly selected for }\DIFaddend based on student interest -- once for the original replication and again for the rescue.
 However, this selection bias is likely to correlate with how graduate students and other early career researchers choose what topics to work on and what studies to build on.
 Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 (29\% vs.~22\%, \citeproc{ref-ebersole2020}{Ebersole et al., 2020}).
 
-In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results.
-\DIFaddbegin \DIFadd{The rescue projects (and first replications) were primarily conducted by first year PhD students, in a program where it is expected that PhD students author peer-reviewed papers, and where some of the rescuers already had publications. Thus, while we refer to the rescuers as students, they are investigators doing experiments that become part of the literature.
-}\DIFaddend Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online. \DIFaddbegin \DIFadd{Additionally, while many students had done research before and were learning best-practices for experiments, they were not experts in the particular paradigms. }\DIFaddend These limitations are representative of the sort of \DIFaddbegin \DIFadd{knowledge and }\DIFaddend resource limitations often faced by early-career researchers. That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise\DIFdelbegin \DIFdel{and more time}\DIFdelend \DIFaddbegin \DIFadd{, more time, or more privileged knowledge about how the original experiments were conducted.
+\DIFdelbegin \DIFdel{In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results.
+}\DIFdelend \DIFaddbegin \DIFadd{One potentially salient limitation of our work here is that the rescue projects (and the first replications) were primarily conducted by first year PhD students; hence the generality of our conclusions to other investigators is unknown. We believe, however, that this is more of an apparent than an actual limitation. Students were enrolled in a highly-competitive graduate program where it is expected that PhD students author peer-reviewed papers; several of the rescuers already had published first-authored peer reviewed articles. Thus, while we refer to the rescuers as students, they are investigators doing experiments that become part of the literature.
+}
+
+\DIFaddend Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online. \DIFaddbegin \DIFadd{Additionally, while most students had done research before and were learning best practices for experiments, they were not experts in the particular paradigms they were implementing. }\DIFaddend These limitations are representative of the sort of \DIFaddbegin \DIFadd{knowledge and }\DIFaddend resource limitations often faced by early-career researchers. That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise\DIFdelbegin \DIFdel{and more time}\DIFdelend \DIFaddbegin \DIFadd{, more time, or more privileged knowledge about how the original experiments were conducted.
 }
 
 \DIFadd{Due to the limited number of replications that are conducted and systematically reported, and the even smaller number of re-replications reported, there is substantial uncertainty in how much replicability varies across features of the original experiment and replications.
@@ -1037,7 +1036,7 @@ In cases where re-replications failed, we do not believe any conclusions are lic
 \DIFadd{We have focused here on a narrow type of replication and rescue: that done by an early career researcher with the goal of establishing whether this is a result }\emph{\DIFadd{they}} \DIFadd{can build on. We acknowledge that this type of replication exists as part of a wider ecosystem of replications that have different properties and are done for different reasons.
 }
 
-\DIFadd{In many cases, researchers may have strong prior beliefs about where a replication will succeed, and these priors may influence a researchers interpretation of a failed replication, and thus their calculations about where a re-replication will succeed or is worth attempting. For instance, a researcher who has high credence in the main result is more likely to attribute failure to specific details in the replication, and thus may want to do a rescue where those details are adjusted. On the other hand, a researcher who is dubious of the methods, results, or statistical approaches in an experiment, or who has previously failed to extend the work, may be quicker to interpret a non-replication as a more definitive negative result. What a researcher chooses to do may also depend on the perceived strength of the replication, what size effects they think are relevant, and how important they think the target effect is. Thus, in some cases, when to re-replicate may be a question of prior beliefs and perceived utility rather than just likelihood of a re-replication succeeding}\DIFaddend .
+\DIFadd{In many cases, researchers may have strong prior beliefs about where a replication will succeed, and these priors may influence a researchers interpretation of a failed replication, and thus their calculations about where a re-replication will succeed or is worth attempting. For instance, a researcher who has high credence in the main result is more likely to attribute failure to specific details in the replication, and thus may want to do a rescue where those details are adjusted. On the other hand, a researcher who is dubious of the methods, results, or statistical approaches in an experiment, or who has previously failed to extend the experimental result, may be quicker to interpret a non-replication as a more definitive negative result. What a researcher chooses to do may also depend on the perceived strength of the replication, what size effects they think are relevant, and how important they think the target effect is. Thus, in some cases, when to re-replicate may be a question of prior beliefs and perceived utility rather than just likelihood of a re-replication succeeding}\DIFaddend .
 
 We opened with a question about what an early-career psychology researcher should do given a failed replication: should they try again or give up and move on?
 In our sample, the odds of a re-replication working are low (consistent with \citeproc{ref-ebersole2020}{Ebersole et al., 2020}).

@@ -402,7 +402,7 @@ In many cases, students were also given the contact information of the original 
 Students were required to think of reasons the first replication might not have worked, and address them if they could.
 A list of possible reasons and solutions was given to students (<https://osf.io/dfwk2>).
 In general, we encouraged students to add manipulation checks as appropriate, and to adapt their materials to online studies, which may benefit from attention checks and/or shorter duration.
-For instance, the rescue of @paxton2012 switched from using the Cognitive Teflection Test (CRT) which many online participants are over-familiar with to using the newer CRT-2 which is less overused but attempts to measure the same construct [@thomson2016].
+For instance, the rescue of @paxton2012 switched from using the Cognitive Reflection Test (CRT) which many online participants are over-familiar with to using the newer CRT-2 which is less overused but attempts to measure the same construct [@thomson2016].
 The rescue of @jara-ettinger2022 discovered that the replication had accidentally used an illustrated version of the stimuli rather than the photographic stimuli used in the original and used the photographic stimuli instead.
 @tarampi2016 had participants do a timed navigation task where they wrote L or R to indicate which way to turn at each intersection on a paper map.
 The replication ported this experiment online and had participants click a drop down menu to select left or right for each turn.

@@ -22,6 +22,11 @@
 
 \usepackage{longtable,booktabs,array}
 \usepackage{float}
+
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{hyperref}
 \begin{document}
 	\name{Veronica Boyce}
 \signature{\vspace{-35pt} Veronica Boyce, \\ on behalf of the author team}
@@ -49,22 +54,19 @@
 		
 		Unfortunately, we don't have a way to edit the individual pre-registrations, but we believe all the necessary information for the rescues is now available, linked from the data sheet. 
 		
-		I also address some of reviewer 1's specific repo-related concerns below; I suspect many of them would have been ameliorated had the reviewer been able to download the repo. 
+		I also address reviewer 1's specific repository-related concerns more below; I suspect many of them would have been ameliorated had the reviewer been able to download the repository files.  
 		
 		\theysaid{(2) limitations/quality control: your discussion section, although admirably short, does not address any potential limitations your study has. I share reviewer \#1’s assessment that relative inexperience of the replicators is at least a potential limitation (but see https://journals.sagepub.com/doi/full/10.1177/1475725719857659, which you may wish to cite). There are several other points that reviewer \#1 is concerned about. You may not agree with all of them, so feel free to argue your case when you don’t, but across the board I do think a bit more engagement with these points is essential.}
 		
 		%TODO discussion section 
 		
-		We have expanded the discussion section and re-organized it to have a more explicit discussion of limitations. 
+		We have added an explicit ``Limitations'' subsection to the discussion, which we discuss further below in our response to reviewer 1. 
 		
-		Thank you for the reference, which we have incorporated, and we have included more information on the changes to the discussion below, in our response to reviewer 1. 
-		
-		Also, see below for our changes and rebuttals to reviewer 1's thoughts.
+		Also, see below for our changes and rebuttals to reviewer 1's other points.
 		
 		\theysaid{(3) implications: reviewer \#2 wonders how your results inform decisions on which papers to ‘rescue’. The final paragraph of the Discussion of your current submission only scratched the surface here. What to do? How valuable are these rescue attempts? Should we do more of them, or should we focus on ‘first’ replications, or should we not do them at all?}
 		
-		%TODO discussion section
-		We have expanded the discussion section to discuss the larger picture of different circumstances that motivate replications and rescues. We discuss the changes more below in response to reviewer 2's points. 
+		We have expanded the last part of the discussion section to acknowledge the much larger picture of different circumstances that motivate replications and rescues, and how these might be influenced by the prior beliefs of the investigators. We discuss the changes more below in response to reviewer 2's points. 
 		
 		\theysaid{In your resubmission, please include a document with a point-by-point response to both the points I list here and the reviewers’ comments, outlining each change made in your manuscript or providing a suitable rebuttal. Please ensure that your revised files adhere to our author guidelines, and that the files are fully copyedited/proofed prior to upload. Please also ensure that all necessary copyright permissions have been obtained. This may be the last opportunity for major editing, therefore please fully check your file prior to re-submission.}
 		
@@ -77,29 +79,198 @@
 		\theysaid{Data needs to be shared in a reproducible manner}
 		\theysaid{Regrettably I could not download the files from github – some filenames that have been uploaded are too long, and both cloning the repo as downloading at a zip file give errors (on my windows machine). }
 		
-		We are sorry this error occurred, and that reviewer 1 didn't realize the files could be downloaded directly from the OSF copy (linked in the paper).  as the inability of reviewer 1 seems to have resulted in misunderstandings about the usability of files in the repo (which are much more understandable when opened on a computer).
+		We are sorry this error occurred, and that reviewer 1 didn't realize the files could be downloaded directly from the OSF copy (linked in the paper).  The inability of reviewer 1 to download and open the files seems to have resulted in misunderstandings about the usability of files in the repo (which are much more understandable when opened on a computer).
 		
-		From googling, we believe this to be a windows issue, and to prevent this problem for future users we have added a note at the top of the README directing readers for how to address or sidestep the problem, namely:
+		From googling, we believe the long files names issue to be a windows issue, and to prevent this problem for future users we have added a note at the top of the README directing readers for how to address or sidestep the problem, namely:
 		
-		\revised{Note: If you are a windows user and get an error about overly long file names, please see [this stackoverflow post](https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows) or [this github issue](https://github.com/desktop/desktop/issues/17882) for how to fix it. Alternatively, you can download a zip of the repo from [the osf copy](https://osf.io/cyk5w/files/github) by clicking "Download this folder".}
+		\revised{Note: If you are a windows user and get an error about overly long file names, please see [this stackoverflow post] (https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows) or [this github issue] (https://github.com/desktop/desktop/issues/17882) for how to fix it. Alternatively, you can download a zip of the repo from [the osf copy] (https://osf.io/cyk5w/files/github) by clicking "Download this folder".}
+		
+		Hopefully this warning will prevent future difficulties with accessing the repository. 
 		
 		\theysaid{The repository is also not organized well enough to make it easy to see all the information. It needs to be restructured, with an actual read me, a clear folder structure, all files should be interoperable, etc. 
 		}
 		
 		We think the structure is actually pretty clear, but we apologize that the README was not more detailed. We have rewritten the README to be much more explicit about how to reproduce the paper as well as what all the folders and files contain.
 		
-		See  https://github.com/langcog/251-rescue-projects/tree/main for the revised README. 
+		See  https://github.com/langcog/251-rescue-projects/tree/main for the revised README, which I also quote here:
+		
+		\revised{
+		\textbf{\large 251-rescue-projects}\label{rescue-projects}
+			
+			\textbf{Note:} If you are a windows user and get an error about overly
+			long file names, please see
+			\href{https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows}{this
+				stackoverflow post} or
+			\href{https://github.com/desktop/desktop/issues/17882}{this github
+				issue} for how to fix it. Alternatively, you can download a zip of the
+			repo from \href{https://osf.io/cyk5w/files/github}{the osf copy} by
+			clicking ``Download this folder''.
+			
+			
+			\textbf{\large Reproducing this project}\label{reproducing-this-project}
+			
+			The preregistration for this project is at https://osf.io/5qz7v
+			
+			The overall manuscript can be reproduced by knitting
+			manuscript/manuscript.Rmd 
+			\begin{itemize}
+				\tightlist
+				\item 
+				This file reads data from
+				data/combined\_data.csv and data/boyce\_2023\_data.csv
+				\item  
+				This file uses
+				code/helper/parse\_stats.R
+			\end{itemize}
+			
+			\textbf{data/combined\_data.csv has links to the write-ups,
+				pre-registrations, and projects (code/data) for the replications and
+				rescues.} Additionally, the project repos are contained in
+			first-replication-projects and individual-rescue-projects. Archival
+			copies of the write-ups are in first-replication-reports and
+			individual-rescue-reports (download/clone the repo and then open the
+			html files in a web browser to view them).
+			
+			The numeric results in data/combined\_data.csv (effect size measures,
+			sample sizes, number of trials) were coded off of the papers and
+			reports. Where the effect size measures were not presented in the needed
+			format, recalculations were done (see reconstruct\_effect\_sizes for
+			data and code for these).
+			
+			\textbf{\large Folder structure}\label{folder-structure}
+			
+			\textit{Code}\label{code}
+			
+			\begin{itemize}
+				\tightlist
+				\item
+				initial\_criteria.R describes the process for determining which
+				projects were eligible for rescue
+				\item
+				process.Rmd is a draft analysis script
+				
+				\begin{itemize}
+					\tightlist
+					\item
+					it pulls the coded data from our google sheet and merges it with
+					study-level variables from Boyce 2023 replication data to write
+					data/combined\_data.csv
+					\item
+					it checks that we don't have parsing errors in our data format
+					\item
+					it does analyses (those in the manuscript have their analysis
+					duplicated in manuscript/manuscript.Rmd)
+				\end{itemize}
+				\item
+				helper/parse\_stats.R parses our raw effect size format and calculates
+				standardized effect sizes and helper/stats.R wraps p\_original and
+				prediction\_interval functions (used by process.Rmd but not
+				manuscript.Rmd)
+			\end{itemize}
+			
+			\textit{Data}\label{data}
+			
+			\begin{itemize}
+				\tightlist
+				\item
+				combined\_data.csv is the raw data coding sheet with links to
+				pre-registrations, etc
+				\item
+				parsed\_data.csv is a saved intermediate that has the results of
+				parsing effect sizes and computing standardized effect sizes
+				\item
+				boyce\_2023\_data.csv is a copy of data from
+				\href{https://royalsocietypublishing.org/doi/full/10.1098/rsos.231240}{Boyce
+					et al 2023} which reports on the first replications
+			\end{itemize}
+			
+			\textit{Manuscript}\label{manuscript}
+			
+			\begin{itemize}
+				\tightlist
+				\item
+				manuscript.Rmd is the manuscript, with analysis code embedded
+				\item
+				manuscript.pdf is the result of knitting manuscript.Rmd
+				\item
+				251rescue.bib is the bibliography
+				\item
+				apa7.csl, generic\_article\_template.tex are helper files for
+				formatting the manuscript
+				\item
+				coverletter/, title\_page.Rmd, and manuscript\_anon.Rmd are leftovers
+				of the submission process
+			\end{itemize}
+			
+			\textit{First-replication-projects and
+				Individual-rescue-projects}\label{first-replication-projects-and-individual-rescue-projects}
+			
+			\begin{itemize}
+				\tightlist
+				\item
+				include the individual replication and rescue projects (aka github
+				repos) respectively
+				\item
+				the rescue projects repos have been checked and include data,
+				code/reproducible report, and the materials to run the experiment
+			\end{itemize}
+			
+			\textit{First-replication-reports and
+				Individual-rescue-reports}\label{first-replication-reports-and-individual-rescue-reports}
+			
+			\begin{itemize}
+				\tightlist
+				\item
+				archival copies of the reports from individual projects, in case the
+				rpubs links break or are overwritten
+				\item
+				to view, download the repo and open the html files in a browser
+			\end{itemize}
+			
+			\textit{reconstruct\_effect\_sizes}\label{reconstruct_effect_sizes}
+			
+			In a few cases, the effect size information we needed for comparable
+			SMDs was not available from published papers or project write-ups, and
+			we had to construct it. 
+			\begin{itemize}
+				\tightlist\item schectman\_es.Rmd calculates the effect size
+			for the original
+			\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6634660/}{Schechtman
+				et al.} The original paper reports a p-value but not exact values, but
+			the authors were kind enough to send their matlab data files. This uses
+			the three DataTest.mat files. Additionally, we looked at the
+				rescue data to recalculate trial counts
+				(subject\_data\_final\_full\_processed.csv) 
+				\item 
+			\href{https://www.pnas.org/doi/pdf/10.1073/pnas.2202657119}{Denis et al}
+			is an additonal replication of Payne et al 2008; however the analysis
+			reported in the paper is not the same as the analysis Payne et al used.
+			Luckily data was available, so we calculate the corresponding result in
+			denis\_es.Rmd using data in Expt1\_OverallRecognition.csv and
+			Expt1\_SpecificRecognition.csv. 
+			\item  For Hopkins et al, the main effect of
+			interest is a coefficient in a linear model. However, coefficients
+			cannot be converted to SMD easily, so we calculate the mean and sds
+			instead in hopkins\_es.Rmd. The original data is in hopkins\_raw.csv,
+			the replication and rescue data is sourced from their github repos.
+		\end{itemize}
+		
+			
+			\textit{So you want to rescue a project
+				\ldots{}}\label{so-you-want-to-rescue-a-project}
+			
+			\begin{itemize}
+				\item
+				this is a copy of a list of potential reasons for replication failures
+				shared with the rescuers in the early stages of the rescues
+			\end{itemize}
+		}
+
 		
 		\theysaid{The reports are written in some sort of Rpubs format which consists of many files, but nothing I clicked lead to a readable file – I am quite certain this is not how these files should be exported and shared.}
 		
-		As we now clarify in the updated README, these are archival copies of the reports (which were posted to Rpubs). From a cloned/downloaded copy of the repo, the html files can be opened in a browser to see the reports.
-		
-		% \revised{\begin{verbatim}
-		 %		### First-replication-reports and Individual-rescue-reports
-		 %		* archival copies of the reports from individual projects, in case the rpubs links break or are overwritten
-		 %		* to view, download the repo and open the html files in a browser
-		 		
-		 %	\end{verbatim}}
+		As we now clarify in the updated README (quoted above), these are archival copies of the reports (which were posted to Rpubs). From a cloned/downloaded copy of the repo, the html files can be opened in a browser to see the reports.
+	
 		
 		\theysaid{In the process.Rmd file, data is downloaded from a google drive https://docs.google.com/spreadsheets/d/12A4DblSbX\_0tHP1mTVJhjNboI1YDngidkNWiSy0sN0g/edit\#gid=0 which I have no access to. }
 		
@@ -107,38 +278,118 @@
 		
 		\theysaid{It is clear this all needs to be checked by a reviewer before the manuscript can be accepted. I would strongly urge the author to add all files as reproducible markdown files (the manuscript, but also the individual data reports).}
 		
-		The manuscript is written in an Rmd file that is reproducible. Each of the individual rescue projects was also written in a Rmd or qmd reproducible report (included in the individual project repos included in individual-rescue-projects/). We have now clarified this in the README. 
+		The manuscript is written in an Rmd file that is reproducible. Each of the individual rescue projects was also written in a Rmd or Qmd reproducible report (included in the individual project repos included in individual-rescue-projects/). We have now clarified this in the README. 
 		
-	%	\revised{ \begin{verbatim}
-	%		The overall manuscript can be reproduced by knitting manuscript/manuscript.Rmd
-	%		* This file reads data from data/combined_data.csv and data/boyce_2023_data.csv
-	%		* This file uses code/helper/parse_stats.R \end{verbatim}}
-			
-	%	\revised{\begin{verbatim}
-	%			### First-replication-projects and Individual-rescue-projects
-	%		* include the individual replication and rescue projects (aka github repos) respectively
-	%		* the rescue projects repos have been checked and include data, code/reproducible report, and the materials to run the experiment\end{verbatim}}
 		
 		\theysaid{ The latter can also be exported as PDF is need by, with the raw data and code in the same folder. I believe papers like this require a high quality standard – I would want to see all details if this was a single study, and I want to see all detail of every study when this is a large scale replication project. Ideally, there is a single master file that 1) writes all reproducible original replication reports and rescue reports, 2) takes the output from these reports and compiles the manuscript that has been submitted.}
 		
 		We hope that our updated README now makes it clear where to find all of the details of all of the rescue projects as well as the sourcing for the overall manuscript. 
 		
-		%TODO bug students whose stuff wasn't all there
 		
 		\theysaid{Focus on the qualitative data}
 		\theysaid{It is interesting to see the results of these projects, as they show the messiness of results when quality control is less strict than in other replication projects. In some ways, the current set of studies can be regarded as a lower bound of replication success under very challenging conditions. Moreover, the qualitative insights when describing the individual studies (which should be extended) is quite educational. For example, it shows the importance of sharing materials, and provides an impetus to require material sharing when a paper is published.}
 		
-		We agree that the frustration of original materials not being available or original instructions not being available is education and hopefully serves as an impetus for more sharing. 
+		We agree that the frustration of original materials not being available or original instructions not being available is educational and hopefully serves as an impetus for more sharing. 
 		
 		\theysaid{ I think a number of improvements to the manuscript are warranted, but I believe that the final result is worth sharing with the scientific community. Because there are no line numbers, the author will perhaps need to search a bit for where my comments apply.
 		The case studies section is the most interesting part, but it should be extended to all studies.
 		 There are not too many studies, and some can be discussed briefly if results are consistent non-replications. This section should also proceed the quantitative analyses. It is so clear that some studies were incompetently performed that I personally no longer care about the quantitative analyses of these replications. Several of the studies with ugely diverging effect sizes are not discussed at all: Tarampi, Haimowitz, Porter (why did the rescue succeed?).}
 		 
-		 %TODO extend the case study
+		 %TODO update after MS is potentially revised
 		 
-		 We thank the reviewer for this idea. We have added brief mentions of the topics and outcomes of each of the studies. We disagree about the ordering, as some readers may be more interested in the bottom line overall results than the individual studies. To support the different tastes, we have added an overview of subsections at the beginning of results so that interested readers could skip to the casestudies if desired. 
+		 We thank the reviewer for this idea. We have added an Appendix with brief descriptions of the topics and outcomes of each of the studies. 
 		 
-		 %TODO add mention of the casestudies existance 
+		  We disagree about the ordering, as some readers may be more interested in the bottom line overall results than the individual studies.
+		 
+		 The contents of the Appendix is now as follows:
+		 
+		 \revised{
+		 	
+		 	Write-ups of individual rescue and replication projects can be found in the repository at \url{https://osf.io/cyk5w/}.
+		 	\newline
+		 	
+		 	Birch \& Bloom (2007) is about a false belief task comparing ignorance and plausible knowledge conditions.
+		 	The first replication and an additional class replication both found results in the same direction as the original result, but much smaller.
+		 	The rescue used a much larger sample size than both the original and the first replication and added an additional check to make sure the probabilities participants reported add up to 100\%.
+		 	The rescue result was in the same direction as the original and prior replications, but did not find a significant effect.
+		 	\newline
+		 	
+		 	Chou et al. (2016) studied whether a sense of control affects how much one feels physical pain. Participants were asked to recall experiences where they had either a low or high amount of control and then to report their level of physical pain. The first replication closely followed the methods of the original, but added a manipulation check borrowed from a different experiment in Chou et al. (2016). The manipulation check was successful, but there were no significant difference in pain level between the two groups. The rescue added pre-survey questions about pain levels to confirm that participants in the two groups had the same baseline understanding of pain. The rescue also did not find a significant difference in pain level between groups.
+		 	\newline
+		 	
+		 	Craig \& Richeson (2014) had White Americans read an article about shifting racial demographics in the US, either with or without a framing that assuaged the potential threat, and found that reading the un-assuaged version led to the endorsement of more conservative positions.
+		 	The first replication did not find a significant difference between conditions, and the rescuer speculated that this was due to a smaller sample size and a skew toward liberal political beliefs in the participant pool.
+		 	The rescue recruited the same number of participants as the original study and dropped one of the conditions to increase power.
+		 	Despite the increased power, the rescue did not replicate the original paper's finding.
+		 	\newline
+		 	
+		 	Gong et al. (2019) looked at the interplay between age and willingness to donate in older adults in Hong Kong and found a three-way interaction between age, type of donation, and relationship to recipient.
+		 	The first replication sampled US adults and did not find a significant interaction.
+		 	The rescuer thought that cultural differences may have played a role and specifically sampled Asian American adults.
+		 	The rescue did not recover the interaction.
+		 	\newline
+		 	
+		 	Haimovitz \& Dweck (2016) manipulated parents' mindsets with ``failure-is-enhancing'' or ``failure-is-debilitating'' primes and looked at their reactions to a hypothetical situation in which a child received a failing grade.
+		 	The first replication found a point estimate in the opposite direction to the original effect, but an additional class replication found a directionally consistent effect.
+		 	The rescue added manipulation checks which were not present in the original study or either replications.
+		 	The manipulation checks passed, but the rescue study did not recover the target effect.
+		 	\newline
+		 	
+		 	Hopkins et al. (2016) examined whether people prefer reductive explanations, which explain a result in one science with a more ``fundamental'' science, to horizontal explanations, which explain a result in one science in terms of the same science.
+		 	While the original study found a preference for reductive explanations, the first replication did not.
+		 	The replication's effective sample size was smaller than the original because a large proportion of participants failed the attention check.
+		 	The rescue increased made the attention check slightly easier and recruited a larger sample to account for failures, but still did not replicate the original effect.
+		 	\newline
+		 	
+		 	Jara-Ettinger et al. (2022) looked at shape bias in US adults across 3 shape exemplars and found a preference to extend nouns on the basis of shape rather than color or material.
+		 	The replication found an above-chance preference for shape, but with very high item-level variability.
+		 	The rescuer found that the first replication used stylized versions of the original stimuli taken from a different part of the paper.
+		 	The rescue used the same images of stimuli as the original, but still found strong item-level effects and relative preferences for color and material.
+		 	\newline
+		 	
+		 	Paxton et al. (2012) found that participants who completed the Cognitive Reflection Test (CRT) before the moral judgement task gave more utilitarian answers than those who did the moral judgment task before the CRT.
+		 	The replication rewrote some of the CRT questions, adding a sub-condition where some of the questions featured characters with specific names.
+		 	The first replication failed to find an effect.
+		 	The rescuer removed the sub-condition and used questions from the CRT-2, out of concern that Prolific participants would be familiar with the original CRT questions.
+		 	The rescue also failed to find the effect.
+		 	\newline
+		 	
+		 	Porter et al. (2016) looked at how linguistic intergroup bias influences judgments of shared group membership.
+		 	The first replication found an effect directionally inconsistent with the original result.
+		 	The rescuer obtained the direct wordings of the questions from the authors of the original paper, and noticed that they were substantially different from questions in the first replication.
+		 	The rescue used the same wordings as the original paper and replicated the effect, although the manipulation check failed.
+		 	\newline
+		 	
+		 	Schechtman et al. (2010) looked at how widely people generalize tones that previously have been paired with losses or gains, and found that the loss-paired tones were generalized more.
+		 	The first replication found a statistically significant effect in the opposite direction of the original study.
+		 	It also found that people took much longer to learn which tones were associated with gains vs.~losses compared to the original.
+		 	The rescuer made several changes, including asking questions about the sound quality of the participant's computer.
+		 	The original study was conducted in person while the replication and rescue were online, so differences in speaker and headphone quality might have played a role in the different result.
+		 	The rescue found an effect in the same direction as the 1st replication (contrary to the original study).
+		 	\newline
+		 	
+		 	As discussed in methods, Tarampi et al. (2016) had participants do a timed navigation task and found an interaction between participant gender and the framing of the task (social or spatial) on performance.
+		 	The result from the first replication was both statistically insignificant and directionally inconsistent.
+		 	The original study was conducted in person, while the replication was conducted online, which might have contributed to the inconsistency.
+		 	The rescue was also conducted online, but the rescuer made a series of user interface changes, a comprehension check, and exclusion criteria to ensure that participants understood the instructions, found the task convenient to interact with, and were engaged throughout the experiment.
+		 	Still, the rescue did not recover the interaction.
+		 	\newline
+		 
+		 	Todd et al. (2016) looked at participants speed at classifying toys and guns as a function of whether they had just need a White or Black boy's face.
+		 	Todd et al. (2016) found an interaction where Black faces primed faster ``gun'' responses and White faces faster ``toy'' responses.
+		 	When we reached out to the original authors, they offered to run a parallel rescue on their student subject pool, which we have here as an additional replication.
+		 	The first replication did not find the interaction, but both the better-powered rescue and the original authors' replication did.
+		 	\newline
+		 	
+		 	Yeshurun \& Levy (2003) looked at the relationship between spatial attention and temporal resolution.
+		 	They measured the threshold where two flashes of light are perceived as one flash versus two as a function of whether the location of the flashes was pre-cued or not.
+		 	Yeshurun \& Levy (2003) found that cueing led to less temporal resolution.
+		 	This was independently replicated by Chica \& Christie (2009), but was not replicated by either the student replication or the rescue.
+		 	Both the replication and rescue used in-person participants because the study relies on precise timing and details of the screen which are difficult to control online.
+		 	The first replication had a smaller sample size than the original, while the rescue matched the original study's sample size.
+		 	
+		 	
+		 }
 		
 		\theysaid{Be careful with generalizations}
 		\theysaid{In the conclusions the authors generalize beyond the context of students doing replications, to investigators doing replications. However, I do not believe this project allows for such generalizations.} 

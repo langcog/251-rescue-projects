@@ -44,10 +44,10 @@
 		
 		%TODO check links
 		
-		We have checked that the links in %TODO foobar
+		We have checked that the links data/combined\_data.csv
 		all work, and updated the README to be much more detailed. 
 		
-		Unfortunately, we don't have a way to edit the individual pre-registrations, but we believe all the necessary information for the rescues is now available. 
+		Unfortunately, we don't have a way to edit the individual pre-registrations, but we believe all the necessary information for the rescues is now available, linked from the data sheet. 
 		
 		I also address some of reviewer 1's specific repo-related concerns below; I suspect many of them would have been ameliorated had the reviewer been able to download the repo. 
 		
@@ -94,12 +94,12 @@
 		
 		As we now clarify in the updated README, these are archival copies of the reports (which were posted to Rpubs). From a cloned/downloaded copy of the repo, the html files can be opened in a browser to see the reports.
 		
-		 \revised{\begin{verbatim}
-		 		### First-replication-reports and Individual-rescue-reports
-		 		* archival copies of the reports from individual projects, in case the rpubs links break or are overwritten
-		 		* to view, download the repo and open the html files in a browser
+		% \revised{\begin{verbatim}
+		 %		### First-replication-reports and Individual-rescue-reports
+		 %		* archival copies of the reports from individual projects, in case the rpubs links break or are overwritten
+		 %		* to view, download the repo and open the html files in a browser
 		 		
-		 	\end{verbatim}}
+		 %	\end{verbatim}}
 		
 		\theysaid{In the process.Rmd file, data is downloaded from a google drive https://docs.google.com/spreadsheets/d/12A4DblSbX\_0tHP1mTVJhjNboI1YDngidkNWiSy0sN0g/edit\#gid=0 which I have no access to. }
 		
@@ -109,15 +109,15 @@
 		
 		The manuscript is written in an Rmd file that is reproducible. Each of the individual rescue projects was also written in a Rmd or qmd reproducible report (included in the individual project repos included in individual-rescue-projects/). We have now clarified this in the README. 
 		
-		\revised{ \begin{verbatim}
-			The overall manuscript can be reproduced by knitting manuscript/manuscript.Rmd
-			* This file reads data from data/combined_data.csv and data/boyce_2023_data.csv
-			* This file uses code/helper/parse_stats.R \end{verbatim}}
+	%	\revised{ \begin{verbatim}
+	%		The overall manuscript can be reproduced by knitting manuscript/manuscript.Rmd
+	%		* This file reads data from data/combined_data.csv and data/boyce_2023_data.csv
+	%		* This file uses code/helper/parse_stats.R \end{verbatim}}
 			
-		\revised{\begin{verbatim}
-				### First-replication-projects and Individual-rescue-projects
-			* include the individual replication and rescue projects (aka github repos) respectively
-			* the rescue projects repos have been checked and include data, code/reproducible report, and the materials to run the experiment\end{verbatim}}
+	%	\revised{\begin{verbatim}
+	%			### First-replication-projects and Individual-rescue-projects
+	%		* include the individual replication and rescue projects (aka github repos) respectively
+	%		* the rescue projects repos have been checked and include data, code/reproducible report, and the materials to run the experiment\end{verbatim}}
 		
 		\theysaid{ The latter can also be exported as PDF is need by, with the raw data and code in the same folder. I believe papers like this require a high quality standard – I would want to see all details if this was a single study, and I want to see all detail of every study when this is a large scale replication project. Ideally, there is a single master file that 1) writes all reproducible original replication reports and rescue reports, 2) takes the output from these reports and compiles the manuscript that has been submitted.}
 		

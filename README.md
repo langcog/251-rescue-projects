@@ -1,6 +1,6 @@
 # 251-rescue-projects
 
-Note: If you are a windows user and get an error about overly long file names, please see [this stackoverflow post](https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows) or [this github issue](https://github.com/desktop/desktop/issues/17882) for how to fix it. Alternatively, you can download a zip of the repo from [the osf copy](https://osf.io/cyk5w/files/github) by clicking "Download this folder".
+**Note:** If you are a windows user and get an error about overly long file names, please see [this stackoverflow post](https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows) or [this github issue](https://github.com/desktop/desktop/issues/17882) for how to fix it. Alternatively, you can download a zip of the repo from [the osf copy](https://osf.io/cyk5w/files/github) by clicking "Download this folder".
 
 ## Reproducing this project
 The preregistration for this project is at https://osf.io/5qz7v
@@ -9,9 +9,9 @@ The overall manuscript can be reproduced by knitting manuscript/manuscript.Rmd
 * This file reads data from data/combined_data.csv and data/boyce_2023_data.csv
 * This file uses code/helper/parse_stats.R 
 
-data/combined_data.csv has links to the write-ups, pre-registrations, and projects (code/data) for the replications and rescues. Additionally, the project repos are contained in first-replication-projects and individual-rescue-projects. Archival copies of the write-ups are in first-replication-reports and individual-rescue-reports (download/clone the repo and then open the html files in a web browser to view them). 
+**data/combined_data.csv has links to the write-ups, pre-registrations, and projects (code/data) for the replications and rescues.** Additionally, the project repos are contained in first-replication-projects and individual-rescue-projects. Archival copies of the write-ups are in first-replication-reports and individual-rescue-reports (download/clone the repo and then open the html files in a web browser to view them). 
 
-The numeric results in data/combined_data (effect size measures, sample sizes, number of trials) were coded off of the papers and reports. Where the effect size measures were not presented in the needed format, recalculations were done (see reconstruct_effect_sizes for data and code for these). 
+The numeric results in data/combined_data.csv (effect size measures, sample sizes, number of trials) were coded off of the papers and reports. Where the effect size measures were not presented in the needed format, recalculations were done (see reconstruct_effect_sizes for data and code for these). 
 
 ## Folder structure
 

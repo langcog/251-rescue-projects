@@ -903,6 +903,8 @@ The first replication and an additional class replication both found results in 
 The rescue used a much larger sample size than both the original and the first replication and added an additional check to make sure the probabilities participants reported add up to 100%.
 The rescue result was in the same direction as the original and prior replications, but did not find a significant effect.
 
+@chou2016 studied whether a sense of control affects how much one feels physical pain. Participants were asked to recall experiences where they had either a low or high amount of control and then to report their level of physical pain. The first replication closely followed the methods of the original, but added a manipulation check borrowed from a different experiment in @chou2016. The manipulation check was successful, but there were no significant difference in pain level between the two groups. The rescue added pre-survey questions about pain levels to confirm that participants in the two groups had the same baseline understanding of pain. The rescue also did not find a significant difference in pain level between groups. 
+
 @craig2014 had White Americans read an article about shifting racial demographics in the US, either with or without a framing that assuaged the potential threat, and found that reading the un-assuaged version led to the endorsement of more conservative positions.
 The first replication did not find a significant difference between conditions, and the rescuer speculated that this was due to a smaller sample size and a skew toward liberal political beliefs in the participant pool.
 The rescue recruited the same number of participants as the original study and dropped one of the conditions to increase power.

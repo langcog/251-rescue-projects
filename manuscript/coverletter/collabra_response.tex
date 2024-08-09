@@ -2,7 +2,7 @@
 \documentclass{stanfordletter}
 %\makelabels
 
-\makelabels
+%\makelabels
 \usepackage{todonotes}
 \usepackage{varioref}
 \usepackage{xr}
@@ -12,13 +12,9 @@
 \usepackage[backend=biber,style=apa,doi=false,url=false,hyperref=true,apamaxprtauth=30,uniquename=false]{biblatex}
 \usepackage{framed}
 \DeclareLanguageMapping{american}{american-apa}
-%\bibliography{../draft0}
 \newcommand{\citet}[1]{\textcite{#1}}
 \newcommand{\citep}[1]{\parencite{#1}}
 
-\newcommand{\theysaid}[1]{\begin{leftbar} \noindent 
-		\textsl{ #1}\end{leftbar}}
-\newcommand{\revised}[1]{\begin{quote}	#1 \end{quote}}
 
 \usepackage{longtable,booktabs,array}
 \usepackage{float}
@@ -26,16 +22,30 @@
 \providecommand{\tightlist}{%
 	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+\newcounter{section}
+
+
+\newcommand{\section}[1]{
+	\bigskip
+	{\normalfont\Large\bfseries #1}}
+
+
+\newcommand{\theysaid}[1]{\begin{leftbar} \noindent 
+		\textsl{ #1}\end{leftbar}}
+	
+\newcommand{\revised}[1]{\begin{quote}	#1 \end{quote}}
+
+
 \usepackage{hyperref}
 \begin{document}
 	\name{Veronica Boyce}
-\signature{\vspace{-35pt} Veronica Boyce, \\ on behalf of the author team}
-
-
-\begin{letter}{Professor Don van Ravenzwaaij \\ Editor-in-Chief \\ Collabra: Psychology }
+	\signature{\vspace{-35pt} Veronica Boyce, \\ on behalf of the author team}
 	
 	
-	\opening{Dear Dr. van Ravenzwaaij,} 
+	\begin{letter}{Professor Don van Ravenzwaaij \\ Editor-in-Chief \\ Collabra: Psychology }
+		
+		
+		\opening{Dear Dr. van Ravenzwaaij,} 
 		
 		
 		
@@ -43,561 +53,303 @@
 		
 		Thank you for your helpful comments! We have copied the reviews here and respond to them point by point, including quotes from the revised manuscript. 
 		
-		\theysaid{To summarize what I perceive to be the main points of attention:}
-		
-		\theysaid{(1) data accessibility/availability: I shared reviewer \#1’s experience of several broken links, or links that had restricted access. I understand how this might happen with so many different projects, but if this article is to be published, all of these issues will need to be fixed. I strongly urge you, or one of your co-authors, to spend an afternoon clicking on all the links (and also on the links in the links: the preregistration documents include links that do not always work as well) and repair everything that does not work. I’m partial to reviewer \#1’s suggestion of a master-R-markdown, but I will not insist as long as everything works in the end.}
-		
-		%TODO check links
-		
-		We have checked that the links data/combined\_data.csv
-		all work, and updated the README to be much more detailed. 
-		
-		Unfortunately, we don't have a way to edit the individual pre-registrations, but we believe all the necessary information for the rescues is now available, linked from the data sheet. 
-		
-		I also address reviewer 1's specific repository-related concerns more below; I suspect many of them would have been ameliorated had the reviewer been able to download the repository files.  
-		
-		\theysaid{(2) limitations/quality control: your discussion section, although admirably short, does not address any potential limitations your study has. I share reviewer \#1’s assessment that relative inexperience of the replicators is at least a potential limitation (but see https://journals.sagepub.com/doi/full/10.1177/1475725719857659, which you may wish to cite). There are several other points that reviewer \#1 is concerned about. You may not agree with all of them, so feel free to argue your case when you don’t, but across the board I do think a bit more engagement with these points is essential.}
-		
-		%TODO discussion section 
-		
-		We have added an explicit ``Limitations'' subsection to the discussion, which we discuss further below in our response to reviewer 1. 
-		
-		Also, see below for our changes and rebuttals to reviewer 1's other points.
-		
-		\theysaid{(3) implications: reviewer \#2 wonders how your results inform decisions on which papers to ‘rescue’. The final paragraph of the Discussion of your current submission only scratched the surface here. What to do? How valuable are these rescue attempts? Should we do more of them, or should we focus on ‘first’ replications, or should we not do them at all?}
-		
-		We have expanded the last part of the discussion section to acknowledge the much larger picture of different circumstances that motivate replications and rescues, and how these might be influenced by the prior beliefs of the investigators. We discuss the changes more below in response to reviewer 2's points. 
-		
-		\theysaid{In your resubmission, please include a document with a point-by-point response to both the points I list here and the reviewers’ comments, outlining each change made in your manuscript or providing a suitable rebuttal. Please ensure that your revised files adhere to our author guidelines, and that the files are fully copyedited/proofed prior to upload. Please also ensure that all necessary copyright permissions have been obtained. This may be the last opportunity for major editing, therefore please fully check your file prior to re-submission.}
-		
-		
-		\theysaid{Reviewer 1}
-
-		
-		\theysaid{The authors report the result of replication studies performed as part of an educational project. The results vary – some are relatively similar, of clear null replications, but others show a surprising amount of variability, possibly due to time and resource constraints, or a lack of experience. The main research question is what the probability is that failed studies can be rescued. The authors suggest this probability is rather low, but I think the current study does not really allow such generalizable conclusions. As Many Labs 5, the set of studies is not representative of the population. I have a number of observations that will hopefully help to improve the manuscript.}
-		
-		\theysaid{Data needs to be shared in a reproducible manner}
-		\theysaid{Regrettably I could not download the files from github – some filenames that have been uploaded are too long, and both cloning the repo as downloading at a zip file give errors (on my windows machine). }
-		
-		We are sorry this error occurred, and that reviewer 1 didn't realize the files could be downloaded directly from the OSF copy (linked in the paper).  The inability of reviewer 1 to download and open the files seems to have resulted in misunderstandings about the usability of files in the repo (which are much more understandable when opened on a computer).
-		
-		From googling, we believe the long files names issue to be a windows issue, and to prevent this problem for future users we have added a note at the top of the README directing readers for how to address or sidestep the problem, namely:
-		
-		\revised{Note: If you are a windows user and get an error about overly long file names, please see [this stackoverflow post] (https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows) or [this github issue] (https://github.com/desktop/desktop/issues/17882) for how to fix it. Alternatively, you can download a zip of the repo from [the osf copy] (https://osf.io/cyk5w/files/github) by clicking "Download this folder".}
-		
-		Hopefully this warning will prevent future difficulties with accessing the repository. 
-		
-		\theysaid{The repository is also not organized well enough to make it easy to see all the information. It needs to be restructured, with an actual read me, a clear folder structure, all files should be interoperable, etc. 
-		}
-		
-		We think the structure is actually pretty clear, but we apologize that the README was not more detailed. We have rewritten the README to be much more explicit about how to reproduce the paper as well as what all the folders and files contain.
-		
-		See  https://github.com/langcog/251-rescue-projects/tree/main for the revised README, which I also quote here:
-		
-		\revised{
-		\textbf{\large 251-rescue-projects}\label{rescue-projects}
-			
-			\textbf{Note:} If you are a windows user and get an error about overly
-			long file names, please see
-			\href{https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows}{this
-				stackoverflow post} or
-			\href{https://github.com/desktop/desktop/issues/17882}{this github
-				issue} for how to fix it. Alternatively, you can download a zip of the
-			repo from \href{https://osf.io/cyk5w/files/github}{the osf copy} by
-			clicking ``Download this folder''.
-			
-			
-			\textbf{\large Reproducing this project}\label{reproducing-this-project}
-			
-			The preregistration for this project is at https://osf.io/5qz7v
-			
-			The overall manuscript can be reproduced by knitting
-			manuscript/manuscript.Rmd 
-			\begin{itemize}
-				\tightlist
-				\item 
-				This file reads data from
-				data/combined\_data.csv and data/boyce\_2023\_data.csv
-				\item  
-				This file uses
-				code/helper/parse\_stats.R
-			\end{itemize}
-			
-			\textbf{data/combined\_data.csv has links to the write-ups,
-				pre-registrations, and projects (code/data) for the replications and
-				rescues.} Additionally, the project repos are contained in
-			first-replication-projects and individual-rescue-projects. Archival
-			copies of the write-ups are in first-replication-reports and
-			individual-rescue-reports (download/clone the repo and then open the
-			html files in a web browser to view them).
-			
-			The numeric results in data/combined\_data.csv (effect size measures,
-			sample sizes, number of trials) were coded off of the papers and
-			reports. Where the effect size measures were not presented in the needed
-			format, recalculations were done (see reconstruct\_effect\_sizes for
-			data and code for these).
-			
-			\textbf{\large Folder structure}\label{folder-structure}
-			
-			\textit{Code}\label{code}
-			
-			\begin{itemize}
-				\tightlist
-				\item
-				initial\_criteria.R describes the process for determining which
-				projects were eligible for rescue
-				\item
-				process.Rmd is a draft analysis script
-				
-				\begin{itemize}
-					\tightlist
-					\item
-					it pulls the coded data from our google sheet and merges it with
-					study-level variables from Boyce 2023 replication data to write
-					data/combined\_data.csv
-					\item
-					it checks that we don't have parsing errors in our data format
-					\item
-					it does analyses (those in the manuscript have their analysis
-					duplicated in manuscript/manuscript.Rmd)
-				\end{itemize}
-				\item
-				helper/parse\_stats.R parses our raw effect size format and calculates
-				standardized effect sizes and helper/stats.R wraps p\_original and
-				prediction\_interval functions (used by process.Rmd but not
-				manuscript.Rmd)
-			\end{itemize}
-			
-			\textit{Data}\label{data}
-			
-			\begin{itemize}
-				\tightlist
-				\item
-				combined\_data.csv is the raw data coding sheet with links to
-				pre-registrations, etc
-				\item
-				parsed\_data.csv is a saved intermediate that has the results of
-				parsing effect sizes and computing standardized effect sizes
-				\item
-				boyce\_2023\_data.csv is a copy of data from
-				\href{https://royalsocietypublishing.org/doi/full/10.1098/rsos.231240}{Boyce
-					et al 2023} which reports on the first replications
-			\end{itemize}
-			
-			\textit{Manuscript}\label{manuscript}
-			
-			\begin{itemize}
-				\tightlist
-				\item
-				manuscript.Rmd is the manuscript, with analysis code embedded
-				\item
-				manuscript.pdf is the result of knitting manuscript.Rmd
-				\item
-				251rescue.bib is the bibliography
-				\item
-				apa7.csl, generic\_article\_template.tex are helper files for
-				formatting the manuscript
-				\item
-				coverletter/, title\_page.Rmd, and manuscript\_anon.Rmd are leftovers
-				of the submission process
-			\end{itemize}
-			
-			\textit{First-replication-projects and
-				Individual-rescue-projects}\label{first-replication-projects-and-individual-rescue-projects}
-			
-			\begin{itemize}
-				\tightlist
-				\item
-				include the individual replication and rescue projects (aka github
-				repos) respectively
-				\item
-				the rescue projects repos have been checked and include data,
-				code/reproducible report, and the materials to run the experiment
-			\end{itemize}
-			
-			\textit{First-replication-reports and
-				Individual-rescue-reports}\label{first-replication-reports-and-individual-rescue-reports}
-			
-			\begin{itemize}
-				\tightlist
-				\item
-				archival copies of the reports from individual projects, in case the
-				rpubs links break or are overwritten
-				\item
-				to view, download the repo and open the html files in a browser
-			\end{itemize}
-			
-			\textit{reconstruct\_effect\_sizes}\label{reconstruct_effect_sizes}
-			
-			In a few cases, the effect size information we needed for comparable
-			SMDs was not available from published papers or project write-ups, and
-			we had to construct it. 
-			\begin{itemize}
-				\tightlist\item schectman\_es.Rmd calculates the effect size
-			for the original
-			\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6634660/}{Schechtman
-				et al.} The original paper reports a p-value but not exact values, but
-			the authors were kind enough to send their matlab data files. This uses
-			the three DataTest.mat files. Additionally, we looked at the
-				rescue data to recalculate trial counts
-				(subject\_data\_final\_full\_processed.csv) 
-				\item 
-			\href{https://www.pnas.org/doi/pdf/10.1073/pnas.2202657119}{Denis et al}
-			is an additonal replication of Payne et al 2008; however the analysis
-			reported in the paper is not the same as the analysis Payne et al used.
-			Luckily data was available, so we calculate the corresponding result in
-			denis\_es.Rmd using data in Expt1\_OverallRecognition.csv and
-			Expt1\_SpecificRecognition.csv. 
-			\item  For Hopkins et al, the main effect of
-			interest is a coefficient in a linear model. However, coefficients
-			cannot be converted to SMD easily, so we calculate the mean and sds
-			instead in hopkins\_es.Rmd. The original data is in hopkins\_raw.csv,
-			the replication and rescue data is sourced from their github repos.
-		\end{itemize}
-		
-			
-			\textit{So you want to rescue a project
-				\ldots{}}\label{so-you-want-to-rescue-a-project}
-			
-			\begin{itemize}
-				\item
-				this is a copy of a list of potential reasons for replication failures
-				shared with the rescuers in the early stages of the rescues
-			\end{itemize}
-		}
-
-		
-		\theysaid{The reports are written in some sort of Rpubs format which consists of many files, but nothing I clicked lead to a readable file – I am quite certain this is not how these files should be exported and shared.}
-		
-		As we now clarify in the updated README (quoted above), these are archival copies of the reports (which were posted to Rpubs). From a cloned/downloaded copy of the repo, the html files can be opened in a browser to see the reports.
-	
-		
-		\theysaid{In the process.Rmd file, data is downloaded from a google drive https://docs.google.com/spreadsheets/d/12A4DblSbX\_0tHP1mTVJhjNboI1YDngidkNWiSy0sN0g/edit\#gid=0 which I have no access to. }
-		
-		This is in an eval=F section, and process.Rmd both runs and knits without access to the file. However, to avoid future confusions, we have made the google spreadsheet openly viewable. 
-		
-		\theysaid{It is clear this all needs to be checked by a reviewer before the manuscript can be accepted. I would strongly urge the author to add all files as reproducible markdown files (the manuscript, but also the individual data reports).}
-		
-		The manuscript is written in an Rmd file that is reproducible. Each of the individual rescue projects was also written in a Rmd or Qmd reproducible report (included in the individual project repos included in individual-rescue-projects/). We have now clarified this in the README. 
-		
-		
-		\theysaid{ The latter can also be exported as PDF is need by, with the raw data and code in the same folder. I believe papers like this require a high quality standard – I would want to see all details if this was a single study, and I want to see all detail of every study when this is a large scale replication project. Ideally, there is a single master file that 1) writes all reproducible original replication reports and rescue reports, 2) takes the output from these reports and compiles the manuscript that has been submitted.}
-		
-		We hope that our updated README now makes it clear where to find all of the details of all of the rescue projects as well as the sourcing for the overall manuscript. 
-		
-		
-		\theysaid{Focus on the qualitative data}
-		\theysaid{It is interesting to see the results of these projects, as they show the messiness of results when quality control is less strict than in other replication projects. In some ways, the current set of studies can be regarded as a lower bound of replication success under very challenging conditions. Moreover, the qualitative insights when describing the individual studies (which should be extended) is quite educational. For example, it shows the importance of sharing materials, and provides an impetus to require material sharing when a paper is published.}
-		
-		We agree that the frustration of original materials not being available or original instructions not being available is educational and hopefully serves as an impetus for more sharing. 
-		
-		\theysaid{ I think a number of improvements to the manuscript are warranted, but I believe that the final result is worth sharing with the scientific community. Because there are no line numbers, the author will perhaps need to search a bit for where my comments apply.
-		The case studies section is the most interesting part, but it should be extended to all studies.
-		 There are not too many studies, and some can be discussed briefly if results are consistent non-replications. This section should also proceed the quantitative analyses. It is so clear that some studies were incompetently performed that I personally no longer care about the quantitative analyses of these replications. Several of the studies with ugely diverging effect sizes are not discussed at all: Tarampi, Haimowitz, Porter (why did the rescue succeed?).}
-		 
-		 %TODO update after MS is potentially revised
-		 
-		 We thank the reviewer for this idea. We have added an Appendix with brief descriptions of the topics and outcomes of each of the studies. 
-		 
-		  We disagree about the ordering, as some readers may be more interested in the bottom line overall results than the individual studies.
-		 
-		 The contents of the Appendix is now as follows:
-		 
-		 \revised{
-		 	
-		 	Write-ups of individual rescue and replication projects can be found in the repository at \url{https://osf.io/cyk5w/}.
-		 	\newline
-		 	
-		 	Birch \& Bloom (2007) is about a false belief task comparing ignorance and plausible knowledge conditions.
-		 	The first replication and an additional class replication both found results in the same direction as the original result, but much smaller.
-		 	The rescue used a much larger sample size than both the original and the first replication and added an additional check to make sure the probabilities participants reported add up to 100\%.
-		 	The rescue result was in the same direction as the original and prior replications, but did not find a significant effect.
-		 	\newline
-		 	
-		 	Chou et al. (2016) studied whether a sense of control affects how much one feels physical pain. Participants were asked to recall experiences where they had either a low or high amount of control and then to report their level of physical pain. The first replication closely followed the methods of the original, but added a manipulation check borrowed from a different experiment in Chou et al. (2016). The manipulation check was successful, but there were no significant difference in pain level between the two groups. The rescue added pre-survey questions about pain levels to confirm that participants in the two groups had the same baseline understanding of pain. The rescue also did not find a significant difference in pain level between groups.
-		 	\newline
-		 	
-		 	Craig \& Richeson (2014) had White Americans read an article about shifting racial demographics in the US, either with or without a framing that assuaged the potential threat, and found that reading the un-assuaged version led to the endorsement of more conservative positions.
-		 	The first replication did not find a significant difference between conditions, and the rescuer speculated that this was due to a smaller sample size and a skew toward liberal political beliefs in the participant pool.
-		 	The rescue recruited the same number of participants as the original study and dropped one of the conditions to increase power.
-		 	Despite the increased power, the rescue did not replicate the original paper's finding.
-		 	\newline
-		 	
-		 	Gong et al. (2019) looked at the interplay between age and willingness to donate in older adults in Hong Kong and found a three-way interaction between age, type of donation, and relationship to recipient.
-		 	The first replication sampled US adults and did not find a significant interaction.
-		 	The rescuer thought that cultural differences may have played a role and specifically sampled Asian American adults.
-		 	The rescue did not recover the interaction.
-		 	\newline
-		 	
-		 	Haimovitz \& Dweck (2016) manipulated parents' mindsets with ``failure-is-enhancing'' or ``failure-is-debilitating'' primes and looked at their reactions to a hypothetical situation in which a child received a failing grade.
-		 	The first replication found a point estimate in the opposite direction to the original effect, but an additional class replication found a directionally consistent effect.
-		 	The rescue added manipulation checks which were not present in the original study or either replications.
-		 	The manipulation checks passed, but the rescue study did not recover the target effect.
-		 	\newline
-		 	
-		 	Hopkins et al. (2016) examined whether people prefer reductive explanations, which explain a result in one science with a more ``fundamental'' science, to horizontal explanations, which explain a result in one science in terms of the same science.
-		 	While the original study found a preference for reductive explanations, the first replication did not.
-		 	The replication's effective sample size was smaller than the original because a large proportion of participants failed the attention check.
-		 	The rescue increased made the attention check slightly easier and recruited a larger sample to account for failures, but still did not replicate the original effect.
-		 	\newline
-		 	
-		 	Jara-Ettinger et al. (2022) looked at shape bias in US adults across 3 shape exemplars and found a preference to extend nouns on the basis of shape rather than color or material.
-		 	The replication found an above-chance preference for shape, but with very high item-level variability.
-		 	The rescuer found that the first replication used stylized versions of the original stimuli taken from a different part of the paper.
-		 	The rescue used the same images of stimuli as the original, but still found strong item-level effects and relative preferences for color and material.
-		 	\newline
-		 	
-		 	Paxton et al. (2012) found that participants who completed the Cognitive Reflection Test (CRT) before the moral judgement task gave more utilitarian answers than those who did the moral judgment task before the CRT.
-		 	The replication rewrote some of the CRT questions, adding a sub-condition where some of the questions featured characters with specific names.
-		 	The first replication failed to find an effect.
-		 	The rescuer removed the sub-condition and used questions from the CRT-2, out of concern that Prolific participants would be familiar with the original CRT questions.
-		 	The rescue also failed to find the effect.
-		 	\newline
-		 	
-		 	Porter et al. (2016) looked at how linguistic intergroup bias influences judgments of shared group membership.
-		 	The first replication found an effect directionally inconsistent with the original result.
-		 	The rescuer obtained the direct wordings of the questions from the authors of the original paper, and noticed that they were substantially different from questions in the first replication.
-		 	The rescue used the same wordings as the original paper and replicated the effect, although the manipulation check failed.
-		 	\newline
-		 	
-		 	Schechtman et al. (2010) looked at how widely people generalize tones that previously have been paired with losses or gains, and found that the loss-paired tones were generalized more.
-		 	The first replication found a statistically significant effect in the opposite direction of the original study.
-		 	It also found that people took much longer to learn which tones were associated with gains vs.~losses compared to the original.
-		 	The rescuer made several changes, including asking questions about the sound quality of the participant's computer.
-		 	The original study was conducted in person while the replication and rescue were online, so differences in speaker and headphone quality might have played a role in the different result.
-		 	The rescue found an effect in the same direction as the 1st replication (contrary to the original study).
-		 	\newline
-		 	
-		 	As discussed in methods, Tarampi et al. (2016) had participants do a timed navigation task and found an interaction between participant gender and the framing of the task (social or spatial) on performance.
-		 	The result from the first replication was both statistically insignificant and directionally inconsistent.
-		 	The original study was conducted in person, while the replication was conducted online, which might have contributed to the inconsistency.
-		 	The rescue was also conducted online, but the rescuer made a series of user interface changes, a comprehension check, and exclusion criteria to ensure that participants understood the instructions, found the task convenient to interact with, and were engaged throughout the experiment.
-		 	Still, the rescue did not recover the interaction.
-		 	\newline
-		 
-		 	Todd et al. (2016) looked at participants speed at classifying toys and guns as a function of whether they had just need a White or Black boy's face.
-		 	Todd et al. (2016) found an interaction where Black faces primed faster ``gun'' responses and White faces faster ``toy'' responses.
-		 	When we reached out to the original authors, they offered to run a parallel rescue on their student subject pool, which we have here as an additional replication.
-		 	The first replication did not find the interaction, but both the better-powered rescue and the original authors' replication did.
-		 	\newline
-		 	
-		 	Yeshurun \& Levy (2003) looked at the relationship between spatial attention and temporal resolution.
-		 	They measured the threshold where two flashes of light are perceived as one flash versus two as a function of whether the location of the flashes was pre-cued or not.
-		 	Yeshurun \& Levy (2003) found that cueing led to less temporal resolution.
-		 	This was independently replicated by Chica \& Christie (2009), but was not replicated by either the student replication or the rescue.
-		 	Both the replication and rescue used in-person participants because the study relies on precise timing and details of the screen which are difficult to control online.
-		 	The first replication had a smaller sample size than the original, while the rescue matched the original study's sample size.
-		 	
-		 	
-		 }
-		
-		\theysaid{Be careful with generalizations}
-		\theysaid{In the conclusions the authors generalize beyond the context of students doing replications, to investigators doing replications. However, I do not believe this project allows for such generalizations.} 
-		
-		This reviewer seems to strongly distinguish between students and investigators. Perhaps this is from a misconception of who we are talking about when we talk about students (perhaps due to differences in training in different areas). 
-		
-		To clarify, these were replications done primarily by first year PhD students at an elite US institution. Many publications (including in top journals) are in fact done by PhD students, under the supervision of professors. We checked the google scholars of the rescuers here and 7/17 of them (40\%) already had peer-reviewed journal publications, several of which were first-authored. These students are or will soon be publishing in the literature. We agree that they may not have extensive expertise, but we think they and thus their rescue projects are reasonably representative of work by early career researchers with limited resources.
-		
-		Since ``student'' can bring to mind different populations for different people, we have clarified in our limitations section who the rescuers were and how we think this is likely to generalize to other early career researchers (i.e. many of the people conducting research) but may not generalize to experts. 
-		
-		The limitations section reads:
-		
-		\revised{
-			The reported rescue projects are a small sample of replications, leading to highly uncertain estimates.
-			Additionally, they were chosen non-randomly, as they were doubly selected for based on student interest -- once for the original replication and again for the rescue.
-			However, this selection bias is likely to correlate with how graduate students and other early career researchers choose what topics to work on and what studies to build on.
-			Nevertheless, our estimate is still broadly consistent with that of ManyLabs 5 (29\% vs.~22\%, Ebersole et al., 2020).
-			\newline
-			
-			One potentially salient limitation of our work here is that the rescue projects (and the first replications) were primarily conducted by first year PhD students; hence the generality of our conclusions to other investigators is unknown. We believe, however, that this is more of an apparent than an actual limitation. Students were enrolled in a highly-competitive graduate program where it is expected that PhD students author peer-reviewed papers; several of the rescuers already had published first-authored peer reviewed articles. Thus, while we refer to the rescuers as students, they are investigators doing experiments that become part of the literature.
-			\newline 
-			
-			Students conducting rescue projects put substantial effort into trying to set up rescues that had a good chance of success, but projects were constrained by budget limitations, a short timeline, and the constraint that most data collection needed to occur online. Additionally, while most students had done research before and were learning best practices for experiments, they were not experts in the particular paradigms they were implementing. These limitations are representative of the sort of knowledge and resource limitations often faced by early-career researchers. That said, it is possible that different results might be obtained in better-resourced settings, by scientists with more expertise, more time, or more privileged knowledge about how the original experiments were conducted.
-			\newline 
-			
-			Due to the limited number of replications that are conducted and systematically reported, and the even smaller number of re-replications reported, there is substantial uncertainty in how much replicability varies across features of the original experiment and replications.}
-		
-		\theysaid{The replication studies were often not done very well, or with severe limitations (lack of original materials, or switching to an online sample) and when we discuss whether an investigator should further pursuit a research line after a failed replications, it seems fair to at least first assume they will perform a very close replication (even closer than many studies reported here).}
-		
-		The original replications were performed under limitations, such as time limits and online samples, which we acknowledge, but which we believe is common when early career researchers build on existing work. They may be limited in what resources (time, money, access to populations) are available, and so what results are accessible to them is relevant. 
-		
-		As for when original materials aren't available, the replications are as close as they can be, which may be not very close. Replicators did what they could given the external constraint of unavailable materials. 
-		
-		
-		\theysaid{Experimental design of replication studies}
-		\theysaid{The authors state they attempted to adequately power studies, but they refer to trying to achieve 2.5 times the sample size in the original study (ignoring the sample size and effect size in the replication study). But there are no details on what the original effect sizes were and how much power the replication studies had. There is only a mention of sample sizes, not of effect sizes. We only learn much later that several of the first replication studies had substantial challenges in recruiting sufficient participants, and had smaller sample sizes than the originals.}
-		
-		The idea behind 2.5x sample size is that it gives the replication an 80\% chance of correctly rejecting the null hypothesis of an effect that the original was 33\% powered for. This standard has the convenience of being agnostic to the type of experiment and test being conducted (unlike calculating effect sizes or calculating power, which both can be difficult and very sensitive to design). This 2.5x is a target for answering is there an effect big enough for the original study to have reasonably detected. 
-		
-		
-		\theysaid{Subjective replication probability is unclear}
-		\theysaid{The subjective replication probability coded as 0, 0.25, 0.75 and 1 is extremely confusing. It should be dropped.}
-		
-		We disagree. This coding was used in the paper this is follow-up to (https://royalsocietypublishing.org/doi/full/10.1098/rsos.231240) because it was the coding done at the time of (most) of the original replications. 
-		
-		There are many metrics for what counts as a successful replication, but many of them depend on a key-statistic. As discussed in Hawkins et al 2018 (https://journals.sagepub.com/doi/full/10.1177/2515245917740427) and Boyce et al 2023 (https://royalsocietypublishing.org/doi/full/10.1098/rsos.231240), original papers often report a number of effects, and it is not always clear which one is the most key. Additionally, often the pattern of interest is dependent on multiple numeric effects (ex. two main effects and their interaction). Thus we think the holistic, subjective assessment of whether or not a study replicated is important, although we also do analyze a key effect as well. 
-		
-		\theysaid{ When I look at the studies the authors seem to have used this score as some sort of count of properties of the original and replication. For example, a replication study that yielded a significant result but was statistically smaller must have gotten a .5 score. }
-		
-		As we wrote the in the methods section, ``Each project was rated on the basis of subjective replication success (on a 0--1 scale) by both MCF and one of VB and BP.
-		We thought about replication in terms of general match in key study results (direction, magnitude, and significance), rather than focusing on any singular numeric result or significance cut-off.''
- 
-		
-		\theysaid{
-		It would be more useful if the authors just listed the raw properties (was the study significant, was it statistically different from the original, etc). For example, the authors discuss the Krauss replication as succesful, but in Figure 1 it looks like the 95\% CI overlaps with 0. So, it was not statistically significant? Why is it considered to have replicated?}
-		
-		Whether a replication is statistically significant in the same direction as the original is one metric that is sometimes used as a measure of replicability, but as noted by Patil et al 2016 (doi.org/10.1177/1745691616646366), it isn't a very good one as differences in where $p<.05$ can arise from sampling variation. 
-		
-		As we discuss in the case study section, the Krauss paper reported correct justification from 2/67 in the control condition and 13/34 in the guided thinking condition.  The rescue had 1/40  correct justifications in the control condition and 6/35 in the guided thinking condition. This effect was significant, though smaller than the effect in the original. 
-		
-		The effect sizes shown are SMDs, but in order to show the effects on the same scale, we had to coerce all the numbers onto the same scale, even if it required approximations as part of the conversions. For assessing individual studies it makes more sense to look at their raw results, rather the converted results. 
-		
-		\theysaid{Statistical analysis}
-		\theysaid{Upon first read I was not too enthusiastic about using a replication metric that incorporated heterogeneity. It seems a weird choice to treat unknown variability across studies as statistical uncertainty. Surely, in the end a replication study should mean that we observe the same effect size, and that we understand the topic sufficiently to observe a similar effect repeatedly. However, Figure 1 convinced me that in this context something else needs to be done, as the variability is simple huge. In part this must be due to the students doing the replications. I wonder if the authors redid all analyses and checked for mistakes. Some differences are just too large. We also know from the published literature that there is fraud in student projects, and I wonder if this has been checked.}
-		
-		We are fairly confident that there is not fraud as a) committing fraud would have been strictly more work than not and b) students had no incentive to commit fraud. During the class, students submitted their projects for a number of checkpoints. Thus, we know that students had working implementations of the studies because the TAs went through every experiment and gave feedback. Additionally, students had to have working code that ran on their pilot data before they were approved for running the main data collection. We also know that the students ran studies on the class Prolific account because we can see how many participants were recruited and paid for each study. Thus, we know data was collected. Students knew that their grades in no way depended on what results they got (i.e. whether the study replicated), so had no incentive to change the data they had collected. 
-		
-		Finally, don't you think that if students were going to commit fraud, they'd make the study work better? Even the studies that did rescue had smaller effect sizes than the original studies. 
-		
-		We also have a larger sample of student replication studies conducted in previous years of the class, and these found a similar rate of replication as previous studies such as RP:P (see Boyce et al 2023). 
-		
-		\theysaid{For the additional replications it would be good to know if they were class projects or replications by more experienced researchers. For example, I assume at least one is from the RP:P. The authors could cite the studies that are in the literature, and indicate class projects with a different symbol in the figure than the triangle, or using an open triangle. }
-		
-		Thanks for this suggestion. In the case study section and the appendix, when we describe studies where there were additional replications, we now mention the additional studies and where they come from, citing those from the published literature. 
-		
-		
-		\theysaid{This needs a finer grained analysis – also because the authors choose to include these replications they are aware of in the meta-analysis to evaluate the results. If these replications are not registered reports, and they come from the published literature, their effects may be biased. If they are from the same authors, they might be biased. If they are done by students, they might be more variable due to some lack of expertise.}
-		
-		\theysaid{I do not really like the comparisons of the original against all replications, because sometimes there is so much variability between the studies, it feels weird to meta-analyze them, and it is an example of garbage in, garbage out.}
-		
-		I think there may be a misunderstanding here -- we aren't doing meta-analyses in order to aggregate effect size across the the original and replications. 
-		
-		When we discuss the ``meta-analytic'' mean of some studies that is because the measures of consistency we use (p-original) is between two things, so to compare more than two, some have to be pooled (which does make use of meta-analysis to do the pooling to get an aggregate mean and spread). As described in Mathur and VanderWeele 2020 (https://rss.onlinelibrary.wiley.com/doi/full/10.1111/rssa.12572) which introduces the statistic of p-original, it uses the point estimate and standard error of the original compared to the average population effect size in the replications and standard error thereof. As they mention, the most common way to get the average population effect size is via a random effects meta analysis. 
-		
-		\theysaid{ First, I do not like the addition of additional replications. No systematic search has been done, so these studies might differ in some ways, and bias the overal effect size estimate. These additional studies can be mentioned, but, we should also see meta-analytic effect sizes without these replications.This can easily be presented in a table with different columns.}
-		
-		Students did search for direct replications of the studies, which if they are in the published literature are likely to be found. It is possible that there happen to be direct replications that aren't labeled as such that we could have missed, and of course, there could be unpublished or grey literature replications. 
-		
-		We understand the concern about wanting to see just the replication and rescue, so we have added a column to Table 1 with this information.
-		
-		New Table 1 shown below: 
-		
-			\begin{tabular}[t]{lrrrrr}
-				\toprule
-				\multicolumn{1}{c}{ } & \multicolumn{5}{c}{p-original comparing between} \\
-				\cmidrule(l{3pt}r{3pt}){2-6}
-				\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Original and} & \multicolumn{1}{c}{Rescue and} \\
-				\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-6}
-				Paper & All reps & 1st Rep and Rescue & Rescue & Non-rescue & Other reps\\
-				\midrule
-				Birch \& Bloom 2007 & 0.192 & 0.189 & 0.194 & 0.191 & 0.989\\
-				Child et al. 2018 & 0.669 & 0.669 & 0.641 & 0.858 & 0.778\\
-				Chou et al. 2016 & 0.055 & 0.055 & 0.101 & 0.005 & 0.231\\
-				Craig \& Richeson 2014 & 0.145 & 0.145 & 0.001 & 0.302 & 0.020\\
-				Gong et al. 2019 & 0.262 & 0.262 & 0.057 & 0.511 & 0.228\\
-				Haimovitz \& Dweck 2016 & 0.068 & 0.018 & 0.018 & 0.180 & 0.867\\
-				Hopkins et al. 2016 & 0.290 & 0.290 & 0.654 & 0.004 & 0.015\\
-				Jara-Ettinger et al. 2022 & 0.014 & 0.014 & 0.000 & 0.006 & 0.000\\
-				Krauss \& Wang 2003 & 0.271 & 0.271 & 0.519 & 0.139 & 0.311\\
-				Ngo et al. 2019 & 0.106 & 0.000 & 0.000 & 0.385 & 0.257\\
-				Paxton et al. 2012 & 0.011 & 0.011 & 0.005 & 0.023 & 0.649\\
-				Payne et al. 2008 & 0.023 & 0.071 & 0.031 & 0.079 & 0.895\\
-				Porter et al. 2016 & 0.370 & 0.370 & 0.905 & 0.002 & 0.003\\
-				Schechtman et al. 2010 & 0.712 & 0.712 & 0.654 & 0.770 & 0.877\\
-				Tarampi et al. 2016 & 0.000 & 0.000 & 0.000 & 0.000 & 0.145\\
-				Todd et al. 2016 & 0.062 & 0.100 & 0.124 & 0.058 & 0.778\\
-				Yeshurun \& Levy 2003 & 0.614 & 0.007 & 0.017 & 0.943 & 0.474\\
-				\bottomrule
-			\end{tabular}
-		
-		We again note that there appears to be a confusion over what is presented as we never present meta-analytic effect sizes for the reasons discussed above. 
-		
-		 \theysaid{This can easily be presented in a table with different columns. Currently, only the p-values are reported – this is insufficient. We should see the meta-analytic effect sizes and their confidence intervals. I assume some are incredibly wide due to the widely varying effect sizes, and hence lead to a low p-value.}
-		 
-		 Again, it seems like there may be confusion here -- the ``p-values'' presented here are ``p-original'' which is p-value like in that it's a measure of how likely an estimate would be to be at least as extreme as observed given a ``null'' distribution. It is a measure of statistical (in-)consistency on the effect sizes, not a measure of how close to zero the effect sizes are. 
-		 
-		 
-		 \theysaid{It would also be good to see measures of heterogeneity (even if tests for heterogeneity have low power with few studies). It is a bit weird all tests assume the same tau, when this is clearly not correct. I understand the idea – it is difficult to know the true tau – but this solution seems suboptimal.}
-		
-		We have too few datapoints to meaningfully estimate the heterogeneity from our data (Mathur and VanderWeele suggest using the calculated tau if there are 10 or more replications); however, we also know the heterogeneity is not 0, so our best option is to use an estimated measure of heterogeneity, as is done as a sensitivity analysis in Errington et al 2021 and Boyce et al 2023. 
-		
-		\theysaid{Minor points}
-		\theysaid{Why is the median p-orig value reported? What does this tell us? I think this part of section 3.2 can be deleted.}
-		
-		P-original is a measure of the statistical (in-)consistency between the original and the replications. We present the median and IQR as a way to summarize the overall levels of inconsistency between original and replication in our sample of studies. 
-		
-		\theysaid{Not all predictors are explained. What does the predictor ‘ Stanford’ mean? Or log trials? Please explain all predictors, otherwise it is no use to report them.}
-		
-		We apologize for this oversight. We have changed these row names to ``Original authors at Stanford'' and 
-		``Log number of trials''. We have also amended the caption to clarify the reason for Stanford being relevant as well as provide a reference to where the predictors are discussed at length in Boyce et al 2023. The revised caption reads:
-		
-		\revised{Correlations between an individual predictor and the subjective replication score of the rescue project. The first set of predictors were pre-registered based on the correlates used in Boyce et al. (2023). Original authors at Stanford refers to at the time of the first replication as this may mean the first replication was not independent. For details about how the predictors were coded, see the Methods section of Boyce et al. (2023). The last three predictors were added post-hoc.}
-		
-
-		\theysaid{It is the open science collaborations, not consortium.}
-		
-		Oops, thank you for bringing this to our attention, we have fixed it. 
-		
-		\theysaid{All studies replicated should be reported in the reference list.}
-		We re-confirmed that all the original studies were present in the reference list. 
-		
-		\theysaid{Signed, Daniel Lakens}
-		
-		\theysaid{Reviewer 2}
-		
-		\theysaid{Thanks for the opportunity to review this paper.}
-		
-		\theysaid{I believe this is a well-written paper, with an interesting question: Should investigators devote more time to continued replications?
-		In the paper, the authors try to “rescue” papers after an original failure to replicate. They show that in their relatively small sample of 17 studies, 5 could be rescued, and the others couldn’t, suggesting that rescuing studies has a high failure rate.}
-		
-		\theysaid{I do believe this is an interesting finding, although not completely surprising: in a world in which it is already hard to replicate studies, it make sense that it is even harder to rescue an outcome after a failed replication attempt. But the effort of the authors shows this elegantly, and it also shows, maybe surprisingly to some, that studies actually can be rescued, despite failed replication attempts earlier. In the debates on these issues so far, a failed replication is sometimes presented as the end of the discussion, and indirectly this study shows that it doesn’t have to be. I think the data leave room for multiple sometimes seemingly contradictory conclusions: one could argue that we should be careful in spending our limited resources on trying to rescuing a study that was already unsuccessfully replicated, whereas another could say that the difficulty in finding the right subjects can sometimes affect results in such a way that we should be careful in taking the failed replication too seriously.}
-		
-		
-		\theysaid{So in general, I think the findings are interesting, and I think the authors did a good job in writing this up. What I am less convinced about is how this should inform decisions on rescuing papers. What does the general picture (a large majority of studies could not be rescued) tell me as a researcher who is contemplating rescuing a particular study? Since I assume that the selection of studies to be potentially rescued won’t be random, I probably already have reasons why I want to rescue this study. Either I am involved in the issue (I may be one of the people believing the original effect, or I may be even one of the authors of the original study), or I have reasons to believe that something went wrong in the replication study. Or I could believe that if the effect were true, this would be so important to know that it is worth taking the relatively large risk of a failure.}
-		
-		\theysaid{What I am trying to say is that the decision to re-replicate is most likely determined by many factors. The fact that on average (so, when picking a to be rescued study randomly) this probability is slim, should in my opinion only be a relatively small part of this decision. To me, this doesn’t disqualify this study, but I think it would be useful if the authors would acknowledge this somehow when discussing the implications of their findings.}
-		
-		This point is well taken and we have expanded our discussion to acknowledge the larger space of factors at play with replications and rescues and the motivations to do them. 
-		
-		The concluding part of the discussion now reads: 
-		
-		\revised{Overall, the diminished and inconsistent effects we found in the rescues suggest that even if a re-replication ``works'', it may be difficult to build upon as follow-up studies will need large samples to detect small effects.
-			\newline
-			
-			We have focused here on a narrow type of replication and rescue: that done by an early career researcher with the goal of establishing whether this is a result \emph{they} can build on. We acknowledge that this type of replication exists as part of a wider ecosystem of replications that have different properties and are done for different reasons.
-			\newline
-			
-			In many cases, researchers may have strong prior beliefs about where a replication will succeed, and these priors may influence a researchers interpretation of a failed replication, and thus their calculations about where a re-replication will succeed or is worth attempting. For instance, a researcher who has high credence in the main result is more likely to attribute failure to specific details in the replication, and thus may want to do a rescue where those details are adjusted. On the other hand, a researcher who is dubious of the methods, results, or statistical approaches in an experiment, or who has previously failed to extend the experimental result, may be quicker to interpret a non-replication as a more definitive negative result. What a researcher chooses to do may also depend on the perceived strength of the replication, what size effects they think are relevant, and how important they think the target effect is. Thus, in some cases, when to re-replicate may be a question of prior beliefs and perceived utility rather than just likelihood of a re-replication succeeding.
-			\newline
-			
-			We opened with a question about what an early-career psychology researcher should do given a failed replication: should they try again or give up and move on?
-			In our sample, the odds of a re-replication working are low (consistent with Ebersole et al., 2020).
-			Especially if there is not a clear, identifiable candidate cause for replication failure, it may be more efficient to select another result to build on.
-		}
-
-		
-		\theysaid{One minor issue:}
-		\theysaid{In the description of Figure 1, it is said that “the first replication’s key effect was non-zero”. I would expect all effects to be non-zero, so that’s not really informative. I guess what the authors mean is that supported for the original effect was found in the replication, or something along these lines}
-		
-		Thank you for this point, we have now clarified that what we meant was had a confidence interval not overlapping 0. The caption now reads
-		
-		\revised{Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was in the same direction as the original with a 95\% CI that did not overlap 0; however, in these cases the larger pattern of results was not consistent between original and first replication. }
-		
-		 
-		\theysaid{So in general, I think this is a neat little paper, which, in my opinion, could benefit from adding a little bit more discussion/depth in the end on what its outcomes could entail.}
-		
-		\theysaid{I always sign my reviews,
-		Rink Hoekstra}
-		
 		We would like to reiterate our thanks both the editor and the reviewers for their thoughtful and prompt reviews. We hope that our changes to the manuscript and the documentation of our repository offer the necessary clarifications and nuance. 
 		
+		\closing{Sincerely,}
 		
-          
-          \closing{Sincerely,}
-	\end{letter}
+
+	
+	\section{Editor}
+	
+	\theysaid{To summarize what I perceive to be the main points of attention:}
+	
+	\theysaid{(1) data accessibility/availability: I shared reviewer \#1’s experience of several broken links, or links that had restricted access. I understand how this might happen with so many different projects, but if this article is to be published, all of these issues will need to be fixed. I strongly urge you, or one of your co-authors, to spend an afternoon clicking on all the links (and also on the links in the links: the preregistration documents include links that do not always work as well) and repair everything that does not work. I’m partial to reviewer \#1’s suggestion of a master-R-markdown, but I will not insist as long as everything works in the end.}
+	
+	%TODO check links
+	
+	We have checked that the links data/combined\_data.csv
+	all work, and updated the README to be much more detailed. 
+	
+	Unfortunately, we don't have a way to edit the individual pre-registrations, but we believe all the necessary information for the rescues is now available, linked from the data sheet. 
+	
+	We also address reviewer 1's specific repository-related concerns more below; we suspect many of them would have been ameliorated had the reviewer been able to download the repository files (which, as noted below, are likely due to a known technical issue with github and Windows systems).  
+	
+	\theysaid{(2) limitations/quality control: your discussion section, although admirably short, does not address any potential limitations your study has. I share reviewer \#1’s assessment that relative inexperience of the replicators is at least a potential limitation (but see https://journals.sagepub.com/doi/full/10.1177/1475725719857659, which you may wish to cite). There are several other points that reviewer \#1 is concerned about. You may not agree with all of them, so feel free to argue your case when you don’t, but across the board I do think a bit more engagement with these points is essential.}
+	
+	%TODO discussion section 
+	
+	We have added an explicit ``Limitations'' subsection to the discussion, which we discuss further below in our response to reviewer 1. 
+	
+	Also, see below for our changes and rebuttals to reviewer 1's other points.
+	
+	\theysaid{(3) implications: reviewer \#2 wonders how your results inform decisions on which papers to ‘rescue’. The final paragraph of the Discussion of your current submission only scratched the surface here. What to do? How valuable are these rescue attempts? Should we do more of them, or should we focus on ‘first’ replications, or should we not do them at all?}
+	
+	We have expanded the last part of the discussion section to acknowledge the much larger picture of different circumstances that motivate replications and rescues, and how these might be influenced by the prior beliefs of the investigators. We discuss the changes more below in response to reviewer 2's points. 
+	
+	\theysaid{In your resubmission, please include a document with a point-by-point response to both the points I list here and the reviewers’ comments, outlining each change made in your manuscript or providing a suitable rebuttal. Please ensure that your revised files adhere to our author guidelines, and that the files are fully copyedited/proofed prior to upload. Please also ensure that all necessary copyright permissions have been obtained. This may be the last opportunity for major editing, therefore please fully check your file prior to re-submission.}
+	
+	
+	\section{Reviewer 1}
+	
+	
+	% \theysaid{The authors report the result of replication studies performed as part of an educational project. The results vary – some are relatively similar, of clear null replications, but others show a surprising amount of variability, possibly due to time and resource constraints, or a lack of experience. The main research question is what the probability is that failed studies can be rescued. The authors suggest this probability is rather low, but I think the current study does not really allow such generalizable conclusions. As Many Labs 5, the set of studies is not representative of the population. I have a number of observations that will hopefully help to improve the manuscript.}
+	
+	% \theysaid{Data needs to be shared in a reproducible manner}
+	\theysaid{Regrettably I could not download the files from github – some filenames that have been uploaded are too long, and both cloning the repo as downloading at a zip file give errors (on my windows machine). }
+	
+	We are sorry this error occurred, and that reviewer 1 didn't realize the files could be downloaded directly from the OSF copy (linked in the paper).  The inability of reviewer 1 to download and open the files seems to have resulted in misunderstandings about the usability of files in the repo, which are much more understandable when opened on a computer.
+	
+	From googling, we believe the long files names issue to be a Windows issue, and to prevent this problem for future users we have added a note at the top of the README directing readers for how to address or sidestep the problem, namely:
+	
+	\revised{Note: If you are a windows user and get an error about overly long file names, please see \href{https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows}{this stackoverflow post} or \href{https://github.com/desktop/desktop/issues/17882} {this github issue} for how to fix it. Alternatively, you can download a zip of the repo from \href{https://osf.io/cyk5w/files/github}{the osf copy} by clicking "Download this folder".}
+	
+	Hopefully this warning will prevent future difficulties with accessing the repository. 
+	
+	\theysaid{The repository is also not organized well enough to make it easy to see all the information. It needs to be restructured, with an actual read me, a clear folder structure, all files should be interoperable, etc. 
+	}
+	
+	We think the folder structure is actually pretty clear (e.g., \texttt{first-replication-projects} directory contains the first replication projects), but we apologize that the README was not more detailed. We have rewritten the README to be much more explicit about how to reproduce the paper as well as what all the folders and files contain.
+	
+	See  \url{https://github.com/langcog/251-rescue-projects/tree/main} for the revised README.
+	
+	
+	\theysaid{The reports are written in some sort of Rpubs format which consists of many files, but nothing I clicked lead to a readable file – I am quite certain this is not how these files should be exported and shared.}
+	
+	As we now clarify in the updated README, these are archival copies of the reports, which were originally posted to the Rpubs sharing website. From a cloned/downloaded copy of the repo, the html files can be opened in any web browser to see the reports.
+	
+	
+	\theysaid{In the process.Rmd file, data is downloaded from a google drive https://docs.google.com/spreadsheets/d/12A4DblSbX\_0tHP1mTVJhjNboI1YDngidkNWiSy0sN0g/edit\#gid=0 which I have no access to. }
+	
+	It is common in RMarkdown files to add sections for documentation that do not need to be run every time to reproduce the result. Such sections are often marked \texttt{eval=F} and they do not evaluate. The piece of code referenced above is in such a section. \texttt{process.Rmd} both runs and knits without access to the file. However, to avoid future confusions, we have made the google spreadsheet openly viewable. 
+	
+	\theysaid{It is clear this all needs to be checked by a reviewer before the manuscript can be accepted. I would strongly urge the author to add all files as reproducible markdown files (the manuscript, but also the individual data reports).}
+	
+	We apologize for any confusion about organization, but the manuscript is indeed written in an Rmd file that is fully  reproducible and is available in the repository. Each of the individual rescue projects was also written in a Rmd or Qmd reproducible report (included in the individual project repositories that are included in \texttt{individual-rescue-projects/}). We have now clarified this in the README. 
+	
+	
+	\theysaid{ The latter can also be exported as PDF is need by, with the raw data and code in the same folder. I believe papers like this require a high quality standard – I would want to see all details if this was a single study, and I want to see all detail of every study when this is a large scale replication project. Ideally, there is a single master file that 1) writes all reproducible original replication reports and rescue reports, 2) takes the output from these reports and compiles the manuscript that has been submitted.}
+	
+	We hope that our updated README now makes it clear where to find all of the details of all of the rescue projects as well as the sourcing for the overall manuscript. 
+	
+	
+	% \theysaid{Focus on the qualitative data}
+	\theysaid{It is interesting to see the results of these projects, as they show the messiness of results when quality control is less strict than in other replication projects. In some ways, the current set of studies can be regarded as a lower bound of replication success under very challenging conditions. Moreover, the qualitative insights when describing the individual studies (which should be extended) is quite educational. For example, it shows the importance of sharing materials, and provides an impetus to require material sharing when a paper is published.}
+	
+	We agree that the frustration of original materials not being available or original instructions not being available is educational and hopefully serves as an impetus for more sharing. 
+	
+	\theysaid{ I think a number of improvements to the manuscript are warranted, but I believe that the final result is worth sharing with the scientific community. Because there are no line numbers, the author will perhaps need to search a bit for where my comments apply.
+		The case studies section is the most interesting part, but it should be extended to all studies.
+		There are not too many studies, and some can be discussed briefly if results are consistent non-replications. This section should also proceed the quantitative analyses. It is so clear that some studies were incompetently performed that I personally no longer care about the quantitative analyses of these replications. Several of the studies with ugely diverging effect sizes are not discussed at all: Tarampi, Haimowitz, Porter (why did the rescue succeed?).}
+	
+	%TODO update after MS is potentially revised
+	
+	We thank the reviewer for this idea. We have added an Appendix with brief descriptions of the topics and outcomes of each of the studies. 
+	
+	We disagree, however, about the ordering of quantitative and qualitative results. The quantitative results come directly from our preregistration and so should go first. In addition, we expect many readers will be more interested in the ``bottom line'' results than in the individual studies.
+	
+	
+	
+	% \theysaid{Be careful with generalizations}
+	\theysaid{In the conclusions the authors generalize beyond the context of students doing replications, to investigators doing replications. However, I do not believe this project allows for such generalizations.} 
+	
+	We appreciate the cautionary note, but we disagree about the generalizations that can be made from student work. In particular, the source of the disagreement may be the strong distinction the reviewer makes between between students and investigators. Perhaps this distinction comes from a misconception of who we are talking about when we talk about ``students,'' perhaps due to geographic or national differences in research training. 
+	
+	To clarify, the replication rescues we report were performed primarily by first-year PhD students at an elite US institution, with a few more senior PhD students as well. These students were supervised and their work was reviewed by senior PhD students with research methods expertise and by the faculty instructor of the course. This supervision arrangement intentionally mirrors how research is typically conducted, even down to the multiple presentations of their replication projects that students give to the class (mirroring review and discussion in lab meetings). We expect that the reviewer would agree that many publications are in fact produced in exactly this way -- by PhD students, under the supervision of professors. 
+	
+	We checked the google scholar pages of the student rescuers who are authors on our paper; 7/17 of them (40\%) already had peer-reviewed journal publications during the course, several of which were first-authored. These students are -- or will soon be -- publishing in the literature. We agree that they may not have extensive expertise, but we think they -- and thus their rescue projects -- are reasonably representative of work by early career researchers with limited resources.
+	
+	Since ``student'' can bring to mind different populations for different people, we have clarified in our limitations section who the rescuers were and how we think this is likely to generalize to other early career researchers (i.e. many of the people conducting research) but may not generalize to experts. 
+	
+	\theysaid{The replication studies were often not done very well, or with severe limitations (lack of original materials, or switching to an online sample) and when we discuss whether an investigator should further pursuit a research line after a failed replications, it seems fair to at least first assume they will perform a very close replication (even closer than many studies reported here).}
+	
+	We disagree with the reviewer's characterization of our replication studies. There were some limitations for the original replications, including time limits and online samples. We believe these limits are common when early career researchers build on existing work: They may be limited in what resources (time, money, access to populations) are available, and so what results are accessible to them is relevant. 
+	
+	As for when original materials aren't available, we believe that this limitation characterizes a vast amount of the replication literature. Unfortunately, materials availability is a severe issue. The extent to which this limitation affected our work is exactly the same as the extent to which it affects other investigators in non-student samples. Thus, if anything we would expect that this characteristic \emph{increases} the generality of our findings. 
+	
+	
+	% \theysaid{Experimental design of replication studies}
+	\theysaid{The authors state they attempted to adequately power studies, but they refer to trying to achieve 2.5 times the sample size in the original study (ignoring the sample size and effect size in the replication study). But there are no details on what the original effect sizes were and how much power the replication studies had. There is only a mention of sample sizes, not of effect sizes. We only learn much later that several of the first replication studies had substantial challenges in recruiting sufficient participants, and had smaller sample sizes than the originals.}
+	
+	The idea behind 2.5x sample size is that it gives the replication an 80\% chance of correctly rejecting the null hypothesis of an effect that the original was 33\% powered for (see \href{https://doi.org/10.1177/0956797614567341}{Simonsohn, 2015, Psych Science}). This standard has the convenience of being agnostic to the type of experiment and test being conducted (unlike calculating effect sizes or calculating power, which both can be difficult to compute for complex designs and for cases where original data are not available). Per the Simonsohn proposal, the 2.5x multiplier is a target for answering the question, ``is there an effect big enough that the original study could have reasonably detected it.''  
+	
+	
+	% \theysaid{Subjective replication probability is unclear}
+	\theysaid{The subjective replication probability coded as 0, 0.25, 0.75 and 1 is extremely confusing. It should be dropped.}
+	
+	We apologize, but we are not sure what is confusing about a holistic, rating-based metric for replication success. Indeed, the Replication Project in Psychology (Open Science Collaboration, 2015) included in its outcomes a subjective replication score. The current coding scheme was used in the paper that the current paper builds on ( \href{https://royalsocietypublishing.org/doi/full/10.1098/rsos.231240}{Boyce et al 2023}) because it was the coding done at the time of (most of) the original replications. 
+	
+	There are many statistical metrics for what counts as a successful replication, including methods such as confidence interval overlap or the methods that we use in our quantitative results (e.g. p-original). The key issue with these measures is that they depend on the selection of a single key statistic for compariosn. As discussed in \href{https://journals.sagepub.com/doi/full/10.1177/2515245917740427}{Hawkins et al 2018} and Boyce et al 2023, original papers often report a number of effects, and it is not always clear which one is the most key. Additionally, often the theoretical pattern of interest -- as indicated by the authors -- is dependent on multiple numeric effects (ex. two main effects and their interaction). Thus, although we also analyze a key effect as well, we think the holistic, subjective assessment of whether or not a study replicated is an important part of our analysis.
+	
+	Finally, analysis of subjective replication ratings is one of our pre-registered analyses and so we do not believe it is appropriate to omit it. 
+	
+	
+	
+	
+	\theysaid{ When I look at the studies the authors seem to have used this score as some sort of count of properties of the original and replication. For example, a replication study that yielded a significant result but was statistically smaller must have gotten a .5 score. }
+	
+	We don't think this is a fair characterization of our rating scheme (which we have used in prior work, as discussed above). 
+	
+	As we wrote the in the methods section, ``Each project was rated on the basis of subjective replication success (on a 0--1 scale) by both MCF and one of VB and BP.
+	We thought about replication in terms of general match in key study results (direction, magnitude, and significance), rather than focusing on any singular numeric result or significance cut-off.''
+	
+	
+	\theysaid{
+		It would be more useful if the authors just listed the raw properties (was the study significant, was it statistically different from the original, etc). For example, the authors discuss the Krauss replication as succesful, but in Figure 1 it looks like the 95\% CI overlaps with 0. So, it was not statistically significant? Why is it considered to have replicated?}
+	
+	Whether a replication is statistically significant in the same direction as the original is one metric that is sometimes used as a measure of replicability, but, as noted by \href{https://journals.sagepub.com/doi/10.1177/1745691616646366}{Patil et al 2016}, it isn't a very good one: one study may have an effect size very similar to another but one might be p < .05 and the other might be p > .05.  
+	
+	As we discuss in the case study section, the Krauss paper reported correct justification from 2/67 in the control condition and 13/34 in the guided thinking condition.  The rescue had 1/40  correct justifications in the control condition and 6/35 in the guided thinking condition. This effect was significant, though smaller than the effect in the original. 
+	
+	Regarding Figure 1, the effect sizes shown are standardized mean differences (SMD; Cohen's $d$). In order to show effects on the same graph, we had to coerce all the numbers to be SMDs, even if this conversion required approximations (as in the case of the Krauss paper, where the results are proportions). For assessing the statistical significance of individual studies it makes more sense to look at their raw results, rather the CIs in Figure 1, which are approximately correct but not the best basis for inference. 
+	
+	% \theysaid{Statistical analysis}
+	\theysaid{Upon first read I was not too enthusiastic about using a replication metric that incorporated heterogeneity. It seems a weird choice to treat unknown variability across studies as statistical uncertainty. Surely, in the end a replication study should mean that we observe the same effect size, and that we understand the topic sufficiently to observe a similar effect repeatedly. However, Figure 1 convinced me that in this context something else needs to be done, as the variability is simple huge. In part this must be due to the students doing the replications. I wonder if the authors redid all analyses and checked for mistakes. Some differences are just too large. We also know from the published literature that there is fraud in student projects, and I wonder if this has been checked.}
+	
+	We note that the heterogeneity metric has been used frequently to quantify variation in replication success, notably in \href{doi.org/10.1073/pnas.2403490121}{Holzmeister et al. (2024)}, which provides a framework for thinking about heterogeneity as stemming from population variation, design variation, and analytic variation. 
+	
+	Regarding other sources of heterogeneity, including error and fraud, we think these are relatively unlikely.  First, while we did not recode student analyses from scratch, teaching assistants reviewed student code several times, and remarked on stylistic issues and potential errors. Further, most analyses were quite straightforward.
+	
+	We are also quite confident that there is not fraud in our sample. Committing fraud would have been strictly more work than actually doing the work, and further, there was no incentive to do so. During the class, students submitted their projects for a number of checkpoints. Thus, we know that students had working implementations of the studies because the TAs went through every experiment and gave feedback. Additionally, students had to have working code that ran on their pilot data before they were approved for running the main data collection. We also know that the students ran studies on the class Prolific account because we can see how many participants were recruited and paid for each study. Thus, we know code was written, the experiment worked, and the data was collected. Students also knew that their grades in no way depended on what results they got (i.e. whether the study replicated), so had no incentive to change the data they had collected. 
+	
+	Finally, don't you think that if students were going to commit fraud, they'd make their study work \emph{better}? Even the studies that did rescue had smaller effect sizes than the original studies. 
+	
+	Finally, regarding student error: in our prior work, we have a larger sample of 176 student replication studies, and these studies found a similar rate of replication as previous studies such as RP:P (see Boyce et al 2023). If error rates were substantially different, we'd expect lower replication.
+	
+	\theysaid{For the additional replications it would be good to know if they were class projects or replications by more experienced researchers. For example, I assume at least one is from the RP:P. The authors could cite the studies that are in the literature, and indicate class projects with a different symbol in the figure than the triangle, or using an open triangle. }
+	
+	Thanks for this suggestion. In the case study section and the appendix, when we describe studies where there were additional replications, we now mention the additional studies and where they come from, citing those from the published literature. 
+	
+	
+	\theysaid{This needs a finer grained analysis – also because the authors choose to include these replications they are aware of in the meta-analysis to evaluate the results. If these replications are not registered reports, and they come from the published literature, their effects may be biased. If they are from the same authors, they might be biased. If they are done by students, they might be more variable due to some lack of expertise.}
+	
+	\theysaid{I do not really like the comparisons of the original against all replications, because sometimes there is so much variability between the studies, it feels weird to meta-analyze them, and it is an example of garbage in, garbage out.}
+	
+	We think there may be a misunderstanding here -- we aren't doing meta-analyses in order to aggregate effect size across the the original and replications. 
+	
+	When we discuss the ``meta-analytic'' mean of some studies that is because the measures of consistency we use (p-original) is a measure of the consistency of two things. Thus, to compare more than two replications, some have to be pooled; we use meta-analysis to do the pooling to get an aggregate mean and standard error. As described in \href{https://rss.onlinelibrary.wiley.com/doi/full/10.1111/rssa.12572}{Mathur and VanderWeele 2020}, which introduces the p-original statistic, we uses the point estimate and standard error of the original compared to the average population effect size in the replications and standard error thereof. As they mention, the most common way to get the average population effect size is via a random effects meta analysis. 
+	
+	\theysaid{First, I do not like the addition of additional replications. No systematic search has been done, so these studies might differ in some ways, and bias the overall effect size estimate. These additional studies can be mentioned, but, we should also see meta-analytic effect sizes without these replications.This can easily be presented in a table with different columns.}
+	
+	Students did search for direct replications of the studies, which if they are in the published literature are likely to be found. It is possible that there happen to be direct replications that aren't labeled as such that we could have missed, and of course, there could be unpublished or grey literature replications. 
+	
+	We understand the concern about wanting to see just the replication and rescue, so we have added a column to Table 1 with this information.
+	
+	% New Table 1 shown below: 
+	
+	% 	\begin{tabular}[t]{lrrrrr}
+		% 		\toprule
+		% 		\multicolumn{1}{c}{ } & \multicolumn{5}{c}{p-original comparing between} \\
+		% 		\cmidrule(l{3pt}r{3pt}){2-6}
+		% 		\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Original and} & \multicolumn{1}{c}{Rescue and} \\
+		% 		\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-6}
+		% 		Paper & All reps & 1st Rep and Rescue & Rescue & Non-rescue & Other reps\\
+		% 		\midrule
+		% 		Birch \& Bloom 2007 & 0.192 & 0.189 & 0.194 & 0.191 & 0.989\\
+		% 		Child et al. 2018 & 0.669 & 0.669 & 0.641 & 0.858 & 0.778\\
+		% 		Chou et al. 2016 & 0.055 & 0.055 & 0.101 & 0.005 & 0.231\\
+		% 		Craig \& Richeson 2014 & 0.145 & 0.145 & 0.001 & 0.302 & 0.020\\
+		% 		Gong et al. 2019 & 0.262 & 0.262 & 0.057 & 0.511 & 0.228\\
+		% 		Haimovitz \& Dweck 2016 & 0.068 & 0.018 & 0.018 & 0.180 & 0.867\\
+		% 		Hopkins et al. 2016 & 0.290 & 0.290 & 0.654 & 0.004 & 0.015\\
+		% 		Jara-Ettinger et al. 2022 & 0.014 & 0.014 & 0.000 & 0.006 & 0.000\\
+		% 		Krauss \& Wang 2003 & 0.271 & 0.271 & 0.519 & 0.139 & 0.311\\
+		% 		Ngo et al. 2019 & 0.106 & 0.000 & 0.000 & 0.385 & 0.257\\
+		% 		Paxton et al. 2012 & 0.011 & 0.011 & 0.005 & 0.023 & 0.649\\
+		% 		Payne et al. 2008 & 0.023 & 0.071 & 0.031 & 0.079 & 0.895\\
+		% 		Porter et al. 2016 & 0.370 & 0.370 & 0.905 & 0.002 & 0.003\\
+		% 		Schechtman et al. 2010 & 0.712 & 0.712 & 0.654 & 0.770 & 0.877\\
+		% 		Tarampi et al. 2016 & 0.000 & 0.000 & 0.000 & 0.000 & 0.145\\
+		% 		Todd et al. 2016 & 0.062 & 0.100 & 0.124 & 0.058 & 0.778\\
+		% 		Yeshurun \& Levy 2003 & 0.614 & 0.007 & 0.017 & 0.943 & 0.474\\
+		% 		\bottomrule
+		% 	\end{tabular}
+	
+	We again note that there appears to be a confusion over what is presented as we never present meta-analytic effect sizes for the reasons discussed above. We agree that such effect sizes wouldn't be easily interpretable. 
+	
+	\theysaid{This can easily be presented in a table with different columns. Currently, only the p-values are reported – this is insufficient. We should see the meta-analytic effect sizes and their confidence intervals. I assume some are incredibly wide due to the widely varying effect sizes, and hence lead to a low p-value.}
+	
+	Again, it seems like there may be confusion here -- the ``p-values'' presented here are ``p-original.'' p-original is a p-value, in that it's a measure of how likely an estimate would be to be at least as extreme as observed given a ``null'' distribution. But it is a measure of statistical (in-)consistency of the effect sizes, not a measure of how close to zero the effect sizes are. It does not correspond to a classical meta-analytic hypothesis test.
+	
+	
+	\theysaid{It would also be good to see measures of heterogeneity (even if tests for heterogeneity have low power with few studies). It is a bit weird all tests assume the same tau, when this is clearly not correct. I understand the idea – it is difficult to know the true tau – but this solution seems suboptimal.}
+	
+	We have too few datapoints to meaningfully estimate the heterogeneity from our data (Mathur and VanderWeele 2020 suggest using the calculated tau if there are 10 or more replications); however, we also know the heterogeneity is not 0, so our best option is to use an estimated measure of heterogeneity, as is done as a sensitivity analysis in \href{https://elifesciences.org/articles/71601}{Errington et al 2021} and Boyce et al 2023. 
+	
+	% \theysaid{Minor points}
+	\theysaid{Why is the median p-orig value reported? What does this tell us? I think this part of section 3.2 can be deleted.}
+	
+	P-original is a measure of the statistical (in-)consistency between the original and the replications. We present the median and IQR as a way to summarize the overall levels of inconsistency between original and replication in our sample of studies. 
+	
+	\theysaid{Not all predictors are explained. What does the predictor ‘ Stanford’ mean? Or log trials? Please explain all predictors, otherwise it is no use to report them.}
+	
+	We apologize for this oversight. We have changed these row names to ``Original authors at Stanford'' and 
+	``Log number of trials''. We have also amended the caption to clarify the reason for Stanford being relevant as well as provide a reference to where the predictors are discussed at length in Boyce et al 2023. 
+	
+	% The revised caption reads:
+	
+	% \revised{Correlations between an individual predictor and the subjective replication score of the rescue project. The first set of predictors were pre-registered based on the correlates used in Boyce et al. (2023). Original authors at Stanford refers to at the time of the first replication as this may mean the first replication was not independent. For details about how the predictors were coded, see the Methods section of Boyce et al. (2023). The last three predictors were added post-hoc.}
+	
+	
+	\theysaid{It is the open science collaborations, not consortium.}
+	
+	Oops, thank you for bringing this to our attention, we have fixed it. 
+	
+	\theysaid{All studies replicated should be reported in the reference list.}
+	We re-confirmed that all the original studies were present in the reference list. 
+	
+	% \theysaid{Signed, Daniel Lakens}
+	
+	\section{Reviewer 2}
+	
+	% \theysaid{Thanks for the opportunity to review this paper.}
+	
+	% \theysaid{I believe this is a well-written paper, with an interesting question: Should investigators devote more time to continued replications?
+		% In the paper, the authors try to “rescue” papers after an original failure to replicate. They show that in their relatively small sample of 17 studies, 5 could be rescued, and the others couldn’t, suggesting that rescuing studies has a high failure rate.}
+	
+	% \theysaid{I do believe this is an interesting finding, although not completely surprising: in a world in which it is already hard to replicate studies, it make sense that it is even harder to rescue an outcome after a failed replication attempt. But the effort of the authors shows this elegantly, and it also shows, maybe surprisingly to some, that studies actually can be rescued, despite failed replication attempts earlier. In the debates on these issues so far, a failed replication is sometimes presented as the end of the discussion, and indirectly this study shows that it doesn’t have to be. I think the data leave room for multiple sometimes seemingly contradictory conclusions: one could argue that we should be careful in spending our limited resources on trying to rescuing a study that was already unsuccessfully replicated, whereas another could say that the difficulty in finding the right subjects can sometimes affect results in such a way that we should be careful in taking the failed replication too seriously.}
+	
+	
+	% \theysaid{So in general, I think the findings are interesting, and I think the authors did a good job in writing this up. What I am less convinced about is how this should inform decisions on rescuing papers. What does the general picture (a large majority of studies could not be rescued) tell me as a researcher who is contemplating rescuing a particular study? Since I assume that the selection of studies to be potentially rescued won’t be random, I probably already have reasons why I want to rescue this study. Either I am involved in the issue (I may be one of the people believing the original effect, or I may be even one of the authors of the original study), or I have reasons to believe that something went wrong in the replication study. Or I could believe that if the effect were true, this would be so important to know that it is worth taking the relatively large risk of a failure.}
+	
+	\theysaid{[...] the decision to re-replicate is most likely determined by many factors. The fact that on average (so, when picking a to be rescued study randomly) this probability is slim, should in my opinion only be a relatively small part of this decision. To me, this doesn’t disqualify this study, but I think it would be useful if the authors would acknowledge this somehow when discussing the implications of their findings.}
+	
+	This point is well taken and we have expanded our discussion to acknowledge the larger space of factors at play with replications and rescues and the motivations to do them. 
+	
+	
+	% \revised{Overall, the diminished and inconsistent effects we found in the rescues suggest that even if a re-replication ``works'', it may be difficult to build upon as follow-up studies will need large samples to detect small effects.
+		% 	\newline
+		
+		% 	We have focused here on a narrow type of replication and rescue: that done by an early career researcher with the goal of establishing whether this is a result \emph{they} can build on. We acknowledge that this type of replication exists as part of a wider ecosystem of replications that have different properties and are done for different reasons.
+		% 	\newline
+		
+		% 	In many cases, researchers may have strong prior beliefs about where a replication will succeed, and these priors may influence a researchers interpretation of a failed replication, and thus their calculations about where a re-replication will succeed or is worth attempting. For instance, a researcher who has high credence in the main result is more likely to attribute failure to specific details in the replication, and thus may want to do a rescue where those details are adjusted. On the other hand, a researcher who is dubious of the methods, results, or statistical approaches in an experiment, or who has previously failed to extend the experimental result, may be quicker to interpret a non-replication as a more definitive negative result. What a researcher chooses to do may also depend on the perceived strength of the replication, what size effects they think are relevant, and how important they think the target effect is. Thus, in some cases, when to re-replicate may be a question of prior beliefs and perceived utility rather than just likelihood of a re-replication succeeding.
+		% 	\newline
+		
+		% 	We opened with a question about what an early-career psychology researcher should do given a failed replication: should they try again or give up and move on?
+		% 	In our sample, the odds of a re-replication working are low (consistent with Ebersole et al., 2020).
+		% 	Especially if there is not a clear, identifiable candidate cause for replication failure, it may be more efficient to select another result to build on.
+		% }
+	
+	
+	% \theysaid{One minor issue:}
+	\theysaid{In the description of Figure 1, it is said that “the first replication’s key effect was non-zero”. I would expect all effects to be non-zero, so that’s not really informative. I guess what the authors mean is that supported for the original effect was found in the replication, or something along these lines}
+	
+	Thank you for this point, we have now clarified that what we meant was had a confidence interval not overlapping 0. 
+	% The caption now reads
+	
+	% \revised{Standardized effect sizes of original studies, first replications, rescues, and additional replications if available. Due to the large effect size of a couple studies, large effect studies are shown in a separate panel. In a few cases, the first replication's key effect was in the same direction as the original with a 95\% CI that did not overlap 0; however, in these cases the larger pattern of results was not consistent between original and first replication. }
+	
+	
+	% \theysaid{So in general, I think this is a neat little paper, which, in my opinion, could benefit from adding a little bit more discussion/depth in the end on what its outcomes could entail.}
+	
+	% \theysaid{I always sign my reviews,
+		% Rink Hoekstra}
+	
+	
+	
+	
+		\end{letter}
+	
+	
 	
 \end{document}
-
-
-
-

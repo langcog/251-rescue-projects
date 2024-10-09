@@ -1,65 +1,1572 @@
-|target_lastauthor_year |type       |short_cite        |write_up_link                                                                        |github_link                                             |on_turk | repeated_measure|   N|test_description                                                                                                                                                                                                                                        |raw_stat                                                                   |same_direction | MCF_rep_score| TA_rep_score| replication_score|closeness  |pre-registration     |comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   cost|Checked links? |name_pretty               |sensitivity |include  |journal                               |target_cite                                                                                                                                                                                                                                |article_link                                                                                                               |study_number            |subfield    | target_year|stanford_internal |open_data |open_materials |within_between | single_vignette|
-|:----------------------|:----------|:-----------------|:------------------------------------------------------------------------------------|:-------------------------------------------------------|:-------|----------------:|---:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------|:--------------|-------------:|------------:|-----------------:|:----------|:--------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|:--------------|:-------------------------|:-----------|:--------|:-------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:-----------------------|:-----------|-----------:|:-----------------|:---------|:--------------|:--------------|---------------:|
-|birch2007              |additional |bridgers2015      |https://docs.google.com/document/d/1fSARliH5QKadGy3UElC00ehgwr2LLQbey-uzb1RPv0A/edit |NA                                                      |yes     |                1| 152|red box: ignorance < knowledge-plausible                                                                                                                                                                                                                |t(149.58) = -1.20                                                          |yes            |          0.00|         0.25|              0.00|close      |NA                   |only counting participants in two relevant conditions                                                                                                                                                                                                                                                                                                                                                                                                                                                  |     NA|TRUE           |Birch & Bloom 2007        |NA          |stats    |Psych Sci                             |Birch, S. A., & Bloom, P. (2007). The curse of knowledge in reasoning about false beliefs. Psychological Science, 18(5), 382-386.                                                                                                          |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x                                                      |1.0                     |cognitive   |        2007|no                |no        |yes            |between        |               1|
-|birch2007              |original   |birch2007         |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x                |NA                                                      |no      |                1| 103|red box: ignorance < knowledge-plausible                                                                                                                                                                                                                |t(105)=-2.42                                                               |NA             |            NA|           NA|                NA|NA         |NA                   |only counting participants in two relevant conditions                                                                                                                                                                                                                                                                                                                                                                                                                                                  |     NA|TRUE           |Birch & Bloom 2007        |NA          |stats    |Psych Sci                             |Birch, S. A., & Bloom, P. (2007). The curse of knowledge in reasoning about false beliefs. Psychological Science, 18(5), 382-386.                                                                                                          |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x                                                      |1.0                     |cognitive   |        2007|no                |no        |yes            |between        |               1|
-|birch2007              |rep1       |borchers2018      |https://rpubs.com/lrborchers/450894                                                  |https://github.com/psych251/birch2007                   |yes     |                1|  73|red box: ignorance < knowledge-plausible                                                                                                                                                                                                                |t(70.25) = -0.65                                                           |yes            |          0.00|         0.00|              0.00|very close |https://osf.io/32zyn |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Birch & Bloom 2007        |NA          |stats    |Psych Sci                             |Birch, S. A., & Bloom, P. (2007). The curse of knowledge in reasoning about false beliefs. Psychological Science, 18(5), 382-386.                                                                                                          |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x                                                      |1.0                     |cognitive   |        2007|no                |no        |yes            |between        |               1|
-|birch2007              |rescue     |abutto2023        |https://rpubs.com/ottuba/birch2007_2_rescue_final                                    |https://github.com/psych251/birch2007_2_rescue          |yes     |                1| 247|red box: ignorance < knowledge-plausible                                                                                                                                                                                                                |t(237.01)=-1.4687                                                          |yes            |          0.00|         0.00|              0.00|very close |https://osf.io/vy8wc |only counting participants in two relevant conditions                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 258.00|TRUE           |Birch & Bloom 2007        |NA          |stats    |Psych Sci                             |Birch, S. A., & Bloom, P. (2007). The curse of knowledge in reasoning about false beliefs. Psychological Science, 18(5), 382-386.                                                                                                          |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x                                                      |1.0                     |cognitive   |        2007|no                |no        |yes            |between        |               1|
-|child2018              |original   |child2018         |https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397                    |NA                                                      |no      |               48|  35|perspective predicting RT in positive passages                                                                                                                                                                                                          |MSD2: m1= 2201 (1284), m2= 2350( 1351)                                     |NA             |            NA|           NA|                NA|NA         |NA                   |in replication, converted from seconds to ms to match orig                                                                                                                                                                                                                                                                                                                                                                                                                                             |     NA|TRUE           |Child et al. 2018         |NA          |stats    |Language, cognition, and neuroscience |Child, S., Oakhill, J., & Garnham, A. (2018). You’re the emotional one: the role of perspective for emotion processing in reading comprehension. Language, cognition and neuroscience, 33(7), 878-889.                                     |https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397                                                          |1.0                     |other-psych |        2018|no                |no        |yes            |within         |               0|
-|child2018              |rep1       |bunderson2020     |https://rpubs.com/mebund/666364                                                      |https://github.com/psych251/child2018                   |yes     |               48|  40|perspective predicting RT in positive passages                                                                                                                                                                                                          |MSD2: m1=1860(1510), m2=1960(1490)                                         |yes            |          0.75|         0.25|              0.50|very close |https://osf.io/vk2cs |in replication, converted from seconds to ms to match orig, two tests considered important, one marginal, one not replicating, directions recreated, analysis possibly reconstructed differently                                                                                                                                                                                                                                                                                                       |     NA|TRUE           |Child et al. 2018         |NA          |stats    |Language, cognition, and neuroscience |Child, S., Oakhill, J., & Garnham, A. (2018). You’re the emotional one: the role of perspective for emotion processing in reading comprehension. Language, cognition and neuroscience, 33(7), 878-889.                                     |https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397                                                          |1.0                     |other-psych |        2018|no                |no        |yes            |within         |               0|
-|child2018              |rescue     |lua2023           |https://rpubs.com/vyqlua/child2018rescue                                             |https://github.com/psych251/child2018_rescue/tree/main  |yes     |               48|  98|perspective (2nd v 3rd) on RT for positive passages                                                                                                                                                                                                     |MSD2: m1=1930(1400), m2=1930 (1400)                                        |no             |          0.00|         0.00|              0.00|very close |https://osf.io/ubmws |replicator rated as "far" for change in population, but it's all convenience (undergrad v online)                                                                                                                                                                                                                                                                                                                                                                                                      | 485.43|TRUE           |Child et al. 2018         |NA          |stats    |Language, cognition, and neuroscience |Child, S., Oakhill, J., & Garnham, A. (2018). You’re the emotional one: the role of perspective for emotion processing in reading comprehension. Language, cognition and neuroscience, 33(7), 878-889.                                     |https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397                                                          |1.0                     |other-psych |        2018|no                |no        |yes            |within         |               0|
-|chou2016               |original   |chou2016          |https://journals.sagepub.com/doi/abs/10.1177/0956797615625640                        |NA                                                      |yes     |                1| 100|high control condition  has less reported pain than low control condition (low then high control)                                                                                                                                                       |MSD2: m1=13.75 (21.49), m2 = 6.57 (11.62)                                  |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Chou et al. 2016          |NA          |stats    |Psych Sci                             |Chou, E. Y., Parmar, B. L., & Galinsky, A. D. (2016). Economic insecurity increases physical pain. Psychological Science, 27(4), 443-454.                                                                                                  |https://journals.sagepub.com/doi/abs/10.1177/0956797615625640                                                              |5.0                     |other-psych |        2016|no                |no        |no             |between        |               1|
-|chou2016               |rep1       |zion2017          |http://rpubs.com/szion/341843                                                        |https://github.com/psych251/Chou2016                    |yes     |                1| 158|high control condition  has less reported pain than low control condition                                                                                                                                                                               |MSD2: m1=18.51(24.33), m2=23.10(23.88)                                     |no             |          0.00|         0.00|              0.00|very close |NA                   |added more manipulation check measures                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |     NA|TRUE           |Chou et al. 2016          |NA          |stats    |Psych Sci                             |Chou, E. Y., Parmar, B. L., & Galinsky, A. D. (2016). Economic insecurity increases physical pain. Psychological Science, 27(4), 443-454.                                                                                                  |https://journals.sagepub.com/doi/abs/10.1177/0956797615625640                                                              |5.0                     |other-psych |        2016|no                |no        |no             |between        |               1|
-|chou2016               |rescue     |troutman2023      |https://rpubs.com/troutman/rescue_final                                              |https://github.com/psych251/chou2016_rescue             |yes     |                1| 252|high v low sense of control -> pain level                                                                                                                                                                                                               |MSD2: m1=11.52066(18.72659), m2=10.39695(16.53978)                         |yes            |          0.00|         0.00|              0.00|very close |https://osf.io/vmfue |note that comparison graph in rescue flips the high-low pain for replication; sd isn't in report but is calculated from data                                                                                                                                                                                                                                                                                                                                                                           | 309.10|TRUE           |Chou et al. 2016          |NA          |stats    |Psych Sci                             |Chou, E. Y., Parmar, B. L., & Galinsky, A. D. (2016). Economic insecurity increases physical pain. Psychological Science, 27(4), 443-454.                                                                                                  |https://journals.sagepub.com/doi/abs/10.1177/0956797615625640                                                              |5.0                     |other-psych |        2016|no                |no        |no             |between        |               1|
-|craig2014              |original   |craig2014         |https://journals.sagepub.com/doi/full/10.1177/0956797614527113                       |NA                                                      |yes     |                1| 121|racial shift v "allay concerns" articles on overall (conservative ) policy attitudes                                                                                                                                                                    |MSE2: m1=.15 (.06), m2=-.08(.06)                                           |yes            |            NA|           NA|                NA|NA         |NA                   |note: this excludes control condition with they include in omnibuses                                                                                                                                                                                                                                                                                                                                                                                                                                   |     NA|TRUE           |Craig & Richeson 2014     |exp         |stats    |Psych Sci                             |Craig, M. A., & Richeson, J. A. (2014). On the precipice of a “majority-minority” America: Perceived status threat from the racial demographic shift affects White Americans’ political ideology. Psychological science, 25(6), 1189-1197. |https://journals.sagepub.com/doi/full/10.1177/0956797614527113                                                             |3a                      |social      |        2014|yes               |yes       |yes            |between        |               1|
-|craig2014              |rep1       |king2021          |https://rpubs.com/staciaking/craig2014                                               |https://github.com/psych251/craig2014                   |yes     |                1|  76|racial shift v "allay concerns" articles on overall (conservative ) policy attitudes                                                                                                                                                                    |MSD2: m1=.271 (3.51), m2=-.721 (3.82)                                      |yes            |          0.00|         0.00|              0.00|exact      |NA                   |note: this excludes control condition with they include in omnibuses                                                                                                                                                                                                                                                                                                                                                                                                                                   |     NA|TRUE           |Craig & Richeson 2014     |exp         |stats    |Psych Sci                             |Craig, M. A., & Richeson, J. A. (2014). On the precipice of a “majority-minority” America: Perceived status threat from the racial demographic shift affects White Americans’ political ideology. Psychological science, 25(6), 1189-1197. |https://journals.sagepub.com/doi/full/10.1177/0956797614527113                                                             |3a                      |social      |        2014|yes               |yes       |yes            |between        |               1|
-|craig2014              |rescue     |gupta2023         |https://rpubs.com/vboyce/craig2014_rescue                                            |https://github.com/psych251/craig2014_rescue/tree/main  |yes     |                1| 127|racial shift v "allay concerns" articles on overall (conservative ) policy attitudes                                                                                                                                                                    |MSD2: m1=-.4307766 (3.529429), m2=.4463469 (3.848955)                      |no             |          0.00|         0.00|              0.00|exact      |https://osf.io/4gtuq |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 367.99|TRUE           |Craig & Richeson 2014     |exp         |stats    |Psych Sci                             |Craig, M. A., & Richeson, J. A. (2014). On the precipice of a “majority-minority” America: Perceived status threat from the racial demographic shift affects White Americans’ political ideology. Psychological science, 25(6), 1189-1197. |https://journals.sagepub.com/doi/full/10.1177/0956797614527113                                                             |3a                      |social      |        2014|yes               |yes       |yes            |between        |               1|
-|gong2019               |original   |gong2019          |https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023       |NA                                                      |no      |               28| 155|age x donation x kinship                                                                                                                                                                                                                                |F(1,134) = 4.03                                                            |NA             |            NA|           NA|                NA|NA         |NA                   |original also included other measures, such as cognitive assessment; To probe the three-way interaction, post hoc tests revealed that (a) 
-older adults (vs. younger adults) were less generous to nonrelatives, 
-t(145) = 8.70, p < .001, but equally generous to relatives, t(148) = 
-1.54, p = .13, in monetary donation; (b) older adults (vs. younger 
-adults) were less generous to nonrelatives, t(144) = 2.10, p < .05, 
-but more generous to relatives, t(145) = 3.22, p < .001, in time 
-donation. |     NA|TRUE           |Gong et al. 2019          |NA          |exp      |The Journals of Gerontology: Series B |Gong, X., Zhang, F., & Fung, H. H. (2019). Are older adults more willing to donate? The roles of donation form and social relationship. The Journals of Gerontology: Series B, 74(3), 440-448.                                             |https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023                                             |1.0                     |social      |        2019|no                |no        |no             |mixed          |               0|
-|gong2019               |rep1       |shavit2017        |http://rpubs.com/Yochais/341415                                                      |https://github.com/psych251/gong2017                    |yes     |               28|  90|age x donation x kinship                                                                                                                                                                                                                                |F(1,70)=.06                                                                |yes            |          0.00|         0.00|              0.00|far        |NA                   |trying really hard to eyeball these plots; looking at plot at very bottom of write -up; older's less likely to donate is smallest for rel-time?                                                                                                                                                                                                                                                                                                                                                        |     NA|TRUE           |Gong et al. 2019          |NA          |exp      |The Journals of Gerontology: Series B |Gong, X., Zhang, F., & Fung, H. H. (2019). Are older adults more willing to donate? The roles of donation form and social relationship. The Journals of Gerontology: Series B, 74(3), 440-448.                                             |https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023                                             |1.0                     |social      |        2019|no                |no        |no             |mixed          |               0|
-|gong2019               |rescue     |uricher2023       |https://rpubs.com/vboyce/gong_rescue                                                 |https://github.com/psych251/gong2019_rescue             |yes     |               28| 137|2 (age: younger vs older) × 2 (donation form: money vs time) × 2 (kinship: relatives vs non-relatives) mixed design, repeated measures ANOVA of transformed individual AUC values, with demographic variables as control + post-hoc tests if applicable |F(1,113)=6.2934750                                                         |no             |          0.00|         0.00|              0.00|far        |https://osf.io/c8f7k |older's less likely to donate is smallest for rel-money?                                                                                                                                                                                                                                                                                                                                                                                                                                               | 380.76|TRUE           |Gong et al. 2019          |NA          |exp      |The Journals of Gerontology: Series B |Gong, X., Zhang, F., & Fung, H. H. (2019). Are older adults more willing to donate? The roles of donation form and social relationship. The Journals of Gerontology: Series B, 74(3), 440-448.                                             |https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023                                             |1.0                     |social      |        2019|no                |no        |no             |mixed          |               0|
-|haimovitz2016          |additional |takada2021        |https://rpubs.com/metakada/haimovitz2016                                             |https://github.com/psych251/haimovitz2016_2             |yes     |                1| 115|debilitating > enhancing -> concern                                                                                                                                                                                                                     |t(113) = -1.9291                                                           |yes            |          0.50|         0.50|              0.50|very close |NA                   |smaller N?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |     NA|TRUE           |Haimovitz & Dweck 2016    |NA          |stats    |Psych Sci                             |Haimovitz, K., & Dweck, C. S. (2016). What predicts children’s fixed and growth intelligence mind-sets? Not their parents’ views of intelligence but their parents’ views of failure. Psychological science, 27(6), 859-869.               |https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&nl=nyt-parenting&emc=edit_ptg_20200108 |4.0                     |social      |        2016|yes               |no        |yes            |between        |               1|
-|haimovitz2016          |original   |haimovitz2016     |https://pubmed.ncbi.nlm.nih.gov/27113733/                                            |NA                                                      |yes     |                1| 132|priming condition in performance and learning oriented responses; debilitating > enhancing -> performance                                                                                                                                               |t(131) = 3.246                                                             |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Haimovitz & Dweck 2016    |NA          |stats    |Psych Sci                             |Haimovitz, K., & Dweck, C. S. (2016). What predicts children’s fixed and growth intelligence mind-sets? Not their parents’ views of intelligence but their parents’ views of failure. Psychological science, 27(6), 859-869.               |https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&nl=nyt-parenting&emc=edit_ptg_20200108 |4.0                     |social      |        2016|yes               |no        |yes            |between        |               1|
-|haimovitz2016          |rep1       |born2017          |http://rpubs.com/barbaraborn/Haimovitz2016_Final                                     |https://github.com/psych251/Haimovitz2016               |yes     |                1|  97|priming condition in performance and learning oriented responses                                                                                                                                                                                        |t(93) = -1.93                                                              |no             |          0.00|         0.00|              0.00|exact      |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Haimovitz & Dweck 2016    |NA          |stats    |Psych Sci                             |Haimovitz, K., & Dweck, C. S. (2016). What predicts children’s fixed and growth intelligence mind-sets? Not their parents’ views of intelligence but their parents’ views of failure. Psychological science, 27(6), 859-869.               |https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&nl=nyt-parenting&emc=edit_ptg_20200108 |4.0                     |social      |        2016|yes               |no        |yes            |between        |               1|
-|haimovitz2016          |rescue     |mon2023           |https://rpubs.com/ksmon/1180187                                                      |https://github.com/psych251/haimovitz_rescue            |yes     |                1| 141|prime on performance oriented                                                                                                                                                                                                                           |t(129.45)=-0.31382                                                         |yes            |          0.00|         0.00|              0.00|exact      |https://osf.io/ehkrj |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 318.41|TRUE           |Haimovitz & Dweck 2016    |NA          |stats    |Psych Sci                             |Haimovitz, K., & Dweck, C. S. (2016). What predicts children’s fixed and growth intelligence mind-sets? Not their parents’ views of intelligence but their parents’ views of failure. Psychological science, 27(6), 859-869.               |https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&nl=nyt-parenting&emc=edit_ptg_20200108 |4.0                     |social      |        2016|yes               |no        |yes            |between        |               1|
-|hopkins2016            |original   |hopkins2016       |https://www.sciencedirect.com/science/article/pii/S0010027716301585                  |NA                                                      |yes     |               12| 147|explanation-level -> rating                                                                                                                                                                                                                             |MSD2: m1=1.118243 (.8510678), m2=1.397260 (.7516084)                       |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Hopkins et al. 2016       |NA          |pred_int |Cognition                             |Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. (2016). The seductive allure is a reductive allure: People prefer scientific explanations that contain logically irrelevant reductive information. Cognition, 155, 67-76.                 |https://www.sciencedirect.com/science/article/pii/S0010027716301585                                                        |1.0                     |cognitive   |        2016|no                |yes       |yes            |between        |               0|
-|hopkins2016            |rep1       |chuey2019         |http://rpubs.com/AaronChuey/hopkins2016writeupFinal                                  |https://github.com/psych251/hopkins2016                 |yes     |               12|  93|explanation-level -> rating                                                                                                                                                                                                                             |MSD2: m1=1.616228 (.6715864), m2=1.424242 (.7356782)                       |no             |          0.00|         0.00|              0.00|very close |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Hopkins et al. 2016       |NA          |pred_int |Cognition                             |Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. (2016). The seductive allure is a reductive allure: People prefer scientific explanations that contain logically irrelevant reductive information. Cognition, 155, 67-76.                 |https://www.sciencedirect.com/science/article/pii/S0010027716301585                                                        |1.0                     |cognitive   |        2016|no                |yes       |yes            |between        |               0|
-|hopkins2016            |rescue     |chiu2023          |https://rpubs.com/howardchiu/hopkins2016rescue_forpublication                        |https://github.com/psych251/hopkins2016_rescue          |yes     |               12| 161|explanation-level -> rating                                                                                                                                                                                                                             |MSD2: m1=1.177984 (.6890454), m2=1.355208 (.7170742)                       |yes            |          0.00|         0.00|              0.00|very close |https://osf.io/4hxya |key effect in paper is a coefficient in lm, but for SMD we calculate raw effect without model                                                                                                                                                                                                                                                                                                                                                                                                          | 608.00|TRUE           |Hopkins et al. 2016       |NA          |pred_int |Cognition                             |Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. (2016). The seductive allure is a reductive allure: People prefer scientific explanations that contain logically irrelevant reductive information. Cognition, 155, 67-76.                 |https://www.sciencedirect.com/science/article/pii/S0010027716301585                                                        |1.0                     |cognitive   |        2016|no                |yes       |yes            |between        |               0|
-|jara-ettinger2022      |original   |jara-ettinger2022 |https://pubmed.ncbi.nlm.nih.gov/35343743/                                            |NA                                                      |yes     |                1| 144|preference for shape match > chance??                                                                                                                                                                                                                   |rawprop: 99 / 144, chance=1/3                                              |NA             |            NA|           NA|                NA|NA         |NA                   |us adult sample only                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |     NA|TRUE           |Jara-Ettinger et al. 2022 |NA          |pred_int |JEP:G                                 |Jara-Ettinger, J., Levy, R., Sakel, J., Huanca, T., & Gibson, E. (2022). The origins of the shape bias: Evidence from the Tsimane’. Journal of Experimental Psychology: General.                                                           |https://psycnet.apa.org/record/2022-45689-001                                                                              |5.0                     |cognitive   |        2022|no                |no        |yes            |between        |               0|
-|jara-ettinger2022      |rep1       |abdelrahim2022    |https://rpubs.com/SamahAbdelrahim/960652                                             |https://github.com/psych251/jara-ettinger2022           |yes     |                1| 142|preference for shape match > chance??                                                                                                                                                                                                                   |rawprop: 88/142, chance = 1/3                                              |yes            |          0.50|         0.75|              0.50|exact      |NA                   |us adult sample only; note that original write-up is messy and includes pilot data -- reanalyzed to get correct counts                                                                                                                                                                                                                                                                                                                                                                                 |     NA|TRUE           |Jara-Ettinger et al. 2022 |NA          |pred_int |JEP:G                                 |Jara-Ettinger, J., Levy, R., Sakel, J., Huanca, T., & Gibson, E. (2022). The origins of the shape bias: Evidence from the Tsimane’. Journal of Experimental Psychology: General.                                                           |https://psycnet.apa.org/record/2022-45689-001                                                                              |5.0                     |cognitive   |        2022|no                |no        |yes            |between        |               0|
-|jara-ettinger2022      |rescue     |chen_e2023        |https://rpubs.com/echen/1131806                                                      |https://github.com/psych251/jara-ettinger2022_rescue    |yes     |                1| 426|preference for shape match > chance??                                                                                                                                                                                                                   |rawprop: 191/426, chance=1/3                                               |yes            |          0.50|         0.75|              0.75|exact      |https://osf.io/trb42 |note that chance is 1/3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 199.47|TRUE           |Jara-Ettinger et al. 2022 |NA          |pred_int |JEP:G                                 |Jara-Ettinger, J., Levy, R., Sakel, J., Huanca, T., & Gibson, E. (2022). The origins of the shape bias: Evidence from the Tsimane’. Journal of Experimental Psychology: General.                                                           |https://psycnet.apa.org/record/2022-45689-001                                                                              |5.0                     |cognitive   |        2022|no                |no        |yes            |between        |               0|
-|krauss2003             |original   |krauss2003        |https://psycnet.apa.org/record/2003-04933-002                                        |NA                                                      |no      |                1| 101|difference in pct correct justifications between control and guided                                                                                                                                                                                     |prop: 2/67, 13/34                                                          |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Krauss & Wang 2003        |NA          |exp      |JEP:G                                 |Krauss, S., & Wang, X. T. (2003). The psychology of the Monty Hall problem: discovering psychological mechanisms for solving a tenacious brain teaser. Journal of Experimental Psychology: General, 132(1), 3.                             |https://psycnet.apa.org/record/2003-04933-002                                                                              |1.0                     |cognitive   |        2003|no                |no        |yes            |between        |               1|
-|krauss2003             |rep1       |wilcox2018        |https://rpubs.com/JohnEpisteme/433652                                                |https://github.com/psych251/krauss2003                  |yes     |                1|  19|difference in pct correct justifications between control and guided                                                                                                                                                                                     |prop: 0/8, 0/11                                                            |no             |          0.00|         0.00|              0.00|close      |https://osf.io/n3abr |can't draw explanation, only write                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Krauss & Wang 2003        |NA          |exp      |JEP:G                                 |Krauss, S., & Wang, X. T. (2003). The psychology of the Monty Hall problem: discovering psychological mechanisms for solving a tenacious brain teaser. Journal of Experimental Psychology: General, 132(1), 3.                             |https://psycnet.apa.org/record/2003-04933-002                                                                              |1.0                     |cognitive   |        2003|no                |no        |yes            |between        |               1|
-|krauss2003             |rescue     |kemmann2023       |https://rpubs.com/kemmann/krauss2003replication                                      |https://github.com/psych251/krauss2003_rescue           |yes     |                1|  75|difference in pct correct justifications between control and guided                                                                                                                                                                                     |prop: 1/40, 6/35                                                           |yes            |          1.00|         1.00|              1.00|very close |https://osf.io/5tqxd |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 429.31|TRUE           |Krauss & Wang 2003        |NA          |exp      |JEP:G                                 |Krauss, S., & Wang, X. T. (2003). The psychology of the Monty Hall problem: discovering psychological mechanisms for solving a tenacious brain teaser. Journal of Experimental Psychology: General, 132(1), 3.                             |https://psycnet.apa.org/record/2003-04933-002                                                                              |1.0                     |cognitive   |        2003|no                |no        |yes            |between        |               1|
-|ngo2019                |additional |ngo2021           |https://www.tandfonline.com/doi/full/10.1080/09658211.2021.1974047                   |NA                                                      |yes     |              144|  32|dependency > 0                                                                                                                                                                                                                                          |MSE1: m1=.07 (.01), comp=0                                                 |yes            |            NA|           NA|                NA|exact      |NA                   |young adult sample only                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |     NA|TRUE           |Ngo et al. 2019           |NA          |stats    |Psych Sci                             |Ngo, C. T., Horner, A. J., Newcombe, N. S., & Olson, I. R. (2019). Development of holistic episodic recollection. Psychological science, 30(12), 1696-1706.                                                                                |https://journals.sagepub.com/doi/full/10.1177/0956797619879441                                                             |1 (younger adults only) |cognitive   |        2019|no                |yes       |yes            |within         |               0|
-|ngo2019                |original   |ngo2019           |https://journals.sagepub.com/doi/full/10.1177/0956797619879441                       |NA                                                      |no      |              144|  31|dependency > 0                                                                                                                                                                                                                                          |MSE1: m1=.07 (.01), comp=0                                                 |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Ngo et al. 2019           |NA          |stats    |Psych Sci                             |Ngo, C. T., Horner, A. J., Newcombe, N. S., & Olson, I. R. (2019). Development of holistic episodic recollection. Psychological science, 30(12), 1696-1706.                                                                                |https://journals.sagepub.com/doi/full/10.1177/0956797619879441                                                             |1 (younger adults only) |cognitive   |        2019|no                |yes       |yes            |within         |               0|
-|ngo2019                |rep1       |schwartz2021      |https://rpubs.com/shawnschwartz/psych251                                             |https://github.com/psych251/ngo2019                     |yes     |              144|  12|dependency > 0                                                                                                                                                                                                                                          |MSE1: m1=.04 (.07), comp=0                                                 |yes            |          0.00|         0.00|              0.00|very close |https://osf.io/t3rpq |only adult sample, skipping verbal intelligence measure; accuracy differences ? online sample?                                                                                                                                                                                                                                                                                                                                                                                                         |     NA|TRUE           |Ngo et al. 2019           |NA          |stats    |Psych Sci                             |Ngo, C. T., Horner, A. J., Newcombe, N. S., & Olson, I. R. (2019). Development of holistic episodic recollection. Psychological science, 30(12), 1696-1706.                                                                                |https://journals.sagepub.com/doi/full/10.1177/0956797619879441                                                             |1 (younger adults only) |cognitive   |        2019|no                |yes       |yes            |within         |               0|
-|ngo2019                |rescue     |tung2023          |https://rpubs.com/sstung/replication_rescue_ngo19                                    |https://github.com/psych251/ngo19_rescue                |yes     |              144|  77|one sample t test for dependency > 0                                                                                                                                                                                                                    |MSE1: m1=.05 (.06), comp=0                                                 |yes            |          1.00|         1.00|              1.00|very close |https://osf.io/2svg9 |also has other stats such as sd and t-test                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 386.29|TRUE           |Ngo et al. 2019           |NA          |stats    |Psych Sci                             |Ngo, C. T., Horner, A. J., Newcombe, N. S., & Olson, I. R. (2019). Development of holistic episodic recollection. Psychological science, 30(12), 1696-1706.                                                                                |https://journals.sagepub.com/doi/full/10.1177/0956797619879441                                                             |1 (younger adults only) |cognitive   |        2019|no                |yes       |yes            |within         |               0|
-|paxton2012             |original   |paxton2012        |https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x             |NA                                                      |yes     |                3|  92|order -> rating                                                                                                                                                                                                                                         |t(90) = 2.03                                                               |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Paxton et al. 2012        |NA          |stats    |Cognitive Science                     |Paxton, J. M., Ungar, L., & Greene, J. D. (2012). Reflection and reasoning in moral judgment. Cognitive science, 36(1), 163-177.                                                                                                           |https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x                                                   |1.0                     |cognitive   |        2012|no                |no        |no             |between        |               0|
-|paxton2012             |rep1       |fereday2019       |http://rpubs.com/bfereday/561030                                                     |https://github.com/psych251/paxton2012                  |yes     |                3|  82|order -> rating                                                                                                                                                                                                                                         |t(80)=-0.35568                                                             |no             |          0.00|         0.00|              0.00|close      |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Paxton et al. 2012        |NA          |stats    |Cognitive Science                     |Paxton, J. M., Ungar, L., & Greene, J. D. (2012). Reflection and reasoning in moral judgment. Cognitive science, 36(1), 163-177.                                                                                                           |https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x                                                   |1.0                     |cognitive   |        2012|no                |no        |no             |between        |               0|
-|paxton2012             |rescue     |pereira2023       |https://rpubs.com/pereiraak/1178341                                                  |https://github.com/psych251/paxton2012_rescue           |yes     |                3| 160|CRT order on acceptability                                                                                                                                                                                                                              |t(158)=-1.1216                                                             |no             |          0.00|         0.25|              0.00|close      |https://osf.io/dvwrz |high exclusion rates (anticipated)                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 434.93|TRUE           |Paxton et al. 2012        |NA          |stats    |Cognitive Science                     |Paxton, J. M., Ungar, L., & Greene, J. D. (2012). Reflection and reasoning in moral judgment. Cognitive science, 36(1), 163-177.                                                                                                           |https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x                                                   |1.0                     |cognitive   |        2012|no                |no        |no             |between        |               0|
-|payne2008              |additional |denis2022         |https://www.pnas.org/doi/pdf/10.1073/pnas.2202657119                                 |NA                                                      |yes     |              192| 280|condition x valence -> general objects (sleep neg, sleep neutral, wake neg, wake neutral)                                                                                                                                                               |F(1,270)=.00967502                                                         |yes            |            NA|           NA|                NA|close      |NA                   |they don't report the specific contrast we want, and do overall and specific but not general recognition                                                                                                                                                                                                                                                                                                                                                                                               |     NA|TRUE           |Payne et al. 2008         |NA          |stats    |Psych Sci                             |Payne, J. D., Stickgold, R., Swanberg, K., & Kensinger, E. A. (2008). Sleep preferentially enhances memory for emotional components of scenes. Psychological science, 19(8), 781-788.                                                      |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x                                                      |1.0                     |other-psych |        2008|no                |no        |no             |between        |               0|
-|payne2008              |original   |payne2008         |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x                |NA                                                      |no      |              192|  48|condition x valence -> general objects                                                                                                                                                                                                                  |F(1, 46) = 11.5                                                            |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Payne et al. 2008         |NA          |stats    |Psych Sci                             |Payne, J. D., Stickgold, R., Swanberg, K., & Kensinger, E. A. (2008). Sleep preferentially enhances memory for emotional components of scenes. Psychological science, 19(8), 781-788.                                                      |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x                                                      |1.0                     |other-psych |        2008|no                |no        |no             |between        |               0|
-|payne2008              |rep1       |zhang2018         |https://rpubs.com/jxzhang/psych251_report                                            |https://github.com/psych251/payne2008                   |yes     |              192|  23|condition x valence -> general objects                                                                                                                                                                                                                  |F(1, 21) = 2.34                                                            |yes            |          0.00|         0.00|              0.00|far        |https://osf.io/mj7nd |sleep study might replicate worse on mturk; participants self-assigned condition versus original randomization                                                                                                                                                                                                                                                                                                                                                                                         |     NA|TRUE           |Payne et al. 2008         |NA          |stats    |Psych Sci                             |Payne, J. D., Stickgold, R., Swanberg, K., & Kensinger, E. A. (2008). Sleep preferentially enhances memory for emotional components of scenes. Psychological science, 19(8), 781-788.                                                      |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x                                                      |1.0                     |other-psych |        2008|no                |no        |no             |between        |               0|
-|payne2008              |rescue     |ogunbamowo2023    |https://rpubs.com/vboyce/payne2008_rescue                                            |https://github.com/psych251/payne2008_rescue            |yes     |              192|  23|condition x valence -> general objects                                                                                                                                                                                                                  |F(1,21)=0.716974594                                                        |yes            |          0.00|         0.25|              0.00|very close |https://osf.io/q8rv2 |difficulty with recruitment; note that rescue student considered 3x most important (versus 2-way on "objects" only, which rep did)                                                                                                                                                                                                                                                                                                                                                                     | 298.65|TRUE           |Payne et al. 2008         |NA          |stats    |Psych Sci                             |Payne, J. D., Stickgold, R., Swanberg, K., & Kensinger, E. A. (2008). Sleep preferentially enhances memory for emotional components of scenes. Psychological science, 19(8), 781-788.                                                      |https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x                                                      |1.0                     |other-psych |        2008|no                |no        |no             |between        |               0|
-|porter2016             |original   |porter2016        |https://journals.sagepub.com/doi/abs/10.1177/0956797615612202                        |NA                                                      |yes     |                1| 145|in 3-way anova, effect of libcat on shared group membership                                                                                                                                                                                             |F(1, 121) = 8.67                                                           |NA             |            NA|           NA|                NA|NA         |NA                   |issue is that the models are 2x2x3! so not effect size amenable; rep 1 thought the "key" interaction was the 3-way on friendship;  switching to what the *rescuer* thought was the key test was which is the main effect of LIB-cat (target manipulation)  in the 3-way on  shared category membership ("The focus here is to examine if the LIB conditions influence inferences about the likelihood of shared category membership between the target and communicator. ")                            |     NA|TRUE           |Porter et al. 2016        |NA          |exp      |Psych Sci                             |Porter, S. C., Rheinschmidt-Same, M., & Richeson, J. A. (2016). Inferring identity from language: Linguistic intergroup bias informs social categorization. Psychological science, 27(1), 94-102.                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615612202                                                              |3.0                     |social      |        2016|no                |yes       |yes            |between        |               1|
-|porter2016             |rep1       |guo2016           |http://rpubs.com/sansiropp/261171                                                    |https://github.com/StanfordPsych254/Porter2016          |yes     |                1| 168|in 3-way anova, effect of libcat on shared group membership                                                                                                                                                                                             |F(1,157)=.59                                                               |no             |          0.00|         0.00|              0.00|close      |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Porter et al. 2016        |NA          |exp      |Psych Sci                             |Porter, S. C., Rheinschmidt-Same, M., & Richeson, J. A. (2016). Inferring identity from language: Linguistic intergroup bias informs social categorization. Psychological science, 27(1), 94-102.                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615612202                                                              |3.0                     |social      |        2016|no                |yes       |yes            |between        |               1|
-|porter2016             |rescue     |chen_z2023        |https://rpubs.com/zwc1701/1166987                                                    |https://github.com/psych251/porter_2016_1_rescue        |yes     |                1| 136|in 3-way anova, effect of libcat on shared group membership                                                                                                                                                                                             |F(1,124)=8.041                                                             |yes            |          0.50|         0.75|              0.75|close      |https://osf.io/eu3jk |reports manipulation check failed                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 234.67|TRUE           |Porter et al. 2016        |NA          |exp      |Psych Sci                             |Porter, S. C., Rheinschmidt-Same, M., & Richeson, J. A. (2016). Inferring identity from language: Linguistic intergroup bias informs social categorization. Psychological science, 27(1), 94-102.                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615612202                                                              |3.0                     |social      |        2016|no                |yes       |yes            |between        |               1|
-|schechtman2010         |original   |schechtman2010    |https://www.jneurosci.org/content/30/31/10460.short                                  |NA                                                      |no      |               84|  22|valence x distance --> match                                                                                                                                                                                                                            |t(1567)=-4.941                                                             |NA             |            NA|           NA|                NA|NA         |NA                   |original paper reports only approximate p-value for an "ANOVA", we got data and got the t-stat from a linear model to match what reps did, but represents same value                                                                                                                                                                                                                                                                                                                                   |     NA|TRUE           |Schechtman et al. 2010    |NA          |exp      |Journal of Neuroscience               |Schechtman, E., Laufer, O., & Paz, R. (2010). Negative valence widens generalization of learning. Journal of Neuroscience, 30(31), 10460-10464.                                                                                            |https://www.jneurosci.org/content/30/31/10460.short                                                                        |1.0                     |cognitive   |        2010|no                |no        |no             |within         |               0|
-|schechtman2010         |rep1       |bonnen2018        |https://rpubs.com/tyler/446885                                                       |https://github.com/tzler/perception_affect_memory       |yes     |               84|  20|valence x distance --> match                                                                                                                                                                                                                            |t(1420)=-2.384                                                             |yes            |          0.50|         0.75|              0.50|close      |NA                   |replicate stat of interest, but pattern looks somewhat different                                                                                                                                                                                                                                                                                                                                                                                                                                       |     NA|TRUE           |Schechtman et al. 2010    |NA          |exp      |Journal of Neuroscience               |Schechtman, E., Laufer, O., & Paz, R. (2010). Negative valence widens generalization of learning. Journal of Neuroscience, 30(31), 10460-10464.                                                                                            |https://www.jneurosci.org/content/30/31/10460.short                                                                        |1.0                     |cognitive   |        2010|no                |no        |no             |within         |               0|
-|schechtman2010         |rescue     |klevak2023        |https://rpubs.com/nklevak/1167949                                                    |https://github.com/psych251/schechtman2010_rescue       |yes     |               90|  21|valence x distance --> match                                                                                                                                                                                                                            |t(1508)=-1.195                                                             |yes            |          0.00|         0.00|              0.00|close      |https://osf.io/e5v3p |note, 4 x [learn, generalize] compared to 3x in original and 1st rep (although data point numbers don't like up with this)                                                                                                                                                                                                                                                                                                                                                                             | 197.01|TRUE           |Schechtman et al. 2010    |NA          |exp      |Journal of Neuroscience               |Schechtman, E., Laufer, O., & Paz, R. (2010). Negative valence widens generalization of learning. Journal of Neuroscience, 30(31), 10460-10464.                                                                                            |https://www.jneurosci.org/content/30/31/10460.short                                                                        |1.0                     |cognitive   |        2010|no                |no        |no             |within         |               0|
-|tarampi2016            |original   |tarampi2016       |https://journals.sagepub.com/doi/abs/10.1177/0956797616667459                        |NA                                                      |no      |                2| 139|sex x condition on road map (female-social, female-spatial, male-social, male-spatial)                                                                                                                                                                  |MSD4: m1= 11.59 (5.29), m2=7.69 (3.80), m3= 14.06 (6.46), m4= 14.06 (5.32) |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Tarampi et al. 2016       |NA          |stats    |Psych Sci                             |Tarampi, M. R., Heydari, N., & Hegarty, M. (2016). A tale of two types of perspective taking: Sex differences in spatial ability. Psychological Science, 27(11), 1507-1516.                                                                |https://journals.sagepub.com/doi/abs/10.1177/0956797616667459                                                              |1.0                     |cognitive   |        2016|no                |no        |yes            |between        |               1|
-|tarampi2016            |rep1       |dietz2018         |https://rpubs.com/gdietz44/psych251writeup                                           |https://github.com/psych251/tarampi2016                 |yes     |                1| 212|sex x condition on road map (female-social, female-spatial, male-social, male-spatial)                                                                                                                                                                  |MSD4: m1=5.81 (2.99), m2= 5.21 (3.60), m3= 7.41 (3.51), m4=6.64 (3.92)     |no             |          0.00|         0.25|              0.00|close      |NA                   |replicated 1 ME, but not other ME or key interaction; excluded a task                                                                                                                                                                                                                                                                                                                                                                                                                                  |     NA|TRUE           |Tarampi et al. 2016       |NA          |stats    |Psych Sci                             |Tarampi, M. R., Heydari, N., & Hegarty, M. (2016). A tale of two types of perspective taking: Sex differences in spatial ability. Psychological Science, 27(11), 1507-1516.                                                                |https://journals.sagepub.com/doi/abs/10.1177/0956797616667459                                                              |1.0                     |cognitive   |        2016|no                |no        |yes            |between        |               1|
-|tarampi2016            |rescue     |hu2023            |https://rpubs.com/chuqihu8/final_report                                              |https://github.com/psych251/tarampi2016_rescue          |yes     |                1| 166|sex x condition on road map (female-social, female-spatial, male-social, male-spatial)                                                                                                                                                                  |MSD4: m1=18.4 (8.77), m2=12.9 (7.58), m3=25.9 (6.82), m4=17.7 (6.96)       |no             |          0.00|         0.00|              0.00|very close |https://osf.io/jm627 |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 189.34|TRUE           |Tarampi et al. 2016       |NA          |stats    |Psych Sci                             |Tarampi, M. R., Heydari, N., & Hegarty, M. (2016). A tale of two types of perspective taking: Sex differences in spatial ability. Psychological Science, 27(11), 1507-1516.                                                                |https://journals.sagepub.com/doi/abs/10.1177/0956797616667459                                                              |1.0                     |cognitive   |        2016|no                |no        |yes            |between        |               1|
-|todd2016               |additional |todd2023          |[parallel study, reported in rescue]                                                 |NA                                                      |no      |              144| 161|race x target on RT (black-gun, black-toy, white-gun, white-toy)                                                                                                                                                                                        |MSD4: m1=295 (239), m2=335 (226), m3 =300 (225), m4 = 334 (279)            |yes            |            NA|           NA|                NA|far        |NA                   |note: including participants of all races (23 were white)                                                                                                                                                                                                                                                                                                                                                                                                                                              |     NA|TRUE           |Todd et al. 2016          |NA          |stats    |Psych Sci                             |Todd, A. R., Thiem, K. C., & Neel, R. (2016). Does seeing faces of young black boys facilitate the identification of threatening stimuli?. Psychological science, 27(3), 384-393.                                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615624492                                                              |1.0                     |social      |        2016|no                |no        |yes            |within         |               0|
-|todd2016               |original   |todd2016          |https://journals.sagepub.com/doi/abs/10.1177/0956797615624492                        |NA                                                      |no      |              144|  63|race x target on RT (black-gun, black-toy, white-gun, white-toy)                                                                                                                                                                                        |MSD4: m1=255.8(35), m2=296.6(30.7), m3=261.9(37.4), m4=287.7(30.7)         |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Todd et al. 2016          |NA          |stats    |Psych Sci                             |Todd, A. R., Thiem, K. C., & Neel, R. (2016). Does seeing faces of young black boys facilitate the identification of threatening stimuli?. Psychological science, 27(3), 384-393.                                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615624492                                                              |1.0                     |social      |        2016|no                |no        |yes            |within         |               0|
-|todd2016               |rep1       |lee2016           |http://rpubs.com/cinoolee/260772                                                     |https://github.com/StanfordPsych254/Todd2016            |yes     |              144|  26|race x target on RT                                                                                                                                                                                                                                     |MSE4: m1=449.6 ( 8.9), m2 = 435 ( 20.7), m3 = 447.5( 8.6), m4= 433.7(23)   |no             |          0.00|         0.00|              0.00|very close |NA                   |do not have permission to share write-up / repo                                                                                                                                                                                                                                                                                                                                                                                                                                                        |     NA|TRUE           |Todd et al. 2016          |NA          |stats    |Psych Sci                             |Todd, A. R., Thiem, K. C., & Neel, R. (2016). Does seeing faces of young black boys facilitate the identification of threatening stimuli?. Psychological science, 27(3), 384-393.                                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615624492                                                              |1.0                     |social      |        2016|no                |no        |yes            |within         |               0|
-|todd2016               |rescue     |mazzaferro2023    |https://rpubs.com/mateusmazza/final_project_v2                                       |https://github.com/psych251/todd2016_1_rescue/tree/main |yes     |              144|  55|race x target on RT                                                                                                                                                                                                                                     |MSD4: m1=254 (74.8), m2=281 (74.1), m3=258 (73.6), m4=278 (75.4)           |yes            |          0.75|         1.00|              1.00|very close |https://osf.io/vc6py |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 373.62|TRUE           |Todd et al. 2016          |NA          |stats    |Psych Sci                             |Todd, A. R., Thiem, K. C., & Neel, R. (2016). Does seeing faces of young black boys facilitate the identification of threatening stimuli?. Psychological science, 27(3), 384-393.                                                          |https://journals.sagepub.com/doi/abs/10.1177/0956797615624492                                                              |1.0                     |social      |        2016|no                |no        |yes            |within         |               0|
-|yeshurun2003           |additional |chica2009         |https://link.springer.com/content/pdf/10.3758/APP.71.2.273                           |NA                                                      |no      |              800|  12|cued -> smaller d'                                                                                                                                                                                                                                      |F(1,11)=31.96                                                              |yes            |            NA|           NA|                NA|close      |NA                   |has slightly different modeling choices (doesn't include interaction with eccentricity, doesn't vary ISI, does this weird thing with tones before responding, but treats itself as a replication)                                                                                                                                                                                                                                                                                                      |     NA|TRUE           |Yeshurun & Levy 2003      |NA          |stats    |Psych Sci                             |Yeshurun, Y., & Levy, L. (2003). Transient spatial attention degrades temporal resolution. Psychological Science, 14(3), 225-231.                                                                                                          |https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436                                                              |1.0                     |cognitive   |        2003|no                |no        |no             |within         |               0|
-|yeshurun2003           |original   |yeshurun2003      |https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436                        |NA                                                      |no      |              864|  18|cued -> smaller d'                                                                                                                                                                                                                                      |F(1,17)=8.01                                                               |NA             |            NA|           NA|                NA|NA         |NA                   |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Yeshurun & Levy 2003      |NA          |stats    |Psych Sci                             |Yeshurun, Y., & Levy, L. (2003). Transient spatial attention degrades temporal resolution. Psychological Science, 14(3), 225-231.                                                                                                          |https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436                                                              |1.0                     |cognitive   |        2003|no                |no        |no             |within         |               0|
-|yeshurun2003           |rep1       |kim2019           |http://rpubs.com/insubkim/558263                                                     |https://github.com/psych251/Yeshurun2003                |no      |              864|  10|cued -> smaller d'                                                                                                                                                                                                                                      |F(1,9)=2.061                                                               |no             |          0.00|         0.00|              0.00|close      |https://osf.io/62hsc |smaller sample, lower accuracy                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |     NA|TRUE           |Yeshurun & Levy 2003      |NA          |stats    |Psych Sci                             |Yeshurun, Y., & Levy, L. (2003). Transient spatial attention degrades temporal resolution. Psychological Science, 14(3), 225-231.                                                                                                          |https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436                                                              |1.0                     |cognitive   |        2003|no                |no        |no             |within         |               0|
-|yeshurun2003           |rescue     |ergin2023         |https://rpubs.com/irmak_ergin/1159352                                                |https://github.com/psych251/yeshurun2003_rescue         |no      |              864|  18|cued -> smaller d'                                                                                                                                                                                                                                      |F(1,17)=.721                                                               |no             |          0.00|         0.00|              0.00|very close |https://osf.io/kfmjr |NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |     NA|TRUE           |Yeshurun & Levy 2003      |NA          |stats    |Psych Sci                             |Yeshurun, Y., & Levy, L. (2003). Transient spatial attention degrades temporal resolution. Psychological Science, 14(3), 225-231.                                                                                                          |https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436                                                              |1.0                     |cognitive   |        2003|no                |no        |no             |within         |               0|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> target_lastauthor_year </th>
+   <th style="text-align:left;"> type </th>
+   <th style="text-align:left;"> short_cite </th>
+   <th style="text-align:left;"> write_up_link </th>
+   <th style="text-align:left;"> github_link </th>
+   <th style="text-align:left;"> original_article_link </th>
+   <th style="text-align:left;"> pre-registration </th>
+   <th style="text-align:left;"> on_turk </th>
+   <th style="text-align:right;"> repeated_measure </th>
+   <th style="text-align:right;"> N </th>
+   <th style="text-align:left;"> test_description </th>
+   <th style="text-align:left;"> raw_stat </th>
+   <th style="text-align:left;"> same_direction </th>
+   <th style="text-align:right;"> MCF_rep_score </th>
+   <th style="text-align:right;"> TA_rep_score </th>
+   <th style="text-align:right;"> replication_score </th>
+   <th style="text-align:left;"> closeness </th>
+   <th style="text-align:left;"> original_study_number </th>
+   <th style="text-align:left;"> subfield </th>
+   <th style="text-align:right;"> target_year </th>
+   <th style="text-align:left;"> stanford_internal </th>
+   <th style="text-align:left;"> open_data </th>
+   <th style="text-align:left;"> open_materials </th>
+   <th style="text-align:left;"> within_between </th>
+   <th style="text-align:right;"> single_vignette </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;width: 20em; "> birch2007 </td>
+   <td style="text-align:left;width: 20em; "> additional </td>
+   <td style="text-align:left;width: 20em; "> bridgers2015 </td>
+   <td style="text-align:left;width: 20em; "> https://docs.google.com/document/d/1fSARliH5QKadGy3UElC00ehgwr2LLQbey-uzb1RPv0A/edit </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 152 </td>
+   <td style="text-align:left;"> red box: ignorance &lt; knowledge-plausible </td>
+   <td style="text-align:left;"> t(149.58) = -1.20 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> birch2007 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> birch2007 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 103 </td>
+   <td style="text-align:left;"> red box: ignorance &lt; knowledge-plausible </td>
+   <td style="text-align:left;"> t(105)=-2.42 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> birch2007 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> borchers2018 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/lrborchers/450894 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/birch2007 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x </td>
+   <td style="text-align:left;"> https://osf.io/32zyn </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 73 </td>
+   <td style="text-align:left;"> red box: ignorance &lt; knowledge-plausible </td>
+   <td style="text-align:left;"> t(70.25) = -0.65 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> birch2007 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> abutto2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/ottuba/birch2007_2_rescue_final </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/birch2007_2_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2007.01909.x </td>
+   <td style="text-align:left;"> https://osf.io/vy8wc </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 247 </td>
+   <td style="text-align:left;"> red box: ignorance &lt; knowledge-plausible </td>
+   <td style="text-align:left;"> t(237.01)=-1.4687 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> child2018 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> child2018 </td>
+   <td style="text-align:left;width: 20em; "> https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:right;"> 35 </td>
+   <td style="text-align:left;"> perspective predicting RT in positive passages </td>
+   <td style="text-align:left;"> MSD2: m1= 2201 (1284), m2= 2350( 1351) </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> child2018 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> bunderson2020 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/mebund/666364 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/child2018 </td>
+   <td style="text-align:left;width: 20em; "> https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397 </td>
+   <td style="text-align:left;"> https://osf.io/vk2cs </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:left;"> perspective predicting RT in positive passages </td>
+   <td style="text-align:left;"> MSD2: m1=1860(1510), m2=1960(1490) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> child2018 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> lua2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/vyqlua/child2018rescue </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/child2018_rescue/tree/main </td>
+   <td style="text-align:left;width: 20em; "> https://www.tandfonline.com/doi/pdf/10.1080/23273798.2018.1431397 </td>
+   <td style="text-align:left;"> https://osf.io/ubmws </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:right;"> 98 </td>
+   <td style="text-align:left;"> perspective (2nd v 3rd) on RT for positive passages </td>
+   <td style="text-align:left;"> MSD2: m1=1930(1400), m2=1930 (1400) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> chou2016 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> chou2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615625640 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615625640 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> high control condition  has less reported pain than low control condition (low then high control) </td>
+   <td style="text-align:left;"> MSD2: m1=13.75 (21.49), m2 = 6.57 (11.62) </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 5.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> chou2016 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> zion2017 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/szion/341843 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/Chou2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615625640 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 158 </td>
+   <td style="text-align:left;"> high control condition  has less reported pain than low control condition </td>
+   <td style="text-align:left;"> MSD2: m1=18.51(24.33), m2=23.10(23.88) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 5.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> chou2016 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> troutman2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/troutman/rescue_final </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/chou2016_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615625640 </td>
+   <td style="text-align:left;"> https://osf.io/vmfue </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 252 </td>
+   <td style="text-align:left;"> high v low sense of control -&gt; pain level </td>
+   <td style="text-align:left;"> MSD2: m1=11.52066(18.72659), m2=10.39695(16.53978) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 5.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> craig2014 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> craig2014 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797614527113 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797614527113 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 121 </td>
+   <td style="text-align:left;"> racial shift v "allay concerns" articles on overall (conservative ) policy attitudes </td>
+   <td style="text-align:left;"> MSE2: m1=.15 (.06), m2=-.08(.06) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 3a </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2014 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> craig2014 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> king2021 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/staciaking/craig2014 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/craig2014 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797614527113 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:left;"> racial shift v "allay concerns" articles on overall (conservative ) policy attitudes </td>
+   <td style="text-align:left;"> MSD2: m1=.271 (3.51), m2=-.721 (3.82) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 3a </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2014 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> craig2014 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> gupta2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/vboyce/craig2014_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/craig2014_rescue/tree/main </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797614527113 </td>
+   <td style="text-align:left;"> https://osf.io/4gtuq </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 127 </td>
+   <td style="text-align:left;"> racial shift v "allay concerns" articles on overall (conservative ) policy attitudes </td>
+   <td style="text-align:left;"> MSD2: m1=-.4307766 (3.529429), m2=.4463469 (3.848955) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 3a </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2014 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> gong2019 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> gong2019 </td>
+   <td style="text-align:left;width: 20em; "> https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 155 </td>
+   <td style="text-align:left;"> age x donation x kinship </td>
+   <td style="text-align:left;"> F(1,134) = 4.03 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> mixed </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> gong2019 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> shavit2017 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/Yochais/341415 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/gong2017 </td>
+   <td style="text-align:left;width: 20em; "> https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 90 </td>
+   <td style="text-align:left;"> age x donation x kinship </td>
+   <td style="text-align:left;"> F(1,70)=.06 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> far </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> mixed </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> gong2019 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> uricher2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/vboyce/gong_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/gong2019_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://academic.oup.com/psychsocgerontology/article-abstract/74/3/440/3988023 </td>
+   <td style="text-align:left;"> https://osf.io/c8f7k </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 137 </td>
+   <td style="text-align:left;"> 2 (age: younger vs older) × 2 (donation form: money vs time) × 2 (kinship: relatives vs non-relatives) mixed design, repeated measures ANOVA of transformed individual AUC values, with demographic variables as control + post-hoc tests if applicable </td>
+   <td style="text-align:left;"> F(1,113)=6.2934750 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> far </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> mixed </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> additional </td>
+   <td style="text-align:left;width: 20em; "> takada2021 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/metakada/haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/haimovitz2016_2 </td>
+   <td style="text-align:left;width: 20em; "> https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&amp;nl=nyt-parenting&amp;emc=edit_ptg_20200108 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 115 </td>
+   <td style="text-align:left;"> debilitating &gt; enhancing -&gt; concern </td>
+   <td style="text-align:left;"> t(113) = -1.9291 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 4.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> https://pubmed.ncbi.nlm.nih.gov/27113733/ </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&amp;nl=nyt-parenting&amp;emc=edit_ptg_20200108 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 132 </td>
+   <td style="text-align:left;"> priming condition in performance and learning oriented responses; debilitating &gt; enhancing -&gt; performance </td>
+   <td style="text-align:left;"> t(131) = 3.246 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 4.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> born2017 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/barbaraborn/Haimovitz2016_Final </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/Haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&amp;nl=nyt-parenting&amp;emc=edit_ptg_20200108 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 97 </td>
+   <td style="text-align:left;"> priming condition in performance and learning oriented responses </td>
+   <td style="text-align:left;"> t(93) = -1.93 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 4.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> haimovitz2016 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> mon2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/ksmon/1180187 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/haimovitz_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://pdfs.semanticscholar.org/7172/b578bfc9a77fbcd34c8e2417b674977f73fc.pdf?te=1&amp;nl=nyt-parenting&amp;emc=edit_ptg_20200108 </td>
+   <td style="text-align:left;"> https://osf.io/ehkrj </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 141 </td>
+   <td style="text-align:left;"> prime on performance oriented </td>
+   <td style="text-align:left;"> t(129.45)=-0.31382 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 4.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> hopkins2016 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> hopkins2016 </td>
+   <td style="text-align:left;width: 20em; "> https://www.sciencedirect.com/science/article/pii/S0010027716301585 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://www.sciencedirect.com/science/article/pii/S0010027716301585 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 147 </td>
+   <td style="text-align:left;"> explanation-level -&gt; rating </td>
+   <td style="text-align:left;"> MSD2: m1=1.118243 (.8510678), m2=1.397260 (.7516084) </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> hopkins2016 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> chuey2019 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/AaronChuey/hopkins2016writeupFinal </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/hopkins2016 </td>
+   <td style="text-align:left;width: 20em; "> https://www.sciencedirect.com/science/article/pii/S0010027716301585 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 93 </td>
+   <td style="text-align:left;"> explanation-level -&gt; rating </td>
+   <td style="text-align:left;"> MSD2: m1=1.616228 (.6715864), m2=1.424242 (.7356782) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> hopkins2016 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> chiu2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/howardchiu/hopkins2016rescue_forpublication </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/hopkins2016_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://www.sciencedirect.com/science/article/pii/S0010027716301585 </td>
+   <td style="text-align:left;"> https://osf.io/4hxya </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 161 </td>
+   <td style="text-align:left;"> explanation-level -&gt; rating </td>
+   <td style="text-align:left;"> MSD2: m1=1.177984 (.6890454), m2=1.355208 (.7170742) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> jara-ettinger2022 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> jara-ettinger2022 </td>
+   <td style="text-align:left;width: 20em; "> https://pubmed.ncbi.nlm.nih.gov/35343743/ </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2022-45689-001 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:left;"> preference for shape match &gt; chance?? </td>
+   <td style="text-align:left;"> rawprop: 99 / 144, chance=1/3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 5.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> jara-ettinger2022 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> abdelrahim2022 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/SamahAbdelrahim/960652 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/jara-ettinger2022 </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2022-45689-001 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 142 </td>
+   <td style="text-align:left;"> preference for shape match &gt; chance?? </td>
+   <td style="text-align:left;"> rawprop: 88/142, chance = 1/3 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 5.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> jara-ettinger2022 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> chen_e2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/echen/1131806 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/jara-ettinger2022_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2022-45689-001 </td>
+   <td style="text-align:left;"> https://osf.io/trb42 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 426 </td>
+   <td style="text-align:left;"> preference for shape match &gt; chance?? </td>
+   <td style="text-align:left;"> rawprop: 191/426, chance=1/3 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 5.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> krauss2003 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> krauss2003 </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2003-04933-002 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2003-04933-002 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 101 </td>
+   <td style="text-align:left;"> difference in pct correct justifications between control and guided </td>
+   <td style="text-align:left;"> prop: 2/67, 13/34 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> krauss2003 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> wilcox2018 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/JohnEpisteme/433652 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/krauss2003 </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2003-04933-002 </td>
+   <td style="text-align:left;"> https://osf.io/n3abr </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> difference in pct correct justifications between control and guided </td>
+   <td style="text-align:left;"> prop: 0/8, 0/11 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> krauss2003 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> kemmann2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/kemmann/krauss2003replication </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/krauss2003_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://psycnet.apa.org/record/2003-04933-002 </td>
+   <td style="text-align:left;"> https://osf.io/5tqxd </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 75 </td>
+   <td style="text-align:left;"> difference in pct correct justifications between control and guided </td>
+   <td style="text-align:left;"> prop: 1/40, 6/35 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> ngo2019 </td>
+   <td style="text-align:left;width: 20em; "> additional </td>
+   <td style="text-align:left;width: 20em; "> ngo2021 </td>
+   <td style="text-align:left;width: 20em; "> https://www.tandfonline.com/doi/full/10.1080/09658211.2021.1974047 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797619879441 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:left;"> dependency &gt; 0 </td>
+   <td style="text-align:left;"> MSE1: m1=.07 (.01), comp=0 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> exact </td>
+   <td style="text-align:left;"> 1 (younger adults only) </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> ngo2019 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> ngo2019 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797619879441 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797619879441 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:left;"> dependency &gt; 0 </td>
+   <td style="text-align:left;"> MSE1: m1=.07 (.01), comp=0 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1 (younger adults only) </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> ngo2019 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> schwartz2021 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/shawnschwartz/psych251 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/ngo2019 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797619879441 </td>
+   <td style="text-align:left;"> https://osf.io/t3rpq </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> dependency &gt; 0 </td>
+   <td style="text-align:left;"> MSE1: m1=.04 (.07), comp=0 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1 (younger adults only) </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> ngo2019 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> tung2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/sstung/replication_rescue_ngo19 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/ngo19_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1177/0956797619879441 </td>
+   <td style="text-align:left;"> https://osf.io/2svg9 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 77 </td>
+   <td style="text-align:left;"> one sample t test for dependency &gt; 0 </td>
+   <td style="text-align:left;"> MSE1: m1=.05 (.06), comp=0 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1 (younger adults only) </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> paxton2012 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> paxton2012 </td>
+   <td style="text-align:left;width: 20em; "> https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 92 </td>
+   <td style="text-align:left;"> order -&gt; rating </td>
+   <td style="text-align:left;"> t(90) = 2.03 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2012 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> paxton2012 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> fereday2019 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/bfereday/561030 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/paxton2012 </td>
+   <td style="text-align:left;width: 20em; "> https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 82 </td>
+   <td style="text-align:left;"> order -&gt; rating </td>
+   <td style="text-align:left;"> t(80)=-0.35568 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2012 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> paxton2012 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> pereira2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/pereiraak/1178341 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/paxton2012_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2011.01210.x </td>
+   <td style="text-align:left;"> https://osf.io/dvwrz </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:left;"> CRT order on acceptability </td>
+   <td style="text-align:left;"> t(158)=-1.1216 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2012 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> payne2008 </td>
+   <td style="text-align:left;width: 20em; "> additional </td>
+   <td style="text-align:left;width: 20em; "> denis2022 </td>
+   <td style="text-align:left;width: 20em; "> https://www.pnas.org/doi/pdf/10.1073/pnas.2202657119 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 192 </td>
+   <td style="text-align:right;"> 280 </td>
+   <td style="text-align:left;"> condition x valence -&gt; general objects (sleep neg, sleep neutral, wake neg, wake neutral) </td>
+   <td style="text-align:left;"> F(1,270)=.00967502 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> payne2008 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> payne2008 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 192 </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:left;"> condition x valence -&gt; general objects </td>
+   <td style="text-align:left;"> F(1, 46) = 11.5 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> payne2008 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> zhang2018 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/jxzhang/psych251_report </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/payne2008 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x </td>
+   <td style="text-align:left;"> https://osf.io/mj7nd </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 192 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:left;"> condition x valence -&gt; general objects </td>
+   <td style="text-align:left;"> F(1, 21) = 2.34 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> far </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> payne2008 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> ogunbamowo2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/vboyce/payne2008_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/payne2008_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02157.x </td>
+   <td style="text-align:left;"> https://osf.io/q8rv2 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 192 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:left;"> condition x valence -&gt; general objects </td>
+   <td style="text-align:left;"> F(1,21)=0.716974594 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> other-psych </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> porter2016 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> porter2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615612202 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615612202 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 145 </td>
+   <td style="text-align:left;"> in 3-way anova, effect of libcat on shared group membership </td>
+   <td style="text-align:left;"> F(1, 121) = 8.67 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 3.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> porter2016 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> guo2016 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/sansiropp/261171 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/StanfordPsych254/Porter2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615612202 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 168 </td>
+   <td style="text-align:left;"> in 3-way anova, effect of libcat on shared group membership </td>
+   <td style="text-align:left;"> F(1,157)=.59 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 3.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> porter2016 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> chen_z2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/zwc1701/1166987 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/porter_2016_1_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615612202 </td>
+   <td style="text-align:left;"> https://osf.io/eu3jk </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 136 </td>
+   <td style="text-align:left;"> in 3-way anova, effect of libcat on shared group membership </td>
+   <td style="text-align:left;"> F(1,124)=8.041 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 3.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> schechtman2010 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> schechtman2010 </td>
+   <td style="text-align:left;width: 20em; "> https://www.jneurosci.org/content/30/31/10460.short </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://www.jneurosci.org/content/30/31/10460.short </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> valence x distance --&gt; match </td>
+   <td style="text-align:left;"> t(1567)=-4.941 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2010 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> schechtman2010 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> bonnen2018 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/tyler/446885 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/tzler/perception_affect_memory </td>
+   <td style="text-align:left;width: 20em; "> https://www.jneurosci.org/content/30/31/10460.short </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> valence x distance --&gt; match </td>
+   <td style="text-align:left;"> t(1420)=-2.384 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2010 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> schechtman2010 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> klevak2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/nklevak/1167949 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/schechtman2010_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://www.jneurosci.org/content/30/31/10460.short </td>
+   <td style="text-align:left;"> https://osf.io/e5v3p </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 90 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:left;"> valence x distance --&gt; match </td>
+   <td style="text-align:left;"> t(1508)=-1.195 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2010 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> tarampi2016 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> tarampi2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797616667459 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797616667459 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 139 </td>
+   <td style="text-align:left;"> sex x condition on road map (female-social, female-spatial, male-social, male-spatial) </td>
+   <td style="text-align:left;"> MSD4: m1= 11.59 (5.29), m2=7.69 (3.80), m3= 14.06 (6.46), m4= 14.06 (5.32) </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> tarampi2016 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> dietz2018 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/gdietz44/psych251writeup </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/tarampi2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797616667459 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 212 </td>
+   <td style="text-align:left;"> sex x condition on road map (female-social, female-spatial, male-social, male-spatial) </td>
+   <td style="text-align:left;"> MSD4: m1=5.81 (2.99), m2= 5.21 (3.60), m3= 7.41 (3.51), m4=6.64 (3.92) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> tarampi2016 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> hu2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/chuqihu8/final_report </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/tarampi2016_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797616667459 </td>
+   <td style="text-align:left;"> https://osf.io/jm627 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 166 </td>
+   <td style="text-align:left;"> sex x condition on road map (female-social, female-spatial, male-social, male-spatial) </td>
+   <td style="text-align:left;"> MSD4: m1=18.4 (8.77), m2=12.9 (7.58), m3=25.9 (6.82), m4=17.7 (6.96) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> between </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> todd2016 </td>
+   <td style="text-align:left;width: 20em; "> additional </td>
+   <td style="text-align:left;width: 20em; "> todd2023 </td>
+   <td style="text-align:left;width: 20em; "> [parallel study, reported in rescue] </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615624492 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 161 </td>
+   <td style="text-align:left;"> race x target on RT (black-gun, black-toy, white-gun, white-toy) </td>
+   <td style="text-align:left;"> MSD4: m1=295 (239), m2=335 (226), m3 =300 (225), m4 = 334 (279) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> far </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> todd2016 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> todd2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615624492 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615624492 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 63 </td>
+   <td style="text-align:left;"> race x target on RT (black-gun, black-toy, white-gun, white-toy) </td>
+   <td style="text-align:left;"> MSD4: m1=255.8(35), m2=296.6(30.7), m3=261.9(37.4), m4=287.7(30.7) </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> todd2016 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> lee2016 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/cinoolee/260772 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/StanfordPsych254/Todd2016 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615624492 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:left;"> race x target on RT </td>
+   <td style="text-align:left;"> MSE4: m1=449.6 ( 8.9), m2 = 435 ( 20.7), m3 = 447.5( 8.6), m4= 433.7(23) </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> todd2016 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> mazzaferro2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/mateusmazza/final_project_v2 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/todd2016_1_rescue/tree/main </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/abs/10.1177/0956797615624492 </td>
+   <td style="text-align:left;"> https://osf.io/vc6py </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 55 </td>
+   <td style="text-align:left;"> race x target on RT </td>
+   <td style="text-align:left;"> MSD4: m1=254 (74.8), m2=281 (74.1), m3=258 (73.6), m4=278 (75.4) </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> 0.75 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> social </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> yeshurun2003 </td>
+   <td style="text-align:left;width: 20em; "> additional </td>
+   <td style="text-align:left;width: 20em; "> chica2009 </td>
+   <td style="text-align:left;width: 20em; "> https://link.springer.com/content/pdf/10.3758/APP.71.2.273 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 800 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> cued -&gt; smaller d' </td>
+   <td style="text-align:left;"> F(1,11)=31.96 </td>
+   <td style="text-align:left;"> yes </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> yeshurun2003 </td>
+   <td style="text-align:left;width: 20em; "> original </td>
+   <td style="text-align:left;width: 20em; "> yeshurun2003 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436 </td>
+   <td style="text-align:left;width: 20em; "> NA </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 864 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> cued -&gt; smaller d' </td>
+   <td style="text-align:left;"> F(1,17)=8.01 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> yeshurun2003 </td>
+   <td style="text-align:left;width: 20em; "> rep1 </td>
+   <td style="text-align:left;width: 20em; "> kim2019 </td>
+   <td style="text-align:left;width: 20em; "> http://rpubs.com/insubkim/558263 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/Yeshurun2003 </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436 </td>
+   <td style="text-align:left;"> https://osf.io/62hsc </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 864 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:left;"> cued -&gt; smaller d' </td>
+   <td style="text-align:left;"> F(1,9)=2.061 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 20em; "> yeshurun2003 </td>
+   <td style="text-align:left;width: 20em; "> rescue </td>
+   <td style="text-align:left;width: 20em; "> ergin2023 </td>
+   <td style="text-align:left;width: 20em; "> https://rpubs.com/irmak_ergin/1159352 </td>
+   <td style="text-align:left;width: 20em; "> https://github.com/psych251/yeshurun2003_rescue </td>
+   <td style="text-align:left;width: 20em; "> https://journals.sagepub.com/doi/full/10.1111/1467-9280.02436 </td>
+   <td style="text-align:left;"> https://osf.io/kfmjr </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 864 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> cued -&gt; smaller d' </td>
+   <td style="text-align:left;"> F(1,17)=.721 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> very close </td>
+   <td style="text-align:left;"> 1.0 </td>
+   <td style="text-align:left;"> cognitive </td>
+   <td style="text-align:right;"> 2003 </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> no </td>
+   <td style="text-align:left;"> within </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>

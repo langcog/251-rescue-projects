@@ -55,8 +55,37 @@ ready <- raw_expts |>
 
 
 for_pretty <- ready |>
+  
+  select(
+    target_lastauthor_year,
+    type,
+    short_cite,
+    write_up_link,
+    github_link,
+    original_article_link=article_link,
+    `pre-registration`,
+    on_turk, 
+    repeated_measure,
+    N,
+    test_description,
+    raw_stat,
+    same_direction,
+    MCF_rep_score,
+    TA_rep_score,
+    replication_score,
+    closeness,
+    original_study_number=study_number,
+    subfield,
+    target_year,
+    stanford_internal,
+    open_data,
+    open_materials,
+    within_between,
+    single_vignette,
+  ) |> 
   knitr::kable(format = "pipe") |>
-  write_lines(here("data", "combined_data.md"))
+  kableExtra::column_spec(1:6, width="20em") |> 
+  write_lines(here("data", "combined_data.md")) 
 ```
 
 Read in cache.

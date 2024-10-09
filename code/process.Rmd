@@ -68,7 +68,6 @@ for_pretty <- ready |>
     on_turk, 
     repeated_measure,
     N,
-    test_description,
     raw_stat,
     same_direction,
     MCF_rep_score,
@@ -85,8 +84,6 @@ for_pretty <- ready |>
     single_vignette,
   ) |> 
   knitr::kable(format = "pipe") |>
-  kableExtra::column_spec(1:7, width="20em") |> 
-   kableExtra::column_spec(11, width="30em")  
   write_lines(here("data", "combined_data.md")) 
 ```
 

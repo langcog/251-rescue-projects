@@ -6,7 +6,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning=F, message=F)
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
 knitr::opts_chunk$set(dev = "png", dev.args = list(type = "cairo-png"))
 options(knitr.table.format = "html")
 knitr::opts_chunk$set(echo = F)
@@ -33,7 +33,7 @@ options(mc.cores = parallel::detectCores())
 
 theme_set(theme_bw())
 
-model_location="code/models"
+model_location <- "code/models"
 ```
 
 
@@ -43,25 +43,31 @@ Download
 
 ```{r, eval=F}
 f <- googledrive::as_dribble("https://docs.google.com/spreadsheets/d/12A4DblSbX_0tHP1mTVJhjNboI1YDngidkNWiSy0sN0g/edit#gid=0")
-googledrive::drive_download(f, path=here("data","raw_data.xlsx"), overwrite=T)
+googledrive::drive_download(f, path = here("data", "raw_data.xlsx"), overwrite = T)
 
-raw_expts <- readxl::read_xlsx(here("data","raw_data.xlsx"), sheet="expt-level", skip=0) 
+raw_expts <- readxl::read_xlsx(here("data", "raw_data.xlsx"), sheet = "expt-level", skip = 0)
 
-raw_orig <- readxl::read_xlsx(here("data", "raw_data.xlsx"), sheet="original")
+raw_orig <- readxl::read_xlsx(here("data", "raw_data.xlsx"), sheet = "original")
 
-ready <- raw_expts |> left_join(raw_orig) |> write_csv(here("data", "combined_data.csv"))
+ready <- raw_expts |>
+  left_join(raw_orig) |>
+  write_csv(here("data", "combined_data.csv"))
 
 
+for_pretty <- ready |>
+  knitr::kable(format = "pipe") |>
+  write_lines(here("data", "combined_data.md"))
 ```
 
 Read in cache.
 
 ```{r}
-d <- read_csv(here("data", "combined_data.csv")) |> 
-  select(target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat, 
-         same_direction, replication_score, closeness, subfield, target_year, stanford_internal, 
-         open_data, open_materials, within_between, single_vignette, name_pretty)
-
+d <- read_csv(here("data", "combined_data.csv")) |>
+  select(
+    target_lastauthor_year, type, on_turk, repeated_measure, N, raw_stat,
+    same_direction, replication_score, closeness, subfield, target_year, stanford_internal,
+    open_data, open_materials, within_between, single_vignette, name_pretty
+  )
 ```
 
 # Parsing
@@ -69,30 +75,32 @@ d <- read_csv(here("data", "combined_data.csv")) |>
 We parse out values from the raw stats. 
 
 ```{r}
-source(here("code","helper","parse_stats.R"))
+source(here("code", "helper", "parse_stats.R"))
 ```
 
 
 ```{r}
-parsed_d <- d |> 
-  mutate(raw_stat=gsub(" ","",raw_stat),
-         calc=pmap(list(raw_stat, within_between,N), do_parsing)) |> 
-  unnest(cols=c(calc), names_sep="_") |> 
-    mutate(
-    calc_d_calc=case_when(
-      type=="original" ~ abs(calc_d_calc),
-      same_direction=="yes" ~ abs(calc_d_calc),
-      same_direction=="no" ~ -abs(calc_d_calc),
+parsed_d <- d |>
+  mutate(
+    raw_stat = gsub(" ", "", raw_stat),
+    calc = pmap(list(raw_stat, within_between, N), do_parsing)
+  ) |>
+  unnest(cols = c(calc), names_sep = "_") |>
+  mutate(
+    calc_d_calc = case_when(
+      type == "original" ~ abs(calc_d_calc),
+      same_direction == "yes" ~ abs(calc_d_calc),
+      same_direction == "no" ~ -abs(calc_d_calc),
       T ~ as.numeric(NA)
-      ),
-    calc_ES=case_when(
-      type=="original" ~ abs(calc_ES),
-      same_direction=="yes" ~ abs(calc_ES),
-      same_direction=="no" ~ -abs(calc_ES),
+    ),
+    calc_ES = case_when(
+      type == "original" ~ abs(calc_ES),
+      same_direction == "yes" ~ abs(calc_ES),
+      same_direction == "no" ~ -abs(calc_ES),
       T ~ as.numeric(NA)
-      ),
-    type=factor(type, levels=c("original", "rep1", "rescue", "additional"))
-    ) |> 
+    ),
+    type = factor(type, levels = c("original", "rep1", "rescue", "additional"))
+  ) |>
   rowwise()
 ```
 
@@ -102,12 +110,15 @@ parsed_d <- d |>
 Check that nothing that has a stat input and doesn't get an ES out. 
 
 ```{r}
+parsed_d |>
+  filter(is.na(calc_ES) & (is.na(calc_d_calc))) |>
+  select(target_lastauthor_year, type, raw_stat)
 
-parsed_d |> filter(is.na(calc_ES)&(is.na(calc_d_calc))) |>  select(target_lastauthor_year, type, raw_stat)
+parsed_d |>
+  filter(is.na(calc_SE) & (is.na(calc_d_calc_se))) |>
+  select(target_lastauthor_year, type, raw_stat)
 
-parsed_d |> filter(is.na(calc_SE)&(is.na(calc_d_calc_se))) |>  select(target_lastauthor_year, type, raw_stat)
-
-#everything is parsing, yay!
+# everything is parsing, yay!
 parsed_d |> write_csv(here("data/parsed_data.csv"))
 ```
 
@@ -116,42 +127,45 @@ parsed_d |> write_csv(here("data/parsed_data.csv"))
 * We will compare the original, 1st replication, and re-replication effect sizes, as well as any effect sizes coming from independent replications (where effect size can be computed)
 
 ```{r, fig.height=6, fig.width=8}
-#test on just one
-colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
-for_plotting <- parsed_d |> filter(is.na(calc_d_calc)&!is.na(calc_ES)) |> 
-  mutate(point=calc_ES, low=calc_ES-1.96*calc_SE, high=calc_ES+1.96*calc_SE)
+# test on just one
+colors <- c("original" = "black", "rep1" = "#377EB8", "rescue" = "#E41A1C", "additional" = "#984EA3")
+for_plotting <- parsed_d |>
+  filter(is.na(calc_d_calc) & !is.na(calc_ES)) |>
+  mutate(point = calc_ES, low = calc_ES - 1.96 * calc_SE, high = calc_ES + 1.96 * calc_SE)
 
-for_plotting_d <- parsed_d |> filter(!is.na(calc_d_calc)) |> 
-  mutate(point=calc_d_calc, low=calc_d_calc-1.96*calc_d_calc_se, high=calc_d_calc+1.96*calc_d_calc_se)
+for_plotting_d <- parsed_d |>
+  filter(!is.na(calc_d_calc)) |>
+  mutate(point = calc_d_calc, low = calc_d_calc - 1.96 * calc_d_calc_se, high = calc_d_calc + 1.96 * calc_d_calc_se)
 
-orig_scale <- ggplot(for_plotting,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high, color=type, shape=type, group=desc(type)))+
-  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4))+
-  geom_point(position=position_dodge(width=.4))+
-  coord_flip()+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "none",
-        panel.grid.major.x = element_blank(), 
-        panel.grid.minor.x=element_blank()
-        )+
-  scale_color_manual(values=colors)+
-  labs(y="effect size on original scale", x="")
+orig_scale <- ggplot(for_plotting, aes(x = target_lastauthor_year, y = point, ymin = low, ymax = high, color = type, shape = type, group = desc(type))) +
+  geom_errorbar(size = .5, width = .25, position = position_dodge(width = .4)) +
+  geom_point(position = position_dodge(width = .4)) +
+  coord_flip() +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  scale_color_manual(values = colors) +
+  labs(y = "effect size on original scale", x = "")
 
-smd_scale <- ggplot(for_plotting_d,aes(x=target_lastauthor_year,y=point,ymin=low,ymax=high,shape=type, color=type, group=desc(type)))+
-  geom_errorbar(size=.5,width=0, position=position_dodge(width=.5))+
-  geom_point(position=position_dodge(width=.5))+
-  coord_flip(ylim=c(-1.1,1.5))+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-    scale_color_manual(values=colors)+
-  theme(legend.position = "bottom", 
-        panel.grid.major.x = element_blank(), 
-        panel.grid.minor.x=element_blank()
-        )+
-  labs(y="Standarized mean difference", x="")
+smd_scale <- ggplot(for_plotting_d, aes(x = target_lastauthor_year, y = point, ymin = low, ymax = high, shape = type, color = type, group = desc(type))) +
+  geom_errorbar(size = .5, width = 0, position = position_dodge(width = .5)) +
+  geom_point(position = position_dodge(width = .5)) +
+  coord_flip(ylim = c(-1.1, 1.5)) +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  scale_color_manual(values = colors) +
+  theme(
+    legend.position = "bottom",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  labs(y = "Standarized mean difference", x = "")
 
-plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
-
+plot_grid(orig_scale, smd_scale, nrow = 2, rel_heights = c(.3, 1))
 ```
 
 
@@ -162,16 +176,20 @@ plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
 * We will report the distribution of subjective replication success in our rescue sample
 
 ```{r}
-subj <- parsed_d |> filter(type=="rescue") |> mutate(binary_success=ifelse(replication_score>.5,1,0))
+subj <- parsed_d |>
+  filter(type == "rescue") |>
+  mutate(binary_success = ifelse(replication_score > .5, 1, 0))
 
-tallied <- subj|> group_by(replication_score) |> tally()
+tallied <- subj |>
+  group_by(replication_score) |>
+  tally()
 
-tallied 
-success <- filter(subj, binary_success==1)
+tallied
+success <- filter(subj, binary_success == 1)
 
-d <- read_csv(here("data", "combined_data.csv")) |> filter(type=="rescue") 
+d <- read_csv(here("data", "combined_data.csv")) |> filter(type == "rescue")
 
-irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method="spearman")$estimate
+irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method = "spearman")$estimate
 irr
 ```
 
@@ -182,51 +200,62 @@ Of a total of `r nrow(subj)` replication, `r nrow(success)` succeeding at mostly
 * The predictors used in https://osf.io/preprints/psyarxiv/dpyn6/ for exploratory analyses (the ones that need to be calculated) 
 
 ```{r}
-original <- parsed_d |> filter(type=="original") |> 
-  rename_with(~str_c("original_",.), .cols=-target_lastauthor_year)
+original <- parsed_d |>
+  filter(type == "original") |>
+  rename_with(~ str_c("original_", .), .cols = -target_lastauthor_year)
 
-rep1 <- parsed_d |> filter(type=="rep1") |> select(target_lastauthor_year, rep_N=N)
+rep1 <- parsed_d |>
+  filter(type == "rep1") |>
+  select(target_lastauthor_year, rep_N = N)
 
-for_cor <- subj |> left_join(original) |> left_join(rep1) |> 
+for_cor <- subj |>
+  left_join(original) |>
+  left_join(rep1) |>
   mutate(
-  social=ifelse(subfield=="social", 1,0),
-  other_psych=ifelse(subfield=="other-psych",1,0), 
-  is_within=ifelse(within_between=="within", 1,0), 
-  change_platform=ifelse(on_turk==original_on_turk, 0,1),
-  log_trials=log(repeated_measure),
-  log_sample=log(N),
-  log_ratio_ss=log(N/original_N),
-  rep_1_log_sample=log(rep_N),
-  log_ratio_rep1_orig=log(rep_N/original_N),
-  log_ratio_rescue_rep1=log(N/rep_N),
-  open_data=ifelse(open_data=="yes",1,0),
-  open_mat=ifelse(open_materials=="yes", 1,0),
-  stanford=ifelse(stanford_internal=="yes",1,0)) |> 
+    social = ifelse(subfield == "social", 1, 0),
+    other_psych = ifelse(subfield == "other-psych", 1, 0),
+    is_within = ifelse(within_between == "within", 1, 0),
+    change_platform = ifelse(on_turk == original_on_turk, 0, 1),
+    log_trials = log(repeated_measure),
+    log_sample = log(N),
+    log_ratio_ss = log(N / original_N),
+    rep_1_log_sample = log(rep_N),
+    log_ratio_rep1_orig = log(rep_N / original_N),
+    log_ratio_rescue_rep1 = log(N / rep_N),
+    open_data = ifelse(open_data == "yes", 1, 0),
+    open_mat = ifelse(open_materials == "yes", 1, 0),
+    stanford = ifelse(stanford_internal == "yes", 1, 0)
+  ) |>
   filter(!is.na(replication_score))
 
 
 sub_cor <- function(var, stat = "estimate") {
   if (stat == "estimate") {
-    cor.test(for_cor$replication_score, pull(for_cor, {{var}}))$estimate
+    cor.test(for_cor$replication_score, pull(for_cor, {{ var }}))$estimate
   } else {
-    cor.test(for_cor$replication_score, pull(for_cor, {{var}}))$p.value
+    cor.test(for_cor$replication_score, pull(for_cor, {{ var }}))$p.value
   }
 }
 
 
-preds <- c("open_data",  "open_mat", "stanford", "change_platform", 
-           "log_ratio_ss", "is_within", "single_vignette", "log_sample", 
-           "log_trials", "social", "other_psych", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1")
+preds <- c(
+  "open_data", "open_mat", "stanford", "change_platform",
+  "log_ratio_ss", "is_within", "single_vignette", "log_sample",
+  "log_trials", "social", "other_psych", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"
+)
 
 cors <- tibble(preds = preds) |>
-  mutate(r = sapply(preds, function(x) sub_cor(x, stat = "estimate")),
-         p = sapply(preds, function(x) sub_cor(x, stat = "p"))) |> 
-
-  mutate(Predictors=factor(preds, levels=c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels=c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rep/orig sample", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"))) |> arrange(Predictors) |> select(Predictors, r, p)
+  mutate(
+    r = sapply(preds, function(x) sub_cor(x, stat = "estimate")),
+    p = sapply(preds, function(x) sub_cor(x, stat = "p"))
+  ) |>
+  mutate(Predictors = factor(preds, levels = c("social", "other_psych", "is_within", "single_vignette", "change_platform", "open_data", "open_mat", "stanford", "pub_year", "log_trials", "log_sample", "log_ratio_ss", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"), labels = c("Social", "Other psych", "Within subjects", "Single vignette", "Switch to online", "Open data", "Open materials", "Stanford", "Publication year", "Log trials", "Log original sample size", "Log rep/orig sample", "rep_1_log_sample", "log_ratio_rep1_orig", "log_ratio_rescue_rep1"))) |>
+  arrange(Predictors) |>
+  select(Predictors, r, p)
 
 library(kableExtra)
-knitr::kable(cors, digits = 3, align='rcc') |> kable_styling(full_width=F, htmltable_class = "lightable-classic-2") 
-#cors
+knitr::kable(cors, digits = 3, align = "rcc") |> kable_styling(full_width = F, htmltable_class = "lightable-classic-2")
+# cors
 ```
 * If there is a mixture of projects that succeed and fail to replicate the original results, we will qualitatively describe differences that may have played a role.
 
@@ -235,17 +264,20 @@ It looks like the ones with poor replication sample (due to inflated effect size
 # table of expts by sample sizes & closenesses
 
 ```{r}
-parsed_d |> select(target_lastauthor_year, type, N, closeness, replication_score) |> 
-  filter(type!="additional") |> 
-  pivot_wider(names_from="type", values_from=c(N, closeness, replication_score)) |> 
-  select(paper=target_lastauthor_year, rescue_score=replication_score_rescue, N_original, N_rep1, N_rescue,
-         closeness_rep1, closeness_rescue) |> arrange(rescue_score |> desc())
-
+parsed_d |>
+  select(target_lastauthor_year, type, N, closeness, replication_score) |>
+  filter(type != "additional") |>
+  pivot_wider(names_from = "type", values_from = c(N, closeness, replication_score)) |>
+  select(
+    paper = target_lastauthor_year, rescue_score = replication_score_rescue, N_original, N_rep1, N_rescue,
+    closeness_rep1, closeness_rescue
+  ) |>
+  arrange(rescue_score |> desc())
 ```
 # PredInt and P_orig
 
 ```{r}
-source(here("code","helper","stats.R"))
+source(here("code", "helper", "stats.R"))
 ```
 
 NOTE: can't do p-orig not on SMD scale here b/c tau imputation is in SMD units!!!
@@ -253,48 +285,49 @@ NOTE: can't do p-orig not on SMD scale here b/c tau imputation is in SMD units!!
 ## orig v all on p-orig
 ```{r}
 do_rma <- function(df) {
-  if(!any(is.na(df$es))){
-  r<- rma(yi=df$es, sei=df$es_se, slab=df$type)
-  return(tibble(rma_est=r$beta[,1],rma_se=r$se))
+  if (!any(is.na(df$es))) {
+    r <- rma(yi = df$es, sei = df$es_se, slab = df$type)
+    return(tibble(rma_est = r$beta[, 1], rma_se = r$se))
   }
-  return(tibble(rma_est=NA, rma_se=NA))
+  return(tibble(rma_est = NA, rma_se = NA))
 }
 
 do_d_rma <- function(df) {
-  if(!any(is.na(df$d))){
-  r<- rma(yi=df$d, sei=df$d_se, slab=df$type)
-  return(tibble(rma_d_est=r$beta[,1], rma_d_se=r$se))
+  if (!any(is.na(df$d))) {
+    r <- rma(yi = df$d, sei = df$d_se, slab = df$type)
+    return(tibble(rma_d_est = r$beta[, 1], rma_d_se = r$se))
   }
-  return(tibble(rma_d_est=NA, rma_d_se=NA))
-
+  return(tibble(rma_d_est = NA, rma_d_se = NA))
 }
 
 
-do_p_orig <- function(es, es_se, rep_es, rep_se){
-  if(!is.na(es)&!is.na(es_se)&!is.na(rep_es)&!is.na(rep_se)){
-    return(Replicate::p_orig(es, es_se**2,rep_es, t2=0.21**2, rep_se**2))
+do_p_orig <- function(es, es_se, rep_es, rep_se) {
+  if (!is.na(es) & !is.na(es_se) & !is.na(rep_es) & !is.na(rep_se)) {
+    return(Replicate::p_orig(es, es_se**2, rep_es, t2 = 0.21**2, rep_se**2))
   }
   return(NA)
 }
-
 ```
 
 ```{r}
+orig <- parsed_d |>
+  filter(type == "original") |>
+  select(target_lastauthor_year, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE)
 
-orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
-
-orig_v_others <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
-  filter(type!="original") |> 
-  group_by(target_lastauthor_year) |> 
-  nest() |> 
-  mutate(rma_result=map(data, do_rma),
-         d_rma_result=map(data, do_d_rma)) |> 
-  unnest_wider(rma_result) |> 
-  unnest_wider(d_rma_result) |> 
-  left_join(orig) |> 
-  rowwise() |> 
-  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
-
+orig_v_others <- parsed_d |>
+  select(target_lastauthor_year, type, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE) |>
+  filter(type != "original") |>
+  group_by(target_lastauthor_year) |>
+  nest() |>
+  mutate(
+    rma_result = map(data, do_rma),
+    d_rma_result = map(data, do_d_rma)
+  ) |>
+  unnest_wider(rma_result) |>
+  unnest_wider(d_rma_result) |>
+  left_join(orig) |>
+  rowwise() |>
+  mutate(d_p_orig = do_p_orig(d, d_se, rma_d_est, rma_d_se))
 ```
 
 * We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. 
@@ -303,207 +336,208 @@ orig_v_others <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc,
 a) p-original between just the original and rescue, 
 
 ```{r}
-orig_v_rescue <- parsed_d |>   filter(type=="rescue") |> 
-  select(target_lastauthor_year, type, res_d=calc_d_calc, res_d_se=calc_d_calc_se, res_es=calc_ES, res_es_se=calc_SE) |> 
-
-  left_join(orig) |> 
-  rowwise() |> 
-  mutate(d_p_orig=do_p_orig(d, d_se, res_d, res_d_se))
-
+orig_v_rescue <- parsed_d |>
+  filter(type == "rescue") |>
+  select(target_lastauthor_year, type, res_d = calc_d_calc, res_d_se = calc_d_calc_se, res_es = calc_ES, res_es_se = calc_SE) |>
+  left_join(orig) |>
+  rowwise() |>
+  mutate(d_p_orig = do_p_orig(d, d_se, res_d, res_d_se))
 ```
 
 ## original v !rescue
 b) p-original between the original and all replications except the rescue (in the case where no replications are found in the literature, this is the same as done in https://osf.io/preprints/psyarxiv/dpyn6/)
 
 ```{r}
-orig_v_not_rescue <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
-  filter(type!="original", type!="rescue") |> 
-  filter(target_lastauthor_year!="krauss2003") |> # have to avoid the divide by 0 error
-  group_by(target_lastauthor_year) |> 
-  nest() |> 
-  mutate(rma_result=map(data, do_rma),
-         d_rma_result=map(data, do_d_rma)) |> 
-  unnest_wider(rma_result) |> 
-  unnest_wider(d_rma_result) |> 
-  left_join(orig) |> 
-  rowwise() |> 
-  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
-
-
+orig_v_not_rescue <- parsed_d |>
+  select(target_lastauthor_year, type, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE) |>
+  filter(type != "original", type != "rescue") |>
+  filter(target_lastauthor_year != "krauss2003") |> # have to avoid the divide by 0 error
+  group_by(target_lastauthor_year) |>
+  nest() |>
+  mutate(
+    rma_result = map(data, do_rma),
+    d_rma_result = map(data, do_d_rma)
+  ) |>
+  unnest_wider(rma_result) |>
+  unnest_wider(d_rma_result) |>
+  left_join(orig) |>
+  rowwise() |>
+  mutate(d_p_orig = do_p_orig(d, d_se, rma_d_est, rma_d_se))
 ```
 
 ## rescue v reps
 c) p-original between the rescue and all other replications. 
 
 ```{r}
-rescue_only <- parsed_d |> filter(type=="rescue") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+rescue_only <- parsed_d |>
+  filter(type == "rescue") |>
+  select(target_lastauthor_year, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE)
 
-rescue_v_reps <- parsed_d |> select(target_lastauthor_year, type, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE) |> 
-  filter(type!="original", type!="rescue") |> 
-  filter(target_lastauthor_year!="krauss2003") |> # have to avoid the divide by 0 error
-  group_by(target_lastauthor_year) |> 
-  nest() |> 
-  mutate(rma_result=map(data, do_rma),
-         d_rma_result=map(data, do_d_rma)) |> 
-  unnest_wider(rma_result) |> 
-  unnest_wider(d_rma_result) |> 
-  left_join(rescue_only) |> 
-  rowwise() |> 
-  mutate(d_p_orig=do_p_orig(d, d_se, rma_d_est, rma_d_se))
-
-
+rescue_v_reps <- parsed_d |>
+  select(target_lastauthor_year, type, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE) |>
+  filter(type != "original", type != "rescue") |>
+  filter(target_lastauthor_year != "krauss2003") |> # have to avoid the divide by 0 error
+  group_by(target_lastauthor_year) |>
+  nest() |>
+  mutate(
+    rma_result = map(data, do_rma),
+    d_rma_result = map(data, do_d_rma)
+  ) |>
+  unnest_wider(rma_result) |>
+  unnest_wider(d_rma_result) |>
+  left_join(rescue_only) |>
+  rowwise() |>
+  mutate(d_p_orig = do_p_orig(d, d_se, rma_d_est, rma_d_se))
 ```
 
 ## show p_origs
 
 ```{r}
- all <- orig_v_others |> select(target_lastauthor_year, orig_v_other=d_p_orig) |> 
-  left_join(orig_v_rescue |> select(target_lastauthor_year, orig_v_rescue=d_p_orig)) |> 
-  left_join(orig_v_not_rescue |> select(target_lastauthor_year, orig_v_not_rescue=d_p_orig)) |> 
-  left_join(rescue_v_reps |> select(target_lastauthor_year, rescue_v_reps=d_p_orig)) |> 
-  rename(paper=target_lastauthor_year)
+all <- orig_v_others |>
+  select(target_lastauthor_year, orig_v_other = d_p_orig) |>
+  left_join(orig_v_rescue |> select(target_lastauthor_year, orig_v_rescue = d_p_orig)) |>
+  left_join(orig_v_not_rescue |> select(target_lastauthor_year, orig_v_not_rescue = d_p_orig)) |>
+  left_join(rescue_v_reps |> select(target_lastauthor_year, rescue_v_reps = d_p_orig)) |>
+  rename(paper = target_lastauthor_year)
 
 all
-
 ```
 
 ## some predint viz! (this is currently with *no* hetereogeneity, idk what we actually want)
 We will visualize the consistency between original, 1st replication, rescue, and any other replications by plotting effect size and prediction interval for each. 
 
 ```{r}
-do_predInt <- function(df){
-  if(!is.na(df$es)&!is.na(df$es_se)&!is.na(df$rep_es)&!is.na(df$rep_es_se)){
-    a <- Replicate::pred_int(df$es, df$es_se**2,df$rep_es, df$rep_es_se**2)
-    return(tibble(low=a$int.lo, high=a$int.hi, inside=a$rep.inside))
+do_predInt <- function(df) {
+  if (!is.na(df$es) & !is.na(df$es_se) & !is.na(df$rep_es) & !is.na(df$rep_es_se)) {
+    a <- Replicate::pred_int(df$es, df$es_se**2, df$rep_es, df$rep_es_se**2)
+    return(tibble(low = a$int.lo, high = a$int.hi, inside = a$rep.inside))
   }
-  return(tibble(low=NA,high=NA, inside=NA))
+  return(tibble(low = NA, high = NA, inside = NA))
 }
 
-do_d_predInt <- function(df){
-  if(!is.na(df$d)&!is.na(df$d_se)&!is.na(df$rep_d)&!is.na(df$rep_d_se)){
-    a <- Replicate::pred_int(df$d, df$d_se**2,df$rep_d, df$rep_d_se**2)
-    return(tibble(d_low=a$int.lo, d_high=a$int.hi, d_inside=a$rep.inside))
+do_d_predInt <- function(df) {
+  if (!is.na(df$d) & !is.na(df$d_se) & !is.na(df$rep_d) & !is.na(df$rep_d_se)) {
+    a <- Replicate::pred_int(df$d, df$d_se**2, df$rep_d, df$rep_d_se**2)
+    return(tibble(d_low = a$int.lo, d_high = a$int.hi, d_inside = a$rep.inside))
   }
-  return(tibble(d_low=NA,d_high=NA, d_inside=NA))
+  return(tibble(d_low = NA, d_high = NA, d_inside = NA))
 }
-
 ```
 
 ```{r}
-orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+orig <- parsed_d |>
+  filter(type == "original") |>
+  select(target_lastauthor_year, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE)
 
-predInts <- parsed_d |> 
-  filter(type!="original") |> 
-  group_by(target_lastauthor_year) |> 
-  select(target_lastauthor_year, type, rep_d=calc_d_calc, rep_d_se=calc_d_calc_se, rep_es=calc_ES, rep_es_se=calc_SE) |> 
-  left_join(orig) |> 
-  group_by(target_lastauthor_year,type) |> 
-  nest() |> 
-  mutate(pred_int=map(data, do_predInt),
-         d_pred_int=map(data,do_d_predInt)) |> 
-  unnest_wider(pred_int) |> 
-  unnest_wider(d_pred_int) |> 
+predInts <- parsed_d |>
+  filter(type != "original") |>
+  group_by(target_lastauthor_year) |>
+  select(target_lastauthor_year, type, rep_d = calc_d_calc, rep_d_se = calc_d_calc_se, rep_es = calc_ES, rep_es_se = calc_SE) |>
+  left_join(orig) |>
+  group_by(target_lastauthor_year, type) |>
+  nest() |>
+  mutate(
+    pred_int = map(data, do_predInt),
+    d_pred_int = map(data, do_d_predInt)
+  ) |>
+  unnest_wider(pred_int) |>
+  unnest_wider(d_pred_int) |>
   unnest_wider(data)
-
-
-
 ```
 
 ### viz attempts
 ```{r, fig.height=8, fig.width=6}
-colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+colors <- c("original" = "black", "rep1" = "#377EB8", "rescue" = "#E41A1C", "additional" = "#984EA3")
 
 
 
-orig_scale <- ggplot(predInts |> filter(is.na(d_inside)&!is.na(inside)), aes(x=target_lastauthor_year, y=rep_es, ymin=low, ymax=high, color=type, group=desc(type), shape=type))+
-  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black")+
-  geom_point(position=position_dodge(width=.4))+
-  geom_point(aes(y=es), color="black", position=position_dodge(width=.4), shape=1)+
-  coord_flip()+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "none",
-        panel.grid.major.x = element_blank(), 
-        panel.grid.minor.x=element_blank()
-        )+
-  scale_color_manual(values=colors)+
-  labs(y="predInts on original scale", x="")
+orig_scale <- ggplot(predInts |> filter(is.na(d_inside) & !is.na(inside)), aes(x = target_lastauthor_year, y = rep_es, ymin = low, ymax = high, color = type, group = desc(type), shape = type)) +
+  geom_errorbar(size = .5, width = .25, position = position_dodge(width = .4), color = "black") +
+  geom_point(position = position_dodge(width = .4)) +
+  geom_point(aes(y = es), color = "black", position = position_dodge(width = .4), shape = 1) +
+  coord_flip() +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  scale_color_manual(values = colors) +
+  labs(y = "predInts on original scale", x = "")
 
-smd_scale <- ggplot(predInts |> filter(!is.na(d_inside)), aes(x=target_lastauthor_year, y=rep_d, ymin=d_low, ymax=d_high, color=type, group=desc(type), shape=type))+
-  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black")+
-  geom_point(position=position_dodge(width=.4))+
-  geom_point(aes(y=d), color="black", position=position_dodge(width=.4), shape=1)+
-  coord_flip()+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "none",
-        panel.grid.major.x = element_blank(), 
-        panel.grid.minor.x=element_blank()
-        )+
-  scale_color_manual(values=colors)+
-  labs(y="predInts on SMD scale", x="")
+smd_scale <- ggplot(predInts |> filter(!is.na(d_inside)), aes(x = target_lastauthor_year, y = rep_d, ymin = d_low, ymax = d_high, color = type, group = desc(type), shape = type)) +
+  geom_errorbar(size = .5, width = .25, position = position_dodge(width = .4), color = "black") +
+  geom_point(position = position_dodge(width = .4)) +
+  geom_point(aes(y = d), color = "black", position = position_dodge(width = .4), shape = 1) +
+  coord_flip() +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  scale_color_manual(values = colors) +
+  labs(y = "predInts on SMD scale", x = "")
 
-plot_grid(orig_scale, smd_scale, nrow=2, rel_heights=c(.3,1))
-
+plot_grid(orig_scale, smd_scale, nrow = 2, rel_heights = c(.3, 1))
 ```
 
 ## predInt with heterogeneity
 
 ```{r}
-do_d_predInt_het <- function(df){
-  if(!is.na(df$d)&!is.na(df$d_se)&!is.na(df$rep_d)&!is.na(df$rep_d_se)){
-    yio=df$d
-    vio=df$d_se**2
-    yir=df$rep_d
-    vir=df$rep_d_se**2
-    t2=.21**2
-    pooled.SE = sqrt(vio + vir + t2)
-    PILo.sens = yio - qnorm(0.975) * pooled.SE
-    PIHi.sens = yio + qnorm(0.975) * pooled.SE
-    PIinside.sens = (yir > PILo.sens) & (yir < PIHi.sens)
-    return(tibble(d_low=PILo.sens, d_high=PIHi.sens, d_inside=PIinside.sens))
+do_d_predInt_het <- function(df) {
+  if (!is.na(df$d) & !is.na(df$d_se) & !is.na(df$rep_d) & !is.na(df$rep_d_se)) {
+    yio <- df$d
+    vio <- df$d_se**2
+    yir <- df$rep_d
+    vir <- df$rep_d_se**2
+    t2 <- .21**2
+    pooled.SE <- sqrt(vio + vir + t2)
+    PILo.sens <- yio - qnorm(0.975) * pooled.SE
+    PIHi.sens <- yio + qnorm(0.975) * pooled.SE
+    PIinside.sens <- (yir > PILo.sens) & (yir < PIHi.sens)
+    return(tibble(d_low = PILo.sens, d_high = PIHi.sens, d_inside = PIinside.sens))
   }
-  return(tibble(d_low=NA,d_high=NA, d_inside=NA))
+  return(tibble(d_low = NA, d_high = NA, d_inside = NA))
 }
-
 ```
 
 ```{r}
-orig <- parsed_d |> filter(type=="original") |> select(target_lastauthor_year, d=calc_d_calc, d_se=calc_d_calc_se, es=calc_ES, es_se=calc_SE)
+orig <- parsed_d |>
+  filter(type == "original") |>
+  select(target_lastauthor_year, d = calc_d_calc, d_se = calc_d_calc_se, es = calc_ES, es_se = calc_SE)
 
-predInts_het <- parsed_d |> 
-  filter(type!="original") |> 
-  group_by(target_lastauthor_year) |> 
-  select(target_lastauthor_year, type, rep_d=calc_d_calc, rep_d_se=calc_d_calc_se, rep_es=calc_ES, rep_es_se=calc_SE) |> 
-  left_join(orig) |> 
-  group_by(target_lastauthor_year,type) |> 
-  nest() |> 
-  mutate(d_pred_int=map(data,do_d_predInt_het)) |> 
-  unnest_wider(d_pred_int) |> 
+predInts_het <- parsed_d |>
+  filter(type != "original") |>
+  group_by(target_lastauthor_year) |>
+  select(target_lastauthor_year, type, rep_d = calc_d_calc, rep_d_se = calc_d_calc_se, rep_es = calc_ES, rep_es_se = calc_SE) |>
+  left_join(orig) |>
+  group_by(target_lastauthor_year, type) |>
+  nest() |>
+  mutate(d_pred_int = map(data, do_d_predInt_het)) |>
+  unnest_wider(d_pred_int) |>
   unnest_wider(data)
-
-
-
 ```
 
 ### viz attempts
 ```{r, fig.height=8, fig.width=6}
-colors <- c("original"="black", "rep1"="#377EB8", "rescue"="#E41A1C", "additional"="#984EA3")
+colors <- c("original" = "black", "rep1" = "#377EB8", "rescue" = "#E41A1C", "additional" = "#984EA3")
 
 
- ggplot(predInts_het |> filter(!is.na(d_inside)), aes(x=target_lastauthor_year, y=rep_d, ymin=d_low, ymax=d_high, color=type, group=desc(type), shape=type))+
-  geom_errorbar(size=.5,width=.25, position=position_dodge(width=.4), color="black")+
-  geom_point(position=position_dodge(width=.4))+
-  geom_point(aes(y=d), color="black", position=position_dodge(width=.4), shape=1)+
-  coord_flip()+
-  scale_size_area()+
-  geom_hline(yintercept=0,color="black")+
-  theme(legend.position = "none",
-        panel.grid.major.x = element_blank(), 
-        panel.grid.minor.x=element_blank()
-        )+
-  scale_color_manual(values=colors)+
-  labs(y="predInts on SMD scale", x="")
-
-
+ggplot(predInts_het |> filter(!is.na(d_inside)), aes(x = target_lastauthor_year, y = rep_d, ymin = d_low, ymax = d_high, color = type, group = desc(type), shape = type)) +
+  geom_errorbar(size = .5, width = .25, position = position_dodge(width = .4), color = "black") +
+  geom_point(position = position_dodge(width = .4)) +
+  geom_point(aes(y = d), color = "black", position = position_dodge(width = .4), shape = 1) +
+  coord_flip() +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  scale_color_manual(values = colors) +
+  labs(y = "predInts on SMD scale", x = "")
 ```

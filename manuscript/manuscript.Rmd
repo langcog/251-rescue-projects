@@ -1,64 +1,66 @@
 ---
 title: "Estimating the replicability of psychology experiments after an initial failure to replicate"
 author:
-  - name: Veronica Boyce
-    affiliation: Psych
-    footnote:
-      - corresp
-  - name: Ben Prystawski
-    affiliation: Psych
-  - name: Adani B. Abutto
-    affiliation: Psych
-  - name: Emily M. Chen
-    affiliation: Psych
-  - name: Ziwen Chen
-    affiliation: GSB
-  - name: Howard Chiu
-    affiliation: Edu
-  - name: Irmak Ergin
-    affiliation: Psych
-  - name: Anmol Gupta
-    affiliation: Psych
-  - name: Chuqi Hu
-    affiliation: Symsys
-  - name: Bendix Kemmann
-    affiliation: Philosophy
-  - name: Nastasia Klevak
-    affiliation: Psych
-  - name: Verity Y. Q. Lua
-    affiliation: Psych
-  - name: Mateus M. Mazzaferro
-    affiliation: Edu
-  - name: Khaing Mon
-    affiliation: Symsys
-  - name: Dan Ogunbamowo
-    affiliation: Psych
-  - name: Alexander Pereira
-    affiliation: [Psych, Philosophy]
-  - name: Jordan Troutman
-    affiliation: CS
-  - name: Sarah Tung
-    affiliation: Psych
-  - name: Raphael Uricher
-    affiliation: Psych
-  - name: Michael C. Frank
-    affiliation: Psych
-address:
-  - code: Psych
-    address: Department of Psychology, Stanford University
-  - code: GSB
-    address: Graduate School of Business, Stanford University
-  - code: Edu
-    address: Graduate School of Education, Stanford University
-  - code: Symsys
-    address: Symbolic Systems Program, Stanford University
-  - code: Philosophy
-    address: Department of Philosophy, Stanford University
-  - code: CS
-    address: Department of Computer Science, Stanford University
-footnote:
-  - code: corresp
-    text: "Corresponding author. Email: vboyce@stanford.edu"
+  - Anonymous
+# author:
+#   - name: Veronica Boyce
+#     affiliation: Psych
+#     footnote:
+#       - corresp
+#   - name: Ben Prystawski
+#     affiliation: Psych
+#   - name: Adani B. Abutto
+#     affiliation: Psych
+#   - name: Emily M. Chen
+#     affiliation: Psych
+#   - name: Ziwen Chen
+#     affiliation: GSB
+#   - name: Howard Chiu
+#     affiliation: Edu
+#   - name: Irmak Ergin
+#     affiliation: Psych
+#   - name: Anmol Gupta
+#     affiliation: Psych
+#   - name: Chuqi Hu
+#     affiliation: Symsys
+#   - name: Bendix Kemmann
+#     affiliation: Philosophy
+#   - name: Nastasia Klevak
+#     affiliation: Psych
+#   - name: Verity Y. Q. Lua
+#     affiliation: Psych
+#   - name: Mateus M. Mazzaferro
+#     affiliation: Edu
+#   - name: Khaing Mon
+#     affiliation: Symsys
+#   - name: Dan Ogunbamowo
+#     affiliation: Psych
+#   - name: Alexander Pereira
+#     affiliation: [Psych, Philosophy]
+#   - name: Jordan Troutman
+#     affiliation: CS
+#   - name: Sarah Tung
+#     affiliation: Psych
+#   - name: Raphael Uricher
+#     affiliation: Psych
+#   - name: Michael C. Frank
+#     affiliation: Psych
+# address:
+#   - code: Psych
+#     address: Department of Psychology, Stanford University
+#   - code: GSB
+#     address: Graduate School of Business, Stanford University
+#   - code: Edu
+#     address: Graduate School of Education, Stanford University
+#   - code: Symsys
+#     address: Symbolic Systems Program, Stanford University
+#   - code: Philosophy
+#     address: Department of Philosophy, Stanford University
+#   - code: CS
+#     address: Department of Computer Science, Stanford University
+#footnote:
+#  - code: corresp
+#    text: "Corresponding author. Email: vboyce@stanford.edu"
 bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
 csl: apa7.csl # Use any CSL
 nocite: |
@@ -880,6 +882,10 @@ We thank the students from previous years of PSYCH 251 who graciously agreed to 
 We thank the other members of the PSYCH 251 teaching team and students for feedback on projects.
 Data collection was supported by funding from the Stanford Departments of Psychology and Philosophy, Graduate School of Education, and the Symbolic Systems program.
 
+# Conflicts of Interest {.unnumbered}
+
+The authors report no conflicts of interest.
+
 # Author Contributions {.unnumbered}
 
 VB and MCF conceptualized the study.
@@ -912,7 +918,7 @@ Despite the increased power, the rescue did not replicate the original paper's f
 
 @gong2019 looked at the interplay between age and willingness to donate in older adults in Hong Kong and found a three-way interaction between age, type of donation, and relationship to recipient.
 The first replication sampled US adults and did not find a significant interaction.
-The rescuer thought that cultural differences may have played a role and specifically sampled Asian American adults.
+The rescuer thought that cultural differences may have played a role and specifically sampled adults who reported their ethnicity as East Asian.
 The rescue did not recover the interaction.
 
 @haimovitz2016 manipulated parents' mindsets with "failure-is-enhancing" or "failure-is-debilitating" primes and looked at their reactions to a hypothetical situation in which a child received a failing grade.

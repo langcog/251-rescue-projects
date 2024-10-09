@@ -62,8 +62,9 @@ for_pretty <- ready |>
     short_cite,
     write_up_link,
     github_link,
+   `pre-registration`,
     original_article_link=article_link,
-    `pre-registration`,
+
     on_turk, 
     repeated_measure,
     N,
@@ -84,7 +85,8 @@ for_pretty <- ready |>
     single_vignette,
   ) |> 
   knitr::kable(format = "pipe") |>
-  kableExtra::column_spec(1:6, width="20em") |> 
+  kableExtra::column_spec(1:7, width="20em") |> 
+   kableExtra::column_spec(11, width="30em")  
   write_lines(here("data", "combined_data.md")) 
 ```
 

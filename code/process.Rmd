@@ -54,8 +54,7 @@ ready <- raw_expts |>
   write_csv(here("data", "combined_data.csv"))
 
 
-for_pretty <- ready |>
-  
+for_pretty_github <- ready |>
   select(
     target_lastauthor_year,
     type,
@@ -85,6 +84,7 @@ for_pretty <- ready |>
   ) |> 
   knitr::kable(format = "pipe") |>
   write_lines(here("data", "combined_data.md")) 
+
 ```
 
 Read in cache.

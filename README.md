@@ -9,8 +9,11 @@ The overall manuscript can be reproduced by knitting manuscript/manuscript.Rmd
 * This file reads data from data/combined_data.csv and data/boyce_2023_data.csv
 * This file uses code/helper/parse_stats.R 
 
-**[data/combined_data.md](https://github.com/langcog/251-rescue-projects/blob/main/data/combined_data.md) has clickable links to the write-ups, pre-registrations, and projects (code/data) for the replications and rescues. If you are looking at OSF, [data/project_links.pdf](https://osf.io/r2d6q) has clickable links.**
- Additionally, the project repos are contained in first-replication-projects and individual-rescue-projects. Archival copies of the write-ups are in first-replication-reports and individual-rescue-reports (download/clone the repo and then open the html files in a web browser to view them). 
+**[data/combined_data.md](https://github.com/langcog/251-rescue-projects/blob/main/data/combined_data.md) has clickable links to the write-ups, pre-registrations, and projects (code/data) for the replications and rescues. If you are looking at OSF, [data/project_links.pdf](https://osf.io/r2d6q) has clickable links. If you download the repo, data/combined_data.xlsx has clickable links.**
+
+Note that links contained within the project write-ups on RPubs may not open directly and you need to right click them to open in a new tab (due to security features of osf and github). 
+
+Additionally, the project repos are contained in first-replication-projects and individual-rescue-projects. Archival copies of the write-ups are in first-replication-reports and individual-rescue-reports (download/clone the repo and then open the html files in a web browser to view them). 
 
 The numeric results in data/combined_data.csv (effect size measures, sample sizes, number of trials) were coded off of the papers and reports. Where the effect size measures were not presented in the needed format, recalculations were done (see reconstruct_effect_sizes for data and code for these). 
 
@@ -44,6 +47,7 @@ The numeric results in data/combined_data.csv (effect size measures, sample size
 ### First-replication-reports and Individual-rescue-reports
 * archival copies of the reports from individual projects, in case the rpubs links break or are overwritten
 * to view, download the repo and open the html files in a browser
+Find links to the live versions at [data/combined_data.md](https://github.com/langcog/251-rescue-projects/blob/main/data/combined_data.md). Note that links contained within the project write-ups on RPubs may not open directly and you need to right click them to open in a new tab (due to security features of osf and github). 
 
 ### reconstruct_effect_sizes 
 In a few cases, the effect size information we needed for comparable SMDs was not available from published papers or project write-ups, and we had to construct it.

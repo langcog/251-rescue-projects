@@ -1,0 +1,86 @@
+
+\documentclass{stanfordletter}
+%\makelabels
+
+%\makelabels
+\usepackage{todonotes}
+\usepackage{varioref}
+\usepackage{xr}
+\externaldocument[paper-]{../revision}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=apa,doi=false,url=false,hyperref=true,apamaxprtauth=30,uniquename=false]{biblatex}
+\usepackage{framed}
+\DeclareLanguageMapping{american}{american-apa}
+\newcommand{\citet}[1]{\textcite{#1}}
+\newcommand{\citep}[1]{\parencite{#1}}
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{float}
+
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\newcounter{section}
+
+
+\newcommand{\section}[1]{
+	\bigskip
+	{\normalfont\Large\bfseries #1}}
+
+
+\newcommand{\theysaid}[1]{\begin{leftbar} \noindent 
+		\textsl{ #1}\end{leftbar}}
+	
+\newcommand{\revised}[1]{\begin{quote}	#1 \end{quote}}
+
+
+\usepackage{hyperref}
+\begin{document}
+	\name{Veronica Boyce}
+	\signature{\vspace{-35pt} Veronica Boyce, \\ on behalf of the author team}
+	
+	
+	\begin{letter}{Professor Don van Ravenzwaaij \\ Editor-in-Chief \\ Collabra: Psychology }
+		
+		
+		\opening{Dear Dr. van Ravenzwaaij,} 
+		
+		Thank you for your decision letter. We are glad that our edits improved the manuscript, and we thank you for your additional comments, which we have addressed. 
+		
+		\theysaid{There are some remaining considerations with data accessibility. The file combined\_data.csv contains a number of links in the columns write\_up\_link and github\_link, but none of them are hyperlinked (neither when I access the file directly on OSF, nor when I download it and open locally).}
+		
+		This is a good point. Unfortunately, we can't put links in a csv because it's a plain text file format, but we have added a clickable links document for each of the 3 ways someone might access the data. 
+		\begin{itemize}
+			\item Downloading: We added a .xlsx version of combined\_data that has hyperlinks. 
+			\item View on Github: We added a markdown format table, which github renders into a table with clickable links (\url{https://github.com/langcog/251-rescue-projects/blob/main/data/combined_data.md}).
+			\item View on OSF: The best format we could find where OSF will display clickable hyperlinks was a pdf with a table of projects and links (\url{https://osf.io/r2d6q}). 
+		\end{itemize}
+		
+	We have added bolded text to our README linking to these different ways of viewing the links in a hyperlinked format. 
+	
+	\theysaid{Related, picking for instance https://rpubs.com/troutman/rescue\_final, when I attempt to click on the link for Code and Data (https://github.com/psych251/chou2016\_rescue), I get a message that github refuses to connect.}
+	
+	Thanks for bringing this up. We believe it's due to how the security measures of GitHub and OSF, not allowing pages in their domains to be embedded (which is how RPubs tries to open links). We don't know how to fix this, but we have added a note about it to the README saying that one needs to right-click to open the links in a new tab. 
+	
+	\theysaid{Ideally, I’d like the links to pre-registration and to code \& data to be added to the combined\_data.csv spreadsheet.}
+	
+	The non-clickable links are in the combined\_data.csv spreadsheet, and now the same spreadsheet (with clickable links) is downloadable as combined\_data.xlsx or viewable on GitHub as combined\_data.md, and we have documented this in the README. 
+	
+	\theysaid{Last small thing, your revised text contains several typos and grammatical errors.}
+	
+	Thanks for pointing this out, and I apologize for these errors. Another author (who was not the one who introduced the errors) has now proofread the manuscript twice to correct typos and amend grammatical errors and confusing wording. 
+	
+			\closing{Sincerely,}
+		
+		\pagebreak
+
+	
+
+	
+		\end{letter}
+	
+	
+	
+\end{document}

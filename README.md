@@ -9,7 +9,7 @@ The overall manuscript can be reproduced by knitting manuscript/manuscript.Rmd
 * This file reads data from data/combined_data.csv and data/boyce_2023_data.csv
 * This file uses code/helper/parse_stats.R 
 
-**[data/combined_data.md](https://github.com/langcog/251-rescue-projects/blob/main/data/combined_data.md) has clickable links to the write-ups, pre-registrations, and projects (code/data) for the replications and rescues. If you are looking at OSF, [data/project_links.pdf](https://osf.io/r2d6q) has clickable links.**
+**[data/combined_data.md](https://github.com/langcog/251-rescue-projects/blob/main/data/combined_data.md) has clickable links to the write-ups, pre-registrations, and projects (code/data) for the replications and rescues. If you are looking at OSF, [data/project_links.pdf](https://osf.io/r2d6q) has clickable links. If you download the repo, data/combined_data.xlsx has clickable links.**
 
 Note that links contained within the project write-ups on RPubs may not open directly and you need to right click them to open in a new tab (due to security features of osf and github). 
 

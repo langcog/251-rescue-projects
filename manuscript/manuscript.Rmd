@@ -1,66 +1,64 @@
 ---
 title: "Estimating the replicability of psychology experiments after an initial failure to replicate"
 author:
-  - Anonymous
-# author:
-#   - name: Veronica Boyce
-#     affiliation: Psych
-#     footnote:
-#       - corresp
-#   - name: Ben Prystawski
-#     affiliation: Psych
-#   - name: Adani B. Abutto
-#     affiliation: Psych
-#   - name: Emily M. Chen
-#     affiliation: Psych
-#   - name: Ziwen Chen
-#     affiliation: GSB
-#   - name: Howard Chiu
-#     affiliation: Edu
-#   - name: Irmak Ergin
-#     affiliation: Psych
-#   - name: Anmol Gupta
-#     affiliation: Psych
-#   - name: Chuqi Hu
-#     affiliation: Symsys
-#   - name: Bendix Kemmann
-#     affiliation: Philosophy
-#   - name: Nastasia Klevak
-#     affiliation: Psych
-#   - name: Verity Y. Q. Lua
-#     affiliation: Psych
-#   - name: Mateus M. Mazzaferro
-#     affiliation: Edu
-#   - name: Khaing Mon
-#     affiliation: Symsys
-#   - name: Dan Ogunbamowo
-#     affiliation: Psych
-#   - name: Alexander Pereira
-#     affiliation: [Psych, Philosophy]
-#   - name: Jordan Troutman
-#     affiliation: CS
-#   - name: Sarah Tung
-#     affiliation: Psych
-#   - name: Raphael Uricher
-#     affiliation: Psych
-#   - name: Michael C. Frank
-#     affiliation: Psych
-# address:
-#   - code: Psych
-#     address: Department of Psychology, Stanford University
-#   - code: GSB
-#     address: Graduate School of Business, Stanford University
-#   - code: Edu
-#     address: Graduate School of Education, Stanford University
-#   - code: Symsys
-#     address: Symbolic Systems Program, Stanford University
-#   - code: Philosophy
-#     address: Department of Philosophy, Stanford University
-#   - code: CS
-#     address: Department of Computer Science, Stanford University
-#footnote:
-#  - code: corresp
-#    text: "Corresponding author. Email: vboyce@stanford.edu"
+  - name: Veronica Boyce
+    affiliation: Psych
+    footnote:
+     - corresp
+  - name: Ben Prystawski
+    affiliation: Psych
+  - name: Adani B. Abutto
+    affiliation: Psych
+  - name: Emily M. Chen
+    affiliation: Psych
+  - name: Ziwen Chen
+    affiliation: GSB
+  - name: Howard Chiu
+    affiliation: Edu
+  - name: Irmak Ergin
+    affiliation: Psych
+  - name: Anmol Gupta
+    affiliation: Psych
+  - name: Chuqi Hu
+    affiliation: Symsys
+  - name: Bendix Kemmann
+    affiliation: Philosophy
+  - name: Nastasia Klevak
+    affiliation: Psych
+  - name: Verity Y. Q. Lua
+    affiliation: Psych
+  - name: Mateus M. Mazzaferro
+    affiliation: Edu
+  - name: Khaing Mon
+    affiliation: Symsys
+  - name: Dan Ogunbamowo
+    affiliation: Psych
+  - name: Alexander Pereira
+    affiliation: [Psych, Philosophy]
+  - name: Jordan Troutman
+    affiliation: CS
+  - name: Sarah Tung
+    affiliation: Psych
+  - name: Raphael Uricher
+    affiliation: Psych
+  - name: Michael C. Frank
+    affiliation: Psych
+address:
+  - code: Psych
+    address: Department of Psychology, Stanford University
+  - code: GSB
+    address: Graduate School of Business, Stanford University
+  - code: Edu
+    address: Graduate School of Education, Stanford University
+  - code: Symsys
+    address: Symbolic Systems Program, Stanford University
+  - code: Philosophy
+    address: Department of Philosophy, Stanford University
+  - code: CS
+    address: Department of Computer Science, Stanford University
+footnote:
+ - code: corresp
+   text: "Corresponding author. Email: vboyce@stanford.edu"
 bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
 csl: apa7.csl # Use any CSL
 nocite: |
@@ -360,7 +358,7 @@ A spreadsheet of projects, individual project write-ups (both first replications
 
 Our analysis plan was pre-registered after students had selected projects, but before final data collection on the projects.
 Each project was also individually pre-registered by the student conducting it.
-The overall analysis is pre-registered at <https://osf.io/5qz7v>, individual pre-registrations are linked from <https://osf.io/vkbfw>.
+The overall analysis is pre-registered at <https://osf.io/5qz7v>, individual pre-registrations are linked from <https://osf.io/r2d6q>.
 We note one deviation from our pre-registration here: we pre-registered visual comparisons between original, first replication, and rescue projects using prediction intervals.
 Prediction intervals depend on both the original effect size and variance and the variance of the comparison (replication or rescue) study [@patil2016].
 Thus we cannot show a single prediction interval for the original study, but would have to show a prediction interval between each pair of studies.
@@ -426,7 +424,7 @@ In many cases, students were also given the contact information of the original 
 Students were required to think of reasons why the first replication might not have worked, and address them if they could.
 A list of possible reasons and solutions was given to students (<https://osf.io/dfwk2>).
 In general, we encouraged students to add manipulation checks as appropriate and to adapt their materials to online studies, which may benefit from attention checks and/or shorter duration.
-For instance, the rescue of @paxton2012 switched from using the Cognitive Reflection Test (CRT) which many online participants are over-familiar with to using the newer CRT-2 which is used less but attempts to measure the same construct [@thomson2016].
+For instance, the rescue of @paxton2012 switched from using the Cognitive Reflection Test (CRT) which many online participants are over-familiar with to using the newer CRT-2, which is used less but attempts to measure the same construct [@thomson2016].
 The rescue of @jara-ettinger2022 discovered that the replication had accidentally used an illustrated version of the stimuli rather than the photographic stimuli used in the original and used the photographic stimuli instead.
 @tarampi2016 had participants do a timed navigation task where they wrote L or R to indicate which way to turn at each intersection on a paper map.
 The replication ported this experiment online and had participants use a dropdown menu to select left or right for each turn.

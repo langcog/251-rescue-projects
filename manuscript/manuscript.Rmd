@@ -58,7 +58,7 @@ address:
     address: Department of Computer Science, Stanford University
 footnote:
  - code: corresp
-   text: "Corresponding author. Email: vboyce@stanford.edu"
+   text: "Corresponding author. Email: vboyce@mit.edu"
 bibliography: ["251rescue.bib"] # Replace with one or more of your own bibtex files. Better BibTeX for Zotero is your friend
 csl: apa7.csl # Use any CSL
 nocite: |
@@ -262,6 +262,38 @@ We speculate that successful rescue projects were due to larger sample sizes or 
 In the absence of obvious weaknesses in a failed replication study's sample or procedure, however, it may be most efficient to stop pursuing an effect after a single failed replication.
 :::
 
+Corrected November 2026 after an AI audit found errors; see the next page for details about corrections.
+
+<!------------ Correction notice (same text as the website note) -------------------->
+
+\newpage
+
+\begingroup\small
+
+# Correction note {-}
+
+An AI audit in November 2026 turned up errors in the code that computed effect sizes and their uncertainty, and an error in the student analysis code for both replications of one study (Ngo et al., 2019). The main result, that 5 of 17 rescue projects (29%) mostly or fully replicated, is unchanged, as are the correlations with predictors (except for one row; see below). With the corrected code, most original effects are statistically consistent with their replications, and the confidence intervals in Figure 1 are wider. These errors have been addressed in this version of the manuscript.
+
+Claude Code was used for the AI audit, to fix the issues, and to draft text for this notice.
+
+**Analysis errors**
+
+1. *Variance used as a standard error.* The code that computed standardized effect sizes (shared with Boyce et al., 2023) returned the sampling variance of *d* where a standard error was expected. Smaller errors in the same code are also fixed: standard errors for comparisons computed from reported means and SDs, the variance formula for within-participants effects ($d_z$), and a parsing error in one SD. Together these made the confidence intervals in Figure 1 and the uncertainty used for *p*-original far too small. 1/17 (6%) of the original studies are now statistically inconsistent with their replications (*p*-original < .05; published: 4/17, 24%), with a median *p*-original of 0.27 (published: 0.15). For the secondary comparisons, the proportions with *p*-original < .05 are now 18%, 24%, 12% and 6% (published: 35%, 47%, 35% and 24%).
+2. *Effect sizes for Jara-Ettinger et al. (2022).* Effect sizes for this study, coded as a proportion compared with chance, divided by the standard error of the proportion instead of its standard deviation, so they grew with sample size. The corrected effect sizes are 0.76, 0.59 and 0.23 for the original, first replication and rescue (published: 9.12, 6.99 and 4.77). The study now appears in the small-effects panel of Figure 1.
+3. *Ngo et al. (2019) replications.* The first replication and the rescue both used the same student analysis code, which subtracted one participant's "independent model" score from a different participant's "data model" score. This left the mean unchanged but inflated the standard deviation about 4- to 6-fold. The values in the paper were taken from the students' reports, so they inherited the error. Reanalysed from the students' posted data with participants aligned, the first replication found the effect, *t*(11) = 3.09, one-sided *p* = .005, *d* = 0.89 (reported: *t*(11) = 0.53; coded *d* = 0.17), and so did the rescue, *t*(76) = 8.40, *d* = 0.96 (reported: *t*(76) = 1.87; coded *d* = 0.10), compared with the original's *d* = 1.28. Ngo et al. (2019) entered the rescue sample because its first replication was scored as a failure, and that score rests on the incorrect analysis. We have kept the subjective replication scores as originally coded (first replication 0, rescue 1), so the 5/17 success rate and the predictor correlations do not change.
+4. *Table 2, log original sample size.* This row used the rescue's sample size instead of the original's. Corrected: *r* = .015, *p* = .953 (published: *r* = .027, *p* = .919).
+
+**Text errors and claims that changed**
+
+1. *Statistical consistency.* The Results said that "a number of original effects are not statistically consistent" with the replications and that "the pattern of inconsistency does not align with which studies were rated as having replicated", and the Discussion said that "a large minority" of replications were statistically inconsistent with the original. With one inconsistent study on the primary measure (Tarampi et al., 2016), the Results now say "a few", the second sentence is removed, and the Discussion says "a minority".
+2. *Ngo et al. (2019) case study and post-hoc predictors.* The case study said the first replication "failed to find the original effect" and that the rescue "recovered a clear effect (albeit a much smaller one)". We now reference the situation (see analysis error 3).
+3. *Schechtman et al. (2010).* The Appendix said the first replication found "a statistically significant effect in the opposite direction of the original study", while Figure 1 shows it in the same direction. The coded effect (the valence-by-distance interaction) was in the same direction as the original in both replications; the reversed result was the overall pattern, with gain-paired tones generalized more than loss-paired tones. The Appendix now says this. In addition, all three Schechtman effect sizes are computed from trial-level regressions (about 70 trials per participant, with no participant-level random effects), so their confidence intervals are too narrow; the first replication's CI excluding 0 depends on this. Its *p*-original values (.66--.88) are far from .05.
+4. *Krauss and Wang (2003) rescue.* 1/40 correct justifications was printed as 2%; it is 2.5%.
+
+\endgroup
+
+\newpage
+
 <!-- TODO compile everything into OSF repo & link -->
 
 <!-- TODO link individual pre-reg's in repo -->
@@ -402,6 +434,8 @@ d <- read_csv(here("data", "combined_data.csv")) |> filter(type == "rescue")
 
 irr <- cor.test(d$TA_rep_score, d$MCF_rep_score, method = "spearman")$estimate
 
+# seed so the bootstrap CI printed in the text is the same on every render
+set.seed(42)
 bootstrap <- subj$binary_success |> Hmisc::smean.cl.boot()
 ```
 
@@ -641,6 +675,10 @@ all <- orig_v_others |>
   left_join(orig_v_not_rescue |> select(target_lastauthor_year, orig_v_not_rescue = d_p_orig)) |>
   left_join(rescue_v_reps |> select(target_lastauthor_year, rescue_v_reps = d_p_orig))
 
+# do_p_orig() returns NA when an input is missing and the summaries below use na.rm = T,
+# so check here that every project got all five p-original values.
+stopifnot(nrow(all) == num_proj, !anyNA(all))
+
 main_summ <- all |>
   ungroup() |>
   select(orig_v_other) |>
@@ -729,8 +767,7 @@ For d) the rescue versus the other replications, the median value of $p$-origina
 
 <!--* We will use p-original to evaluate how consistent the original effect size is with the totality of replications. We expect there to be a small number of replications, so we will impute the heterogeneity value as in https://osf.io/preprints/psyarxiv/dpyn6/. -->
 
-Overall, allowing for a heterogeneity level of $\tau$=.21 SMD, a number of original effects are not statistically consistent with rescue and replication effects.
-The pattern of inconsistency does not align with which studies were rated as having replicated.
+Overall, allowing for a heterogeneity level of $\tau$=.21 SMD, a few original effects are not statistically consistent with rescue and replication effects.
 In all cases, the point estimate of the re-replication is smaller than, or in the opposite direction of, the original effect on the key measure of interest.
 
 ```{r}
@@ -788,7 +825,7 @@ for_cor <- subj |>
     is_within = ifelse(within_between == "within", 1, 0),
     change_platform = ifelse(on_turk == original_on_turk, 0, 1),
     log_trials = log(repeated_measure),
-    log_sample = log(N),
+    log_sample = log(original_N), # these are rescue rows, so N here is the rescue's sample size
     log_ratio_ss = log(N / original_N),
     rep_1_log_sample = log(rep_N),
     log_ratio_rep1_orig = log(rep_N / original_N),
@@ -830,7 +867,7 @@ knitr::kable(cors, digits = 3, align = "rcc", format = "latex", booktabs = T, li
 
 Are there signals in the features of original or replication studies that predict whether a re-replication will succeed?
 To address this question, we report correlations between the set of predictor variables used in @boyce2023 and the subjective replication scores of the rescues.
-We also added some (non-preregistered) predictors related to the sample size of the first replication, after seeing the successful re-replications of @ngo2019 and @krauss2003, both of which had small replication samples and larger rescue samples.
+We also added some (non-preregistered) predictors related to the sample size of the first replication, after seeing the successful re-replications of @ngo2019 and @krauss2003, both of which had small replication samples and larger rescue samples (although note that in post-correction hindsight we know @ngo2019's first replication failed due to a coding error in the replication, not low sample size).
 
 All of the correlations are presented in Table \@ref(tab:cor-table).
 The number of rescues is small, and many of these predictors are correlated, so we caution against over-interpretation.
@@ -875,13 +912,13 @@ The replication found 0/8 correct justifications in the control and 0/11 in the 
 While we cannot know for sure what caused the non-replication, there were clear problems observable from the small final sample and low-quality responses.
 The rescue targeted these issues by adding a pre-screening that ensured participants were not familiar with the Monty Hall problem, changed the content items for the problem and changed its name (to reduce googling for answers), and had participants upload drawings for their justifications.
 We believe these changes collectively brought the rescue closer to the intent of the original.
-The rescue had 1/40 (`r round(1/40*100)`%) correct justifications in the control condition and 6/35 (`r round(6/35*100)`%) in the guided thinking condition.
+The rescue had 1/40 (`r round(1/40*100, 1)`%) correct justifications in the control condition and 6/35 (`r round(6/35*100)`%) in the guided thinking condition.
 This effect was significant, though smaller than the effect in the original.
 
 @ngo2019 was a second successful rescue.
 The original study found a large effect; hence the first replication, powering for 80% power on the reported effect, recruited a small sample of 12 people.
-This small study failed to find the original effect.
-The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one).
+This small study failed to find the original effect (now known to be due to a coding error).
+The rescue, powered using 2.5x the original sample [as recommended by @simonsohn2015], recovered a clear effect (albeit a much smaller one) with the same coding error. After correcting the coding error, both the first replication and the rescue have effects that are only somewhat smaller than the original. 
 An additional replication from the literature, @ngo2021 successfully replicated @ngo2019.
 There are reasons to think that some effect sizes in the literature may be inflated [@opensciencecollaboration; @camerer2018], and it is also possible that changes to experiments or moving data collection online could result in noisier samples and thus smaller effect sizes.
 Therefore, replications with smaller samples than the original (even if powered to the original effect size), may not be very diagnostic, and could potentially benefit from a re-replication.
@@ -916,7 +953,7 @@ However, there were other cases where the first replications had issues with a s
 We cannot predict what replication failures are likely to resolve given another, more thoughtful try, beyond the suggestion to review studies for best practices in experimental design and sampling [e.g., @experimentology2024].
 
 The rescues all showed smaller effect sizes than their original studies, regardless of whether the pattern of effects replicated.
-A large minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies. 
+A minority of replications had effect sizes that were statistically inconsistent with the original effect, even accounting for expected levels of heterogeneity between studies. 
 
 In cases where re-replications failed, we do not believe any conclusions are licensed about the status of the original results. 
 
@@ -1017,11 +1054,11 @@ The rescuer obtained the direct wordings of the questions from the authors of th
 The rescue used the same wordings as the original paper and replicated the effect, although the manipulation check failed.
 
 @schechtman2010 looked at how widely people generalize tones that previously have been paired with losses or gains, and found that the loss-paired tones were generalized more.
-The first replication found a statistically significant effect in the opposite direction of the original study.
+The first replication found a statistically significant valence-by-distance interaction in the same direction as the original (the effect shown in Figure \@ref(fig:smd)), but the overall pattern was reversed: gain-paired tones were generalized more than loss-paired tones.
 It also found that people took much longer to learn which tones were associated with gains vs. losses compared to the original.
 The rescuer made several changes, including asking questions about the sound quality of the participant's computer.
 The original study was conducted in person while the replication and rescue were online, so differences in speaker and headphone quality might have played a role in the different result.
-The rescue found an effect in the same direction as the 1st replication (contrary to the original study).
+The rescue found the same overall pattern as the 1st replication (contrary to the original study), with a non-significant interaction in the same direction as the original.
 
 As discussed in methods, @tarampi2016 had participants do a timed navigation task and found an interaction between participant gender and the framing of the task (social or spatial) on performance.
 The result from the first replication was both statistically insignificant and directionally inconsistent.
